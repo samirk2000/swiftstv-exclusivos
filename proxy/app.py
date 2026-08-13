@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import logging
 import os
 import time
 from typing import Any
@@ -12,6 +13,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, RedirectResponse
 
 from hls_resolver import HlsResolver, HlsResolverSettings
+
+logging.basicConfig(level=os.environ.get("LOG_LEVEL", "INFO").upper())
+LOGGER = logging.getLogger("hls_proxy")
 
 APP = FastAPI(title="Swiftstv HLS Proxy", version="1.0.0")
 APP.add_middleware(
@@ -87,8 +91,13 @@ def cache_set(embed: str, referer: str, client_ip: str, urls: list[str]) -> None
 async def resolve_manifests(embed: str, referer: str, client_ip: str) -> list[str]:
     cached = cache_get(embed, referer, client_ip)
     if cached is not None:
+        LOGGER.info("cache hit embed=%s ip=%s", embed, client_ip)
         return cached
-    manifests = await RESOLVER.resolve(embed, referer=referer, client_ip=client_ip)
+    try:
+        manifests = await RESOLVER.resolve(embed, referer=referer, client_ip=client_ip)
+    except Exception as exc:  # noqa: BLE001
+        LOGGER.exception("resolver failed embed=%s ip=%s: %s", embed, client_ip, exc)
+        manifests = []
     cache_set(embed, referer, client_ip, manifests)
     return manifests
 

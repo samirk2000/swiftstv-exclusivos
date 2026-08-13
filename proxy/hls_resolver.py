@@ -3,21 +3,34 @@
 from __future__ import annotations
 
 import asyncio
+import logging
 import re
 from dataclasses import dataclass
 from typing import Callable
 from urllib.parse import parse_qsl, urlencode, urljoin, urlparse, urlunparse
 
+LOGGER = logging.getLogger("hls_resolver")
 M3U8_RE = re.compile(r"""https?://[^\s"'<>\\]+?\.m3u8[^\s"'<>\\]*""", re.IGNORECASE)
+SKIP_URL_PREFIXES = ("about:", "javascript:", "blob:", "data:", "chrome-error:")
 
 
 def is_hls_url(url: str) -> bool:
     if not url:
         return False
     lower = url.lower().strip()
-    if lower.startswith(("blob:", "data:", "about:")):
+    if lower.startswith(SKIP_URL_PREFIXES):
         return False
     return ".m3u8" in lower
+
+
+def is_navigable_url(url: str) -> bool:
+    if not url:
+        return False
+    lower = url.lower().strip()
+    if lower.startswith(SKIP_URL_PREFIXES):
+        return False
+    parsed = urlparse(url)
+    return parsed.scheme in {"http", "https"} and bool(parsed.netloc)
 
 
 def dedupe_keep_order(values: list[str]) -> list[str]:
@@ -28,6 +41,10 @@ def dedupe_keep_order(values: list[str]) -> list[str]:
             seen.add(value)
             unique.append(value)
     return unique
+
+
+def filter_navigable_urls(urls: list[str]) -> list[str]:
+    return [url for url in urls if is_navigable_url(url)]
 
 
 def rewrite_m3u8_client_ip(m3u8_url: str, client_ip: str) -> str:
@@ -99,6 +116,10 @@ class HlsResolver:
         if self._context is None:
             raise RuntimeError("HlsResolver.start() must be called before resolve()")
 
+        if not is_navigable_url(embed_url):
+            LOGGER.warning("skip non-navigable url depth=%s: %s", depth, embed_url)
+            return []
+
         seen = visited if visited is not None else set()
         if embed_url in seen or depth > self.settings.max_iframe_depth:
             return []
@@ -113,6 +134,7 @@ class HlsResolver:
             rewritten = rewrite_m3u8_client_ip(raw_url, client_ip)
             if rewritten not in captured:
                 captured.append(rewritten)
+                LOGGER.info("manifest depth=%s %s", depth, rewritten[:180])
 
         page = await self._context.new_page()
         await self._apply_client_ip_routing(page, client_ip, referer)
@@ -124,11 +146,16 @@ class HlsResolver:
         page.on("response", on_response)
 
         try:
-            await page.goto(
-                embed_url,
-                wait_until="domcontentloaded",
-                timeout=self.settings.goto_timeout_ms,
-            )
+            LOGGER.info("goto depth=%s %s", depth, embed_url)
+            try:
+                await page.goto(
+                    embed_url,
+                    wait_until="domcontentloaded",
+                    timeout=self.settings.goto_timeout_ms,
+                )
+            except Exception as exc:  # noqa: BLE001
+                LOGGER.warning("goto failed depth=%s %s: %s", depth, embed_url, exc)
+
             try:
                 await page.wait_for_selector("iframe, video, source", timeout=8000)
             except Exception:
@@ -141,10 +168,16 @@ class HlsResolver:
             except Exception:
                 await page.wait_for_timeout(self.settings.player_fallback_wait_ms)
 
+            page_base = page.url if is_navigable_url(page.url) else embed_url
+
             for frame in page.frames:
                 frame_url = frame.url or ""
                 track(frame_url)
-                if frame_url and frame_url not in {"about:blank"} and frame_url != page.url:
+                if (
+                    is_navigable_url(frame_url)
+                    and frame_url != page_base
+                    and frame_url != embed_url
+                ):
                     iframe_targets.append(frame_url)
                 try:
                     content = await frame.content()
@@ -159,23 +192,29 @@ class HlsResolver:
                     or await iframe.get_attribute("data-src")
                     or await iframe.get_attribute("data-lazy-src")
                 )
-                if not src or src.startswith(("about:", "javascript:")):
+                if not src or src.startswith(SKIP_URL_PREFIXES):
                     continue
-                iframe_targets.append(urljoin(page.url, src))
+                absolute = urljoin(page_base, src)
+                if is_navigable_url(absolute):
+                    iframe_targets.append(absolute)
         finally:
             await page.close()
 
         if not captured:
-            for iframe_url in dedupe_keep_order(iframe_targets):
-                captured.extend(
-                    await self._resolve_locked(
-                        iframe_url,
-                        referer=embed_url,
-                        client_ip=client_ip,
-                        depth=depth + 1,
-                        visited=seen,
+            for iframe_url in filter_navigable_urls(dedupe_keep_order(iframe_targets)):
+                LOGGER.info("iframe depth=%s -> %s", depth + 1, iframe_url)
+                try:
+                    captured.extend(
+                        await self._resolve_locked(
+                            iframe_url,
+                            referer=embed_url,
+                            client_ip=client_ip,
+                            depth=depth + 1,
+                            visited=seen,
+                        )
                     )
-                )
+                except Exception as exc:  # noqa: BLE001
+                    LOGGER.warning("iframe resolve failed %s: %s", iframe_url, exc)
 
         return dedupe_keep_order(captured)
 
@@ -190,6 +229,9 @@ class HlsResolver:
         await page.set_extra_http_headers(headers)
 
         async def handle_route(route, request) -> None:
+            if not is_navigable_url(request.url):
+                await route.abort()
+                return
             merged = dict(request.headers)
             merged.update(headers)
             await route.continue_(headers=merged)
