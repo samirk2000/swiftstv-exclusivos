@@ -8,12 +8,10 @@ import logging
 import os
 import re
 import sys
-import threading
 import unicodedata
-from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass, field
 from typing import Iterable
-from urllib.parse import urljoin, urlparse
+from urllib.parse import quote, urljoin, urlparse
 
 import requests
 from bs4 import BeautifulSoup, Tag
@@ -124,6 +122,8 @@ class Settings:
     title_selector: str = ""
     channel_selector: str = ""
     use_playwright: bool = True
+    stream_wait_ms: int = 10000
+    proxy_base_url: str = ""
 
     @classmethod
     def from_env(cls) -> "Settings":
@@ -147,6 +147,8 @@ class Settings:
             title_selector=os.environ.get("TITLE_SELECTOR", "").strip(),
             channel_selector=os.environ.get("CHANNEL_SELECTOR", "").strip(),
             use_playwright=_as_bool(use_playwright_raw),
+            stream_wait_ms=max(1000, int(os.environ.get("HLS_WAIT_MS", "10000"))),
+            proxy_base_url=os.environ.get("PROXY_BASE_URL", "").strip().rstrip("/"),
         )
 
 
@@ -181,22 +183,56 @@ class PlaywrightRenderer:
         self._browser = self._playwright.chromium.launch(headless=True)
         print("[playwright] Chromium started")
 
-    def fetch(self, url: str) -> str:
+    def fetch(self, url: str) -> tuple[str, dict | None]:
         if self._browser is None:
             raise RuntimeError("PlaywrightRenderer.start() must be called before fetch()")
 
+        api_payload: dict | None = None
         page = self._browser.new_page(user_agent=self.settings.user_agent)
+
+        def on_response(response) -> None:
+            nonlocal api_payload
+            if api_payload is not None:
+                return
+            if "agenda.json" not in response.url or not response.ok:
+                return
+            try:
+                data = response.json()
+            except Exception:
+                return
+            if isinstance(data, dict) and data.get("data"):
+                api_payload = data
+                print(
+                    f"[playwright] captured agenda.json "
+                    f"({len(data.get('data', []))} events) from {response.url}"
+                )
+
+        page.on("response", on_response)
         try:
             print(f"[playwright] loading {url}")
-            page.goto(
-                url,
-                wait_until="domcontentloaded",
-                timeout=int(self.settings.timeout * 1000),
-            )
+            try:
+                with page.expect_response(
+                    lambda response: "agenda.json" in response.url and response.ok,
+                    timeout=int(self.settings.timeout * 1000),
+                ):
+                    page.goto(
+                        url,
+                        wait_until="domcontentloaded",
+                        timeout=int(self.settings.timeout * 1000),
+                    )
+            except Exception:
+                page.goto(
+                    url,
+                    wait_until="domcontentloaded",
+                    timeout=int(self.settings.timeout * 1000),
+                )
+
             self._wait_for_agenda(page)
+            menu_count = page.locator("#menu > li").count()
+            print(f"[playwright] #menu items={menu_count}")
             html = page.content()
             print(f"[playwright] rendered {url} ({len(html)} bytes)")
-            return html
+            return html, api_payload
         finally:
             page.close()
 
@@ -260,6 +296,208 @@ class PlaywrightRenderer:
             self._playwright.stop()
             self._playwright = None
         print("[playwright] Chromium closed")
+
+    @property
+    def browser(self):
+        if self._browser is None:
+            raise RuntimeError("PlaywrightRenderer.start() must be called before accessing browser")
+        return self._browser
+
+
+class PlaywrightHydrator:
+    """Resolve direct HLS (.m3u8) URLs from channel/embed subpages using Playwright only."""
+
+    LOG_PREFIX = "[playwright-hydrate]"
+    GOTO_TIMEOUT_MS = 15000
+    PLAYER_FALLBACK_WAIT_MS = 3000
+    MAX_IFRAME_DEPTH = 3
+
+    def __init__(self, renderer: PlaywrightRenderer, settings: Settings) -> None:
+        self.renderer = renderer
+        self.settings = settings
+        self._context = None
+        self._cache: dict[str, list[str]] = {}
+
+    def start(self) -> None:
+        self._context = self.renderer.browser.new_context(
+            user_agent=self.settings.user_agent,
+            ignore_https_errors=True,
+        )
+        print(f"{self.LOG_PREFIX} browser context ready")
+
+    def close(self) -> None:
+        if self._context is not None:
+            self._context.close()
+            self._context = None
+        print(f"{self.LOG_PREFIX} browser context closed")
+
+    def hydrate_events(self, events: list[AgendaEvent]) -> None:
+        if self._context is None:
+            raise RuntimeError("PlaywrightHydrator.start() must be called before hydrate_events()")
+
+        jobs: list[tuple[int, str, str]] = []
+        seen_jobs: set[tuple[int, str]] = set()
+        for index, event in enumerate(events):
+            referer = event.source_url or self.settings.target_urls[0]
+            for subpage_url in event.channel_pages:
+                job_key = (index, subpage_url)
+                if job_key in seen_jobs:
+                    continue
+                seen_jobs.add(job_key)
+                jobs.append((index, subpage_url, referer))
+
+        print(f"{self.LOG_PREFIX} probing {len(jobs)} subpages")
+        for index, subpage_url, referer in jobs:
+            print(f"{self.LOG_PREFIX} goto {subpage_url}")
+            try:
+                manifests = self.capture_m3u8(subpage_url, referer=referer)
+            except Exception as exc:  # noqa: BLE001
+                print(f"{self.LOG_PREFIX} error {subpage_url}: {exc}")
+                LOGGER.warning("Playwright hydrate failed (%s): %s", subpage_url, exc)
+                manifests = []
+
+            if manifests:
+                events[index].stream_urls.extend(manifests)
+                print(
+                    f"{self.LOG_PREFIX} resolved {len(manifests)} .m3u8 for {subpage_url}"
+                )
+            else:
+                print(f"{self.LOG_PREFIX} discard {subpage_url}: no .m3u8 captured")
+
+        for event in events:
+            event.stream_urls = dedupe_keep_order(filter_hls_urls(event.stream_urls))
+            event.channel_pages = []
+            if not event.stream_urls:
+                print(f"{self.LOG_PREFIX} drop {event.match_name!r}: zero .m3u8 streams")
+
+    def capture_m3u8(
+        self,
+        subpage_url: str,
+        referer: str | None = None,
+        *,
+        depth: int = 0,
+        visited: set[str] | None = None,
+    ) -> list[str]:
+        cached = self._cache.get(subpage_url)
+        if cached is not None:
+            return list(cached)
+
+        seen = visited if visited is not None else set()
+        if subpage_url in seen or depth > self.MAX_IFRAME_DEPTH:
+            return []
+        seen.add(subpage_url)
+
+        captured: list[str] = []
+        iframe_targets: list[str] = []
+
+        def track_manifest(raw_url: str) -> None:
+            if not is_hls_url(raw_url):
+                return
+            if raw_url not in captured:
+                captured.append(raw_url)
+                print(f"{self.LOG_PREFIX} manifest {raw_url[:180]}")
+
+        def on_response(response) -> None:
+            track_manifest(response.url)
+            PlaywrightHydrator._scan_response_body(response, track_manifest)
+
+        assert self._context is not None
+        page = self._context.new_page()
+        if referer:
+            page.set_extra_http_headers({"Referer": referer})
+
+        page.on("response", on_response)
+
+        try:
+            print(f"{self.LOG_PREFIX} page.goto depth={depth} {subpage_url}")
+            page.goto(
+                subpage_url,
+                wait_until="domcontentloaded",
+                timeout=self.GOTO_TIMEOUT_MS,
+            )
+
+            try:
+                page.wait_for_selector(
+                    "iframe, video, source, .player, #player",
+                    timeout=min(8000, self.settings.stream_wait_ms),
+                )
+            except Exception:
+                pass
+
+            try:
+                page.wait_for_response(
+                    lambda response: is_hls_url(response.url),
+                    timeout=self.settings.stream_wait_ms,
+                )
+            except Exception:
+                page.wait_for_timeout(self.PLAYER_FALLBACK_WAIT_MS)
+
+            for frame in page.frames:
+                frame_url = frame.url or ""
+                track_manifest(frame_url)
+                if not frame_url or frame_url in {"about:blank"}:
+                    continue
+                if frame_url != page.url and frame_url not in iframe_targets:
+                    iframe_targets.append(frame_url)
+                try:
+                    for manifest in StreamExtractor.list_hls_in_text(frame.content()):
+                        track_manifest(manifest)
+                except Exception:
+                    continue
+
+            for iframe in page.locator("iframe").all()[:8]:
+                src = (
+                    iframe.get_attribute("src")
+                    or iframe.get_attribute("data-src")
+                    or iframe.get_attribute("data-lazy-src")
+                )
+                absolute = _abs_media_url(src, page.url)
+                if absolute and absolute not in iframe_targets:
+                    iframe_targets.append(absolute)
+        except Exception as exc:  # noqa: BLE001
+            print(f"{self.LOG_PREFIX} page failed depth={depth} {subpage_url}: {exc}")
+        finally:
+            page.close()
+
+        if not filter_hls_urls(captured):
+            for iframe_url in dedupe_keep_order(iframe_targets):
+                print(f"{self.LOG_PREFIX} iframe depth={depth + 1} -> {iframe_url}")
+                captured.extend(
+                    self.capture_m3u8(
+                        iframe_url,
+                        referer=subpage_url,
+                        depth=depth + 1,
+                        visited=seen,
+                    )
+                )
+
+        resolved = dedupe_keep_order(filter_hls_urls(captured))
+        self._cache[subpage_url] = resolved
+        return resolved
+
+    @staticmethod
+    def _scan_response_body(response, track_manifest) -> None:
+        try:
+            if not response.ok:
+                return
+            resource_type = getattr(response.request, "resource_type", "")
+            content_type = (response.headers.get("content-type") or "").lower()
+            if resource_type == "media" or "mpegurl" in content_type:
+                track_manifest(response.url)
+            if resource_type not in {"xhr", "fetch", "script", "document", "media"}:
+                return
+            if not any(
+                token in content_type
+                for token in ("json", "javascript", "text", "mpegurl", "octet-stream")
+            ):
+                return
+            body = response.text()
+            if not body or len(body) > 500_000:
+                return
+            for manifest in StreamExtractor.list_hls_in_text(body):
+                track_manifest(manifest)
+        except Exception:
+            return
 
 
 class HttpClient:
@@ -1112,15 +1350,33 @@ class AgendaParser:
 
 
 class StreamExtractor:
-    """Pull iframe src / publicly listed HLS URLs from a channel subpage."""
+    """Pull HLS manifest URLs from HTML (Playwright handles live network capture)."""
 
-    def extract(self, html: str, page_url: str) -> list[str]:
-        soup = BeautifulSoup(html, "lxml")
+    def extract_hls_from_html(self, html: str, page_url: str) -> list[str]:
         found: list[str] = []
-        found.extend(self._iframes(soup, page_url))
-        found.extend(self._video_sources(soup, page_url))
-        found.extend(self._listed_hls(html))
-        return dedupe_keep_order(found)
+        found.extend(self.list_hls_in_text(html))
+        for node_src in self._video_sources(html, page_url):
+            if is_hls_url(node_src):
+                found.append(node_src)
+        return dedupe_keep_order(filter_hls_urls(found))
+
+    def extract_iframe_urls(self, html: str, page_url: str) -> list[str]:
+        soup = BeautifulSoup(html, "lxml")
+        return self._iframes(soup, page_url)
+
+    @staticmethod
+    def list_hls_in_text(text: str) -> list[str]:
+        return [match.group(0).rstrip("\\") for match in M3U8_RE.finditer(text)]
+
+    def _video_sources(self, html: str, page_url: str) -> list[str]:
+        soup = BeautifulSoup(html, "lxml")
+        urls: list[str] = []
+        for node in soup.find_all(["video", "source"]):
+            src = node.get("src") or node.get("data-src")
+            absolute = _abs_media_url(src, page_url)
+            if absolute:
+                urls.append(absolute)
+        return urls
 
     def _iframes(self, soup: BeautifulSoup, page_url: str) -> list[str]:
         urls: list[str] = []
@@ -1131,160 +1387,173 @@ class StreamExtractor:
                 urls.append(absolute)
         return urls
 
-    def _video_sources(self, soup: BeautifulSoup, page_url: str) -> list[str]:
-        urls: list[str] = []
-        for node in soup.find_all(["video", "source"]):
-            src = node.get("src") or node.get("data-src")
-            absolute = _abs_media_url(src, page_url)
-            if absolute:
-                urls.append(absolute)
-        return urls
-
-    @staticmethod
-    def _listed_hls(html: str) -> list[str]:
-        return [match.group(0).rstrip("\\") for match in M3U8_RE.finditer(html)]
-
 
 class SourceBuilder:
-    def build(self, events: Iterable[AgendaEvent]) -> list[dict]:
+    def build(self, events: Iterable[AgendaEvent], settings: Settings) -> list[dict]:
+        if settings.proxy_base_url:
+            return self._build_proxy_records(events, settings)
+        return self._build_direct_records(events)
+
+    def _build_direct_records(self, events: Iterable[AgendaEvent]) -> list[dict]:
         records: list[dict] = []
         used_ids: dict[str, int] = {}
         for event in events:
-            urls = dedupe_keep_order(event.stream_urls or event.channel_pages)
+            urls = dedupe_keep_order(filter_hls_urls(event.stream_urls))
             if not urls:
+                print(f"[build] skip {event.match_name!r}: no .m3u8 resolved")
                 continue
-            base_id = slugify(event.match_name) or slugify(event.title) or "event"
-            used_ids[base_id] = used_ids.get(base_id, 0) + 1
-            suffix = event.time.replace(":", "") if event.time else str(used_ids[base_id])
-            record_id = base_id if used_ids[base_id] == 1 else f"{base_id}-{suffix}"
-            source_type = "hls" if _all_hls(urls) else "embed"
-            name = f"{event.time} - {event.match_name}".strip(" -") if event.time else event.match_name
-            records.append(
-                {
-                    "id": record_id,
-                    "name": name,
-                    "category": event.category or "Sports",
-                    "type": source_type,
-                    "urls": urls,
-                }
-            )
+            records.append(self._make_record(event, urls, used_ids))
         return records
+
+    def _build_proxy_records(self, events: Iterable[AgendaEvent], settings: Settings) -> list[dict]:
+        records: list[dict] = []
+        used_ids: dict[str, int] = {}
+        for event in events:
+            embed_pages = dedupe_keep_order(event.channel_pages)
+            if not embed_pages:
+                print(f"[build] skip {event.match_name!r}: no embed pages for proxy")
+                continue
+            referer = event.source_url or settings.target_urls[0]
+            urls = [
+                build_proxy_play_url(settings.proxy_base_url, embed_url, referer)
+                for embed_url in embed_pages
+            ]
+            records.append(self._make_record(event, urls, used_ids))
+        return records
+
+    def _make_record(
+        self,
+        event: AgendaEvent,
+        urls: list[str],
+        used_ids: dict[str, int],
+    ) -> dict:
+        base_id = slugify(event.match_name) or slugify(event.title) or "event"
+        used_ids[base_id] = used_ids.get(base_id, 0) + 1
+        suffix = event.time.replace(":", "") if event.time else str(used_ids[base_id])
+        record_id = base_id if used_ids[base_id] == 1 else f"{base_id}-{suffix}"
+        name = f"{event.time} - {event.match_name}".strip(" -") if event.time else event.match_name
+        return {
+            "id": record_id,
+            "name": name,
+            "category": event.category or "Sports",
+            "type": "hls",
+            "urls": urls,
+        }
 
 
 class Scraper:
     def __init__(self, settings: Settings) -> None:
         self.settings = settings
         self.http = HttpClient(settings)
-        self.renderer = PlaywrightRenderer(settings) if settings.use_playwright else None
-        self.streams = StreamExtractor()
+        self.renderer = PlaywrightRenderer(settings)
         self.builder = SourceBuilder()
-        self._stream_cache: dict[str, list[str]] = {}
-        self._stream_lock = threading.Lock()
 
     def run(self) -> list[dict]:
         print(f"[run] TARGET_URL count={len(self.settings.target_urls)}")
         for agenda_url in self.settings.target_urls:
             print(f"[run] site={agenda_url}")
 
-        if self.renderer is not None:
-            self.renderer.start()
+        self.renderer.start()
+        hydrator: PlaywrightHydrator | None = None
+        if not self.settings.proxy_base_url:
+            hydrator = PlaywrightHydrator(self.renderer, self.settings)
+            hydrator.start()
+        else:
+            print(
+                f"[run] proxy mode: skipping CI .m3u8 capture, "
+                f"urls will point to {self.settings.proxy_base_url}"
+            )
+
+        api_client = AgendaApiClient(self.http, self.settings)
+        global_api_matches: list[AgendaEvent] = []
+        captured_api_payload: dict | None = None
 
         collected: list[AgendaEvent] = []
         try:
             for agenda_url in self.settings.target_urls:
                 try:
-                    events = self._scrape_agenda(agenda_url)
+                    events, api_payload = self._scrape_agenda(agenda_url)
+                    if api_payload and captured_api_payload is None:
+                        captured_api_payload = api_payload
                 except Exception as exc:  # noqa: BLE001
                     print(f"[agenda] {agenda_url} -> ERROR: {exc}")
                     LOGGER.warning("Agenda failed (%s): %s", agenda_url, exc)
                     continue
                 print(f"[agenda] {agenda_url} -> {len(events)} eventos")
                 collected.extend(events)
-        finally:
-            if self.renderer is not None:
-                self.renderer.close()
 
-        events = merge_events(collected)
-        print(f"[run] combined unique events={len(events)}")
-        self._hydrate_streams(events)
-        records = self.builder.build(events)
+            matches_in_collected = [event for event in collected if event.category != "Canales"]
+            if not matches_in_collected:
+                if captured_api_payload:
+                    referer = self.settings.target_urls[0]
+                    global_api_matches = parse_agenda_api(captured_api_payload, referer)
+                    print(f"[api] playwright captured -> {len(global_api_matches)} partidos")
+
+                if not global_api_matches:
+                    referer = self.settings.target_urls[0]
+                    page_html = self.http.get_html(referer)
+                    api_url = api_client.discover_api_url(referer, page_html)
+                    try:
+                        global_api_matches = api_client.fetch_events(api_url, referer)
+                    except Exception as exc:  # noqa: BLE001
+                        print(f"[api] global agenda fetch failed ({api_url}): {exc}")
+
+            channels = [event for event in collected if event.category == "Canales"]
+            matches = [event for event in collected if event.category != "Canales"]
+            matches = merge_events(matches + global_api_matches)
+            channels = merge_events(channels)
+            events = matches + channels
+            print(
+                f"[run] combined unique partidos={len(matches)} canales={len(channels)}"
+            )
+            if hydrator is not None:
+                self._hydrate_streams(events, hydrator)
+        finally:
+            if hydrator is not None:
+                hydrator.close()
+            self.renderer.close()
+
+        records = self.builder.build(events, self.settings)
         write_json(self.settings.output_path, records)
         print(f"[run] wrote {len(records)} sources to {self.settings.output_path}")
         return records
 
-    def _scrape_agenda(self, agenda_url: str) -> list[AgendaEvent]:
-        agenda_html = self._fetch_agenda_html(agenda_url)
+    def _scrape_agenda(self, agenda_url: str) -> tuple[list[AgendaEvent], dict | None]:
+        agenda_html, api_payload = self._fetch_agenda_html(agenda_url)
         parser = AgendaParser(self.settings, agenda_url)
         html_events = parser.parse(agenda_html)
 
         channels = [event for event in html_events if event.category == "Canales"]
         matches = [event for event in html_events if event.category != "Canales"]
 
-        api_client = AgendaApiClient(self.http, self.settings)
-        api_url = api_client.discover_api_url(agenda_url, agenda_html)
-        try:
-            api_matches = api_client.fetch_events(api_url, agenda_url)
+        if api_payload:
+            api_matches = parse_agenda_api(api_payload, agenda_url)
+            print(f"[api] page captured -> {len(api_matches)} partidos")
             matches = merge_events(matches + api_matches)
-        except Exception as exc:  # noqa: BLE001
-            print(f"[api] agenda fetch failed ({api_url}): {exc}")
-            LOGGER.warning("Agenda API failed (%s): %s", api_url, exc)
+        else:
+            api_client = AgendaApiClient(self.http, self.settings)
+            api_url = api_client.discover_api_url(agenda_url, agenda_html)
+            try:
+                api_matches = api_client.fetch_events(api_url, agenda_url)
+                matches = merge_events(matches + api_matches)
+            except Exception as exc:  # noqa: BLE001
+                print(f"[api] agenda fetch failed ({api_url}): {exc}")
+                LOGGER.warning("Agenda API failed (%s): %s", api_url, exc)
 
         events = matches + channels
         for event in events:
             event.source_url = agenda_url
             event.channel_pages = dedupe_keep_order(event.channel_pages)
         print(f"[agenda] {agenda_url} -> {len(matches)} partidos + {len(channels)} canales")
-        return events
+        return events, api_payload
 
-    def _fetch_agenda_html(self, agenda_url: str) -> str:
-        if self.renderer is not None:
+    def _fetch_agenda_html(self, agenda_url: str) -> tuple[str, dict | None]:
+        if self.settings.use_playwright:
             return self.renderer.fetch(agenda_url)
-        return self.http.get_html(agenda_url)
+        return self.http.get_html(agenda_url), None
 
-    def _hydrate_streams(self, events: list[AgendaEvent]) -> None:
-        jobs: list[tuple[int, str, str]] = []
-        seen_jobs: set[tuple[int, str]] = set()
-        for index, event in enumerate(events):
-            referer = event.source_url or self.settings.target_urls[0]
-            for url in event.channel_pages:
-                job_key = (index, url)
-                if job_key in seen_jobs:
-                    continue
-                seen_jobs.add(job_key)
-                jobs.append((index, url, referer))
-
-        print(f"[hydrate] channel subpages={len(jobs)}")
-        with ThreadPoolExecutor(max_workers=self.settings.max_workers) as pool:
-            future_map = {
-                pool.submit(self._extract_from_channel, url, referer): (index, url)
-                for index, url, referer in jobs
-            }
-            for future in as_completed(future_map):
-                index, channel_url = future_map[future]
-                try:
-                    urls = future.result()
-                except Exception as exc:  # noqa: BLE001
-                    print(f"[channel] FAIL {channel_url} -> {exc}")
-                    LOGGER.warning("Channel page failed: %s", exc)
-                    events[index].stream_urls.append(channel_url)
-                    continue
-                events[index].stream_urls.extend(urls)
-
-        for event in events:
-            event.stream_urls = dedupe_keep_order(event.stream_urls or event.channel_pages)
-
-    def _extract_from_channel(self, url: str, referer: str | None = None) -> list[str]:
-        with self._stream_lock:
-            cached = self._stream_cache.get(url)
-        if cached is not None:
-            return list(cached)
-
-        html = self.http.get_html(url, referer=referer)
-        extracted = self.streams.extract(html, url)
-        resolved = extracted or [url]
-        with self._stream_lock:
-            self._stream_cache[url] = resolved
-        return list(resolved)
+    def _hydrate_streams(self, events: list[AgendaEvent], hydrator: PlaywrightHydrator) -> None:
+        hydrator.hydrate_events(events)
 
     def close(self) -> None:
         self.http.close()
@@ -1330,12 +1599,15 @@ def parse_agenda_api(payload: dict, base_url: str) -> list[AgendaEvent]:
                 continue
             embed_attrs = embed.get("attributes") or {}
             iframe = normalize_space(str(embed_attrs.get("embed_iframe") or ""))
+            embed_name = normalize_space(str(embed_attrs.get("embed_name") or ""))
             if not iframe:
                 continue
             if iframe.startswith("http"):
                 channel_pages.append(iframe)
             else:
                 channel_pages.append(urljoin(base_url, iframe))
+            if embed_name:
+                print(f"[api] embed {embed_name} -> {channel_pages[-1]}")
         channel_pages = dedupe_keep_order(channel_pages)
         if not channel_pages:
             continue
@@ -1436,6 +1708,24 @@ def _abs_media_url(src: str | None, page_url: str) -> str:
     if parsed.scheme not in {"http", "https"} or not parsed.netloc:
         return ""
     return absolute
+
+
+def is_hls_url(url: str) -> bool:
+    if not url:
+        return False
+    lower = url.lower().strip()
+    if lower.startswith(("blob:", "data:", "about:")):
+        return False
+    return ".m3u8" in lower
+
+
+def build_proxy_play_url(proxy_base_url: str, embed_url: str, referer: str) -> str:
+    query = f"embed={quote(embed_url, safe='')}&referer={quote(referer, safe='')}"
+    return f"{proxy_base_url.rstrip('/')}/v1/play.m3u8?{query}"
+
+
+def filter_hls_urls(urls: Iterable[str]) -> list[str]:
+    return [url for url in urls if is_hls_url(url)]
 
 
 def _all_hls(urls: list[str]) -> bool:

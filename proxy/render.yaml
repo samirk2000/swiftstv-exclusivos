@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: swiftstv-hls-proxy
+    runtime: docker
+    plan: starter
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    envVars:
+      - key: HLS_WAIT_MS
+        value: "12000"
+      - key: HLS_GOTO_TIMEOUT_MS
+        value: "15000"
+      - key: CACHE_TTL_SECONDS
+        value: "45"
+      - key: PROXY_API_KEY
+        sync: false

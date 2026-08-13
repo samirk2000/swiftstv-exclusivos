@@ -15,7 +15,7 @@ concurrency:
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -39,6 +39,9 @@ jobs:
           REQUEST_TIMEOUT: "30"
           MAX_WORKERS: "8"
           AGENDA_WAIT_MS: "3000"
+          HLS_WAIT_MS: "12000"
+          USE_PLAYWRIGHT: "1"
+          PROXY_BASE_URL: ${{ secrets.PROXY_BASE_URL }}
         run: python scraper.py
 
       - name: Commit and push changes

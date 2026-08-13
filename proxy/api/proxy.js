@@ -1,0 +1,50 @@
+export default async function handler(req, res) {
+  const backend = (process.env.RENDER_PROXY_URL || "").replace(/\/$/, "");
+  if (!backend) {
+    res.status(503).json({
+      error: "RENDER_PROXY_URL is not configured on Vercel.",
+      hint: "Deploy proxy/Dockerfile on Render, then set RENDER_PROXY_URL.",
+    });
+    return;
+  }
+
+  const incoming = req.url || "/";
+  const path = incoming.startsWith("/api/proxy")
+    ? req.headers["x-vercel-proxy-path"] || "/"
+    : incoming;
+  const target = `${backend}${path}`;
+  const headers = {};
+  for (const [key, value] of Object.entries(req.headers || {})) {
+    const lower = key.toLowerCase();
+    if (
+      lower === "x-forwarded-for" ||
+      lower === "x-real-ip" ||
+      lower === "cf-connecting-ip" ||
+      lower === "referer" ||
+      lower === "user-agent"
+    ) {
+      headers[key] = value;
+    }
+  }
+  if (process.env.PROXY_API_KEY) {
+    headers["X-Proxy-Key"] = process.env.PROXY_API_KEY;
+  }
+
+  try {
+    const upstream = await fetch(target, {
+      method: req.method || "GET",
+      headers,
+      redirect: "manual",
+    });
+    res.status(upstream.status);
+    upstream.headers.forEach((value, key) => {
+      if (key.toLowerCase() === "location" || key.toLowerCase() === "content-type") {
+        res.setHeader(key, value);
+      }
+    });
+    const body = await upstream.text();
+    res.send(body);
+  } catch (error) {
+    res.status(502).json({ error: String(error) });
+  }
+}
