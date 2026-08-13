@@ -11,7 +11,8 @@ import sys
 import unicodedata
 from dataclasses import dataclass, field
 from typing import Iterable
-from urllib.parse import quote, urljoin, urlparse
+from urllib.parse import parse_qsl, parse_qs, quote, urlencode, urljoin, urlparse, urlunparse
+import base64
 
 import requests
 from bs4 import BeautifulSoup, Tag
@@ -101,6 +102,47 @@ DEFAULT_AGENDA_WAIT_SELECTORS = (
 CARD_CLASS_RE = re.compile(r"card", re.IGNORECASE)
 AGENDA_URL_RE = re.compile(r"""AGENDA_URL\s*=\s*["']([^"']+)["']""")
 CONFIG_SCRIPT_RE = re.compile(r"""config\.js[^"']*""")
+IFRAME_SRC_RE = re.compile(
+    r"""<(?:iframe|frame)[^>]+(?:src|data-src|data-lazy-src)\s*=\s*['"]([^'"]+)['"]""",
+    re.IGNORECASE,
+)
+TUDEPORTESHOY_EMBED_RE = re.compile(
+    r"""(?:https?://[^"'>\s]*tudeporteshoy\.xyz)?/?embed/eventos\.html\?r=[A-Za-z0-9_=\-+/%]+""",
+    re.IGNORECASE,
+)
+STREAM_QUERY_RE = re.compile(r"[?&]stream=([^&#\"'\s]+)", re.IGNORECASE)
+DEFAULT_EMBED_CATALOG_URLS = (
+    "https://tudeporteshoy.xyz/",
+    "https://futbol-libre-hd.com/",
+)
+DEFAULT_PLAYER_TEMPLATE = "https://streamtp2.com/global1.php?stream={stream}"
+STREAM_ALIASES: dict[str, tuple[str, ...]] = {
+    "espn": ("espn1", "espnmx", "espn"),
+    "espn1": ("espn1", "espn", "espnmx"),
+    "espnmx": ("espn1", "espnmx", "espn"),
+    "espn2": ("espn2", "espn2mx"),
+    "espn2mx": ("espn2", "espn2mx"),
+    "espn3": ("espn3", "espn3mx"),
+    "espn3mx": ("espn3", "espn3mx"),
+    "espn_premium": ("espn_premium", "espnpremium", "espn-premium"),
+    "espnpremium": ("espn_premium", "espnpremium"),
+    "tudn": ("tudn_usa", "tudn_mx", "tudn"),
+    "tudn_mx": ("tudn_usa", "tudn_mx", "tudn"),
+    "tudn_usa": ("tudn_usa", "tudn"),
+    "foxsportsmx": ("foxsports", "foxsports1", "fox_sports"),
+    "foxsports": ("foxsports", "foxsports1"),
+    "foxsports2": ("foxsports2", "foxsports2mx"),
+    "foxsports2mx": ("foxsports2", "foxsports2mx"),
+    "foxsports3": ("foxsports3", "foxsports3mx"),
+    "foxsports3mx": ("foxsports3", "foxsports3mx"),
+    "foxsportspremium": ("foxsportspremium", "fox_sports_premium"),
+    "dsports": ("dsports", "dsportsplus"),
+    "dsports2": ("dsports_2", "dsports2"),
+    "dsports_2": ("dsports_2", "dsports2"),
+    "tycsports": ("tyc_sports", "tycsports"),
+    "tyc_sports": ("tyc_sports", "tycsports"),
+    "tntsports": ("tntsports_argentina", "tntsports"),
+}
 
 
 @dataclass(frozen=True)
@@ -124,6 +166,8 @@ class Settings:
     use_playwright: bool = True
     stream_wait_ms: int = 10000
     proxy_base_url: str = ""
+    embed_catalog_urls: tuple[str, ...] = DEFAULT_EMBED_CATALOG_URLS
+    player_template: str = DEFAULT_PLAYER_TEMPLATE
 
     @classmethod
     def from_env(cls) -> "Settings":
@@ -133,6 +177,11 @@ class Settings:
                 "TARGET_URL is required (one URL per line in the environment variable or GitHub secret)."
             )
         use_playwright_raw = os.environ.get("USE_PLAYWRIGHT", "1")
+        catalog_raw = os.environ.get("EMBED_CATALOG_URL", "").strip()
+        if catalog_raw:
+            catalog_urls = tuple(parse_target_urls(catalog_raw))
+        else:
+            catalog_urls = DEFAULT_EMBED_CATALOG_URLS
         return cls(
             target_urls=tuple(target_urls),
             output_path=os.environ.get("OUTPUT_PATH", "exclusive_sources.json").strip(),
@@ -149,6 +198,11 @@ class Settings:
             use_playwright=_as_bool(use_playwright_raw),
             stream_wait_ms=max(1000, int(os.environ.get("HLS_WAIT_MS", "10000"))),
             proxy_base_url=os.environ.get("PROXY_BASE_URL", "").strip().rstrip("/"),
+            embed_catalog_urls=catalog_urls or DEFAULT_EMBED_CATALOG_URLS,
+            player_template=(
+                os.environ.get("PLAYER_TEMPLATE", DEFAULT_PLAYER_TEMPLATE).strip()
+                or DEFAULT_PLAYER_TEMPLATE
+            ),
         )
 
 
@@ -1388,6 +1442,205 @@ class StreamExtractor:
         return urls
 
 
+@dataclass
+class CatalogEmbed:
+    name: str
+    embed_url: str
+    stream_id: str
+    player_url: str
+
+
+class EmbedCatalog:
+    """Load live player embeds from tudeporteshoy / futbol-libre-hd catalogs."""
+
+    LOG_PREFIX = "[embed-catalog]"
+
+    def __init__(self, http: HttpClient, settings: Settings) -> None:
+        self.http = http
+        self.settings = settings
+        self.by_stream: dict[str, CatalogEmbed] = {}
+        self.by_name: dict[str, CatalogEmbed] = {}
+        self.embeds: list[CatalogEmbed] = []
+        self.player_template = settings.player_template
+        self.catalog_base = settings.embed_catalog_urls[0] if settings.embed_catalog_urls else (
+            DEFAULT_EMBED_CATALOG_URLS[0]
+        )
+
+    def load(self) -> None:
+        for catalog_url in self.settings.embed_catalog_urls:
+            try:
+                html = self.http.get_html(catalog_url)
+            except Exception as exc:  # noqa: BLE001
+                print(f"{self.LOG_PREFIX} failed {catalog_url}: {exc}")
+                continue
+            before = len(self.embeds)
+            self._parse_catalog_html(html, catalog_url)
+            print(
+                f"{self.LOG_PREFIX} {catalog_url} -> "
+                f"+{len(self.embeds) - before} embeds (total={len(self.embeds)})"
+            )
+            if "streamtp2.com" in html and "{stream}" in self.player_template:
+                self.player_template = "https://streamtp2.com/global1.php?stream={stream}"
+
+    def _parse_catalog_html(self, html: str, catalog_url: str) -> None:
+        soup = BeautifulSoup(html, "lxml")
+        for anchor in soup.find_all("a", href=True):
+            href = str(anchor.get("href") or "")
+            if "embed/eventos.html" not in href.lower() or "r=" not in href.lower():
+                continue
+            embed_url = urljoin(catalog_url, href)
+            label = normalize_space(str(anchor.get("aria-label") or ""))
+            if not label:
+                label = normalize_space(anchor.get_text(" ", strip=True))
+            player_url = decode_tudeporteshoy_player(embed_url)
+            stream_id = extract_stream_id(player_url) or extract_stream_id(embed_url)
+            if not stream_id:
+                continue
+            item = CatalogEmbed(
+                name=clean_channel_label(label) or stream_id,
+                embed_url=embed_url,
+                stream_id=normalize_stream_id(stream_id),
+                player_url=player_url,
+            )
+            self._index(item)
+
+        for match in TUDEPORTESHOY_EMBED_RE.finditer(html):
+            embed_url = urljoin(catalog_url, match.group(0))
+            player_url = decode_tudeporteshoy_player(embed_url)
+            stream_id = extract_stream_id(player_url)
+            if not stream_id:
+                continue
+            item = CatalogEmbed(
+                name=normalize_stream_id(stream_id),
+                embed_url=embed_url,
+                stream_id=normalize_stream_id(stream_id),
+                player_url=player_url,
+            )
+            self._index(item)
+
+    def _index(self, item: CatalogEmbed) -> None:
+        key = item.embed_url
+        if any(existing.embed_url == key for existing in self.embeds):
+            return
+        self.embeds.append(item)
+        if item.stream_id not in self.by_stream:
+            self.by_stream[item.stream_id] = item
+        name_key = normalize_stream_id(item.name)
+        if name_key and name_key not in self.by_name:
+            self.by_name[name_key] = item
+
+    def lookup(self, *, stream_id: str = "", channel_name: str = "") -> CatalogEmbed | None:
+        for candidate in stream_id_candidates(stream_id):
+            hit = self.by_stream.get(candidate)
+            if hit:
+                return hit
+        name_key = normalize_stream_id(channel_name)
+        if name_key and name_key in self.by_name:
+            return self.by_name[name_key]
+        for key, item in self.by_name.items():
+            if name_key and (name_key in key or key in name_key):
+                return item
+        return None
+
+    def build_embed_for_stream(self, stream_id: str) -> str:
+        stream = normalize_stream_id(stream_id)
+        if not stream:
+            return ""
+        hit = self.lookup(stream_id=stream)
+        if hit:
+            return hit.embed_url
+        player = self.player_template.format(stream=stream)
+        return encode_tudeporteshoy_embed(player, self.catalog_base)
+
+
+class ChannelEmbedResolver:
+    """Turn /en-vivo/... pages into direct tudeporteshoy.xyz embeds for the proxy."""
+
+    LOG_PREFIX = "[embed-resolve]"
+
+    def __init__(self, http: HttpClient, settings: Settings, catalog: EmbedCatalog) -> None:
+        self.http = http
+        self.settings = settings
+        self.catalog = catalog
+        self.streams = StreamExtractor()
+        self._cache: dict[str, list[str]] = {}
+
+    def resolve_events(self, events: list[AgendaEvent]) -> None:
+        jobs = 0
+        for event in events:
+            original = list(event.channel_pages)
+            if not original:
+                continue
+            resolved: list[str] = []
+            for page_url in original:
+                jobs += 1
+                embeds = self.resolve_page(page_url, channel_name=event.match_name)
+                if embeds:
+                    print(
+                        f"{self.LOG_PREFIX} {event.match_name!r}: "
+                        f"{page_url} -> {embeds[0][:100]}"
+                    )
+                    resolved.extend(embeds)
+                else:
+                    print(f"{self.LOG_PREFIX} no tudeporteshoy embed for {page_url}")
+            event.channel_pages = select_proxy_embed_pages(dedupe_keep_order(resolved or original))
+        print(f"{self.LOG_PREFIX} resolved pages={jobs}")
+
+    def resolve_page(self, page_url: str, channel_name: str = "") -> list[str]:
+        cached = self._cache.get(page_url)
+        if cached is not None:
+            return list(cached)
+
+        found: list[str] = []
+        if is_tudeporteshoy_embed_url(page_url):
+            found.append(page_url)
+            self._cache[page_url] = found
+            return list(found)
+
+        html = ""
+        try:
+            html = self.http.get_html(page_url)
+        except Exception as exc:  # noqa: BLE001
+            print(f"{self.LOG_PREFIX} fetch failed {page_url}: {exc}")
+
+        stream_ids: list[str] = []
+        if html:
+            found.extend(extract_tudeporteshoy_embeds(html, page_url))
+            for iframe in self.streams.extract_iframe_urls(html, page_url):
+                if is_tudeporteshoy_embed_url(iframe):
+                    found.append(iframe)
+                    continue
+                stream_id = extract_stream_id(iframe)
+                if stream_id:
+                    stream_ids.append(stream_id)
+
+        path_slug = extract_en_vivo_slug(page_url)
+        if path_slug:
+            stream_ids.append(map_en_vivo_slug_to_stream(path_slug))
+            stream_ids.extend(stream_id_candidates(path_slug))
+
+        if channel_name:
+            stream_ids.append(map_en_vivo_slug_to_stream(channel_name))
+
+        if not found:
+            for stream_id in stream_ids:
+                embed = self.catalog.lookup(stream_id=stream_id, channel_name=channel_name)
+                if embed:
+                    found.append(embed.embed_url)
+                    break
+
+        if not found:
+            for stream_id in stream_ids:
+                synthesized = self.catalog.build_embed_for_stream(stream_id)
+                if synthesized:
+                    found.append(synthesized)
+                    break
+
+        resolved = select_proxy_embed_pages(dedupe_keep_order(found))
+        self._cache[page_url] = resolved
+        return list(resolved)
+
+
 class SourceBuilder:
     def build(self, events: Iterable[AgendaEvent], settings: Settings) -> list[dict]:
         if settings.proxy_base_url:
@@ -1413,7 +1666,7 @@ class SourceBuilder:
             if not embed_pages:
                 print(f"[build] skip {event.match_name!r}: no embed pages for proxy")
                 continue
-            referer = event.source_url or settings.target_urls[0]
+            referer = proxy_referer_for_embed(embed_pages[0], event, settings)
             urls = [
                 build_proxy_play_url(settings.proxy_base_url, embed_url, referer)
                 for embed_url in embed_pages
@@ -1506,6 +1759,9 @@ class Scraper:
             print(
                 f"[run] combined unique partidos={len(matches)} canales={len(channels)}"
             )
+            catalog = EmbedCatalog(self.http, self.settings)
+            catalog.load()
+            ChannelEmbedResolver(self.http, self.settings, catalog).resolve_events(events)
             if hydrator is not None:
                 self._hydrate_streams(events, hydrator)
         finally:
@@ -1719,6 +1975,15 @@ def is_hls_url(url: str) -> bool:
     return ".m3u8" in lower
 
 
+def proxy_referer_for_embed(
+    embed_url: str, event: AgendaEvent, settings: Settings
+) -> str:
+    host = (urlparse(embed_url).hostname or "").lower()
+    if "tudeporteshoy.xyz" in host or "futbol-libre-hd.com" in host:
+        return f"https://{host}/"
+    return event.source_url or settings.target_urls[0]
+
+
 def build_proxy_play_url(proxy_base_url: str, embed_url: str, referer: str) -> str:
     query = f"embed={quote(embed_url, safe='')}&referer={quote(referer, safe='')}"
     return f"{proxy_base_url.rstrip('/')}/v1/play.m3u8?{query}"
@@ -1727,9 +1992,12 @@ def build_proxy_play_url(proxy_base_url: str, embed_url: str, referer: str) -> s
 def select_proxy_embed_pages(pages: list[str]) -> list[str]:
     """Prefer tudeporteshoy embed URLs over dead la12hd iframes."""
     unique = dedupe_keep_order(pages)
-    tudeporteshoy = [page for page in unique if "tudeporteshoy.xyz" in page.lower()]
+    tudeporteshoy = [page for page in unique if is_tudeporteshoy_embed_url(page)]
     if tudeporteshoy:
         return tudeporteshoy
+    tudeporte_any = [page for page in unique if "tudeporteshoy.xyz" in page.lower()]
+    if tudeporte_any:
+        return tudeporte_any
     dead_hosts = ("la12hd.com", "envivo1.com", "streamtp4.com")
     live = [
         page
@@ -1737,6 +2005,134 @@ def select_proxy_embed_pages(pages: list[str]) -> list[str]:
         if not any(host in page.lower() for host in dead_hosts)
     ]
     return live or unique
+
+
+def is_tudeporteshoy_embed_url(url: str) -> bool:
+    lower = (url or "").lower()
+    return "tudeporteshoy.xyz" in lower and "embed/eventos.html" in lower
+
+
+def extract_tudeporteshoy_embeds(html: str, base_url: str) -> list[str]:
+    found: list[str] = []
+    for match in TUDEPORTESHOY_EMBED_RE.finditer(html or ""):
+        found.append(urljoin(base_url, match.group(0)))
+    for match in IFRAME_SRC_RE.finditer(html or ""):
+        src = match.group(1)
+        absolute = urljoin(base_url, src)
+        if is_tudeporteshoy_embed_url(absolute):
+            found.append(absolute)
+    return dedupe_keep_order(found)
+
+
+def decode_tudeporteshoy_player(embed_url: str) -> str:
+    parsed = urlparse(embed_url)
+    raw = parse_qs(parsed.query).get("r", [""])[0]
+    if not raw:
+        return ""
+    padded = raw + "=" * ((4 - len(raw) % 4) % 4)
+    try:
+        return base64.b64decode(padded).decode("utf-8", errors="replace")
+    except Exception:
+        return ""
+
+
+def encode_tudeporteshoy_embed(player_url: str, catalog_base: str) -> str:
+    if not player_url:
+        return ""
+    token = base64.b64encode(player_url.encode("utf-8")).decode("ascii").rstrip("=")
+    return urljoin(catalog_base, f"embed/eventos.html?r={token}")
+
+
+def extract_stream_id(url: str) -> str:
+    if not url:
+        return ""
+    match = STREAM_QUERY_RE.search(url)
+    if match:
+        return normalize_stream_id(match.group(1))
+    player = decode_tudeporteshoy_player(url)
+    if player:
+        match = STREAM_QUERY_RE.search(player)
+        if match:
+            return normalize_stream_id(match.group(1))
+    return ""
+
+
+def extract_en_vivo_slug(url: str) -> str:
+    path = urlparse(url).path.lower().strip("/")
+    match = re.search(r"(?:en-vivo|canal|channel)/([^/]+)/?$", path)
+    if match:
+        return match.group(1)
+    return ""
+
+
+def map_en_vivo_slug_to_stream(slug: str) -> str:
+    value = normalize_stream_id(slug)
+    mapping = {
+        "espn": "espn1",
+        "espn1": "espn1",
+        "espn-1": "espn1",
+        "espn2": "espn2",
+        "espn-2": "espn2",
+        "espn3": "espn3",
+        "espn-3": "espn3",
+        "espnpremium": "espn_premium",
+        "espn-premium": "espn_premium",
+        "tudn": "tudn_usa",
+        "tudn-mx": "tudn_usa",
+        "tudnmx": "tudn_usa",
+        "tyc-sports": "tyc_sports",
+        "tycsports": "tyc_sports",
+        "dsports": "dsports",
+        "dsports2": "dsports_2",
+        "d-sports": "dsports",
+        "d-sports-2": "dsports_2",
+        "fox-sports": "foxsports",
+        "fox-sports-1": "foxsports",
+        "fox-sports-2": "foxsports2",
+        "fox-sports-3": "foxsports3",
+        "fox-sports-premium": "foxsportspremium",
+        "tntsports": "tntsports_argentina",
+        "tnt-sports": "tntsports_argentina",
+    }
+    if value in mapping:
+        return mapping[value]
+    dashed = slugify(slug)
+    if dashed in mapping:
+        return mapping[dashed]
+    return value.replace("-", "_")
+
+
+def normalize_stream_id(value: str) -> str:
+    text = normalize_space(value).lower()
+    text = text.replace("á", "a").replace("é", "e").replace("í", "i").replace("ó", "o").replace("ú", "u")
+    text = re.sub(r"^ver\s+", "", text)
+    text = re.sub(r"\s+en\s+vivo$", "", text)
+    text = text.replace(" ", "_")
+    text = re.sub(r"[^a-z0-9_\-]+", "", text)
+    return text.strip("_-")
+
+
+def stream_id_candidates(stream_id: str) -> list[str]:
+    base = normalize_stream_id(stream_id)
+    if not base:
+        return []
+    dashed = base.replace("_", "-")
+    underscored = base.replace("-", "_")
+    compact = re.sub(r"[_\-]+", "", base)
+    values = [base, dashed, underscored, compact]
+    for key in (base, underscored, compact, dashed):
+        values.extend(STREAM_ALIASES.get(key, ()))
+    mapped = map_en_vivo_slug_to_stream(base)
+    values.append(mapped)
+    values.extend(STREAM_ALIASES.get(mapped, ()))
+    return dedupe_keep_order(values)
+
+
+def clean_channel_label(label: str) -> str:
+    text = normalize_space(label)
+    text = re.sub(r"(?i)^ver\s+", "", text)
+    text = re.sub(r"(?i)\s+en\s+vivo$", "", text)
+    return text.strip()
 
 
 def filter_hls_urls(urls: Iterable[str]) -> list[str]:

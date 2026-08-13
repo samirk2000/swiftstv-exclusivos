@@ -42,6 +42,9 @@ jobs:
           HLS_WAIT_MS: "12000"
           USE_PLAYWRIGHT: "1"
           PROXY_BASE_URL: ${{ secrets.PROXY_BASE_URL }}
+          EMBED_CATALOG_URL: |
+            https://tudeporteshoy.xyz/
+            https://futbol-libre-hd.com/
         run: python scraper.py
 
       - name: Commit and push changes
