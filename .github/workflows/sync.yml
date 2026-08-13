@@ -1,0 +1,50 @@
+name: Sync exclusive sources
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-exclusive-sources
+  cancel-in-progress: true
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Scrape agenda
+        env:
+          TARGET_URL: ${{ secrets.TARGET_URL }}
+          OUTPUT_PATH: exclusive_sources.json
+          REQUEST_TIMEOUT: "20"
+          MAX_WORKERS: "8"
+        run: python scraper.py
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add exclusive_sources.json
+          if git diff --cached --quiet; then
+            echo "No changes in exclusive_sources.json"
+          else
+            git commit -m "chore: update exclusive_sources.json"
+            git push
+          fi
