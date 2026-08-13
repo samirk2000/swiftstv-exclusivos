@@ -13,6 +13,42 @@ from urllib.parse import parse_qsl, urlencode, urljoin, urlparse, urlunparse
 LOGGER = logging.getLogger("hls_resolver")
 M3U8_RE = re.compile(r"""https?://[^\s"'<>\\]+?\.m3u8[^\s"'<>\\]*""", re.IGNORECASE)
 SKIP_URL_PREFIXES = ("about:", "javascript:", "blob:", "data:", "chrome-error:")
+TUDEPORTESHOY_CDN_SUFFIX = "tudeporteshoy.xyz"
+DEAD_PLAYER_HOSTS = ("la12hd.com", "envivo1.com", "streamtp4.com")
+
+
+def is_tudeporteshoy_embed(url: str) -> bool:
+    lower = (url or "").lower()
+    return TUDEPORTESHOY_CDN_SUFFIX in lower and "/embed/" in lower
+
+
+def is_tudeporteshoy_cdn(url: str) -> bool:
+    host = (urlparse(url).hostname or "").lower()
+    return host.endswith(TUDEPORTESHOY_CDN_SUFFIX) and is_hls_url(url)
+
+
+def is_dead_player_host(url: str) -> bool:
+    host = (urlparse(url).hostname or "").lower()
+    return any(host == dead or host.endswith(f".{dead}") for dead in DEAD_PLAYER_HOSTS)
+
+
+def rank_hls_urls(urls: list[str]) -> list[str]:
+    def sort_key(url: str) -> tuple[int, str]:
+        if is_tudeporteshoy_cdn(url):
+            return (0, url)
+        return (1, url)
+
+    return sorted(dedupe_keep_order(urls), key=sort_key)
+
+
+def select_proxy_embed_pages(pages: list[str]) -> list[str]:
+    """Prefer live tudeporteshoy embeds; drop dead la12hd iframes when possible."""
+    unique = dedupe_keep_order(pages)
+    tudeporteshoy = [page for page in unique if "tudeporteshoy.xyz" in page.lower()]
+    if tudeporteshoy:
+        return tudeporteshoy
+    live = [page for page in unique if not is_dead_player_host(page)]
+    return live or unique
 
 
 def parse_host_rewrites(raw: str) -> dict[str, str]:
@@ -211,10 +247,14 @@ class HlsResolver:
                 await page.wait_for_selector("iframe, video, source", timeout=8000)
             except Exception:
                 pass
+            stream_wait_ms = self.settings.stream_wait_ms
+            if is_tudeporteshoy_embed(embed_url):
+                stream_wait_ms = int(stream_wait_ms * 1.5)
+                LOGGER.info("extended wait for tudeporteshoy embed (%sms)", stream_wait_ms)
             try:
                 await page.wait_for_response(
                     lambda response: is_hls_url(response.url),
-                    timeout=self.settings.stream_wait_ms,
+                    timeout=stream_wait_ms,
                 )
             except Exception:
                 await page.wait_for_timeout(self.settings.player_fallback_wait_ms)
@@ -255,6 +295,9 @@ class HlsResolver:
 
         if not captured:
             for iframe_url in filter_navigable_urls(dedupe_keep_order(iframe_targets)):
+                if is_dead_player_host(iframe_url):
+                    LOGGER.info("skip dead player iframe depth=%s %s", depth + 1, iframe_url)
+                    continue
                 LOGGER.info("iframe depth=%s -> %s", depth + 1, iframe_url)
                 try:
                     captured.extend(
@@ -269,7 +312,7 @@ class HlsResolver:
                 except Exception as exc:  # noqa: BLE001
                     LOGGER.warning("iframe resolve failed %s: %s", iframe_url, exc)
 
-        return dedupe_keep_order(captured)
+        return rank_hls_urls(captured)
 
     async def _apply_client_ip_routing(self, page, client_ip: str, referer: str) -> None:
         headers = {

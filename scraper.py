@@ -1409,7 +1409,7 @@ class SourceBuilder:
         records: list[dict] = []
         used_ids: dict[str, int] = {}
         for event in events:
-            embed_pages = dedupe_keep_order(event.channel_pages)
+            embed_pages = select_proxy_embed_pages(dedupe_keep_order(event.channel_pages))
             if not embed_pages:
                 print(f"[build] skip {event.match_name!r}: no embed pages for proxy")
                 continue
@@ -1722,6 +1722,21 @@ def is_hls_url(url: str) -> bool:
 def build_proxy_play_url(proxy_base_url: str, embed_url: str, referer: str) -> str:
     query = f"embed={quote(embed_url, safe='')}&referer={quote(referer, safe='')}"
     return f"{proxy_base_url.rstrip('/')}/v1/play.m3u8?{query}"
+
+
+def select_proxy_embed_pages(pages: list[str]) -> list[str]:
+    """Prefer tudeporteshoy embed URLs over dead la12hd iframes."""
+    unique = dedupe_keep_order(pages)
+    tudeporteshoy = [page for page in unique if "tudeporteshoy.xyz" in page.lower()]
+    if tudeporteshoy:
+        return tudeporteshoy
+    dead_hosts = ("la12hd.com", "envivo1.com", "streamtp4.com")
+    live = [
+        page
+        for page in unique
+        if not any(host in page.lower() for host in dead_hosts)
+    ]
+    return live or unique
 
 
 def filter_hls_urls(urls: Iterable[str]) -> list[str]:
