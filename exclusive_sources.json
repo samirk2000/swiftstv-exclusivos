@@ -1,1 +1,177 @@
-[]
+[
+  {
+    "id": "espn-1",
+    "name": "ESPN 1",
+    "category": "Canales",
+    "type": "embed",
+    "urls": [
+      "https://la12hd.com/vivo/canal.php?stream=espnmx",
+      "https://futbol-libre.mx/en-vivo/espn-1"
+    ]
+  },
+  {
+    "id": "espn-2",
+    "name": "ESPN 2",
+    "category": "Canales",
+    "type": "embed",
+    "urls": [
+      "https://la12hd.com/vivo/canal.php?stream=espn2mx",
+      "https://futbol-libre.mx/en-vivo/espn-2"
+    ]
+  },
+  {
+    "id": "fox-sports-1",
+    "name": "FOX Sports 1",
+    "category": "Canales",
+    "type": "embed",
+    "urls": [
+      "https://la12hd.com/vivo/canal.php?stream=foxsportsmx",
+      "https://futbol-libre.mx/en-vivo/fox-sports-1"
+    ]
+  },
+  {
+    "id": "fox-sports-2",
+    "name": "FOX Sports 2",
+    "category": "Canales",
+    "type": "embed",
+    "urls": [
+      "https://la12hd.com/vivo/canal.php?stream=foxsports2mx",
+      "https://futbol-libre.mx/en-vivo/fox-sports-2",
+      "https://la12hd.com/vivo/canal.php?stream=foxsports2"
+    ]
+  },
+  {
+    "id": "espn-3",
+    "name": "ESPN 3",
+    "category": "Canales",
+    "type": "embed",
+    "urls": [
+      "https://la12hd.com/vivo/canal.php?stream=espn3mx"
+    ]
+  },
+  {
+    "id": "fox-sports-3",
+    "name": "FOX Sports 3",
+    "category": "Canales",
+    "type": "embed",
+    "urls": [
+      "https://la12hd.com/vivo/canal.php?stream=foxsports3mx",
+      "https://la12hd.com/vivo/canal.php?stream=foxsports3"
+    ]
+  },
+  {
+    "id": "fox-sports-premium",
+    "name": "FOX Sports Premium",
+    "category": "Canales",
+    "type": "embed",
+    "urls": [
+      "https://la12hd.com/vivo/canal.php?stream=foxsportspremium"
+    ]
+  },
+  {
+    "id": "tudn",
+    "name": "TUDN",
+    "category": "Canales",
+    "type": "embed",
+    "urls": [
+      "https://la12hd.com/vivo/canal.php?stream=tudn_mx"
+    ]
+  },
+  {
+    "id": "tntsports",
+    "name": "TNTSPORTS",
+    "category": "Canales",
+    "type": "embed",
+    "urls": [
+      "https://la12hd.com/vivo/canal.php?stream=tntsports"
+    ]
+  },
+  {
+    "id": "espn-premium",
+    "name": "ESPN Premium",
+    "category": "Canales",
+    "type": "embed",
+    "urls": [
+      "https://la12hd.com/vivo/canal.php?stream=espnpremium"
+    ]
+  },
+  {
+    "id": "tyc-sports",
+    "name": "TyC Sports",
+    "category": "Canales",
+    "type": "embed",
+    "urls": [
+      "https://la12hd.com/vivo/canal.php?stream=tycsports"
+    ]
+  },
+  {
+    "id": "dsports",
+    "name": "DSports",
+    "category": "Canales",
+    "type": "embed",
+    "urls": [
+      "https://la12hd.com/vivo/canal.php?stream=dsports",
+      "https://la12hd.com/vivo/canal.php?stream=dsportsplus"
+    ]
+  },
+  {
+    "id": "dsports2",
+    "name": "DSports2",
+    "category": "Canales",
+    "type": "embed",
+    "urls": [
+      "https://la12hd.com/vivo/canal.php?stream=dsports2"
+    ]
+  },
+  {
+    "id": "espn1",
+    "name": "ESPN1",
+    "category": "Canales",
+    "type": "embed",
+    "urls": [
+      "https://la12hd.com/vivo/canal.php?stream=espn"
+    ]
+  },
+  {
+    "id": "espn2",
+    "name": "ESPN2",
+    "category": "Canales",
+    "type": "embed",
+    "urls": [
+      "https://la12hd.com/vivo/canal.php?stream=espn2"
+    ]
+  },
+  {
+    "id": "espn3",
+    "name": "ESPN3",
+    "category": "Canales",
+    "type": "embed",
+    "urls": [
+      "https://la12hd.com/vivo/canal.php?stream=espn3"
+    ]
+  },
+  {
+    "id": "fox-sports",
+    "name": "Fox Sports",
+    "category": "Canales",
+    "type": "embed",
+    "urls": [
+      "https://pelotalibre.mx/en-vivo/fox-sports"
+    ]
+  },
+  {
+    "id": "pelota-libre-directtv-sports-espn1-espn2-espn3-fox-sports-fox-sports-2-fox-sport",
+    "name": "Pelota Libre DirectTV Sports ESPN1 ESPN2 ESPN3 Fox Sports Fox Sports 2 Fox Sports 3",
+    "category": "Sports",
+    "type": "embed",
+    "urls": [
+      "https://la12hd.com/vivo/canal.php?stream=foxsports2",
+      "https://la12hd.com/vivo/canal.php?stream=foxsports3",
+      "https://la12hd.com/vivo/canal.php?stream=dsports",
+      "https://la12hd.com/vivo/canal.php?stream=espn",
+      "https://la12hd.com/vivo/canal.php?stream=espn2",
+      "https://la12hd.com/vivo/canal.php?stream=espn3",
+      "https://la12hd.com/vivo/canal.php?stream=foxsports"
+    ]
+  }
+]
