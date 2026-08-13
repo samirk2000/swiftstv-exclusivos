@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Scrape one or more sports agenda HTML pages and emit exclusive_sources.json."""
+"""Scrape one or more sports agenda pages with Playwright and emit exclusive_sources.json."""
 
 from __future__ import annotations
 
@@ -70,19 +70,20 @@ EVENT_HINT_CLASSES = (
     "accordion",
     "card",
 )
-CHANNEL_HINT_CLASSES = (
-    "channel",
-    "canal",
-    "option",
-    "opcion",
-    "opción",
-    "embed",
-    "stream",
-    "links",
-    "dropdown",
-    "collapse",
-    "accordion-body",
-    "menuitem-content",
+DEFAULT_AGENDA_WAIT_SELECTORS = (
+    "#agenda",
+    "#horario",
+    "#listado",
+    "[id*='agenda' i]",
+    "[class*='agenda' i]",
+    "[id*='horario' i]",
+    "[class*='horario' i]",
+    "[class*='menuitem' i]",
+    "[class*='partido' i]",
+    "[class*='event' i]",
+    "details",
+    "a[href*='embed' i]",
+    "a[href*='canal' i]",
 )
 
 
@@ -90,19 +91,21 @@ CHANNEL_HINT_CLASSES = (
 class Settings:
     target_urls: tuple[str, ...]
     output_path: str = "exclusive_sources.json"
-    timeout: float = 20.0
+    timeout: float = 30.0
     max_workers: int = 8
+    agenda_wait_ms: int = 3000
     user_agent: str = (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
         "AppleWebKit/537.36 (KHTML, like Gecko) "
         "Chrome/128.0.0.0 Safari/537.36"
     )
     agenda_selector: str = ""
+    agenda_wait_selector: str = ""
     event_selector: str = ""
     time_selector: str = ""
     title_selector: str = ""
     channel_selector: str = ""
-    use_playwright: bool = False
+    use_playwright: bool = True
 
     @classmethod
     def from_env(cls) -> "Settings":
@@ -111,18 +114,21 @@ class Settings:
             raise SystemExit(
                 "TARGET_URL is required (one URL per line in the environment variable or GitHub secret)."
             )
+        use_playwright_raw = os.environ.get("USE_PLAYWRIGHT", "1")
         return cls(
             target_urls=tuple(target_urls),
             output_path=os.environ.get("OUTPUT_PATH", "exclusive_sources.json").strip(),
-            timeout=float(os.environ.get("REQUEST_TIMEOUT", "20")),
+            timeout=float(os.environ.get("REQUEST_TIMEOUT", "30")),
             max_workers=max(1, int(os.environ.get("MAX_WORKERS", "8"))),
+            agenda_wait_ms=max(0, int(os.environ.get("AGENDA_WAIT_MS", "3000"))),
             user_agent=os.environ.get("USER_AGENT", cls.user_agent).strip() or cls.user_agent,
             agenda_selector=os.environ.get("AGENDA_SELECTOR", "").strip(),
+            agenda_wait_selector=os.environ.get("AGENDA_WAIT_SELECTOR", "").strip(),
             event_selector=os.environ.get("EVENT_SELECTOR", "").strip(),
             time_selector=os.environ.get("TIME_SELECTOR", "").strip(),
             title_selector=os.environ.get("TITLE_SELECTOR", "").strip(),
             channel_selector=os.environ.get("CHANNEL_SELECTOR", "").strip(),
-            use_playwright=_as_bool(os.environ.get("USE_PLAYWRIGHT", "")),
+            use_playwright=_as_bool(use_playwright_raw),
         )
 
 
@@ -135,6 +141,78 @@ class AgendaEvent:
     channel_pages: list[str] = field(default_factory=list)
     stream_urls: list[str] = field(default_factory=list)
     source_url: str = ""
+
+
+class PlaywrightRenderer:
+    """Render agenda pages with Chromium so horario.js and similar scripts run."""
+
+    def __init__(self, settings: Settings) -> None:
+        self.settings = settings
+        self._playwright = None
+        self._browser = None
+
+    def start(self) -> None:
+        try:
+            from playwright.sync_api import sync_playwright
+        except ImportError as exc:
+            raise SystemExit(
+                "Playwright is required. Install with: pip install playwright && playwright install chromium"
+            ) from exc
+
+        self._playwright = sync_playwright().start()
+        self._browser = self._playwright.chromium.launch(headless=True)
+        print("[playwright] Chromium started")
+
+    def fetch(self, url: str) -> str:
+        if self._browser is None:
+            raise RuntimeError("PlaywrightRenderer.start() must be called before fetch()")
+
+        page = self._browser.new_page(user_agent=self.settings.user_agent)
+        try:
+            print(f"[playwright] loading {url}")
+            page.goto(
+                url,
+                wait_until="domcontentloaded",
+                timeout=int(self.settings.timeout * 1000),
+            )
+            self._wait_for_agenda(page)
+            html = page.content()
+            print(f"[playwright] rendered {url} ({len(html)} bytes)")
+            return html
+        finally:
+            page.close()
+
+    def _wait_for_agenda(self, page) -> None:
+        selectors: list[str] = []
+        for selector in (
+            self.settings.agenda_wait_selector,
+            self.settings.agenda_selector,
+            *DEFAULT_AGENDA_WAIT_SELECTORS,
+        ):
+            if selector and selector not in selectors:
+                selectors.append(selector)
+
+        per_selector_ms = max(1000, int(self.settings.timeout * 1000 / max(len(selectors), 1)))
+        for selector in selectors:
+            try:
+                page.wait_for_selector(selector, state="visible", timeout=per_selector_ms)
+                print(f"[playwright] agenda visible via {selector!r}")
+                page.wait_for_timeout(500)
+                return
+            except Exception:
+                continue
+
+        print(f"[playwright] no agenda selector matched; waiting {self.settings.agenda_wait_ms}ms")
+        page.wait_for_timeout(self.settings.agenda_wait_ms)
+
+    def close(self) -> None:
+        if self._browser is not None:
+            self._browser.close()
+            self._browser = None
+        if self._playwright is not None:
+            self._playwright.stop()
+            self._playwright = None
+        print("[playwright] Chromium closed")
 
 
 class HttpClient:
@@ -171,10 +249,8 @@ class HttpClient:
         )
         response.encoding = response.apparent_encoding or response.encoding or "utf-8"
         print(f"[http] {response.status_code} {url} ({len(response.text)} bytes)")
-        if response.status_code >= 400:
-            LOGGER.warning("HTTP %s for %s", response.status_code, url)
-            if not response.text.strip():
-                response.raise_for_status()
+        if response.status_code >= 400 and not response.text.strip():
+            response.raise_for_status()
         return response.text
 
     def close(self) -> None:
@@ -182,7 +258,7 @@ class HttpClient:
 
 
 class AgendaParser:
-    """Extract events, times, and channel subpage URLs from the agenda HTML."""
+    """Extract events, times, and channel subpage URLs from rendered agenda HTML."""
 
     def __init__(self, settings: Settings, base_url: str) -> None:
         self.settings = settings
@@ -255,6 +331,8 @@ class AgendaParser:
         for selector in (
             "[id*='agenda' i]",
             "[class*='agenda' i]",
+            "[id*='horario' i]",
+            "[class*='horario' i]",
             "[id*='schedule' i]",
             "[class*='schedule' i]",
             "main",
@@ -293,7 +371,6 @@ class AgendaParser:
         return events
 
     def _parse_time_proximity(self, root: Tag) -> list[AgendaEvent]:
-        """Fallback: pair each HH:MM text node with the nearest title and links."""
         events: list[AgendaEvent] = []
         for text_node in root.find_all(string=TIME_RE):
             time_match = TIME_RE.search(str(text_node))
@@ -317,7 +394,6 @@ class AgendaParser:
         return len(times) > 1
 
     def _parse_all_links(self, root: Tag) -> list[AgendaEvent]:
-        """Last resort: group every useful <a> (subpage / player) into events."""
         grouped: dict[int, tuple[Tag, list[str]]] = {}
         for anchor in root.find_all("a"):
             url = self._href_from_anchor(anchor)
@@ -600,6 +676,7 @@ class Scraper:
     def __init__(self, settings: Settings) -> None:
         self.settings = settings
         self.http = HttpClient(settings)
+        self.renderer = PlaywrightRenderer(settings) if settings.use_playwright else None
         self.streams = StreamExtractor()
         self.builder = SourceBuilder()
         self._stream_cache: dict[str, list[str]] = {}
@@ -609,16 +686,24 @@ class Scraper:
         print(f"[run] TARGET_URL count={len(self.settings.target_urls)}")
         for agenda_url in self.settings.target_urls:
             print(f"[run] site={agenda_url}")
+
+        if self.renderer is not None:
+            self.renderer.start()
+
         collected: list[AgendaEvent] = []
-        for agenda_url in self.settings.target_urls:
-            try:
-                events = self._scrape_agenda(agenda_url)
-            except Exception as exc:  # noqa: BLE001 - continue with the remaining pages
-                print(f"[agenda] {agenda_url} -> ERROR: {exc}")
-                LOGGER.warning("Agenda failed (%s): %s", agenda_url, exc)
-                continue
-            print(f"[agenda] {agenda_url} -> {len(events)} eventos")
-            collected.extend(events)
+        try:
+            for agenda_url in self.settings.target_urls:
+                try:
+                    events = self._scrape_agenda(agenda_url)
+                except Exception as exc:  # noqa: BLE001
+                    print(f"[agenda] {agenda_url} -> ERROR: {exc}")
+                    LOGGER.warning("Agenda failed (%s): %s", agenda_url, exc)
+                    continue
+                print(f"[agenda] {agenda_url} -> {len(events)} eventos")
+                collected.extend(events)
+        finally:
+            if self.renderer is not None:
+                self.renderer.close()
 
         events = merge_events(collected)
         print(f"[run] combined unique events={len(events)}")
@@ -629,7 +714,6 @@ class Scraper:
         return records
 
     def _scrape_agenda(self, agenda_url: str) -> list[AgendaEvent]:
-        LOGGER.info("Fetching agenda from %s", agenda_url)
         agenda_html = self._fetch_agenda_html(agenda_url)
         events = AgendaParser(self.settings, agenda_url).parse(agenda_html)
         for event in events:
@@ -638,8 +722,8 @@ class Scraper:
         return events
 
     def _fetch_agenda_html(self, agenda_url: str) -> str:
-        if self.settings.use_playwright:
-            return fetch_with_playwright(agenda_url, self.settings.timeout)
+        if self.renderer is not None:
+            return self.renderer.fetch(agenda_url)
         return self.http.get_html(agenda_url)
 
     def _hydrate_streams(self, events: list[AgendaEvent]) -> None:
@@ -664,7 +748,7 @@ class Scraper:
                 index, channel_url = future_map[future]
                 try:
                     urls = future.result()
-                except Exception as exc:  # noqa: BLE001 - keep the rest of the run going
+                except Exception as exc:  # noqa: BLE001
                     print(f"[channel] FAIL {channel_url} -> {exc}")
                     LOGGER.warning("Channel page failed: %s", exc)
                     events[index].stream_urls.append(channel_url)
@@ -689,22 +773,6 @@ class Scraper:
 
     def close(self) -> None:
         self.http.close()
-
-
-def fetch_with_playwright(url: str, timeout: float) -> str:
-    try:
-        from playwright.sync_api import sync_playwright
-    except ImportError as exc:
-        raise SystemExit("USE_PLAYWRIGHT=1 requires the playwright package and browsers installed.") from exc
-
-    with sync_playwright() as playwright:
-        browser = playwright.chromium.launch(headless=True)
-        page = browser.new_page()
-        page.goto(url, wait_until="domcontentloaded", timeout=int(timeout * 1000))
-        page.wait_for_timeout(1500)
-        html = page.content()
-        browser.close()
-        return html
 
 
 def parse_target_urls(raw: str) -> list[str]:

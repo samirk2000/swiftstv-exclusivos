@@ -27,14 +27,18 @@ jobs:
           cache: pip
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          pip install -r requirements.txt
+          pip install playwright beautifulsoup4
+          playwright install chromium --with-deps
 
       - name: Scrape agenda
         env:
           TARGET_URL: ${{ secrets.TARGET_URL }}
           OUTPUT_PATH: exclusive_sources.json
-          REQUEST_TIMEOUT: "20"
+          REQUEST_TIMEOUT: "30"
           MAX_WORKERS: "8"
+          AGENDA_WAIT_MS: "3000"
         run: python scraper.py
 
       - name: Commit and push changes
