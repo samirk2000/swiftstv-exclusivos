@@ -15,6 +15,77 @@ M3U8_RE = re.compile(r"""https?://[^\s"'<>\\]+?\.m3u8[^\s"'<>\\]*""", re.IGNOREC
 SKIP_URL_PREFIXES = ("about:", "javascript:", "blob:", "data:", "chrome-error:")
 TUDEPORTESHOY_CDN_SUFFIX = "tudeporteshoy.xyz"
 DEAD_PLAYER_HOSTS = ("la12hd.com", "envivo1.com", "streamtp4.com")
+AD_HOST_HINTS = (
+    "popads",
+    "popadscdn",
+    "juicyads",
+    "googlesyndication",
+    "googleadservices",
+    "doubleclick.net",
+    "googletagservices",
+    "googletagmanager",
+)
+BLOCKED_RESOURCE_TYPES = {"image", "stylesheet", "font"}
+BLOCKED_EXTENSIONS = (
+    ".png",
+    ".jpg",
+    ".jpeg",
+    ".css",
+    ".woff2",
+    ".gif",
+    ".webp",
+    ".woff",
+    ".ttf",
+    ".svg",
+)
+HLS_CONTENT_HINTS = ("mpegurl", "x-mpegurl", "vnd.apple.mpegurl")
+PLAY_VIDEO_JS = """() => {
+  const playAll = (root) => {
+    root.querySelectorAll('video').forEach((video) => {
+      video.muted = true;
+      video.autoplay = true;
+      video.playsInline = true;
+      const play = video.play();
+      if (play && typeof play.catch === 'function') play.catch(() => {});
+    });
+  };
+  playAll(document);
+  const hit = document.elementFromPoint(
+    Math.floor(window.innerWidth / 2),
+    Math.floor(window.innerHeight / 2)
+  );
+  if (hit && typeof hit.click === 'function') hit.click();
+  document.querySelectorAll(
+    'button, .vjs-big-play-button, [class*="play" i], [id*="play" i], [class*="overlay" i]'
+  ).forEach((node) => {
+    try { node.click(); } catch (err) {}
+  });
+}"""
+INIT_AUTOPLAY_JS = """
+(() => {
+  const playAll = () => {
+    document.querySelectorAll('video').forEach((video) => {
+      video.muted = true;
+      video.autoplay = true;
+      video.playsInline = true;
+      const play = video.play();
+      if (play && typeof play.catch === 'function') play.catch(() => {});
+    });
+  };
+  const start = () => {
+    playAll();
+    try {
+      const observer = new MutationObserver(playAll);
+      observer.observe(document.documentElement, { childList: true, subtree: true });
+    } catch (err) {}
+  };
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start, { once: true });
+  } else {
+    start();
+  }
+})();
+"""
 
 
 def is_tudeporteshoy_embed(url: str) -> bool:
@@ -88,7 +159,30 @@ def is_hls_url(url: str) -> bool:
     lower = url.lower().strip()
     if lower.startswith(SKIP_URL_PREFIXES):
         return False
-    return ".m3u8" in lower
+    return ".m3u8" in lower or "mpegurl" in lower
+
+
+def is_hls_response(response) -> bool:
+    if is_hls_url(getattr(response, "url", "")):
+        return True
+    headers = getattr(response, "headers", None) or {}
+    content_type = str(headers.get("content-type") or "").lower()
+    return any(hint in content_type for hint in HLS_CONTENT_HINTS)
+
+
+def should_block_request(url: str, resource_type: str = "") -> bool:
+    if is_hls_url(url):
+        return False
+    kind = (resource_type or "").lower()
+    if kind in {"document", "websocket"}:
+        return False
+    host = (urlparse(url).hostname or "").lower()
+    if any(hint in host for hint in AD_HOST_HINTS):
+        return True
+    if kind in BLOCKED_RESOURCE_TYPES:
+        return True
+    path = (urlparse(url).path or "").lower()
+    return any(path.endswith(ext) for ext in BLOCKED_EXTENSIONS)
 
 
 def is_navigable_url(url: str) -> bool:
@@ -131,17 +225,17 @@ class HlsResolverSettings:
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
         "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
     )
-    goto_timeout_ms: int = 15000
-    stream_wait_ms: int = 12000
-    player_fallback_wait_ms: int = 3000
+    goto_timeout_ms: int = 8000
+    stream_wait_ms: int = 2000
+    player_fallback_wait_ms: int = 400
     max_iframe_depth: int = 3
     host_rewrites: dict[str, str] = field(default_factory=dict)
 
     @classmethod
     def from_env(cls) -> "HlsResolverSettings":
         return cls(
-            goto_timeout_ms=int(os.environ.get("HLS_GOTO_TIMEOUT_MS", "15000")),
-            stream_wait_ms=int(os.environ.get("HLS_WAIT_MS", "12000")),
+            goto_timeout_ms=int(os.environ.get("HLS_GOTO_TIMEOUT_MS", "8000")),
+            stream_wait_ms=int(os.environ.get("HLS_WAIT_MS", "2000")),
             host_rewrites=parse_host_rewrites(os.environ.get("EMBED_HOST_REWRITE", "")),
         )
 
@@ -160,11 +254,23 @@ class HlsResolver:
         from playwright.async_api import async_playwright
 
         self._playwright = await async_playwright().start()
-        self._browser = await self._playwright.chromium.launch(headless=True)
+        self._browser = await self._playwright.chromium.launch(
+            headless=True,
+            args=(
+                "--disable-dev-shm-usage",
+                "--no-sandbox",
+                "--disable-gpu",
+                "--disable-extensions",
+                "--autoplay-policy=no-user-gesture-required",
+            ),
+        )
         self._context = await self._browser.new_context(
             user_agent=self.settings.user_agent,
             ignore_https_errors=True,
+            viewport={"width": 1280, "height": 720},
+            java_script_enabled=True,
         )
+        await self._context.add_init_script(INIT_AUTOPLAY_JS)
 
     async def close(self) -> None:
         if self._context is not None:
@@ -205,6 +311,7 @@ class HlsResolver:
 
         captured: list[str] = []
         iframe_targets: list[str] = []
+        found = asyncio.Event()
 
         def track(raw_url: str) -> None:
             if not is_hls_url(raw_url):
@@ -213,22 +320,34 @@ class HlsResolver:
             if rewritten not in captured:
                 captured.append(rewritten)
                 LOGGER.info("manifest depth=%s %s", depth, rewritten[:180])
+            if not found.is_set():
+                found.set()
 
         page = await self._context.new_page()
+        page.set_default_timeout(1000)
+        page.set_default_navigation_timeout(self.settings.goto_timeout_ms)
         await self._apply_client_ip_routing(page, client_ip, referer)
 
+        def on_request(request) -> None:
+            track(request.url)
+
         async def on_response(response) -> None:
-            track(response.url)
+            if is_hls_response(response):
+                track(response.url)
+            if found.is_set():
+                return
             await self._scan_response_body(response, track)
 
+        page.on("request", on_request)
         page.on("response", on_response)
 
+        poke_task: asyncio.Task | None = None
         try:
             LOGGER.info("goto depth=%s %s", depth, embed_url)
             try:
                 await page.goto(
                     embed_url,
-                    wait_until="domcontentloaded",
+                    wait_until="commit",
                     timeout=self.settings.goto_timeout_ms,
                 )
             except Exception as exc:  # noqa: BLE001
@@ -240,79 +359,130 @@ class HlsResolver:
                         depth,
                         embed_url,
                     )
-                else:
+                elif not found.is_set():
                     LOGGER.warning("goto failed depth=%s %s: %s", depth, embed_url, exc)
 
-            try:
-                await page.wait_for_selector("iframe, video, source", timeout=8000)
-            except Exception:
-                pass
-            stream_wait_ms = self.settings.stream_wait_ms
-            if is_tudeporteshoy_embed(embed_url):
-                stream_wait_ms = int(stream_wait_ms * 1.5)
-                LOGGER.info("extended wait for tudeporteshoy embed (%sms)", stream_wait_ms)
-            try:
-                await page.wait_for_response(
-                    lambda response: is_hls_url(response.url),
-                    timeout=stream_wait_ms,
-                )
-            except Exception:
-                await page.wait_for_timeout(self.settings.player_fallback_wait_ms)
-
-            page_base = page.url if is_navigable_url(page.url) else embed_url
-
-            for frame in page.frames:
-                frame_url = rewrite_embed_host(frame.url or "", self.settings.host_rewrites)
-                track(frame_url)
-                if (
-                    is_navigable_url(frame_url)
-                    and frame_url != page_base
-                    and frame_url != embed_url
-                ):
-                    iframe_targets.append(frame_url)
+            if not found.is_set():
+                poke_task = asyncio.create_task(self._poke_player(page, found))
                 try:
-                    content = await frame.content()
-                    for manifest in M3U8_RE.findall(content):
-                        track(manifest)
-                except Exception:
-                    continue
+                    await asyncio.wait_for(
+                        found.wait(),
+                        timeout=max(0.2, self.settings.stream_wait_ms / 1000),
+                    )
+                except asyncio.TimeoutError:
+                    LOGGER.info(
+                        "no manifest within %sms depth=%s",
+                        self.settings.stream_wait_ms,
+                        depth,
+                    )
 
-            for iframe in (await page.locator("iframe").all())[:8]:
-                src = (
-                    await iframe.get_attribute("src")
-                    or await iframe.get_attribute("data-src")
-                    or await iframe.get_attribute("data-lazy-src")
-                )
-                if not src or src.startswith(SKIP_URL_PREFIXES):
-                    continue
-                absolute = rewrite_embed_host(
-                    urljoin(page_base, src), self.settings.host_rewrites
-                )
-                if is_navigable_url(absolute):
-                    iframe_targets.append(absolute)
+            if not captured:
+                page_base = page.url if is_navigable_url(page.url) else embed_url
+                for frame in page.frames:
+                    frame_url = rewrite_embed_host(frame.url or "", self.settings.host_rewrites)
+                    track(frame_url)
+                    if (
+                        is_navigable_url(frame_url)
+                        and frame_url != page_base
+                        and frame_url != embed_url
+                    ):
+                        iframe_targets.append(frame_url)
+                    try:
+                        content = await frame.content()
+                        for manifest in M3U8_RE.findall(content):
+                            track(manifest)
+                    except Exception:
+                        continue
+                try:
+                    for iframe in (await page.locator("iframe").all())[:8]:
+                        src = (
+                            await iframe.get_attribute("src")
+                            or await iframe.get_attribute("data-src")
+                            or await iframe.get_attribute("data-lazy-src")
+                        )
+                        if not src or src.startswith(SKIP_URL_PREFIXES):
+                            continue
+                        absolute = rewrite_embed_host(
+                            urljoin(page_base, src), self.settings.host_rewrites
+                        )
+                        if is_navigable_url(absolute):
+                            iframe_targets.append(absolute)
+                except Exception:
+                    pass
         finally:
+            if poke_task is not None:
+                poke_task.cancel()
+                try:
+                    await poke_task
+                except (asyncio.CancelledError, Exception):
+                    pass
             await page.close()
 
-        if not captured:
-            for iframe_url in filter_navigable_urls(dedupe_keep_order(iframe_targets)):
-                if is_dead_player_host(iframe_url):
-                    LOGGER.info("skip dead player iframe depth=%s %s", depth + 1, iframe_url)
-                    continue
-                LOGGER.info("iframe depth=%s -> %s", depth + 1, iframe_url)
-                try:
-                    captured.extend(
-                        await self._resolve_locked(
-                            iframe_url,
-                            referer=embed_url,
-                            client_ip=client_ip,
-                            depth=depth + 1,
-                            visited=seen,
-                        )
+        if captured:
+            return rank_hls_urls(captured)
+
+        for iframe_url in filter_navigable_urls(dedupe_keep_order(iframe_targets)):
+            if is_dead_player_host(iframe_url):
+                LOGGER.info("skip dead player iframe depth=%s %s", depth + 1, iframe_url)
+                continue
+            LOGGER.info("iframe depth=%s -> %s", depth + 1, iframe_url)
+            try:
+                captured.extend(
+                    await self._resolve_locked(
+                        iframe_url,
+                        referer=embed_url,
+                        client_ip=client_ip,
+                        depth=depth + 1,
+                        visited=seen,
                     )
-                except Exception as exc:  # noqa: BLE001
-                    LOGGER.warning("iframe resolve failed %s: %s", iframe_url, exc)
+                )
+            except Exception as exc:  # noqa: BLE001
+                LOGGER.warning("iframe resolve failed %s: %s", iframe_url, exc)
+            if captured:
+                break
 
         return rank_hls_urls(captured)
+
+    async def _poke_player(self, page, found: asyncio.Event) -> None:
+        """Click overlays and force video.play() until an HLS request appears."""
+        while not found.is_set():
+            try:
+                viewport = page.viewport_size or {"width": 1280, "height": 720}
+                await page.mouse.click(viewport["width"] / 2, viewport["height"] / 2)
+            except Exception:
+                pass
+            try:
+                await page.evaluate(PLAY_VIDEO_JS)
+            except Exception:
+                pass
+            try:
+                for frame in page.frames:
+                    if found.is_set():
+                        return
+                    try:
+                        await frame.evaluate(PLAY_VIDEO_JS)
+                    except Exception:
+                        continue
+            except Exception:
+                pass
+            try:
+                for iframe in (await page.locator("iframe").all())[:6]:
+                    if found.is_set():
+                        return
+                    box = await iframe.bounding_box()
+                    if not box:
+                        continue
+                    await page.mouse.click(
+                        box["x"] + box["width"] / 2,
+                        box["y"] + box["height"] / 2,
+                    )
+            except Exception:
+                pass
+            try:
+                await asyncio.wait_for(found.wait(), timeout=0.15)
+                return
+            except asyncio.TimeoutError:
+                continue
 
     async def _apply_client_ip_routing(self, page, client_ip: str, referer: str) -> None:
         headers = {
@@ -325,7 +495,11 @@ class HlsResolver:
         await page.set_extra_http_headers(headers)
 
         async def handle_route(route, request) -> None:
-            if not is_navigable_url(request.url):
+            url = request.url
+            if not is_navigable_url(url):
+                await route.abort()
+                return
+            if should_block_request(url, getattr(request, "resource_type", "") or ""):
                 await route.abort()
                 return
             merged = dict(request.headers)
@@ -341,7 +515,7 @@ class HlsResolver:
                 return
             resource_type = getattr(response.request, "resource_type", "")
             content_type = (response.headers.get("content-type") or "").lower()
-            if resource_type == "media" or "mpegurl" in content_type:
+            if resource_type == "media" or any(hint in content_type for hint in HLS_CONTENT_HINTS):
                 track(response.url)
             if resource_type not in {"xhr", "fetch", "script", "document", "media"}:
                 return
