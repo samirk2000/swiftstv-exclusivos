@@ -79,10 +79,13 @@ EVENT_HINT_CLASSES = (
     "card",
 )
 DEFAULT_AGENDA_WAIT_SELECTORS = (
+    "ul.menu > li",
+    "li.subitem1 a",
     "#menu > li",
     "#menu a.submenu-item",
     ".toggle-submenu",
     "#menu",
+    "iframe[src*='agenda']",
     "#listado",
     "#horario",
     ".menuitem",
@@ -129,6 +132,16 @@ DEAD_PLAYER_HOSTS = (
     "streamtp10.com",
 )
 DEFAULT_PLAYER_HOST_REWRITE = "streamtp2.com=streamtp-golden1.click,streamtp3.com=streamtp-golden1.click"
+DEFAULT_AGENDA_PAGE_URL = "https://tudeporteshoy.xyz/agenda.html"
+AGENDA_IFRAME_HOSTS = ("tudeporteshoy.xyz", "futbol-libre-hd.com")
+AGENDA_IFRAME_RE = re.compile(
+    r"""<(?:iframe|frame)[^>]+(?:src|data-src)\s*=\s*['"]([^'"]*agenda\.html[^'"]*)['"]""",
+    re.IGNORECASE,
+)
+# hora.js treats agenda times as UTC+2 (120 minutes) then converts to the viewer TZ.
+AGENDA_SOURCE_OFFSET_MINUTES = 120
+DEFAULT_AGENDA_TIMEZONE = "America/Mexico_City"
+DAILY_EVENT_CATEGORY = "EVENTOS DEL DIA - PPV"
 STREAM_ALIASES: dict[str, tuple[str, ...]] = {
     "espn": ("espn1", "espnmx", "espn"),
     "espn1": ("espn1", "espn", "espnmx"),
@@ -182,14 +195,15 @@ class Settings:
     embed_catalog_urls: tuple[str, ...] = DEFAULT_EMBED_CATALOG_URLS
     player_template: str = DEFAULT_PLAYER_TEMPLATE
     player_host_rewrites: tuple[tuple[str, str], ...] = ()
+    agenda_timezone: str = DEFAULT_AGENDA_TIMEZONE
 
     @classmethod
     def from_env(cls) -> "Settings":
-        target_urls = parse_target_urls(os.environ.get("TARGET_URL", ""))
+        target_urls = expand_agenda_target_urls(
+            parse_target_urls(os.environ.get("TARGET_URL", ""))
+        )
         if not target_urls:
-            raise SystemExit(
-                "TARGET_URL is required (one URL per line in the environment variable or GitHub secret)."
-            )
+            target_urls = [DEFAULT_AGENDA_PAGE_URL]
         use_playwright_raw = os.environ.get("USE_PLAYWRIGHT", "1")
         catalog_raw = os.environ.get("EMBED_CATALOG_URL", "").strip()
         if catalog_raw:
@@ -219,6 +233,10 @@ class Settings:
                 or DEFAULT_PLAYER_TEMPLATE
             ),
             player_host_rewrites=tuple(parse_host_rewrite_map(rewrite_raw).items()),
+            agenda_timezone=(
+                os.environ.get("AGENDA_TIMEZONE", DEFAULT_AGENDA_TIMEZONE).strip()
+                or DEFAULT_AGENDA_TIMEZONE
+            ),
         )
 
 
@@ -228,6 +246,7 @@ class AgendaEvent:
     title: str
     category: str
     match_name: str
+    option_name: str = ""
     channel_pages: list[str] = field(default_factory=list)
     stream_urls: list[str] = field(default_factory=list)
     source_url: str = ""
@@ -298,8 +317,8 @@ class PlaywrightRenderer:
                 )
 
             self._wait_for_agenda(page)
-            menu_count = page.locator("#menu > li").count()
-            print(f"[playwright] #menu items={menu_count}")
+            menu_count = page.locator("ul.menu > li, #menu > li").count()
+            print(f"[playwright] agenda items={menu_count}")
             html = page.content()
             print(f"[playwright] rendered {url} ({len(html)} bytes)")
             return html, api_payload
@@ -340,7 +359,7 @@ class PlaywrightRenderer:
             page.wait_for_function(
                 """
                 () => {
-                  const menuItems = document.querySelectorAll('#menu > li');
+                  const menuItems = document.querySelectorAll('ul.menu > li, #menu > li');
                   if (menuItems.length > 0) return true;
                   const anchors = [...document.querySelectorAll('a')].filter((node) => {
                     const href = node.getAttribute('href') || '';
@@ -698,78 +717,103 @@ class AgendaParser:
         match_events: list[AgendaEvent] = []
         menu_events = self._parse_menu_agenda(soup)
         match_events.extend(menu_events)
-        if self.settings.event_selector:
-            match_events.extend(self._parse_with_selectors(root))
-        match_events.extend(self._parse_event_anchors(root))
         if not menu_events:
+            if self.settings.event_selector:
+                match_events.extend(self._parse_with_selectors(root))
+            match_events.extend(self._parse_event_anchors(root))
             match_events.extend(self._parse_semantic_blocks(root))
             match_events.extend(self._parse_time_proximity(root))
-        link_events = self._parse_all_links(root) if not menu_events else []
-        match_events = self._merge_link_fallback(match_events, link_events)
+            link_events = self._parse_all_links(root)
+            match_events = self._merge_link_fallback(match_events, link_events)
+        else:
+            link_events = []
+        match_events = explode_option_events(match_events)
         match_events = self._dedupe_events(match_events)
         match_events = [
             event
             for event in match_events
             if event.channel_pages
             and event.category != "Canales"
-            and (event.time or MATCH_TEXT_RE.search(event.match_name))
+            and (event.time or MATCH_TEXT_RE.search(event.match_name or event.title))
         ]
 
-        channel_events = self._parse_channel_cards(root)
         print(
-            f"[parse] matches={len(match_events)} channels={len(channel_events)} "
+            f"[parse] match-options={len(match_events)} channels=0 "
             f"link-fallback={len(link_events)}"
         )
-        return match_events + channel_events
+        return match_events
 
     def _parse_menu_agenda(self, soup: BeautifulSoup) -> list[AgendaEvent]:
-        """Parse the JS-rendered #menu list built from agenda18 JSON."""
-        menu = soup.select_one("#menu")
+        """Parse tudeporteshoy /agenda.html (ul.menu) or JS #menu lists."""
+        menu = soup.select_one("ul.menu, #menu, .menu")
         if menu is None:
             return []
 
         events: list[AgendaEvent] = []
-        for item in menu.select(":scope > li"):
-            time_node = item.find("time")
-            time_value = ""
-            if time_node is not None:
-                time_value = self._time_from_texts(_visible_text(time_node))
+        for item in menu.find_all("li", recursive=False):
+            header = next(
+                (child for child in item.find_all("a", recursive=False)),
+                None,
+            )
+            time_node = None
+            if header is not None:
+                time_node = header.select_one("span.t, time")
+            if time_node is None:
+                time_node = item.select_one(":scope > a span.t, :scope > a time, span.t, time")
+            time_value = convert_agenda_time(
+                self._time_from_texts(_visible_text(time_node) if time_node else ""),
+                self.settings.agenda_timezone,
+            )
             if not time_value:
-                time_value = self._time_from_texts(_visible_text(item))
+                time_value = convert_agenda_time(
+                    self._time_from_texts(_visible_text(header) if header else _visible_text(item)),
+                    self.settings.agenda_timezone,
+                )
 
             title = ""
-            for span in item.select("div span"):
-                text = normalize_space(_visible_text(span))
-                if not text or TIME_RE.fullmatch(text):
-                    continue
-                if len(text) > len(title):
-                    title = text
-
-            channel_pages: list[str] = []
-            for anchor in item.select("a.submenu-item, .submenu a, ul a"):
-                url = self._resolve_link_url(anchor, item)
-                if url and not self._is_nav_link(url, _visible_text(anchor)):
-                    channel_pages.append(url)
-            channel_pages = dedupe_keep_order(channel_pages)
-            if not title and not channel_pages:
+            if header is not None:
+                title = normalize_space(_visible_text(header))
+            if time_node is not None:
+                title = normalize_space(title.replace(normalize_space(_visible_text(time_node)), ""))
+            title = TIME_RE.sub("", title)
+            title = re.sub(r"(?i)\bcalidad\s+\d+p\b", "", title)
+            title = normalize_space(title.strip(" -–—|"))
+            if not title:
+                for span in item.select(":scope > div span, :scope > a span"):
+                    text = normalize_space(_visible_text(span))
+                    if not text or TIME_RE.fullmatch(text) or span.get("class") == ["t"]:
+                        continue
+                    if len(text) > len(title):
+                        title = text
+            if not title:
                 continue
 
-            sport = normalize_space(str(item.get("data-category") or ""))
-            category, match_name = split_league_and_match(title or "Evento")
-            if sport and category == "Sports":
-                category = sport.replace("_", " ").title()
-
-            events.append(
-                AgendaEvent(
-                    time=time_value,
-                    title=title or match_name,
-                    category=category,
-                    match_name=match_name,
-                    channel_pages=channel_pages,
+            _league, match_name = split_league_and_match(title)
+            option_count = 0
+            for anchor in item.select("li.subitem1 > a, ul a, a.submenu-item, .submenu a"):
+                href = str(anchor.get("href") or "")
+                if href.strip() in {"", "#"}:
+                    continue
+                option_name = clean_channel_label(_visible_text(anchor))
+                url = self._resolve_link_url(anchor, item)
+                if not url or self._is_nav_link(url, option_name):
+                    continue
+                if "embed/eventos.html" not in url.lower() and not is_tudeporteshoy_embed_url(url):
+                    if not PLAYER_HREF_RE.search(url):
+                        continue
+                option_count += 1
+                events.append(
+                    AgendaEvent(
+                        time=time_value,
+                        title=title,
+                        category=DAILY_EVENT_CATEGORY,
+                        match_name=match_name,
+                        option_name=option_name or f"Opcion {option_count}",
+                        channel_pages=[url],
+                    )
                 )
-            )
 
-        print(f"[parse] menu-agenda events={len(events)}")
+        print(f"[parse] menu-agenda options={len(events)}")
         return events
 
     @staticmethod
@@ -821,9 +865,7 @@ class AgendaParser:
 
         events: list[AgendaEvent] = []
         for container in containers.values():
-            event = self._event_from_container(container)
-            if event:
-                events.append(event)
+            events.extend(self._events_from_container(container))
         print(f"[parse] event-anchors matched containers={len(containers)} events={len(events)}")
         return events
 
@@ -853,23 +895,14 @@ class AgendaParser:
         return normalize_space(" ".join(chunks))
 
     def _event_from_container(self, container: Tag) -> AgendaEvent | None:
+        events = self._events_from_container(container)
+        return events[0] if events else None
+
+    def _events_from_container(self, container: Tag) -> list[AgendaEvent]:
         context = normalize_space(_visible_text(container))
         time_value = self._time_from_texts(context)
-        channel_pages = self._collect_container_links(container)
-        if not channel_pages:
-            return None
-
-        raw_title = self._title_from_container(container, time_value)
-        if not raw_title:
-            raw_title = "Evento"
-        category, match_name = split_league_and_match(raw_title)
-        return AgendaEvent(
-            time=time_value,
-            title=raw_title,
-            category=category,
-            match_name=match_name,
-            channel_pages=channel_pages,
-        )
+        raw_title = self._title_from_container(container, time_value) or "Evento"
+        return self._option_events_from_links(container, time_value, raw_title)
 
     def _anchor_context(self, anchor: Tag) -> str:
         chunks: list[str] = [normalize_space(_visible_text(anchor))]
@@ -1082,9 +1115,7 @@ class AgendaParser:
     def _parse_with_selectors(self, root: Tag) -> list[AgendaEvent]:
         events: list[AgendaEvent] = []
         for block in root.select(self.settings.event_selector):
-            event = self._event_from_block(block)
-            if event:
-                events.append(event)
+            events.extend(self._events_from_block(block))
         return events
 
     def _parse_semantic_blocks(self, root: Tag) -> list[AgendaEvent]:
@@ -1102,9 +1133,7 @@ class AgendaParser:
             if marker in seen or self._looks_like_event_list(block):
                 continue
             seen.add(marker)
-            event = self._event_from_block(block)
-            if event:
-                events.append(event)
+            events.extend(self._events_from_block(block))
         return events
 
     def _parse_time_proximity(self, root: Tag) -> list[AgendaEvent]:
@@ -1118,9 +1147,9 @@ class AgendaParser:
                 if not container or not isinstance(container, Tag):
                     break
                 if any(self._resolve_link_url(anchor) for anchor in self._iter_anchors(container)):
-                    event = self._event_from_block(container, fallback_time=time_match.group(0))
-                    if event:
-                        events.append(event)
+                    events.extend(
+                        self._events_from_block(container, fallback_time=time_match.group(0))
+                    )
                     break
                 container = container.parent
         return events
@@ -1156,10 +1185,9 @@ class AgendaParser:
             if container.name in {"body", "html"} or self._looks_like_event_list(container):
                 events.extend(self._events_from_standalone_links(container, urls))
                 continue
-            event = self._event_from_container(container)
-            if event:
-                event.channel_pages = dedupe_keep_order(event.channel_pages + urls)
-                events.append(event)
+            option_events = self._events_from_container(container)
+            if option_events:
+                events.extend(option_events)
                 continue
             events.extend(self._events_from_standalone_links(container, urls))
         if not events:
@@ -1185,13 +1213,17 @@ class AgendaParser:
             if not time_value:
                 time_match = TIME_RE.search(label) or TIME_RE.search(nearby)
                 time_value = time_match.group(0) if time_match else ""
-            category, match_name = split_league_and_match(raw_title)
+            _league, match_name = split_league_and_match(raw_title)
+            option_name = clean_channel_label(label)
+            if MATCH_TEXT_RE.search(option_name) or TIME_RE.search(option_name):
+                option_name = ""
             events.append(
                 AgendaEvent(
                     time=time_value,
                     title=raw_title,
-                    category=category,
+                    category=DAILY_EVENT_CATEGORY,
                     match_name=match_name,
+                    option_name=option_name,
                     channel_pages=[url],
                 )
             )
@@ -1213,25 +1245,48 @@ class AgendaParser:
         return node
 
     def _event_from_block(self, block: Tag, fallback_time: str = "") -> AgendaEvent | None:
+        events = self._events_from_block(block, fallback_time)
+        return events[0] if events else None
+
+    def _events_from_block(self, block: Tag, fallback_time: str = "") -> list[AgendaEvent]:
         time_value = self._extract_time(block) or fallback_time
         raw_title = self._extract_title(block)
-        relaxed = self._block_looks_like_event(block)
-        channel_pages = self._extract_channel_urls(block, relaxed=relaxed)
-        if not raw_title and not channel_pages:
-            return None
         if not raw_title:
             raw_title = self._title_from_container(block, time_value) or "Evento"
-        if not channel_pages:
-            return None
+        if not raw_title and not any(self._iter_anchors(block)):
+            return []
+        return self._option_events_from_links(block, time_value, raw_title)
 
-        category, match_name = split_league_and_match(raw_title)
-        return AgendaEvent(
-            time=time_value,
-            title=raw_title,
-            category=category,
-            match_name=match_name,
-            channel_pages=channel_pages,
-        )
+    def _option_events_from_links(
+        self,
+        container: Tag,
+        time_value: str,
+        raw_title: str,
+    ) -> list[AgendaEvent]:
+        _league, match_name = split_league_and_match(raw_title)
+        events: list[AgendaEvent] = []
+        seen: set[str] = set()
+        option_count = 0
+        for anchor in container.find_all("a"):
+            url = self._resolve_link_url(anchor, container)
+            option_name = clean_channel_label(_visible_text(anchor))
+            if not url or url in seen or self._is_nav_link(url, option_name):
+                continue
+            if MATCH_TEXT_RE.search(option_name) or TIME_RE.search(option_name):
+                option_name = ""
+            seen.add(url)
+            option_count += 1
+            events.append(
+                AgendaEvent(
+                    time=time_value,
+                    title=raw_title,
+                    category=DAILY_EVENT_CATEGORY,
+                    match_name=match_name,
+                    option_name=option_name or f"Opcion {option_count}",
+                    channel_pages=[url],
+                )
+            )
+        return events
 
     @staticmethod
     def _block_looks_like_event(block: Tag) -> bool:
@@ -1398,8 +1453,8 @@ class AgendaParser:
 
     @staticmethod
     def _dedupe_events(events: list[AgendaEvent]) -> list[AgendaEvent]:
-        unique: dict[tuple[str, str], AgendaEvent] = {}
-        order: list[tuple[str, str]] = []
+        unique: dict[tuple[str, str, str], AgendaEvent] = {}
+        order: list[tuple[str, str, str]] = []
         for event in events:
             key = event_merge_key(event)
             existing = unique.get(key)
@@ -1409,6 +1464,7 @@ class AgendaParser:
                     title=event.title,
                     category=event.category,
                     match_name=event.match_name,
+                    option_name=event.option_name,
                     channel_pages=list(event.channel_pages),
                     stream_urls=list(event.stream_urls),
                     source_url=event.source_url,
@@ -1608,7 +1664,9 @@ class ChannelEmbedResolver:
             resolved: list[str] = []
             for page_url in original:
                 jobs += 1
-                embeds = self.resolve_page(page_url, channel_name=event.match_name)
+                embeds = self.resolve_page(
+                    page_url, channel_name=event.option_name or event.match_name
+                )
                 if embeds:
                     player = decode_tudeporteshoy_player(embeds[0])
                     print(
@@ -1647,6 +1705,10 @@ class ChannelEmbedResolver:
 
         if is_tudeporteshoy_embed_url(page_url):
             accept(page_url)
+            if found:
+                resolved = dedupe_keep_order(found)
+                self._cache[page_url] = resolved
+                return list(resolved)
 
         html = ""
         try:
@@ -1733,15 +1795,24 @@ class SourceBuilder:
         urls: list[str],
         used_ids: dict[str, int],
     ) -> dict:
-        base_id = slugify(event.match_name) or slugify(event.title) or "event"
+        option = event.option_name.strip()
+        match_name = event.match_name.strip() or event.title.strip() or "evento"
+        base_id = build_event_record_id(match_name, option)
         used_ids[base_id] = used_ids.get(base_id, 0) + 1
         suffix = event.time.replace(":", "") if event.time else str(used_ids[base_id])
         record_id = base_id if used_ids[base_id] == 1 else f"{base_id}-{suffix}"
-        name = f"{event.time} - {event.match_name}".strip(" -") if event.time else event.match_name
+        if event.time and option:
+            name = f"{event.time} | {match_name} ({option})"
+        elif event.time:
+            name = f"{event.time} | {match_name}"
+        elif option:
+            name = f"{match_name} ({option})"
+        else:
+            name = match_name
         return {
             "id": record_id,
             "name": name,
-            "category": event.category or "Sports",
+            "category": DAILY_EVENT_CATEGORY,
             "type": "hls",
             "urls": urls,
         }
@@ -1759,8 +1830,9 @@ class Scraper:
         for agenda_url in self.settings.target_urls:
             print(f"[run] site={agenda_url}")
 
-        self.renderer.start()
         hydrator: PlaywrightHydrator | None = None
+        if self.settings.use_playwright:
+            self.renderer.start()
         if not self.settings.proxy_base_url:
             hydrator = PlaywrightHydrator(self.renderer, self.settings)
             hydrator.start()
@@ -1771,7 +1843,6 @@ class Scraper:
             )
 
         api_client = AgendaApiClient(self.http, self.settings)
-        global_api_matches: list[AgendaEvent] = []
         captured_api_payload: dict | None = None
 
         collected: list[AgendaEvent] = []
@@ -1788,33 +1859,39 @@ class Scraper:
                 print(f"[agenda] {agenda_url} -> {len(events)} eventos")
                 collected.extend(events)
 
-            matches_in_collected = [event for event in collected if event.category != "Canales"]
-            if not matches_in_collected:
-                if captured_api_payload:
-                    referer = self.settings.target_urls[0]
-                    global_api_matches = parse_agenda_api(captured_api_payload, referer)
-                    print(f"[api] playwright captured -> {len(global_api_matches)} partidos")
+            if captured_api_payload and not collected:
+                referer = self.settings.target_urls[0]
+                extra = parse_agenda_api(captured_api_payload, referer)
+                print(f"[api] playwright captured -> {len(extra)} opciones de agenda")
+                collected.extend(extra)
+            elif not collected:
+                referer = self.settings.target_urls[0]
+                page_html = self.http.get_html(referer)
+                api_url = api_client.discover_api_url(referer, page_html)
+                try:
+                    extra = api_client.fetch_events(api_url, referer)
+                    collected.extend(extra)
+                except Exception as exc:  # noqa: BLE001
+                    print(f"[api] global agenda fetch failed ({api_url}): {exc}")
 
-                if not global_api_matches:
-                    referer = self.settings.target_urls[0]
-                    page_html = self.http.get_html(referer)
-                    api_url = api_client.discover_api_url(referer, page_html)
-                    try:
-                        global_api_matches = api_client.fetch_events(api_url, referer)
-                    except Exception as exc:  # noqa: BLE001
-                        print(f"[api] global agenda fetch failed ({api_url}): {exc}")
-
-            channels = [event for event in collected if event.category == "Canales"]
-            matches = [event for event in collected if event.category != "Canales"]
-            matches = merge_events(matches + global_api_matches)
-            channels = merge_events(channels)
-            events = matches + channels
-            print(
-                f"[run] combined unique partidos={len(matches)} canales={len(channels)}"
-            )
+            events = [
+                event
+                for event in merge_events(collected)
+                if event.category != "Canales" and event.channel_pages
+            ]
+            print(f"[run] daily agenda options={len(events)}")
             catalog = EmbedCatalog(self.http, self.settings)
-            catalog.load()
+            needs_catalog = any(
+                not is_tudeporteshoy_embed_url(page)
+                for event in events
+                for page in event.channel_pages
+            )
+            if needs_catalog:
+                catalog.load()
+            else:
+                print("[embed-catalog] skipped: agenda already has tudeporteshoy embeds")
             ChannelEmbedResolver(self.http, self.settings, catalog).resolve_events(events)
+            events = [event for event in events if event.channel_pages]
             if hydrator is not None:
                 self._hydrate_streams(events, hydrator)
         finally:
@@ -1831,15 +1908,13 @@ class Scraper:
         agenda_html, api_payload = self._fetch_agenda_html(agenda_url)
         parser = AgendaParser(self.settings, agenda_url)
         html_events = parser.parse(agenda_html)
-
-        channels = [event for event in html_events if event.category == "Canales"]
         matches = [event for event in html_events if event.category != "Canales"]
 
-        if api_payload:
+        if not matches and api_payload:
             api_matches = parse_agenda_api(api_payload, agenda_url)
-            print(f"[api] page captured -> {len(api_matches)} partidos")
+            print(f"[api] page captured -> {len(api_matches)} opciones de agenda")
             matches = merge_events(matches + api_matches)
-        else:
+        elif not matches:
             api_client = AgendaApiClient(self.http, self.settings)
             api_url = api_client.discover_api_url(agenda_url, agenda_html)
             try:
@@ -1849,17 +1924,29 @@ class Scraper:
                 print(f"[api] agenda fetch failed ({api_url}): {exc}")
                 LOGGER.warning("Agenda API failed (%s): %s", api_url, exc)
 
-        events = matches + channels
+        events = matches
         for event in events:
             event.source_url = agenda_url
             event.channel_pages = dedupe_keep_order(event.channel_pages)
-        print(f"[agenda] {agenda_url} -> {len(matches)} partidos + {len(channels)} canales")
+        print(f"[agenda] {agenda_url} -> {len(events)} opciones de partidos")
         return events, api_payload
 
     def _fetch_agenda_html(self, agenda_url: str) -> tuple[str, dict | None]:
-        if self.settings.use_playwright:
-            return self.renderer.fetch(agenda_url)
-        return self.http.get_html(agenda_url), None
+        html, api_payload = self._fetch_page(agenda_url)
+        followed = resolve_agenda_iframe_url(agenda_url, html)
+        if followed != agenda_url:
+            print(f"[agenda] following iframe {followed}")
+            nested_html, nested_payload = self._fetch_page(followed)
+            return nested_html, nested_payload or api_payload
+        return html, api_payload
+
+    def _fetch_page(self, page_url: str) -> tuple[str, dict | None]:
+        path = (urlparse(page_url).path or "").lower()
+        # agenda.html is a complete static list; skip Playwright so hora.js
+        # does not rewrite times to the CI runner timezone.
+        if path.endswith("agenda.html") or not self.settings.use_playwright:
+            return self.http.get_html(page_url), None
+        return self.renderer.fetch(page_url)
 
     def _hydrate_streams(self, events: list[AgendaEvent], hydrator: PlaywrightHydrator) -> None:
         hydrator.hydrate_events(events)
@@ -1896,12 +1983,9 @@ def parse_agenda_api(payload: dict, base_url: str) -> list[AgendaEvent]:
             continue
 
         time_value = format_diary_hour(str(attrs.get("diary_hour") or ""))
-        sport = normalize_space(str(attrs.get("deportes") or ""))
-        category, match_name = split_league_and_match(description)
-        if sport and category == "Sports":
-            category = sport.replace("_", " ").title()
+        _league, match_name = split_league_and_match(description)
 
-        channel_pages: list[str] = []
+        option_count = 0
         embeds = (attrs.get("embeds") or {}).get("data") or []
         for embed in embeds:
             if not isinstance(embed, dict):
@@ -1911,26 +1995,50 @@ def parse_agenda_api(payload: dict, base_url: str) -> list[AgendaEvent]:
             embed_name = normalize_space(str(embed_attrs.get("embed_name") or ""))
             if not iframe:
                 continue
-            if iframe.startswith("http"):
-                channel_pages.append(iframe)
-            else:
-                channel_pages.append(urljoin(base_url, iframe))
-            if embed_name:
-                print(f"[api] embed {embed_name} -> {channel_pages[-1]}")
-        channel_pages = dedupe_keep_order(channel_pages)
-        if not channel_pages:
-            continue
-
-        events.append(
-            AgendaEvent(
-                time=time_value,
-                title=description,
-                category=category,
-                match_name=match_name,
-                channel_pages=channel_pages,
+            option_count += 1
+            page = iframe if iframe.startswith("http") else urljoin(base_url, iframe)
+            print(f"[api] {match_name} / {embed_name or option_count} -> {page}")
+            events.append(
+                AgendaEvent(
+                    time=time_value,
+                    title=description,
+                    category=DAILY_EVENT_CATEGORY,
+                    match_name=match_name,
+                    option_name=embed_name or f"Opcion {option_count}",
+                    channel_pages=[page],
+                )
             )
-        )
     return events
+
+
+def explode_option_events(events: Iterable[AgendaEvent]) -> list[AgendaEvent]:
+    """One JSON record per broadcast option, never a grouped channel list."""
+    exploded: list[AgendaEvent] = []
+    for event in events:
+        if event.category == "Canales":
+            continue
+        pages = dedupe_keep_order(event.channel_pages)
+        if not pages:
+            continue
+        if len(pages) == 1:
+            event.category = DAILY_EVENT_CATEGORY
+            event.channel_pages = pages
+            exploded.append(event)
+            continue
+        for index, url in enumerate(pages, 1):
+            exploded.append(
+                AgendaEvent(
+                    time=event.time,
+                    title=event.title,
+                    category=DAILY_EVENT_CATEGORY,
+                    match_name=event.match_name,
+                    option_name=event.option_name or f"Opcion {index}",
+                    channel_pages=[url],
+                    stream_urls=list(event.stream_urls) if index == 1 else [],
+                    source_url=event.source_url,
+                )
+            )
+    return exploded
 
 
 def parse_target_urls(raw: str) -> list[str]:
@@ -1949,15 +2057,73 @@ def parse_target_urls(raw: str) -> list[str]:
     return urls
 
 
-def event_merge_key(event: AgendaEvent) -> tuple[str, str]:
+def expand_agenda_target_urls(urls: list[str]) -> list[str]:
+    """Always scrape tudeporteshoy /agenda.html; rewrite homepages to that iframe."""
+    expanded: list[str] = []
+    seen: set[str] = set()
+
+    def add(url: str) -> None:
+        cleaned = url.strip()
+        if not cleaned or cleaned in seen:
+            return
+        seen.add(cleaned)
+        expanded.append(cleaned)
+
+    add(DEFAULT_AGENDA_PAGE_URL)
+    for url in urls:
+        parsed = urlparse(url)
+        host = (parsed.hostname or "").lower()
+        path = (parsed.path or "/").rstrip("/") or "/"
+        if host in AGENDA_IFRAME_HOSTS and path in {"/", ""}:
+            add(urljoin(url, "/agenda.html"))
+            continue
+        add(url)
+    return expanded
+
+
+def resolve_agenda_iframe_url(page_url: str, html: str) -> str:
+    match = AGENDA_IFRAME_RE.search(html or "")
+    if match:
+        return urljoin(page_url, match.group(1))
+    parsed = urlparse(page_url)
+    host = (parsed.hostname or "").lower()
+    path = (parsed.path or "/").rstrip("/") or "/"
+    if host in AGENDA_IFRAME_HOSTS and path in {"/", ""}:
+        return urljoin(page_url, "/agenda.html")
+    return page_url
+
+
+def convert_agenda_time(raw: str, target_tz: str = DEFAULT_AGENDA_TIMEZONE) -> str:
+    """Convert hora.js source times (UTC+2) to the viewer timezone."""
+    match = TIME_RE.search(raw or "")
+    if not match:
+        return ""
+    hours, minutes = (int(part) for part in match.group(0).split(":"))
+    from datetime import datetime, timedelta, timezone
+
+    source = timezone(timedelta(minutes=AGENDA_SOURCE_OFFSET_MINUTES))
+    try:
+        from zoneinfo import ZoneInfo
+
+        dest = ZoneInfo(target_tz or DEFAULT_AGENDA_TIMEZONE)
+    except Exception:
+        dest = timezone(timedelta(hours=-6))
+    stamped = datetime.now(source).replace(
+        hour=hours, minute=minutes, second=0, microsecond=0
+    )
+    return stamped.astimezone(dest).strftime("%H:%M")
+
+
+def event_merge_key(event: AgendaEvent) -> tuple[str, str, str]:
     match_key = slugify(event.match_name) or event.match_name.strip().lower()
-    return (event.time, match_key)
+    option_key = slugify(event.option_name) or event.option_name.strip().lower()
+    return (event.time, match_key, option_key)
 
 
 def merge_events(events: Iterable[AgendaEvent]) -> list[AgendaEvent]:
-    """Merge the same match (time + name) across pages and union unique links."""
-    merged: dict[tuple[str, str], AgendaEvent] = {}
-    order: list[tuple[str, str]] = []
+    """Merge the same match option (time + name + channel) across pages."""
+    merged: dict[tuple[str, str, str], AgendaEvent] = {}
+    order: list[tuple[str, str, str]] = []
     for event in events:
         key = event_merge_key(event)
         existing = merged.get(key)
@@ -1967,17 +2133,17 @@ def merge_events(events: Iterable[AgendaEvent]) -> list[AgendaEvent]:
                 title=event.title,
                 category=event.category,
                 match_name=event.match_name,
+                option_name=event.option_name,
                 channel_pages=list(event.channel_pages),
                 stream_urls=list(event.stream_urls),
                 source_url=event.source_url,
             )
             order.append(key)
             continue
-        if existing.category == "Sports" and event.category != "Sports":
-            existing.category = event.category
-            existing.title = event.title
         existing.channel_pages = dedupe_keep_order(existing.channel_pages + event.channel_pages)
         existing.stream_urls = dedupe_keep_order(existing.stream_urls + event.stream_urls)
+        if not existing.option_name and event.option_name:
+            existing.option_name = event.option_name
     return [merged[key] for key in order]
 
 
@@ -1996,6 +2162,23 @@ def slugify(value: str) -> str:
     ascii_text = normalized.encode("ascii", "ignore").decode("ascii")
     slug = SLUG_RE.sub("-", ascii_text.lower()).strip("-")
     return slug[:80]
+
+
+def match_id_slug(match_name: str) -> str:
+    without_vs = re.sub(r"\bvs\.?\b", " ", match_name, flags=re.IGNORECASE)
+    return slugify(without_vs)
+
+
+def option_id_slug(option_name: str) -> str:
+    return slugify(option_name.replace("+", "plus"))
+
+
+def build_event_record_id(match_name: str, option_name: str) -> str:
+    parts = ["evento", match_id_slug(match_name)]
+    option_slug = option_id_slug(option_name)
+    if option_slug:
+        parts.append(option_slug)
+    return "-".join(part for part in parts if part) or "evento"
 
 
 def normalize_space(value: str) -> str:
@@ -2059,7 +2242,7 @@ def is_dead_player_host(url: str) -> bool:
     return any(host == dead or host.endswith(f".{dead}") for dead in DEAD_PLAYER_HOSTS)
 
 
-def is_valid_player_url(url: str) -> bool:
+def is_valid_player_url(url: str, *, require_stream: bool = False) -> bool:
     if not url:
         return False
     parsed = urlparse(url)
@@ -2067,9 +2250,8 @@ def is_valid_player_url(url: str) -> bool:
         return False
     if is_dead_player_host(url):
         return False
-    if "stream=" not in url.lower():
+    if require_stream and "stream=" not in url.lower():
         return False
-    # Reject obvious decode garbage
     if "\x00" in url or any(ord(ch) < 32 for ch in url):
         return False
     return True
@@ -2289,7 +2471,8 @@ def clean_channel_label(label: str) -> str:
     text = normalize_space(label)
     text = re.sub(r"(?i)^ver\s+", "", text)
     text = re.sub(r"(?i)\s+en\s+vivo$", "", text)
-    return text.strip()
+    text = re.sub(r"(?i)\s*calidad\s+\d+p\s*", " ", text)
+    return normalize_space(text)
 
 
 def filter_hls_urls(urls: Iterable[str]) -> list[str]:
