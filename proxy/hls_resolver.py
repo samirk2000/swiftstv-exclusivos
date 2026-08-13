@@ -3,15 +3,20 @@
 from __future__ import annotations
 
 import asyncio
+import base64
 import logging
 import os
 import re
 from dataclasses import dataclass, field
 from typing import Callable
-from urllib.parse import parse_qsl, urlencode, urljoin, urlparse, urlunparse
+from urllib.parse import parse_qs, parse_qsl, urlencode, urljoin, urlparse, urlunparse
 
 LOGGER = logging.getLogger("hls_resolver")
 M3U8_RE = re.compile(r"""https?://[^\s"'<>\\]+?\.m3u8[^\s"'<>\\]*""", re.IGNORECASE)
+PLAYBACK_URL_RE = re.compile(
+    r"""(?:playbackURL|source|src|file|hlsUrl)\s*[:=]\s*["'](https?:\\?/\\?/[^\s"']+\.m3u8[^"']*)["']""",
+    re.IGNORECASE,
+)
 SKIP_URL_PREFIXES = ("about:", "javascript:", "blob:", "data:", "chrome-error:")
 TUDEPORTESHOY_CDN_SUFFIX = "tudeporteshoy.xyz"
 DEAD_PLAYER_HOSTS = ("la12hd.com", "envivo1.com", "streamtp4.com")
@@ -65,6 +70,11 @@ FORCE_PLAY_JS = """() => {
   ).forEach((node) => {
     try { node.click(); } catch (err) {}
   });
+  if (window.player) {
+    try { window.player.configure({ autoPlay: true, mute: true }); } catch (err) {}
+    try { window.player.play(); } catch (err) {}
+    try { window.player.unmute(); } catch (err) {}
+  }
 }"""
 INIT_AUTOPLAY_JS = """
 (() => {
@@ -160,6 +170,42 @@ def rewrite_embed_host(url: str, host_map: dict[str, str]) -> str:
     rewritten = urlunparse(parsed._replace(netloc=netloc))
     LOGGER.info("host rewrite %s -> %s", url, rewritten)
     return rewritten
+
+
+def unescape_js_url(value: str) -> str:
+    return (value or "").replace("\\/", "/").replace("\\u002F", "/").replace("\\/", "/")
+
+
+def extract_hls_urls(text: str) -> list[str]:
+    """Pull .m3u8 URLs out of HTML/JS, including Clappr playbackURL with escaped slashes."""
+    cleaned = unescape_js_url(text or "")
+    found = list(M3U8_RE.findall(cleaned))
+    for match in PLAYBACK_URL_RE.finditer(text or ""):
+        found.append(unescape_js_url(match.group(1)))
+    for match in PLAYBACK_URL_RE.finditer(cleaned):
+        found.append(unescape_js_url(match.group(1)))
+    return dedupe_keep_order(found)
+
+
+def decode_wrapper_player_url(embed_url: str) -> str:
+    """Decode tudeporteshoy embed/eventos.html?r=<base64 player url>."""
+    parsed = urlparse(embed_url or "")
+    path = (parsed.path or "").lower()
+    if "embed/eventos.html" not in path and "eventos.html" not in path:
+        return ""
+    query = parse_qs(parsed.query)
+    token = (query.get("r") or query.get("embed") or [""])[0]
+    if not token:
+        return ""
+    padded = token + "=" * ((4 - len(token) % 4) % 4)
+    try:
+        decoded = base64.b64decode(padded).decode("utf-8", errors="ignore").strip()
+    except Exception:
+        return ""
+    decoded = unescape_js_url(decoded)
+    if decoded.startswith("http://") or decoded.startswith("https://"):
+        return decoded
+    return ""
 
 
 def is_hls_url(url: str) -> bool:
@@ -298,6 +344,18 @@ class HlsResolver:
 
     async def resolve(self, embed_url: str, referer: str, client_ip: str) -> list[str]:
         async with self._lock:
+            player_url = decode_wrapper_player_url(embed_url)
+            player_url = rewrite_embed_host(player_url, self.settings.host_rewrites)
+            if player_url and player_url != embed_url:
+                LOGGER.info("decoded wrapper -> %s", player_url[:180])
+                captured = await self._resolve_locked(
+                    player_url,
+                    referer=embed_url or referer,
+                    client_ip=client_ip,
+                )
+                if captured:
+                    return captured
+                LOGGER.info("player page missed HLS; falling back to wrapper %s", embed_url[:120])
             return await self._resolve_locked(embed_url, referer, client_ip)
 
     async def _resolve_locked(
@@ -379,6 +437,13 @@ class HlsResolver:
                     LOGGER.warning("goto failed depth=%s %s: %s", depth, embed_url, exc)
 
             if not found.is_set():
+                try:
+                    for manifest in extract_hls_urls(await page.content()):
+                        track(manifest)
+                except Exception:
+                    pass
+
+            if not found.is_set():
                 await self._kick_player_once(page)
                 try:
                     await asyncio.wait_for(
@@ -406,12 +471,12 @@ class HlsResolver:
                     and frame_url != embed_url
                 ):
                     iframe_targets.append(frame_url)
-                try:
-                    content = await frame.content()
-                    for manifest in M3U8_RE.findall(content):
-                        track(manifest)
-                except Exception:
-                    continue
+                    try:
+                        content = await frame.content()
+                        for manifest in extract_hls_urls(content):
+                            track(manifest)
+                    except Exception:
+                        continue
             try:
                 for iframe in (await page.locator("iframe").all())[:8]:
                     src = (
@@ -557,7 +622,7 @@ class HlsResolver:
             body = await response.text()
             if not body or len(body) > 500_000:
                 return
-            for manifest in M3U8_RE.findall(body):
+            for manifest in extract_hls_urls(body):
                 track(manifest)
         except Exception:
             return
