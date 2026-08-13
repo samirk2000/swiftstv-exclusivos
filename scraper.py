@@ -80,6 +80,10 @@ EVENT_HINT_CLASSES = (
     "card",
 )
 DEFAULT_AGENDA_WAIT_SELECTORS = (
+    "#menu > li",
+    "#menu a.submenu-item",
+    ".toggle-submenu",
+    "#menu",
     "#listado",
     "#horario",
     ".menuitem",
@@ -97,6 +101,8 @@ DEFAULT_AGENDA_WAIT_SELECTORS = (
     "details",
 )
 CARD_CLASS_RE = re.compile(r"card", re.IGNORECASE)
+AGENDA_URL_RE = re.compile(r"""AGENDA_URL\s*=\s*["']([^"']+)["']""")
+CONFIG_SCRIPT_RE = re.compile(r"""config\.js[^"']*""")
 
 
 @dataclass(frozen=True)
@@ -228,6 +234,8 @@ class PlaywrightRenderer:
             page.wait_for_function(
                 """
                 () => {
+                  const menuItems = document.querySelectorAll('#menu > li');
+                  if (menuItems.length > 0) return true;
                   const anchors = [...document.querySelectorAll('a')].filter((node) => {
                     const href = node.getAttribute('href') || '';
                     return href && href !== '#' && !href.startsWith('javascript:');
@@ -239,7 +247,7 @@ class PlaywrightRenderer:
                 """,
                 timeout=self.settings.agenda_wait_ms + 8000,
             )
-            print("[playwright] dynamic links or kickoff times detected")
+            print("[playwright] dynamic agenda menu or links detected")
         except Exception:
             print(f"[playwright] hydration fallback wait {self.settings.agenda_wait_ms}ms")
             page.wait_for_timeout(self.settings.agenda_wait_ms)
@@ -292,8 +300,76 @@ class HttpClient:
             response.raise_for_status()
         return response.text
 
+    def get_json(self, url: str, referer: str | None = None) -> dict | list:
+        headers = {"Accept": "application/json"}
+        if referer:
+            headers["Referer"] = referer
+        response = self.session.get(
+            url,
+            timeout=self.settings.timeout,
+            headers=headers,
+            allow_redirects=True,
+        )
+        response.raise_for_status()
+        print(f"[http] {response.status_code} {url} (json {len(response.text)} bytes)")
+        return response.json()
+
     def close(self) -> None:
         self.session.close()
+
+
+class AgendaApiClient:
+    """Fetch the daily match agenda from agenda18 JSON used by horario.js sites."""
+
+    def __init__(self, http: HttpClient, settings: Settings) -> None:
+        self.http = http
+        self.settings = settings
+
+    def discover_api_url(self, page_url: str, html: str) -> str:
+        explicit = os.environ.get("AGENDA_API_URL", "").strip()
+        if explicit:
+            return explicit
+
+        soup = BeautifulSoup(html, "lxml")
+        config_candidates: list[str] = []
+        for script in soup.find_all("script", src=True):
+            src = str(script.get("src") or "")
+            if "config.js" in src:
+                config_candidates.append(urljoin(page_url, src))
+            if "index.js" in src:
+                index_url = urljoin(page_url, src)
+                try:
+                    index_text = self.http.get_html(index_url, referer=page_url)
+                    import_match = re.search(r"""from\s+['"](\./config\.js[^'"]*)['"]""", index_text)
+                    if import_match:
+                        config_candidates.append(urljoin(index_url, import_match.group(1)))
+                except Exception as exc:  # noqa: BLE001
+                    print(f"[api] index.js fetch failed ({index_url}): {exc}")
+
+        for config_url in dedupe_keep_order(config_candidates):
+            try:
+                config_text = self.http.get_html(config_url, referer=page_url)
+                match = AGENDA_URL_RE.search(config_text)
+                if match:
+                    print(f"[api] discovered agenda URL from {config_url}")
+                    return match.group(1)
+            except Exception as exc:  # noqa: BLE001
+                print(f"[api] config fetch failed ({config_url}): {exc}")
+
+        default_url = os.environ.get(
+            "AGENDA_API_DEFAULT",
+            "https://agenda18.com/agenda.json?v=1.07",
+        )
+        print(f"[api] using default agenda URL {default_url}")
+        return default_url
+
+    def fetch_events(self, api_url: str, page_url: str) -> list[AgendaEvent]:
+        payload = self.http.get_json(api_url, referer=page_url)
+        if not isinstance(payload, dict):
+            return []
+        events = parse_agenda_api(payload, page_url)
+        print(f"[api] {api_url} -> {len(events)} match events")
+        return events
 
 
 class AgendaParser:
@@ -305,35 +381,88 @@ class AgendaParser:
 
     def parse(self, html: str) -> list[AgendaEvent]:
         soup = BeautifulSoup(html, "lxml")
-        root = self._agenda_root(soup)
-        root = self._expand_parse_root(soup, root)
+        root = self._expand_parse_root(soup, self._agenda_root(soup))
         title = _visible_text(soup.title) if soup.title else ""
         anchor_count = len(root.find_all("a"))
         print(f"[parse] title={title!r} html={len(html)} bytes anchors={anchor_count}")
         self._debug_dump_anchors(root)
 
-        events = self._parse_with_selectors(root) if self.settings.event_selector else []
-        strategy = "selectors" if events else ""
-        if not events:
-            events = self._parse_event_anchors(root)
-            strategy = "event-anchors" if events else strategy
-        if not events:
-            events = self._parse_channel_cards(root)
-            strategy = "channel-cards" if events else strategy
-        if not events:
-            events = self._parse_semantic_blocks(root)
-            strategy = "semantic" if events else strategy
-        if not events:
-            events = self._parse_time_proximity(root)
-            strategy = "time-proximity" if events else strategy
-        link_events = self._parse_all_links(root)
+        match_events: list[AgendaEvent] = []
+        menu_events = self._parse_menu_agenda(soup)
+        match_events.extend(menu_events)
+        if self.settings.event_selector:
+            match_events.extend(self._parse_with_selectors(root))
+        match_events.extend(self._parse_event_anchors(root))
+        if not menu_events:
+            match_events.extend(self._parse_semantic_blocks(root))
+            match_events.extend(self._parse_time_proximity(root))
+        link_events = self._parse_all_links(root) if not menu_events else []
+        match_events = self._merge_link_fallback(match_events, link_events)
+        match_events = self._dedupe_events(match_events)
+        match_events = [
+            event
+            for event in match_events
+            if event.channel_pages
+            and event.category != "Canales"
+            and (event.time or MATCH_TEXT_RE.search(event.match_name))
+        ]
+
+        channel_events = self._parse_channel_cards(root)
         print(
-            f"[parse] strategy={strategy or 'none'} structured={len(events)} "
+            f"[parse] matches={len(match_events)} channels={len(channel_events)} "
             f"link-fallback={len(link_events)}"
         )
-        events = self._merge_link_fallback(events, link_events)
-        print(f"[parse] final strategy={strategy or 'all-links' if events else 'none'} events={len(events)}")
-        return self._dedupe_events(events)
+        return match_events + channel_events
+
+    def _parse_menu_agenda(self, soup: BeautifulSoup) -> list[AgendaEvent]:
+        """Parse the JS-rendered #menu list built from agenda18 JSON."""
+        menu = soup.select_one("#menu")
+        if menu is None:
+            return []
+
+        events: list[AgendaEvent] = []
+        for item in menu.select(":scope > li"):
+            time_node = item.find("time")
+            time_value = ""
+            if time_node is not None:
+                time_value = self._time_from_texts(_visible_text(time_node))
+            if not time_value:
+                time_value = self._time_from_texts(_visible_text(item))
+
+            title = ""
+            for span in item.select("div span"):
+                text = normalize_space(_visible_text(span))
+                if not text or TIME_RE.fullmatch(text):
+                    continue
+                if len(text) > len(title):
+                    title = text
+
+            channel_pages: list[str] = []
+            for anchor in item.select("a.submenu-item, .submenu a, ul a"):
+                url = self._resolve_link_url(anchor, item)
+                if url and not self._is_nav_link(url, _visible_text(anchor)):
+                    channel_pages.append(url)
+            channel_pages = dedupe_keep_order(channel_pages)
+            if not title and not channel_pages:
+                continue
+
+            sport = normalize_space(str(item.get("data-category") or ""))
+            category, match_name = split_league_and_match(title or "Evento")
+            if sport and category == "Sports":
+                category = sport.replace("_", " ").title()
+
+            events.append(
+                AgendaEvent(
+                    time=time_value,
+                    title=title or match_name,
+                    category=category,
+                    match_name=match_name,
+                    channel_pages=channel_pages,
+                )
+            )
+
+        print(f"[parse] menu-agenda events={len(events)}")
+        return events
 
     @staticmethod
     def _expand_parse_root(soup: BeautifulSoup, root: Tag) -> Tag:
@@ -616,6 +745,7 @@ class AgendaParser:
 
         candidates: list[Tag] = []
         for selector in (
+            "#menu",
             "#listado",
             "#horario",
             "[class*='menuitem' i]",
@@ -960,11 +1090,25 @@ class AgendaParser:
 
     @staticmethod
     def _dedupe_events(events: list[AgendaEvent]) -> list[AgendaEvent]:
-        unique: dict[tuple[str, str, tuple[str, ...]], AgendaEvent] = {}
+        unique: dict[tuple[str, str], AgendaEvent] = {}
+        order: list[tuple[str, str]] = []
         for event in events:
-            key = (event.time, event.match_name.lower(), tuple(event.channel_pages))
-            unique.setdefault(key, event)
-        return list(unique.values())
+            key = event_merge_key(event)
+            existing = unique.get(key)
+            if existing is None:
+                unique[key] = AgendaEvent(
+                    time=event.time,
+                    title=event.title,
+                    category=event.category,
+                    match_name=event.match_name,
+                    channel_pages=list(event.channel_pages),
+                    stream_urls=list(event.stream_urls),
+                    source_url=event.source_url,
+                )
+                order.append(key)
+                continue
+            existing.channel_pages = dedupe_keep_order(existing.channel_pages + event.channel_pages)
+        return [unique[key] for key in order]
 
 
 class StreamExtractor:
@@ -1070,10 +1214,26 @@ class Scraper:
 
     def _scrape_agenda(self, agenda_url: str) -> list[AgendaEvent]:
         agenda_html = self._fetch_agenda_html(agenda_url)
-        events = AgendaParser(self.settings, agenda_url).parse(agenda_html)
+        parser = AgendaParser(self.settings, agenda_url)
+        html_events = parser.parse(agenda_html)
+
+        channels = [event for event in html_events if event.category == "Canales"]
+        matches = [event for event in html_events if event.category != "Canales"]
+
+        api_client = AgendaApiClient(self.http, self.settings)
+        api_url = api_client.discover_api_url(agenda_url, agenda_html)
+        try:
+            api_matches = api_client.fetch_events(api_url, agenda_url)
+            matches = merge_events(matches + api_matches)
+        except Exception as exc:  # noqa: BLE001
+            print(f"[api] agenda fetch failed ({api_url}): {exc}")
+            LOGGER.warning("Agenda API failed (%s): %s", api_url, exc)
+
+        events = matches + channels
         for event in events:
             event.source_url = agenda_url
             event.channel_pages = dedupe_keep_order(event.channel_pages)
+        print(f"[agenda] {agenda_url} -> {len(matches)} partidos + {len(channels)} canales")
         return events
 
     def _fetch_agenda_html(self, agenda_url: str) -> str:
@@ -1128,6 +1288,68 @@ class Scraper:
 
     def close(self) -> None:
         self.http.close()
+
+
+def format_diary_hour(raw_value: str) -> str:
+    value = normalize_space(raw_value)
+    if not value:
+        return ""
+    match = TIME_RE.search(value)
+    if match:
+        return match.group(0)
+    cleaned = value.replace("Z", "+00:00")
+    try:
+        from datetime import datetime
+
+        parsed = datetime.fromisoformat(cleaned)
+        return parsed.strftime("%H:%M")
+    except ValueError:
+        return ""
+
+
+def parse_agenda_api(payload: dict, base_url: str) -> list[AgendaEvent]:
+    events: list[AgendaEvent] = []
+    for item in payload.get("data", []):
+        if not isinstance(item, dict):
+            continue
+        attrs = item.get("attributes") or {}
+        description = normalize_space(str(attrs.get("diary_description") or ""))
+        if not description:
+            continue
+
+        time_value = format_diary_hour(str(attrs.get("diary_hour") or ""))
+        sport = normalize_space(str(attrs.get("deportes") or ""))
+        category, match_name = split_league_and_match(description)
+        if sport and category == "Sports":
+            category = sport.replace("_", " ").title()
+
+        channel_pages: list[str] = []
+        embeds = (attrs.get("embeds") or {}).get("data") or []
+        for embed in embeds:
+            if not isinstance(embed, dict):
+                continue
+            embed_attrs = embed.get("attributes") or {}
+            iframe = normalize_space(str(embed_attrs.get("embed_iframe") or ""))
+            if not iframe:
+                continue
+            if iframe.startswith("http"):
+                channel_pages.append(iframe)
+            else:
+                channel_pages.append(urljoin(base_url, iframe))
+        channel_pages = dedupe_keep_order(channel_pages)
+        if not channel_pages:
+            continue
+
+        events.append(
+            AgendaEvent(
+                time=time_value,
+                title=description,
+                category=category,
+                match_name=match_name,
+                channel_pages=channel_pages,
+            )
+        )
+    return events
 
 
 def parse_target_urls(raw: str) -> list[str]:
