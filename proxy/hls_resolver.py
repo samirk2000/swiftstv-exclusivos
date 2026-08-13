@@ -122,15 +122,6 @@ def is_dead_player_host(url: str) -> bool:
     return any(host == dead or host.endswith(f".{dead}") for dead in DEAD_PLAYER_HOSTS)
 
 
-def rank_hls_urls(urls: list[str]) -> list[str]:
-    def sort_key(url: str) -> tuple[int, str]:
-        if is_tudeporteshoy_cdn(url):
-            return (0, url)
-        return (1, url)
-
-    return sorted(dedupe_keep_order(urls), key=sort_key)
-
-
 def select_proxy_embed_pages(pages: list[str]) -> list[str]:
     """Prefer live tudeporteshoy embeds; drop dead la12hd iframes when possible."""
     unique = dedupe_keep_order(pages)
@@ -268,10 +259,87 @@ def rewrite_m3u8_client_ip(m3u8_url: str, client_ip: str) -> str:
     """Replace ip= query param when the CDN accepts client-supplied IP tokens."""
     parsed = urlparse(m3u8_url)
     params = parse_qsl(parsed.query, keep_blank_values=True)
-    if not any(key.lower() == "ip" for key, _ in params):
+    if not params:
         return m3u8_url
-    updated = [(key, client_ip if key.lower() == "ip" else value) for key, value in params]
-    return urlunparse(parsed._replace(query=urlencode(updated)))
+    updated: list[tuple[str, str]] = []
+    seen_ip = False
+    for key, value in params:
+        if key.lower() == "ip":
+            updated.append((key, client_ip or value))
+            seen_ip = True
+        else:
+            updated.append((key, value))
+    if not seen_ip:
+        return m3u8_url
+    return urlunparse(parsed._replace(query=urlencode(order_hls_query(updated))))
+
+
+def order_hls_query(params: list[tuple[str, str]]) -> list[tuple[str, str]]:
+    """Roku/CDN examples put ip= before token=."""
+    ip_items = [(key, value) for key, value in params if key.lower() == "ip"]
+    token_items = [(key, value) for key, value in params if key.lower() == "token"]
+    rest = [(key, value) for key, value in params if key.lower() not in {"ip", "token"}]
+    return ip_items + token_items + rest
+
+
+def is_media_playlist_url(url: str) -> bool:
+    lower = (url or "").lower()
+    return "mono.m3u8" in lower or "tracks-v1" in lower
+
+
+def is_master_index_url(url: str) -> bool:
+    path = (urlparse(url).path or "").lower()
+    return path.endswith("/index.m3u8") or path.endswith("index.m3u8")
+
+
+def to_po_playout_url(url: str) -> str:
+    """Map Clappr master URLs to the Roku-playable media playlist.
+
+    https://si.tudeporteshoy.xyz:443/global/sportv_1pt/index.m3u8?token=...&ip=...
+    -> https://po.tudeporteshoy.xyz/sportv_1pt/tracks-v1a1/mono.m3u8?ip=...&token=...
+    """
+    parsed = urlparse(url or "")
+    host = (parsed.hostname or "").lower()
+    if not host.endswith("tudeporteshoy.xyz"):
+        return ""
+    path = parsed.path or ""
+    media_path = ""
+    match = re.match(r"/global/([^/]+)/index\.m3u8$", path, re.IGNORECASE)
+    if match:
+        media_path = f"/{match.group(1)}/tracks-v1a1/mono.m3u8"
+    else:
+        match = re.match(r"/global/([^/]+)/(.+\.m3u8)$", path, re.IGNORECASE)
+        if match:
+            media_path = f"/{match.group(1)}/{match.group(2)}"
+        elif is_media_playlist_url(url) and not host.startswith("po."):
+            media_path = path
+        elif host.startswith("po.") and is_media_playlist_url(url):
+            media_path = path
+        else:
+            return ""
+    query = urlencode(order_hls_query(parse_qsl(parsed.query, keep_blank_values=True)))
+    return urlunparse(("https", "po.tudeporteshoy.xyz", media_path, "", query, ""))
+
+
+def parse_playlist_uris(body: str, base_url: str) -> list[str]:
+    uris: list[str] = []
+    for raw in (body or "").splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            continue
+        uris.append(urljoin(base_url, unescape_js_url(line)))
+    return uris
+
+
+def rank_hls_urls(urls: list[str]) -> list[str]:
+    def sort_key(url: str) -> tuple[int, int, int, str]:
+        host = (urlparse(url).hostname or "").lower()
+        media = 0 if is_media_playlist_url(url) else 1
+        po_host = 0 if host.startswith("po.") else 1
+        master = 1 if is_master_index_url(url) else 0
+        return (media, po_host, master, url)
+
+    return sorted(dedupe_keep_order(urls), key=sort_key)
 
 
 @dataclass
@@ -354,9 +422,63 @@ class HlsResolver:
                     client_ip=client_ip,
                 )
                 if captured:
-                    return captured
+                    return await self._finalize_manifests(captured, embed_url or referer, client_ip)
                 LOGGER.info("player page missed HLS; falling back to wrapper %s", embed_url[:120])
-            return await self._resolve_locked(embed_url, referer, client_ip)
+            captured = await self._resolve_locked(embed_url, referer, client_ip)
+            return await self._finalize_manifests(captured, referer, client_ip)
+
+    async def _finalize_manifests(
+        self, urls: list[str], referer: str, client_ip: str
+    ) -> list[str]:
+        """Turn Clappr master index.m3u8 into the po./mono.m3u8 URL Roku can play."""
+        promoted: list[str] = []
+        for url in urls:
+            rewritten = rewrite_m3u8_client_ip(url, client_ip)
+            playout = to_po_playout_url(rewritten)
+            if playout:
+                promoted.append(rewrite_m3u8_client_ip(playout, client_ip))
+                LOGGER.info("playout %s", playout[:180])
+            if is_media_playlist_url(rewritten):
+                promoted.append(rewritten)
+                continue
+            if is_master_index_url(rewritten):
+                try:
+                    body = await self._fetch_text(rewritten, referer=referer, client_ip=client_ip)
+                except Exception as exc:  # noqa: BLE001
+                    LOGGER.info("master fetch failed %s: %s", rewritten[:120], exc)
+                    continue
+                for uri in parse_playlist_uris(body, rewritten):
+                    if not is_hls_url(uri) and ".m3u8" not in uri.lower():
+                        continue
+                    media = rewrite_m3u8_client_ip(urljoin(rewritten, uri), client_ip)
+                    promoted.append(media)
+                    mapped = to_po_playout_url(media)
+                    if mapped:
+                        promoted.append(rewrite_m3u8_client_ip(mapped, client_ip))
+                        LOGGER.info("master variant %s", mapped[:180])
+            else:
+                promoted.append(rewritten)
+        ranked = rank_hls_urls(promoted or urls)
+        if ranked:
+            LOGGER.info("play url %s", ranked[0][:180])
+        return ranked
+
+    async def _fetch_text(self, url: str, *, referer: str, client_ip: str) -> str:
+        from urllib.request import Request, urlopen
+
+        headers = {
+            "User-Agent": self.settings.user_agent,
+            "Referer": referer or "https://tudeporteshoy.xyz/",
+            "X-Forwarded-For": client_ip,
+            "X-Real-IP": client_ip,
+        }
+
+        def _do() -> str:
+            request = Request(url, headers=headers)
+            with urlopen(request, timeout=8) as response:
+                return response.read().decode("utf-8", errors="ignore")
+
+        return await asyncio.to_thread(_do)
 
     async def _resolve_locked(
         self,
