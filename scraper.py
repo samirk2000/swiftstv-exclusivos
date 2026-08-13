@@ -80,20 +80,23 @@ EVENT_HINT_CLASSES = (
     "card",
 )
 DEFAULT_AGENDA_WAIT_SELECTORS = (
-    "#agenda",
-    "#horario",
     "#listado",
-    "[id*='agenda' i]",
-    "[class*='agenda' i]",
+    "#horario",
+    ".menuitem",
+    "[class*='menuitem' i]",
+    "a[href*='en-vivo' i]",
+    "a[href*='embed' i]",
+    ".card-content a",
+    "[id*='listado' i]",
+    "[class*='listado' i]",
+    "#agenda",
     "[id*='horario' i]",
     "[class*='horario' i]",
-    "[class*='menuitem' i]",
     "[class*='partido' i]",
     "[class*='event' i]",
     "details",
-    "a[href*='embed' i]",
-    "a[href*='canal' i]",
 )
+CARD_CLASS_RE = re.compile(r"card", re.IGNORECASE)
 
 
 @dataclass(frozen=True)
@@ -201,18 +204,45 @@ class PlaywrightRenderer:
             if selector and selector not in selectors:
                 selectors.append(selector)
 
-        per_selector_ms = max(1000, int(self.settings.timeout * 1000 / max(len(selectors), 1)))
+        per_selector_ms = max(1500, int(self.settings.timeout * 1000 / max(len(selectors), 1)))
+        matched = False
         for selector in selectors:
             try:
                 page.wait_for_selector(selector, state="visible", timeout=per_selector_ms)
-                print(f"[playwright] agenda visible via {selector!r}")
-                page.wait_for_timeout(500)
-                return
+                if selector.startswith("[id*='agenda") or selector.startswith("[class*='agenda"):
+                    count = page.locator(f"{selector} a").count()
+                    if count == 0:
+                        print(f"[playwright] skipped empty agenda selector {selector!r}")
+                        continue
+                print(f"[playwright] content visible via {selector!r}")
+                matched = True
+                break
             except Exception:
                 continue
 
-        print(f"[playwright] no agenda selector matched; waiting {self.settings.agenda_wait_ms}ms")
-        page.wait_for_timeout(self.settings.agenda_wait_ms)
+        if not matched:
+            print(f"[playwright] no content selector matched; waiting {self.settings.agenda_wait_ms}ms")
+            page.wait_for_timeout(self.settings.agenda_wait_ms)
+
+        try:
+            page.wait_for_function(
+                """
+                () => {
+                  const anchors = [...document.querySelectorAll('a')].filter((node) => {
+                    const href = node.getAttribute('href') || '';
+                    return href && href !== '#' && !href.startsWith('javascript:');
+                  });
+                  if (anchors.length >= 3) return true;
+                  const bodyText = document.body ? document.body.innerText : '';
+                  return /\\b([01]?\\d|2[0-3]):[0-5]\\d\\b/.test(bodyText);
+                }
+                """,
+                timeout=self.settings.agenda_wait_ms + 8000,
+            )
+            print("[playwright] dynamic links or kickoff times detected")
+        except Exception:
+            print(f"[playwright] hydration fallback wait {self.settings.agenda_wait_ms}ms")
+            page.wait_for_timeout(self.settings.agenda_wait_ms)
 
     def close(self) -> None:
         if self._browser is not None:
@@ -276,6 +306,7 @@ class AgendaParser:
     def parse(self, html: str) -> list[AgendaEvent]:
         soup = BeautifulSoup(html, "lxml")
         root = self._agenda_root(soup)
+        root = self._expand_parse_root(soup, root)
         title = _visible_text(soup.title) if soup.title else ""
         anchor_count = len(root.find_all("a"))
         print(f"[parse] title={title!r} html={len(html)} bytes anchors={anchor_count}")
@@ -286,6 +317,9 @@ class AgendaParser:
         if not events:
             events = self._parse_event_anchors(root)
             strategy = "event-anchors" if events else strategy
+        if not events:
+            events = self._parse_channel_cards(root)
+            strategy = "channel-cards" if events else strategy
         if not events:
             events = self._parse_semantic_blocks(root)
             strategy = "semantic" if events else strategy
@@ -301,17 +335,28 @@ class AgendaParser:
         print(f"[parse] final strategy={strategy or 'all-links' if events else 'none'} events={len(events)}")
         return self._dedupe_events(events)
 
+    @staticmethod
+    def _expand_parse_root(soup: BeautifulSoup, root: Tag) -> Tag:
+        body = soup.body or soup
+        root_links = len(root.find_all("a"))
+        body_links = len(body.find_all("a"))
+        if body_links > root_links:
+            print(f"[parse] expanding parse root: {root_links} -> {body_links} anchors")
+            return body
+        return root
+
     def _debug_dump_anchors(self, root: Tag, limit: int = 30) -> None:
-        print(f"[debug] first {limit} anchors (text | href | parent):")
+        print(f"[debug] first {limit} anchors (text | raw_href | resolved | parent):")
         for index, anchor in enumerate(root.find_all("a")[:limit]):
-            url = self._href_from_anchor(anchor)
+            raw_href = (anchor.get("href") or anchor.get("data-href") or anchor.get("data-url") or "").strip()
+            url = self._resolve_link_url(anchor)
             label = normalize_space(_visible_text(anchor))[:100]
             parent = anchor.parent if isinstance(anchor.parent, Tag) else None
             parent_desc = self._tag_summary(parent)
             parent_text = normalize_space(_visible_text(parent))[:140] if parent else ""
             print(
-                f"[debug] a[{index}] text={label!r} href={url!r} "
-                f"parent={parent_desc!r} ctx={parent_text!r}"
+                f"[debug] a[{index}] text={label!r} raw_href={raw_href!r} "
+                f"resolved={url!r} parent={parent_desc!r} ctx={parent_text!r}"
             )
 
     @staticmethod
@@ -328,7 +373,7 @@ class AgendaParser:
         """Extract events from rendered links that mention kickoff times or match patterns."""
         containers: dict[int, Tag] = {}
         for anchor in root.find_all("a"):
-            url = self._href_from_anchor(anchor)
+            url = self._resolve_link_url(anchor)
             label = normalize_space(_visible_text(anchor))
             if not url or self._is_nav_link(url, label):
                 continue
@@ -452,7 +497,7 @@ class AgendaParser:
         urls: list[str] = []
         seen: set[str] = set()
         for anchor in container.find_all("a"):
-            url = self._href_from_anchor(anchor)
+            url = self._resolve_link_url(anchor)
             label = normalize_space(_visible_text(anchor))
             if not url or url in seen:
                 continue
@@ -462,6 +507,60 @@ class AgendaParser:
                 seen.add(url)
                 urls.append(url)
         return urls
+
+    def _parse_channel_cards(self, root: Tag) -> list[AgendaEvent]:
+        """Parse channel cards like 'ESPN 1' + 'Ver Canal' when no match agenda exists."""
+        events: list[AgendaEvent] = []
+        seen: set[str] = set()
+        cards = root.select(".card-content, [class*='card-content' i]")
+        if not cards:
+            return events
+
+        for card in cards:
+            heading = card.find(["h2", "h3", "h4", "strong", "span"])
+            channel_name = self._card_title(card) if card else ""
+            if not channel_name or NAV_TEXT_RE.match(channel_name):
+                continue
+
+            urls: list[str] = []
+            for anchor in card.find_all("a"):
+                url = self._resolve_link_url(anchor, card)
+                if url and not self._is_nav_link(url, _visible_text(anchor)):
+                    urls.append(url)
+            urls = dedupe_keep_order(urls)
+            if not urls:
+                inferred = self._infer_stream_url(channel_name)
+                if inferred:
+                    urls = [inferred]
+            if not urls:
+                continue
+
+            key = (channel_name.lower(), urls[0])
+            if key in seen:
+                continue
+            seen.add(key)
+            events.append(
+                AgendaEvent(
+                    time="",
+                    title=channel_name,
+                    category="Canales",
+                    match_name=channel_name,
+                    channel_pages=urls,
+                )
+            )
+
+        print(f"[parse] channel-cards events={len(events)}")
+        return events
+
+    def _infer_stream_url(self, label: str) -> str:
+        slug = slugify(label)
+        if not slug:
+            return ""
+        for path in (f"en-vivo/{slug}", f"/en-vivo/{slug}", f"embed/{slug}", f"/embed/{slug}"):
+            url = self._normalize_href(path)
+            if url:
+                return url
+        return ""
 
     def _is_nav_link(self, url: str, label: str = "") -> bool:
         parsed = urlparse(url)
@@ -514,18 +613,32 @@ class AgendaParser:
             node = soup.select_one(self.settings.agenda_selector)
             if node:
                 return node
+
+        candidates: list[Tag] = []
         for selector in (
-            "[id*='agenda' i]",
-            "[class*='agenda' i]",
-            "[id*='horario' i]",
-            "[class*='horario' i]",
-            "[id*='schedule' i]",
-            "[class*='schedule' i]",
+            "#listado",
+            "#horario",
+            "[class*='menuitem' i]",
+            "[id*='listado' i]",
+            "[class*='listado' i]",
             "main",
         ):
             node = soup.select_one(selector)
             if node:
-                return node
+                candidates.append(node)
+
+        for node in soup.select("[id*='agenda' i], [class*='agenda' i], [id*='horario' i], [class*='horario' i]"):
+            if node.name in {"h1", "h2", "h3", "h4", "h5", "h6"} and not node.find("a"):
+                continue
+            if len(node.find_all("a")) == 0 and not TIME_RE.search(_visible_text(node)):
+                continue
+            candidates.append(node)
+
+        if candidates:
+            return max(
+                candidates,
+                key=lambda node: (len(node.find_all("a")), len(_visible_text(node))),
+            )
         return soup.body or soup
 
     def _parse_with_selectors(self, root: Tag) -> list[AgendaEvent]:
@@ -566,7 +679,7 @@ class AgendaParser:
             for _ in range(5):
                 if not container or not isinstance(container, Tag):
                     break
-                if any(self._href_from_anchor(anchor) for anchor in self._iter_anchors(container)):
+                if any(self._resolve_link_url(anchor) for anchor in self._iter_anchors(container)):
                     event = self._event_from_block(container, fallback_time=time_match.group(0))
                     if event:
                         events.append(event)
@@ -582,7 +695,7 @@ class AgendaParser:
     def _parse_all_links(self, root: Tag) -> list[AgendaEvent]:
         grouped: dict[int, tuple[Tag, list[str]]] = {}
         for anchor in root.find_all("a"):
-            url = self._href_from_anchor(anchor)
+            url = self._resolve_link_url(anchor)
             label = normalize_space(_visible_text(anchor))
             if not url or self._is_nav_link(url, label):
                 continue
@@ -621,7 +734,7 @@ class AgendaParser:
         for url in urls:
             anchor = None
             for candidate in container.find_all("a"):
-                if self._href_from_anchor(candidate) == url:
+                if self._resolve_link_url(candidate) == url:
                     anchor = candidate
                     break
             label = normalize_space(_visible_text(anchor) if anchor else "")
@@ -740,7 +853,7 @@ class AgendaParser:
         urls: list[str] = []
         seen: set[str] = set()
         for anchor in self._iter_anchors(block):
-            absolute = self._href_from_anchor(anchor)
+            absolute = self._resolve_link_url(anchor)
             if not absolute or absolute in seen:
                 continue
             if not self._is_useful_link(absolute, _visible_text(anchor)):
@@ -767,6 +880,48 @@ class AgendaParser:
         if match:
             return self._normalize_href(match.group(1))
         return ""
+
+    def _resolve_link_url(self, anchor: Tag, container: Tag | None = None) -> str:
+        url = self._href_from_anchor(anchor)
+        if url:
+            return url
+
+        scope = container or anchor
+        for node in [scope, *scope.parents]:
+            if not isinstance(node, Tag):
+                continue
+            for attr in ("data-href", "data-url", "data-link", "data-src"):
+                url = self._normalize_href(str(node.get(attr) or ""))
+                if url:
+                    return url
+            onclick = str(node.get("onclick") or "")
+            match = ONCLICK_URL_RE.search(onclick)
+            if match:
+                url = self._normalize_href(match.group(1))
+                if url:
+                    return url
+
+        card = anchor.find_parent(class_=CARD_CLASS_RE)
+        if card is None and container is not None:
+            card = container if CARD_CLASS_RE.search(" ".join(container.get("class") or [])) else None
+        if card is not None:
+            inferred = self._infer_stream_url(self._card_title(card))
+            if inferred:
+                return inferred
+        return ""
+
+    @staticmethod
+    def _card_title(card: Tag) -> str:
+        heading = card.find(["h2", "h3", "h4", "strong"])
+        if heading:
+            title = normalize_space(_visible_text(heading))
+            if title:
+                return title
+        text = normalize_space(_visible_text(card))
+        text = re.sub(r"(?i)\bver canal\b.*", "", text)
+        text = re.sub(r"(?i)\bonline\b.*", "", text)
+        text = re.sub(r"(?i)\ben vivo\b.*", "", text)
+        return normalize_space(text.split(".")[0])[:80]
 
     def _is_useful_link(self, url: str, label: str = "") -> bool:
         parsed = urlparse(url)
