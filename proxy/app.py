@@ -33,13 +33,13 @@ _CACHE: dict[tuple[str, str, str], tuple[float, list[str]]] = {}
 
 
 @APP.on_event("startup")
-def startup() -> None:
-    RESOLVER.start()
+async def startup() -> None:
+    await RESOLVER.start()
 
 
 @APP.on_event("shutdown")
-def shutdown() -> None:
-    RESOLVER.close()
+async def shutdown() -> None:
+    await RESOLVER.close()
 
 
 def get_client_ip(request: Request) -> str:
@@ -84,22 +84,22 @@ def cache_set(embed: str, referer: str, client_ip: str, urls: list[str]) -> None
     _CACHE[(embed, referer, client_ip)] = (time.time() + CACHE_TTL_SECONDS, list(urls))
 
 
-def resolve_manifests(embed: str, referer: str, client_ip: str) -> list[str]:
+async def resolve_manifests(embed: str, referer: str, client_ip: str) -> list[str]:
     cached = cache_get(embed, referer, client_ip)
     if cached is not None:
         return cached
-    manifests = RESOLVER.resolve(embed, referer=referer, client_ip=client_ip)
+    manifests = await RESOLVER.resolve(embed, referer=referer, client_ip=client_ip)
     cache_set(embed, referer, client_ip, manifests)
     return manifests
 
 
 @APP.get("/health")
-def health() -> dict[str, str]:
+async def health() -> dict[str, str]:
     return {"status": "ok"}
 
 
 @APP.get("/v1/resolve")
-def resolve_json(
+async def resolve_json(
     request: Request,
     embed: str = Query(..., min_length=8),
     referer: str = Query(""),
@@ -107,7 +107,7 @@ def resolve_json(
     require_api_key(request)
     client_ip = get_client_ip(request)
     referer_value = referer or request.headers.get("referer", "") or embed
-    manifests = resolve_manifests(embed, referer_value, client_ip)
+    manifests = await resolve_manifests(embed, referer_value, client_ip)
     if not manifests:
         raise HTTPException(status_code=404, detail="No .m3u8 manifest captured for this embed")
     return {
@@ -120,7 +120,7 @@ def resolve_json(
 
 
 @APP.get("/v1/play.m3u8")
-def play_redirect(
+async def play_redirect(
     request: Request,
     embed: str = Query(..., min_length=8),
     referer: str = Query(""),
@@ -129,14 +129,14 @@ def play_redirect(
     require_api_key(request)
     client_ip = get_client_ip(request)
     referer_value = referer or request.headers.get("referer", "") or embed
-    manifests = resolve_manifests(embed, referer_value, client_ip)
+    manifests = await resolve_manifests(embed, referer_value, client_ip)
     if not manifests:
         raise HTTPException(status_code=404, detail="No .m3u8 manifest captured for this embed")
     return RedirectResponse(url=manifests[0], status_code=302)
 
 
 @APP.get("/")
-def root() -> JSONResponse:
+async def root() -> JSONResponse:
     return JSONResponse(
         {
             "service": "swiftstv-hls-proxy",

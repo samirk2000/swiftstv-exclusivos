@@ -1,12 +1,12 @@
-"""Resolve IP-bound HLS manifests from embed pages using Playwright."""
+"""Resolve IP-bound HLS manifests from embed pages using async Playwright."""
 
 from __future__ import annotations
 
+import asyncio
 import re
-import threading
 from dataclasses import dataclass
 from typing import Callable
-from urllib.parse import parse_qsl, urlencode, urlparse, urljoin, urlunparse
+from urllib.parse import parse_qsl, urlencode, urljoin, urlparse, urlunparse
 
 M3U8_RE = re.compile(r"""https?://[^\s"'<>\\]+?\.m3u8[^\s"'<>\\]*""", re.IGNORECASE)
 
@@ -60,34 +60,34 @@ class HlsResolver:
         self._playwright = None
         self._browser = None
         self._context = None
-        self._lock = threading.Lock()
+        self._lock = asyncio.Lock()
 
-    def start(self) -> None:
-        from playwright.sync_api import sync_playwright
+    async def start(self) -> None:
+        from playwright.async_api import async_playwright
 
-        self._playwright = sync_playwright().start()
-        self._browser = self._playwright.chromium.launch(headless=True)
-        self._context = self._browser.new_context(
+        self._playwright = await async_playwright().start()
+        self._browser = await self._playwright.chromium.launch(headless=True)
+        self._context = await self._browser.new_context(
             user_agent=self.settings.user_agent,
             ignore_https_errors=True,
         )
 
-    def close(self) -> None:
+    async def close(self) -> None:
         if self._context is not None:
-            self._context.close()
+            await self._context.close()
             self._context = None
         if self._browser is not None:
-            self._browser.close()
+            await self._browser.close()
             self._browser = None
         if self._playwright is not None:
-            self._playwright.stop()
+            await self._playwright.stop()
             self._playwright = None
 
-    def resolve(self, embed_url: str, referer: str, client_ip: str) -> list[str]:
-        with self._lock:
-            return self._resolve_locked(embed_url, referer, client_ip)
+    async def resolve(self, embed_url: str, referer: str, client_ip: str) -> list[str]:
+        async with self._lock:
+            return await self._resolve_locked(embed_url, referer, client_ip)
 
-    def _resolve_locked(
+    async def _resolve_locked(
         self,
         embed_url: str,
         referer: str,
@@ -114,32 +114,32 @@ class HlsResolver:
             if rewritten not in captured:
                 captured.append(rewritten)
 
-        page = self._context.new_page()
-        self._apply_client_ip_routing(page, client_ip, referer)
+        page = await self._context.new_page()
+        await self._apply_client_ip_routing(page, client_ip, referer)
 
-        def on_response(response) -> None:
+        async def on_response(response) -> None:
             track(response.url)
-            self._scan_response_body(response, track)
+            await self._scan_response_body(response, track)
 
         page.on("response", on_response)
 
         try:
-            page.goto(
+            await page.goto(
                 embed_url,
                 wait_until="domcontentloaded",
                 timeout=self.settings.goto_timeout_ms,
             )
             try:
-                page.wait_for_selector("iframe, video, source", timeout=8000)
+                await page.wait_for_selector("iframe, video, source", timeout=8000)
             except Exception:
                 pass
             try:
-                page.wait_for_response(
+                await page.wait_for_response(
                     lambda response: is_hls_url(response.url),
                     timeout=self.settings.stream_wait_ms,
                 )
             except Exception:
-                page.wait_for_timeout(self.settings.player_fallback_wait_ms)
+                await page.wait_for_timeout(self.settings.player_fallback_wait_ms)
 
             for frame in page.frames:
                 frame_url = frame.url or ""
@@ -147,27 +147,28 @@ class HlsResolver:
                 if frame_url and frame_url not in {"about:blank"} and frame_url != page.url:
                     iframe_targets.append(frame_url)
                 try:
-                    for manifest in M3U8_RE.findall(frame.content()):
+                    content = await frame.content()
+                    for manifest in M3U8_RE.findall(content):
                         track(manifest)
                 except Exception:
                     continue
 
-            for iframe in page.locator("iframe").all()[:8]:
+            for iframe in (await page.locator("iframe").all())[:8]:
                 src = (
-                    iframe.get_attribute("src")
-                    or iframe.get_attribute("data-src")
-                    or iframe.get_attribute("data-lazy-src")
+                    await iframe.get_attribute("src")
+                    or await iframe.get_attribute("data-src")
+                    or await iframe.get_attribute("data-lazy-src")
                 )
                 if not src or src.startswith(("about:", "javascript:")):
                     continue
                 iframe_targets.append(urljoin(page.url, src))
         finally:
-            page.close()
+            await page.close()
 
         if not captured:
             for iframe_url in dedupe_keep_order(iframe_targets):
                 captured.extend(
-                    self._resolve_locked(
+                    await self._resolve_locked(
                         iframe_url,
                         referer=embed_url,
                         client_ip=client_ip,
@@ -178,7 +179,7 @@ class HlsResolver:
 
         return dedupe_keep_order(captured)
 
-    def _apply_client_ip_routing(self, page, client_ip: str, referer: str) -> None:
+    async def _apply_client_ip_routing(self, page, client_ip: str, referer: str) -> None:
         headers = {
             "Referer": referer,
             "X-Forwarded-For": client_ip,
@@ -186,17 +187,17 @@ class HlsResolver:
             "CF-Connecting-IP": client_ip,
             "True-Client-IP": client_ip,
         }
-        page.set_extra_http_headers(headers)
+        await page.set_extra_http_headers(headers)
 
-        def handle_route(route, request) -> None:
+        async def handle_route(route, request) -> None:
             merged = dict(request.headers)
             merged.update(headers)
-            route.continue_(headers=merged)
+            await route.continue_(headers=merged)
 
-        page.route("**/*", handle_route)
+        await page.route("**/*", handle_route)
 
     @staticmethod
-    def _scan_response_body(response, track: Callable[[str], None]) -> None:
+    async def _scan_response_body(response, track: Callable[[str], None]) -> None:
         try:
             if not response.ok:
                 return
@@ -208,7 +209,7 @@ class HlsResolver:
                 return
             if not any(token in content_type for token in ("json", "javascript", "text", "mpegurl")):
                 return
-            body = response.text()
+            body = await response.text()
             if not body or len(body) > 500_000:
                 return
             for manifest in M3U8_RE.findall(body):
