@@ -23,6 +23,15 @@ from urllib3.util.retry import Retry
 LOGGER = logging.getLogger("scraper")
 
 TIME_RE = re.compile(r"\b([01]?\d|2[0-3]):[0-5]\d\b")
+MATCH_TEXT_RE = re.compile(
+    r"(\bvs\.?\b|\bv\.?\s*s\.?\b|\s[-–—]\s|\bversus\b)",
+    re.IGNORECASE,
+)
+EVENT_HINT_TEXT_RE = re.compile(
+    r"(partido|liga|copa|cup|champions|libertadores|sudamericana|mls|mx|"
+    r"premier|futbol|fútbol|league)",
+    re.IGNORECASE,
+)
 M3U8_RE = re.compile(
     r"""https?://[^\s"'<>\\]+?\.m3u8[^\s"'<>\\]*""",
     re.IGNORECASE,
@@ -268,11 +277,15 @@ class AgendaParser:
         soup = BeautifulSoup(html, "lxml")
         root = self._agenda_root(soup)
         title = _visible_text(soup.title) if soup.title else ""
-        anchor_count = len(soup.find_all("a"))
+        anchor_count = len(root.find_all("a"))
         print(f"[parse] title={title!r} html={len(html)} bytes anchors={anchor_count}")
+        self._debug_dump_anchors(root)
 
         events = self._parse_with_selectors(root) if self.settings.event_selector else []
         strategy = "selectors" if events else ""
+        if not events:
+            events = self._parse_event_anchors(root)
+            strategy = "event-anchors" if events else strategy
         if not events:
             events = self._parse_semantic_blocks(root)
             strategy = "semantic" if events else strategy
@@ -285,8 +298,181 @@ class AgendaParser:
             f"link-fallback={len(link_events)}"
         )
         events = self._merge_link_fallback(events, link_events)
-        print(f"[parse] strategy={strategy or 'all-links' if events else 'none'} events={len(events)}")
+        print(f"[parse] final strategy={strategy or 'all-links' if events else 'none'} events={len(events)}")
         return self._dedupe_events(events)
+
+    def _debug_dump_anchors(self, root: Tag, limit: int = 30) -> None:
+        print(f"[debug] first {limit} anchors (text | href | parent):")
+        for index, anchor in enumerate(root.find_all("a")[:limit]):
+            url = self._href_from_anchor(anchor)
+            label = normalize_space(_visible_text(anchor))[:100]
+            parent = anchor.parent if isinstance(anchor.parent, Tag) else None
+            parent_desc = self._tag_summary(parent)
+            parent_text = normalize_space(_visible_text(parent))[:140] if parent else ""
+            print(
+                f"[debug] a[{index}] text={label!r} href={url!r} "
+                f"parent={parent_desc!r} ctx={parent_text!r}"
+            )
+
+    @staticmethod
+    def _tag_summary(node: Tag | None) -> str:
+        if node is None:
+            return "?"
+        classes = node.get("class") or []
+        class_suffix = f".{'.'.join(str(item) for item in classes[:3])}" if classes else ""
+        node_id = node.get("id")
+        id_suffix = f"#{node_id}" if node_id else ""
+        return f"{node.name}{id_suffix}{class_suffix}"
+
+    def _parse_event_anchors(self, root: Tag) -> list[AgendaEvent]:
+        """Extract events from rendered links that mention kickoff times or match patterns."""
+        containers: dict[int, Tag] = {}
+        for anchor in root.find_all("a"):
+            url = self._href_from_anchor(anchor)
+            label = normalize_space(_visible_text(anchor))
+            if not url or self._is_nav_link(url, label):
+                continue
+            if not self._anchor_is_event_seed(anchor):
+                continue
+            container = self._nearest_event_container(anchor)
+            containers[id(container)] = container
+
+        events: list[AgendaEvent] = []
+        for container in containers.values():
+            event = self._event_from_container(container)
+            if event:
+                events.append(event)
+        print(f"[parse] event-anchors matched containers={len(containers)} events={len(events)}")
+        return events
+
+    def _anchor_is_event_seed(self, anchor: Tag) -> bool:
+        label = normalize_space(_visible_text(anchor))
+        if MATCH_TEXT_RE.search(label) or TIME_RE.search(label):
+            return True
+        if self._is_channel_label(label):
+            return False
+
+        parent = anchor.parent if isinstance(anchor.parent, Tag) else None
+        if parent and parent.name in {"details", "summary", "option"}:
+            return False
+
+        local_context = self._local_anchor_context(anchor, depth=2)
+        return self._looks_like_event_text(label, local_context)
+
+    def _local_anchor_context(self, anchor: Tag, depth: int = 2) -> str:
+        chunks: list[str] = []
+        current: Tag | None = anchor
+        for _ in range(depth + 1):
+            if current is None:
+                break
+            chunks.append(normalize_space(_visible_text(current)))
+            parent = current.parent
+            current = parent if isinstance(parent, Tag) else None
+        return normalize_space(" ".join(chunks))
+
+    def _event_from_container(self, container: Tag) -> AgendaEvent | None:
+        context = normalize_space(_visible_text(container))
+        time_value = self._time_from_texts(context)
+        channel_pages = self._collect_container_links(container)
+        if not channel_pages:
+            return None
+
+        raw_title = self._title_from_container(container, time_value)
+        if not raw_title:
+            raw_title = "Evento"
+        category, match_name = split_league_and_match(raw_title)
+        return AgendaEvent(
+            time=time_value,
+            title=raw_title,
+            category=category,
+            match_name=match_name,
+            channel_pages=channel_pages,
+        )
+
+    def _anchor_context(self, anchor: Tag) -> str:
+        chunks: list[str] = [normalize_space(_visible_text(anchor))]
+        current: Tag | None = anchor.parent if isinstance(anchor.parent, Tag) else None
+        for _ in range(5):
+            if current is None or current.name in {"body", "html"}:
+                break
+            chunks.append(normalize_space(_visible_text(current)))
+            parent = current.parent
+            current = parent if isinstance(parent, Tag) else None
+        return normalize_space(" ".join(chunks))
+
+    @staticmethod
+    def _time_from_texts(*texts: str) -> str:
+        for text in texts:
+            match = TIME_RE.search(text or "")
+            if match:
+                return match.group(0)
+        return ""
+
+    def _looks_like_event_text(self, label: str, context: str) -> bool:
+        combined = normalize_space(f"{label} {context}")
+        if not combined:
+            return False
+        if self._is_channel_label(label) and not TIME_RE.search(context) and not MATCH_TEXT_RE.search(context):
+            return False
+        if MATCH_TEXT_RE.search(combined):
+            return True
+        if TIME_RE.search(combined) and (
+            EVENT_HINT_TEXT_RE.search(combined) or len(label) >= 10 or PLAYER_HREF_RE.search(combined)
+        ):
+            return True
+        if TIME_RE.search(label):
+            return True
+        return False
+
+    @staticmethod
+    def _is_channel_label(label: str) -> bool:
+        cleaned = normalize_space(label)
+        if not cleaned:
+            return True
+        if TIME_RE.search(cleaned) or MATCH_TEXT_RE.search(cleaned):
+            return False
+        return len(cleaned) <= 28
+
+    def _title_from_container(self, container: Tag, time_value: str) -> str:
+        best = ""
+        for anchor in container.find_all("a"):
+            label = normalize_space(_visible_text(anchor))
+            if not label or self._is_channel_label(label):
+                continue
+            if MATCH_TEXT_RE.search(label) or (time_value and len(label) >= 8):
+                if len(label) > len(best):
+                    best = label
+        if best:
+            return TIME_RE.sub("", best).strip(" -–—|")
+        text = TIME_RE.sub("", _visible_text(container))
+        text = normalize_space(text)
+        return text[:200].strip(" -–—|")
+
+    def _collect_container_links(self, container: Tag, relaxed: bool = True) -> list[str]:
+        urls: list[str] = []
+        seen: set[str] = set()
+        for anchor in container.find_all("a"):
+            url = self._href_from_anchor(anchor)
+            label = normalize_space(_visible_text(anchor))
+            if not url or url in seen:
+                continue
+            if self._is_nav_link(url, label):
+                continue
+            if relaxed or self._is_useful_link(url, label):
+                seen.add(url)
+                urls.append(url)
+        return urls
+
+    def _is_nav_link(self, url: str, label: str = "") -> bool:
+        parsed = urlparse(url)
+        if NAV_PATH_RE.search(parsed.path or "/"):
+            return True
+        cleaned = normalize_space(label)
+        if cleaned and NAV_TEXT_RE.match(cleaned):
+            return True
+        if not cleaned and not parsed.query:
+            return True
+        return False
 
     def _merge_link_fallback(
         self, structured: list[AgendaEvent], link_events: list[AgendaEvent]
@@ -397,7 +583,13 @@ class AgendaParser:
         grouped: dict[int, tuple[Tag, list[str]]] = {}
         for anchor in root.find_all("a"):
             url = self._href_from_anchor(anchor)
-            if not url or not self._is_useful_link(url, _visible_text(anchor)):
+            label = normalize_space(_visible_text(anchor))
+            if not url or self._is_nav_link(url, label):
+                continue
+            if not (
+                self._anchor_is_event_seed(anchor)
+                or self._is_useful_link(url, label)
+            ):
                 continue
             container = self._nearest_event_container(anchor)
             key = id(container)
@@ -413,7 +605,7 @@ class AgendaParser:
             if container.name in {"body", "html"} or self._looks_like_event_list(container):
                 events.extend(self._events_from_standalone_links(container, urls))
                 continue
-            event = self._event_from_block(container)
+            event = self._event_from_container(container)
             if event:
                 event.channel_pages = dedupe_keep_order(event.channel_pages + urls)
                 events.append(event)
@@ -472,11 +664,12 @@ class AgendaParser:
     def _event_from_block(self, block: Tag, fallback_time: str = "") -> AgendaEvent | None:
         time_value = self._extract_time(block) or fallback_time
         raw_title = self._extract_title(block)
-        channel_pages = self._extract_channel_urls(block)
+        relaxed = self._block_looks_like_event(block)
+        channel_pages = self._extract_channel_urls(block, relaxed=relaxed)
         if not raw_title and not channel_pages:
             return None
         if not raw_title:
-            raw_title = "Evento"
+            raw_title = self._title_from_container(block, time_value) or "Evento"
         if not channel_pages:
             return None
 
@@ -488,6 +681,11 @@ class AgendaParser:
             match_name=match_name,
             channel_pages=channel_pages,
         )
+
+    @staticmethod
+    def _block_looks_like_event(block: Tag) -> bool:
+        text = _visible_text(block)
+        return bool(TIME_RE.search(text) or MATCH_TEXT_RE.search(text) or EVENT_HINT_TEXT_RE.search(text))
 
     def _extract_time(self, block: Tag) -> str:
         if self.settings.time_selector:
@@ -536,7 +734,9 @@ class AgendaParser:
         text = re.split(r"\n+", text, maxsplit=1)[0]
         return normalize_space(text).strip(" -–—|")
 
-    def _extract_channel_urls(self, block: Tag) -> list[str]:
+    def _extract_channel_urls(self, block: Tag, relaxed: bool = False) -> list[str]:
+        if relaxed:
+            return self._collect_container_links(block, relaxed=True)
         urls: list[str] = []
         seen: set[str] = set()
         for anchor in self._iter_anchors(block):
