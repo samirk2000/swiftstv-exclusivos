@@ -4,14 +4,46 @@ from __future__ import annotations
 
 import asyncio
 import logging
+import os
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Callable
 from urllib.parse import parse_qsl, urlencode, urljoin, urlparse, urlunparse
 
 LOGGER = logging.getLogger("hls_resolver")
 M3U8_RE = re.compile(r"""https?://[^\s"'<>\\]+?\.m3u8[^\s"'<>\\]*""", re.IGNORECASE)
 SKIP_URL_PREFIXES = ("about:", "javascript:", "blob:", "data:", "chrome-error:")
+
+
+def parse_host_rewrites(raw: str) -> dict[str, str]:
+    """Parse EMBED_HOST_REWRITE like 'la12hd.com=newhost.com,old.com=new.com'."""
+    mapping: dict[str, str] = {}
+    for part in (raw or "").split(","):
+        item = part.strip()
+        if not item or "=" not in item:
+            continue
+        source, target = item.split("=", 1)
+        source_host = source.strip().lower()
+        target_host = target.strip().lower()
+        if source_host and target_host:
+            mapping[source_host] = target_host
+    return mapping
+
+
+def rewrite_embed_host(url: str, host_map: dict[str, str]) -> str:
+    if not url or not host_map:
+        return url
+    parsed = urlparse(url)
+    host = (parsed.hostname or "").lower()
+    replacement = host_map.get(host)
+    if not replacement:
+        return url
+    netloc = replacement
+    if parsed.port:
+        netloc = f"{replacement}:{parsed.port}"
+    rewritten = urlunparse(parsed._replace(netloc=netloc))
+    LOGGER.info("host rewrite %s -> %s", url, rewritten)
+    return rewritten
 
 
 def is_hls_url(url: str) -> bool:
@@ -67,6 +99,15 @@ class HlsResolverSettings:
     stream_wait_ms: int = 12000
     player_fallback_wait_ms: int = 3000
     max_iframe_depth: int = 3
+    host_rewrites: dict[str, str] = field(default_factory=dict)
+
+    @classmethod
+    def from_env(cls) -> "HlsResolverSettings":
+        return cls(
+            goto_timeout_ms=int(os.environ.get("HLS_GOTO_TIMEOUT_MS", "15000")),
+            stream_wait_ms=int(os.environ.get("HLS_WAIT_MS", "12000")),
+            host_rewrites=parse_host_rewrites(os.environ.get("EMBED_HOST_REWRITE", "")),
+        )
 
 
 class HlsResolver:
@@ -116,6 +157,7 @@ class HlsResolver:
         if self._context is None:
             raise RuntimeError("HlsResolver.start() must be called before resolve()")
 
+        embed_url = rewrite_embed_host(embed_url, self.settings.host_rewrites)
         if not is_navigable_url(embed_url):
             LOGGER.warning("skip non-navigable url depth=%s: %s", depth, embed_url)
             return []
@@ -154,7 +196,16 @@ class HlsResolver:
                     timeout=self.settings.goto_timeout_ms,
                 )
             except Exception as exc:  # noqa: BLE001
-                LOGGER.warning("goto failed depth=%s %s: %s", depth, embed_url, exc)
+                message = str(exc)
+                if "ERR_NAME_NOT_RESOLVED" in message:
+                    LOGGER.error(
+                        "DNS missing for player host depth=%s %s "
+                        "(set EMBED_HOST_REWRITE when a replacement domain appears)",
+                        depth,
+                        embed_url,
+                    )
+                else:
+                    LOGGER.warning("goto failed depth=%s %s: %s", depth, embed_url, exc)
 
             try:
                 await page.wait_for_selector("iframe, video, source", timeout=8000)
@@ -171,7 +222,7 @@ class HlsResolver:
             page_base = page.url if is_navigable_url(page.url) else embed_url
 
             for frame in page.frames:
-                frame_url = frame.url or ""
+                frame_url = rewrite_embed_host(frame.url or "", self.settings.host_rewrites)
                 track(frame_url)
                 if (
                     is_navigable_url(frame_url)
@@ -194,7 +245,9 @@ class HlsResolver:
                 )
                 if not src or src.startswith(SKIP_URL_PREFIXES):
                     continue
-                absolute = urljoin(page_base, src)
+                absolute = rewrite_embed_host(
+                    urljoin(page_base, src), self.settings.host_rewrites
+                )
                 if is_navigable_url(absolute):
                     iframe_targets.append(absolute)
         finally:

@@ -25,12 +25,7 @@ APP.add_middleware(
     allow_headers=["*"],
 )
 
-RESOLVER = HlsResolver(
-    HlsResolverSettings(
-        stream_wait_ms=int(os.environ.get("HLS_WAIT_MS", "12000")),
-        goto_timeout_ms=int(os.environ.get("HLS_GOTO_TIMEOUT_MS", "15000")),
-    )
-)
+RESOLVER = HlsResolver(HlsResolverSettings.from_env())
 CACHE_TTL_SECONDS = max(0, int(os.environ.get("CACHE_TTL_SECONDS", "45")))
 PROXY_API_KEY = os.environ.get("PROXY_API_KEY", "").strip()
 _CACHE: dict[tuple[str, str, str], tuple[float, list[str]]] = {}
@@ -118,7 +113,15 @@ async def resolve_json(
     referer_value = referer or request.headers.get("referer", "") or embed
     manifests = await resolve_manifests(embed, referer_value, client_ip)
     if not manifests:
-        raise HTTPException(status_code=404, detail="No .m3u8 manifest captured for this embed")
+        raise HTTPException(
+            status_code=404,
+            detail=(
+                "No .m3u8 manifest captured for this embed. "
+                "Often the iframe host (e.g. la12hd.com) has no DNS A record. "
+                "When a replacement player domain appears, set EMBED_HOST_REWRITE="
+                "la12hd.com=new-host.com on Render."
+            ),
+        )
     return {
         "client_ip": client_ip,
         "embed": embed,
