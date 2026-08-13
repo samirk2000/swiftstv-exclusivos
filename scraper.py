@@ -36,10 +36,29 @@ SKIP_HOST_HINTS = (
     "twitter.com",
     "x.com",
     "instagram.com",
-    "youtube.com",
     "t.me",
     "whatsapp.com",
 )
+PLAYER_HREF_RE = re.compile(
+    r"(embed|player|stream|watch|live|canal|channel|video|iframe|cast|"
+    r"acestream|partido|match|event|game|sport|\btv\b|/go/)",
+    re.IGNORECASE,
+)
+NAV_PATH_RE = re.compile(
+    r"/(login|signin|signup|register|contacto|contact|privacy|tos|terms|"
+    r"about|cuenta|account|wp-admin|wp-login|category|tag)(/|$|\?)",
+    re.IGNORECASE,
+)
+NAV_TEXT_RE = re.compile(
+    r"^(home|inicio|contacto|contact|login|salir|menu|noticias|about|"
+    r"facebook|twitter|instagram|telegram)$",
+    re.IGNORECASE,
+)
+ONCLICK_URL_RE = re.compile(
+    r"""(?:location(?:\.href)?|window\.open)\s*\(\s*['"]([^'"]+)['"]""",
+    re.IGNORECASE,
+)
+ANCHOR_URL_ATTRS = ("href", "data-href", "data-url", "data-link", "data-src", "data-open")
 EVENT_HINT_CLASSES = (
     "event",
     "evento",
@@ -150,8 +169,12 @@ class HttpClient:
             headers=headers,
             allow_redirects=True,
         )
-        response.raise_for_status()
         response.encoding = response.apparent_encoding or response.encoding or "utf-8"
+        print(f"[http] {response.status_code} {url} ({len(response.text)} bytes)")
+        if response.status_code >= 400:
+            LOGGER.warning("HTTP %s for %s", response.status_code, url)
+            if not response.text.strip():
+                response.raise_for_status()
         return response.text
 
     def close(self) -> None:
@@ -168,12 +191,61 @@ class AgendaParser:
     def parse(self, html: str) -> list[AgendaEvent]:
         soup = BeautifulSoup(html, "lxml")
         root = self._agenda_root(soup)
+        title = _visible_text(soup.title) if soup.title else ""
+        anchor_count = len(soup.find_all("a"))
+        print(f"[parse] title={title!r} html={len(html)} bytes anchors={anchor_count}")
+
         events = self._parse_with_selectors(root) if self.settings.event_selector else []
+        strategy = "selectors" if events else ""
         if not events:
             events = self._parse_semantic_blocks(root)
+            strategy = "semantic" if events else strategy
         if not events:
             events = self._parse_time_proximity(root)
+            strategy = "time-proximity" if events else strategy
+        link_events = self._parse_all_links(root)
+        print(
+            f"[parse] strategy={strategy or 'none'} structured={len(events)} "
+            f"link-fallback={len(link_events)}"
+        )
+        events = self._merge_link_fallback(events, link_events)
+        print(f"[parse] strategy={strategy or 'all-links' if events else 'none'} events={len(events)}")
         return self._dedupe_events(events)
+
+    def _merge_link_fallback(
+        self, structured: list[AgendaEvent], link_events: list[AgendaEvent]
+    ) -> list[AgendaEvent]:
+        if not structured:
+            return link_events
+        merged = list(structured)
+        extra: list[AgendaEvent] = []
+        for event in link_events:
+            if self._urls_already_captured(event.channel_pages, merged):
+                continue
+            sibling = self._sibling_event(merged, event)
+            if sibling is not None:
+                sibling.channel_pages = dedupe_keep_order(sibling.channel_pages + event.channel_pages)
+                continue
+            extra.append(event)
+        return merged + extra
+
+    @staticmethod
+    def _sibling_event(events: list[AgendaEvent], candidate: AgendaEvent) -> AgendaEvent | None:
+        if candidate.time:
+            same_time = [event for event in events if event.time == candidate.time]
+            if len(same_time) == 1:
+                return same_time[0]
+            cand_key = slugify(candidate.match_name)
+            for event in same_time:
+                existing_key = slugify(event.match_name)
+                if existing_key and cand_key and (existing_key in cand_key or cand_key in existing_key):
+                    return event
+        return None
+
+    @staticmethod
+    def _urls_already_captured(urls: list[str], events: list[AgendaEvent]) -> bool:
+        captured = {url for event in events for url in event.channel_pages}
+        return bool(urls) and all(url in captured for url in urls)
 
     def _agenda_root(self, soup: BeautifulSoup) -> Tag:
         if self.settings.agenda_selector:
@@ -231,7 +303,7 @@ class AgendaParser:
             for _ in range(5):
                 if not container or not isinstance(container, Tag):
                     break
-                if container.find("a", href=True):
+                if any(self._href_from_anchor(anchor) for anchor in self._iter_anchors(container)):
                     event = self._event_from_block(container, fallback_time=time_match.group(0))
                     if event:
                         events.append(event)
@@ -244,17 +316,95 @@ class AgendaParser:
         times = {match.group(0) for match in TIME_RE.finditer(_visible_text(block))}
         return len(times) > 1
 
+    def _parse_all_links(self, root: Tag) -> list[AgendaEvent]:
+        """Last resort: group every useful <a> (subpage / player) into events."""
+        grouped: dict[int, tuple[Tag, list[str]]] = {}
+        for anchor in root.find_all("a"):
+            url = self._href_from_anchor(anchor)
+            if not url or not self._is_useful_link(url, _visible_text(anchor)):
+                continue
+            container = self._nearest_event_container(anchor)
+            key = id(container)
+            if key not in grouped:
+                grouped[key] = (container, [])
+            grouped[key][1].append(url)
+
+        events: list[AgendaEvent] = []
+        for container, urls in grouped.values():
+            urls = dedupe_keep_order(urls)
+            if not urls:
+                continue
+            if container.name in {"body", "html"} or self._looks_like_event_list(container):
+                events.extend(self._events_from_standalone_links(container, urls))
+                continue
+            event = self._event_from_block(container)
+            if event:
+                event.channel_pages = dedupe_keep_order(event.channel_pages + urls)
+                events.append(event)
+                continue
+            events.extend(self._events_from_standalone_links(container, urls))
+        if not events:
+            all_urls = [url for _, urls in grouped.values() for url in urls]
+            events = self._events_from_standalone_links(root, dedupe_keep_order(all_urls))
+        return events
+
+    def _events_from_standalone_links(self, container: Tag, urls: list[str]) -> list[AgendaEvent]:
+        events: list[AgendaEvent] = []
+        for url in urls:
+            anchor = None
+            for candidate in container.find_all("a"):
+                if self._href_from_anchor(candidate) == url:
+                    anchor = candidate
+                    break
+            label = normalize_space(_visible_text(anchor) if anchor else "")
+            nearby = normalize_space(_visible_text(anchor.parent if anchor and anchor.parent else container))
+            raw_title = label or nearby or url
+            raw_title = TIME_RE.sub("", raw_title).strip(" -–—|") or label or "Evento"
+            time_value = ""
+            if anchor:
+                time_value = self._extract_time(anchor.parent if isinstance(anchor.parent, Tag) else container)
+            if not time_value:
+                time_match = TIME_RE.search(label) or TIME_RE.search(nearby)
+                time_value = time_match.group(0) if time_match else ""
+            category, match_name = split_league_and_match(raw_title)
+            events.append(
+                AgendaEvent(
+                    time=time_value,
+                    title=raw_title,
+                    category=category,
+                    match_name=match_name,
+                    channel_pages=[url],
+                )
+            )
+        return events
+
+    def _nearest_event_container(self, node: Tag) -> Tag:
+        current: Tag | None = node
+        for _ in range(8):
+            if current is None:
+                break
+            if current.name in {"li", "tr", "article", "details", "section"}:
+                return current
+            if TIME_RE.search(_visible_text(current)) and not self._looks_like_event_list(current):
+                return current
+            parent = current.parent
+            if not isinstance(parent, Tag) or parent.name in {"body", "html"}:
+                return current
+            current = parent
+        return node
+
     def _event_from_block(self, block: Tag, fallback_time: str = "") -> AgendaEvent | None:
         time_value = self._extract_time(block) or fallback_time
         raw_title = self._extract_title(block)
-        if not time_value or not raw_title:
-            return None
-
-        category, match_name = split_league_and_match(raw_title)
         channel_pages = self._extract_channel_urls(block)
+        if not raw_title and not channel_pages:
+            return None
+        if not raw_title:
+            raw_title = "Evento"
         if not channel_pages:
             return None
 
+        category, match_name = split_league_and_match(raw_title)
         return AgendaEvent(
             time=time_value,
             title=raw_title,
@@ -311,29 +461,53 @@ class AgendaParser:
         return normalize_space(text).strip(" -–—|")
 
     def _extract_channel_urls(self, block: Tag) -> list[str]:
-        nodes: list[Tag] = []
-        if self.settings.channel_selector:
-            nodes.extend(block.select(self.settings.channel_selector))
-        for hint in CHANNEL_HINT_CLASSES:
-            nodes.extend(block.select(f"[class*='{hint}' i]"))
-        nodes.extend(block.select("details, [data-bs-toggle='collapse'] + *, .dropdown-menu"))
-
-        anchors: list[Tag] = []
-        search_roots = nodes or [block]
-        for node in search_roots:
-            if node.name == "a" and node.has_attr("href"):
-                anchors.append(node)
-            anchors.extend(node.find_all("a", href=True))
-
         urls: list[str] = []
         seen: set[str] = set()
-        for anchor in anchors:
-            absolute = self._normalize_href(anchor.get("href", ""))
+        for anchor in self._iter_anchors(block):
+            absolute = self._href_from_anchor(anchor)
             if not absolute or absolute in seen:
+                continue
+            if not self._is_useful_link(absolute, _visible_text(anchor)):
                 continue
             seen.add(absolute)
             urls.append(absolute)
         return urls
+
+    @staticmethod
+    def _iter_anchors(block: Tag) -> list[Tag]:
+        anchors: list[Tag] = []
+        if block.name == "a":
+            anchors.append(block)
+        anchors.extend(block.find_all("a"))
+        return anchors
+
+    def _href_from_anchor(self, anchor: Tag) -> str:
+        for attr in ANCHOR_URL_ATTRS:
+            absolute = self._normalize_href(str(anchor.get(attr) or ""))
+            if absolute:
+                return absolute
+        onclick = str(anchor.get("onclick") or "")
+        match = ONCLICK_URL_RE.search(onclick)
+        if match:
+            return self._normalize_href(match.group(1))
+        return ""
+
+    def _is_useful_link(self, url: str, label: str = "") -> bool:
+        parsed = urlparse(url)
+        path = parsed.path or "/"
+        if NAV_PATH_RE.search(path):
+            return False
+        if label and NAV_TEXT_RE.match(normalize_space(label)):
+            return False
+        if PLAYER_HREF_RE.search(url) or parsed.query:
+            return True
+        base_host = urlparse(self.base_url).netloc.lower()
+        if parsed.netloc.lower() != base_host:
+            return True
+        normalized_path = path.rstrip("/")
+        if not normalized_path:
+            return False
+        return normalized_path != urlparse(self.base_url).path.rstrip("/")
 
     def _normalize_href(self, href: str) -> str:
         href = (href or "").strip()
@@ -401,19 +575,22 @@ class SourceBuilder:
         records: list[dict] = []
         used_ids: dict[str, int] = {}
         for event in events:
-            if not event.stream_urls:
+            urls = dedupe_keep_order(event.stream_urls or event.channel_pages)
+            if not urls:
                 continue
             base_id = slugify(event.match_name) or slugify(event.title) or "event"
             used_ids[base_id] = used_ids.get(base_id, 0) + 1
-            record_id = base_id if used_ids[base_id] == 1 else f"{base_id}-{event.time.replace(':', '')}"
-            source_type = "hls" if _all_hls(event.stream_urls) else "embed"
+            suffix = event.time.replace(":", "") if event.time else str(used_ids[base_id])
+            record_id = base_id if used_ids[base_id] == 1 else f"{base_id}-{suffix}"
+            source_type = "hls" if _all_hls(urls) else "embed"
+            name = f"{event.time} - {event.match_name}".strip(" -") if event.time else event.match_name
             records.append(
                 {
                     "id": record_id,
-                    "name": f"{event.time} - {event.match_name}",
-                    "category": event.category,
+                    "name": name,
+                    "category": event.category or "Sports",
                     "type": source_type,
-                    "urls": event.stream_urls,
+                    "urls": urls,
                 }
             )
         return records
@@ -429,23 +606,26 @@ class Scraper:
         self._stream_lock = threading.Lock()
 
     def run(self) -> list[dict]:
-        LOGGER.info("Scraping %s agenda URL(s)", len(self.settings.target_urls))
+        print(f"[run] TARGET_URL count={len(self.settings.target_urls)}")
+        for agenda_url in self.settings.target_urls:
+            print(f"[run] site={agenda_url}")
         collected: list[AgendaEvent] = []
         for agenda_url in self.settings.target_urls:
             try:
                 events = self._scrape_agenda(agenda_url)
             except Exception as exc:  # noqa: BLE001 - continue with the remaining pages
+                print(f"[agenda] {agenda_url} -> ERROR: {exc}")
                 LOGGER.warning("Agenda failed (%s): %s", agenda_url, exc)
                 continue
-            LOGGER.info("%s: %s events", agenda_url, len(events))
+            print(f"[agenda] {agenda_url} -> {len(events)} eventos")
             collected.extend(events)
 
         events = merge_events(collected)
-        LOGGER.info("Combined into %s unique events", len(events))
+        print(f"[run] combined unique events={len(events)}")
         self._hydrate_streams(events)
         records = self.builder.build(events)
         write_json(self.settings.output_path, records)
-        LOGGER.info("Wrote %s sources to %s", len(records), self.settings.output_path)
+        print(f"[run] wrote {len(records)} sources to {self.settings.output_path}")
         return records
 
     def _scrape_agenda(self, agenda_url: str) -> list[AgendaEvent]:
@@ -474,23 +654,25 @@ class Scraper:
                 seen_jobs.add(job_key)
                 jobs.append((index, url, referer))
 
-        LOGGER.info("Resolving %s channel subpages", len(jobs))
+        print(f"[hydrate] channel subpages={len(jobs)}")
         with ThreadPoolExecutor(max_workers=self.settings.max_workers) as pool:
             future_map = {
-                pool.submit(self._extract_from_channel, url, referer): index
+                pool.submit(self._extract_from_channel, url, referer): (index, url)
                 for index, url, referer in jobs
             }
             for future in as_completed(future_map):
-                index = future_map[future]
+                index, channel_url = future_map[future]
                 try:
                     urls = future.result()
                 except Exception as exc:  # noqa: BLE001 - keep the rest of the run going
+                    print(f"[channel] FAIL {channel_url} -> {exc}")
                     LOGGER.warning("Channel page failed: %s", exc)
+                    events[index].stream_urls.append(channel_url)
                     continue
                 events[index].stream_urls.extend(urls)
 
         for event in events:
-            event.stream_urls = dedupe_keep_order(event.stream_urls)
+            event.stream_urls = dedupe_keep_order(event.stream_urls or event.channel_pages)
 
     def _extract_from_channel(self, url: str, referer: str | None = None) -> list[str]:
         with self._stream_lock:
@@ -527,10 +709,11 @@ def fetch_with_playwright(url: str, timeout: float) -> str:
 
 def parse_target_urls(raw: str) -> list[str]:
     """Split TARGET_URL on newlines, trim whitespace, and drop empty lines."""
+    text = (raw or "").replace("\r\n", "\n").replace("\r", "\n").replace("\\n", "\n")
     urls: list[str] = []
     seen: set[str] = set()
-    for line in (raw or "").splitlines():
-        url = line.strip()
+    for line in text.splitlines():
+        url = line.strip().strip("'\"")
         if not url or url.startswith("#"):
             continue
         if url in seen:
