@@ -39,45 +39,53 @@ BLOCKED_EXTENSIONS = (
     ".svg",
 )
 HLS_CONTENT_HINTS = ("mpegurl", "x-mpegurl", "vnd.apple.mpegurl")
-PLAY_VIDEO_JS = """() => {
-  const playAll = (root) => {
-    root.querySelectorAll('video').forEach((video) => {
-      video.muted = true;
-      video.autoplay = true;
-      video.playsInline = true;
-      const play = video.play();
-      if (play && typeof play.catch === 'function') play.catch(() => {});
-    });
-  };
-  playAll(document);
-  const hit = document.elementFromPoint(
-    Math.floor(window.innerWidth / 2),
-    Math.floor(window.innerHeight / 2)
-  );
-  if (hit && typeof hit.click === 'function') hit.click();
+FORCE_PLAY_JS = """() => {
+  document.querySelectorAll('video').forEach((v) => {
+    try {
+      v.muted = true;
+      v.autoplay = true;
+      v.playsInline = true;
+      v.setAttribute('playsinline', '');
+      v.setAttribute('autoplay', '');
+      const p = v.play();
+      if (p && typeof p.catch === 'function') p.catch(() => {});
+    } catch (err) {}
+  });
+  const cx = Math.floor((window.innerWidth || 800) / 2);
+  const cy = Math.floor((window.innerHeight || 600) / 2);
+  const hit = document.elementFromPoint(cx, cy);
+  if (hit) {
+    try { hit.click(); } catch (err) {}
+    try {
+      hit.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
+    } catch (err) {}
+  }
   document.querySelectorAll(
-    'button, .vjs-big-play-button, [class*="play" i], [id*="play" i], [class*="overlay" i]'
+    'button, .vjs-big-play-button, .jw-icon-display, [class*="play" i], [id*="play" i], [class*="overlay" i], [class*="poster" i]'
   ).forEach((node) => {
     try { node.click(); } catch (err) {}
   });
 }"""
 INIT_AUTOPLAY_JS = """
 (() => {
-  const playAll = () => {
-    document.querySelectorAll('video').forEach((video) => {
-      video.muted = true;
-      video.autoplay = true;
-      video.playsInline = true;
-      const play = video.play();
-      if (play && typeof play.catch === 'function') play.catch(() => {});
+  const forcePlay = () => {
+    document.querySelectorAll('video').forEach((v) => {
+      try {
+        v.muted = true;
+        v.autoplay = true;
+        v.playsInline = true;
+        const p = v.play();
+        if (p && typeof p.catch === 'function') p.catch(() => {});
+      } catch (err) {}
     });
   };
   const start = () => {
-    playAll();
+    forcePlay();
     try {
-      const observer = new MutationObserver(playAll);
+      const observer = new MutationObserver(forcePlay);
       observer.observe(document.documentElement, { childList: true, subtree: true });
     } catch (err) {}
+    window.addEventListener('click', forcePlay, true);
   };
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', start, { once: true });
@@ -86,6 +94,7 @@ INIT_AUTOPLAY_JS = """
   }
 })();
 """
+EVENT_UNAVAILABLE_DETAIL = "Evento no disponible o aún no inicia"
 
 
 def is_tudeporteshoy_embed(url: str) -> bool:
@@ -226,16 +235,20 @@ class HlsResolverSettings:
         "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
     )
     goto_timeout_ms: int = 8000
-    stream_wait_ms: int = 2000
-    player_fallback_wait_ms: int = 400
+    # Upper bound only; resolve returns as soon as the first .m3u8 is sniffed.
+    stream_wait_ms: int = 3500
+    player_fallback_wait_ms: int = 250
     max_iframe_depth: int = 3
     host_rewrites: dict[str, str] = field(default_factory=dict)
 
     @classmethod
     def from_env(cls) -> "HlsResolverSettings":
+        # Cap dashboard leftovers like HLS_WAIT_MS=12000 so we never sit that long
+        # once click-to-play is in place; early-exit still wins on first .m3u8.
+        raw_wait = int(os.environ.get("HLS_WAIT_MS", "3500"))
         return cls(
             goto_timeout_ms=int(os.environ.get("HLS_GOTO_TIMEOUT_MS", "8000")),
-            stream_wait_ms=int(os.environ.get("HLS_WAIT_MS", "2000")),
+            stream_wait_ms=max(800, min(raw_wait, 5000)),
             host_rewrites=parse_host_rewrites(os.environ.get("EMBED_HOST_REWRITE", "")),
         )
 
@@ -343,6 +356,9 @@ class HlsResolver:
 
         poke_task: asyncio.Task | None = None
         try:
+            # Start click/play loop before navigation finishes so we do not wait
+            # on overlays that need a gesture to release the HLS request.
+            poke_task = asyncio.create_task(self._poke_player(page, found))
             LOGGER.info("goto depth=%s %s", depth, embed_url)
             try:
                 await page.goto(
@@ -363,7 +379,7 @@ class HlsResolver:
                     LOGGER.warning("goto failed depth=%s %s: %s", depth, embed_url, exc)
 
             if not found.is_set():
-                poke_task = asyncio.create_task(self._poke_player(page, found))
+                await self._kick_player_once(page)
                 try:
                     await asyncio.wait_for(
                         found.wait(),
@@ -376,39 +392,42 @@ class HlsResolver:
                         depth,
                     )
 
-            if not captured:
-                page_base = page.url if is_navigable_url(page.url) else embed_url
-                for frame in page.frames:
-                    frame_url = rewrite_embed_host(frame.url or "", self.settings.host_rewrites)
-                    track(frame_url)
-                    if (
-                        is_navigable_url(frame_url)
-                        and frame_url != page_base
-                        and frame_url != embed_url
-                    ):
-                        iframe_targets.append(frame_url)
-                    try:
-                        content = await frame.content()
-                        for manifest in M3U8_RE.findall(content):
-                            track(manifest)
-                    except Exception:
-                        continue
+            # First .m3u8 wins: close immediately and return (no extra waits).
+            if captured:
+                return rank_hls_urls(captured)
+
+            page_base = page.url if is_navigable_url(page.url) else embed_url
+            for frame in page.frames:
+                frame_url = rewrite_embed_host(frame.url or "", self.settings.host_rewrites)
+                track(frame_url)
+                if (
+                    is_navigable_url(frame_url)
+                    and frame_url != page_base
+                    and frame_url != embed_url
+                ):
+                    iframe_targets.append(frame_url)
                 try:
-                    for iframe in (await page.locator("iframe").all())[:8]:
-                        src = (
-                            await iframe.get_attribute("src")
-                            or await iframe.get_attribute("data-src")
-                            or await iframe.get_attribute("data-lazy-src")
-                        )
-                        if not src or src.startswith(SKIP_URL_PREFIXES):
-                            continue
-                        absolute = rewrite_embed_host(
-                            urljoin(page_base, src), self.settings.host_rewrites
-                        )
-                        if is_navigable_url(absolute):
-                            iframe_targets.append(absolute)
+                    content = await frame.content()
+                    for manifest in M3U8_RE.findall(content):
+                        track(manifest)
                 except Exception:
-                    pass
+                    continue
+            try:
+                for iframe in (await page.locator("iframe").all())[:8]:
+                    src = (
+                        await iframe.get_attribute("src")
+                        or await iframe.get_attribute("data-src")
+                        or await iframe.get_attribute("data-lazy-src")
+                    )
+                    if not src or src.startswith(SKIP_URL_PREFIXES):
+                        continue
+                    absolute = rewrite_embed_host(
+                        urljoin(page_base, src), self.settings.host_rewrites
+                    )
+                    if is_navigable_url(absolute):
+                        iframe_targets.append(absolute)
+            except Exception:
+                pass
         finally:
             if poke_task is not None:
                 poke_task.cancel()
@@ -443,43 +462,57 @@ class HlsResolver:
 
         return rank_hls_urls(captured)
 
+    async def _kick_player_once(self, page) -> None:
+        """One-shot center click + video.play() (requested gesture for streamtp)."""
+        try:
+            await page.mouse.click(400, 300)
+        except Exception:
+            pass
+        try:
+            viewport = page.viewport_size or {"width": 1280, "height": 720}
+            await page.mouse.click(viewport["width"] / 2, viewport["height"] / 2)
+        except Exception:
+            pass
+        try:
+            await page.evaluate(FORCE_PLAY_JS)
+            await page.evaluate(
+                "() => document.querySelectorAll('video').forEach(v => v.play())"
+            )
+        except Exception:
+            pass
+        try:
+            for frame in page.frames[1:]:
+                try:
+                    await frame.evaluate(FORCE_PLAY_JS)
+                    await frame.evaluate(
+                        "() => document.querySelectorAll('video').forEach(v => v.play())"
+                    )
+                except Exception:
+                    continue
+        except Exception:
+            pass
+        try:
+            for iframe in (await page.locator("iframe").all())[:8]:
+                box = await iframe.bounding_box()
+                if not box:
+                    continue
+                await page.mouse.click(
+                    box["x"] + box["width"] / 2,
+                    box["y"] + box["height"] / 2,
+                )
+                try:
+                    await iframe.click(timeout=300, force=True)
+                except Exception:
+                    pass
+        except Exception:
+            pass
+
     async def _poke_player(self, page, found: asyncio.Event) -> None:
         """Click overlays and force video.play() until an HLS request appears."""
         while not found.is_set():
+            await self._kick_player_once(page)
             try:
-                viewport = page.viewport_size or {"width": 1280, "height": 720}
-                await page.mouse.click(viewport["width"] / 2, viewport["height"] / 2)
-            except Exception:
-                pass
-            try:
-                await page.evaluate(PLAY_VIDEO_JS)
-            except Exception:
-                pass
-            try:
-                for frame in page.frames:
-                    if found.is_set():
-                        return
-                    try:
-                        await frame.evaluate(PLAY_VIDEO_JS)
-                    except Exception:
-                        continue
-            except Exception:
-                pass
-            try:
-                for iframe in (await page.locator("iframe").all())[:6]:
-                    if found.is_set():
-                        return
-                    box = await iframe.bounding_box()
-                    if not box:
-                        continue
-                    await page.mouse.click(
-                        box["x"] + box["width"] / 2,
-                        box["y"] + box["height"] / 2,
-                    )
-            except Exception:
-                pass
-            try:
-                await asyncio.wait_for(found.wait(), timeout=0.15)
+                await asyncio.wait_for(found.wait(), timeout=0.2)
                 return
             except asyncio.TimeoutError:
                 continue

@@ -12,7 +12,7 @@ from fastapi import FastAPI, HTTPException, Query, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, RedirectResponse
 
-from hls_resolver import HlsResolver, HlsResolverSettings
+from hls_resolver import EVENT_UNAVAILABLE_DETAIL, HlsResolver, HlsResolverSettings
 
 logging.basicConfig(level=os.environ.get("LOG_LEVEL", "INFO").upper())
 LOGGER = logging.getLogger("hls_proxy")
@@ -113,15 +113,7 @@ async def resolve_json(
     referer_value = referer or request.headers.get("referer", "") or embed
     manifests = await resolve_manifests(embed, referer_value, client_ip)
     if not manifests:
-        raise HTTPException(
-            status_code=404,
-            detail=(
-                "No .m3u8 manifest captured for this embed. "
-                "Often the iframe host (e.g. la12hd.com) has no DNS A record. "
-                "When a replacement player domain appears, set EMBED_HOST_REWRITE="
-                "la12hd.com=new-host.com on Render."
-            ),
-        )
+        raise HTTPException(status_code=404, detail=EVENT_UNAVAILABLE_DETAIL)
     return {
         "client_ip": client_ip,
         "embed": embed,
@@ -143,7 +135,7 @@ async def play_redirect(
     referer_value = referer or request.headers.get("referer", "") or embed
     manifests = await resolve_manifests(embed, referer_value, client_ip)
     if not manifests:
-        raise HTTPException(status_code=404, detail="No .m3u8 manifest captured for this embed")
+        raise HTTPException(status_code=404, detail=EVENT_UNAVAILABLE_DETAIL)
     return RedirectResponse(url=manifests[0], status_code=302)
 
 

@@ -8,7 +8,7 @@ services:
     healthCheckPath: /health
     envVars:
       - key: HLS_WAIT_MS
-        value: "2000"
+        value: "3500"
       - key: HLS_GOTO_TIMEOUT_MS
         value: "8000"
       - key: CACHE_TTL_SECONDS
