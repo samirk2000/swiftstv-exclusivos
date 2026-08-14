@@ -9,7 +9,7 @@ import os
 import re
 import sys
 import unicodedata
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from typing import Iterable
 from urllib.parse import parse_qsl, parse_qs, quote, urlencode, urljoin, urlparse, urlunparse
 import base64
@@ -138,9 +138,13 @@ AGENDA_IFRAME_RE = re.compile(
     r"""<(?:iframe|frame)[^>]+(?:src|data-src)\s*=\s*['"]([^'"]*agenda\.html[^'"]*)['"]""",
     re.IGNORECASE,
 )
-# hora.js treats agenda times as UTC+2 (120 minutes) then converts to the viewer TZ.
+# hora.js: b.setMinutes(b.getMinutes()-(120-huso)) — 120 = origin offset in minutes.
 AGENDA_SOURCE_OFFSET_MINUTES = 120
 DEFAULT_AGENDA_TIMEZONE = "America/Mexico_City"
+HORA_JS_SOURCE_OFFSET_RE = re.compile(
+    r"-\s*\(\s*(-?\d+)\s*-\s*huso\s*\)",
+    re.IGNORECASE,
+)
 DAILY_EVENT_CATEGORY = "EVENTOS DEL DIA - PPV"
 STREAM_ALIASES: dict[str, tuple[str, ...]] = {
     "espn": ("espn1", "espnmx", "espn"),
@@ -196,6 +200,7 @@ class Settings:
     player_template: str = DEFAULT_PLAYER_TEMPLATE
     player_host_rewrites: tuple[tuple[str, str], ...] = ()
     agenda_timezone: str = DEFAULT_AGENDA_TIMEZONE
+    agenda_source_offset_minutes: int = AGENDA_SOURCE_OFFSET_MINUTES
 
     @classmethod
     def from_env(cls) -> "Settings":
@@ -236,6 +241,12 @@ class Settings:
             agenda_timezone=(
                 os.environ.get("AGENDA_TIMEZONE", DEFAULT_AGENDA_TIMEZONE).strip()
                 or DEFAULT_AGENDA_TIMEZONE
+            ),
+            agenda_source_offset_minutes=int(
+                os.environ.get(
+                    "AGENDA_SOURCE_OFFSET_MINUTES",
+                    str(AGENDA_SOURCE_OFFSET_MINUTES),
+                )
             ),
         )
 
@@ -694,7 +705,7 @@ class AgendaApiClient:
         payload = self.http.get_json(api_url, referer=page_url)
         if not isinstance(payload, dict):
             return []
-        events = parse_agenda_api(payload, page_url)
+        events = parse_agenda_api(payload, page_url, self.settings)
         print(f"[api] {api_url} -> {len(events)} match events")
         return events
 
@@ -705,6 +716,13 @@ class AgendaParser:
     def __init__(self, settings: Settings, base_url: str) -> None:
         self.settings = settings
         self.base_url = base_url
+
+    def _local_time(self, raw: str) -> str:
+        return convert_agenda_time(
+            raw,
+            self.settings.agenda_timezone,
+            self.settings.agenda_source_offset_minutes,
+        )
 
     def parse(self, html: str) -> list[AgendaEvent]:
         soup = BeautifulSoup(html, "lxml")
@@ -760,14 +778,12 @@ class AgendaParser:
                 time_node = header.select_one("span.t, time")
             if time_node is None:
                 time_node = item.select_one(":scope > a span.t, :scope > a time, span.t, time")
-            time_value = convert_agenda_time(
-                self._time_from_texts(_visible_text(time_node) if time_node else ""),
-                self.settings.agenda_timezone,
+            time_value = self._local_time(
+                self._time_from_texts(_visible_text(time_node) if time_node else "")
             )
             if not time_value:
-                time_value = convert_agenda_time(
-                    self._time_from_texts(_visible_text(header) if header else _visible_text(item)),
-                    self.settings.agenda_timezone,
+                time_value = self._local_time(
+                    self._time_from_texts(_visible_text(header) if header else _visible_text(item))
                 )
 
             title = ""
@@ -1209,10 +1225,12 @@ class AgendaParser:
             raw_title = TIME_RE.sub("", raw_title).strip(" -–—|") or label or "Evento"
             time_value = ""
             if anchor:
-                time_value = self._extract_time(anchor.parent if isinstance(anchor.parent, Tag) else container)
+                time_value = self._extract_time(
+                    anchor.parent if isinstance(anchor.parent, Tag) else container
+                )
             if not time_value:
                 time_match = TIME_RE.search(label) or TIME_RE.search(nearby)
-                time_value = time_match.group(0) if time_match else ""
+                time_value = self._local_time(time_match.group(0) if time_match else "")
             _league, match_name = split_league_and_match(raw_title)
             option_name = clean_channel_label(label)
             if MATCH_TEXT_RE.search(option_name) or TIME_RE.search(option_name):
@@ -1294,20 +1312,25 @@ class AgendaParser:
         return bool(TIME_RE.search(text) or MATCH_TEXT_RE.search(text) or EVENT_HINT_TEXT_RE.search(text))
 
     def _extract_time(self, block: Tag) -> str:
+        raw = ""
         if self.settings.time_selector:
             node = block.select_one(self.settings.time_selector)
             if node:
                 match = TIME_RE.search(_visible_text(node))
                 if match:
-                    return match.group(0)
-        for selector in ("time", "[class*='time' i]", "[class*='hora' i]", "[class*='hour' i]"):
-            node = block.select_one(selector)
-            if node:
-                match = TIME_RE.search(_visible_text(node))
-                if match:
-                    return match.group(0)
-        match = TIME_RE.search(_visible_text(block))
-        return match.group(0) if match else ""
+                    raw = match.group(0)
+        if not raw:
+            for selector in ("time", "[class*='time' i]", "[class*='hora' i]", "[class*='hour' i]"):
+                node = block.select_one(selector)
+                if node:
+                    match = TIME_RE.search(_visible_text(node))
+                    if match:
+                        raw = match.group(0)
+                        break
+        if not raw:
+            match = TIME_RE.search(_visible_text(block))
+            raw = match.group(0) if match else ""
+        return self._local_time(raw)
 
     def _extract_title(self, block: Tag) -> str:
         if self.settings.title_selector:
@@ -1801,10 +1824,11 @@ class SourceBuilder:
         used_ids[base_id] = used_ids.get(base_id, 0) + 1
         suffix = event.time.replace(":", "") if event.time else str(used_ids[base_id])
         record_id = base_id if used_ids[base_id] == 1 else f"{base_id}-{suffix}"
-        if event.time and option:
-            name = f"{event.time} | {match_name} ({option})"
-        elif event.time:
-            name = f"{event.time} | {match_name}"
+        clock = format_mexico_city_display(event.time)
+        if clock and option:
+            name = f"{clock} {match_name} ({option})"
+        elif clock:
+            name = f"{clock} {match_name}"
         elif option:
             name = f"{match_name} ({option})"
         else:
@@ -1826,6 +1850,14 @@ class Scraper:
         self.builder = SourceBuilder()
 
     def run(self) -> list[dict]:
+        self.settings = replace(
+            self.settings,
+            agenda_source_offset_minutes=self._detect_origin_offset(),
+        )
+        print(
+            f"[tz] origin UTC{format_utc_offset(self.settings.agenda_source_offset_minutes)} "
+            f"-> {self.settings.agenda_timezone}"
+        )
         print(f"[run] TARGET_URL count={len(self.settings.target_urls)}")
         for agenda_url in self.settings.target_urls:
             print(f"[run] site={agenda_url}")
@@ -1861,7 +1893,9 @@ class Scraper:
 
             if captured_api_payload and not collected:
                 referer = self.settings.target_urls[0]
-                extra = parse_agenda_api(captured_api_payload, referer)
+                extra = parse_agenda_api(
+                    captured_api_payload, referer, self.settings
+                )
                 print(f"[api] playwright captured -> {len(extra)} opciones de agenda")
                 collected.extend(extra)
             elif not collected:
@@ -1911,7 +1945,7 @@ class Scraper:
         matches = [event for event in html_events if event.category != "Canales"]
 
         if not matches and api_payload:
-            api_matches = parse_agenda_api(api_payload, agenda_url)
+            api_matches = parse_agenda_api(api_payload, agenda_url, self.settings)
             print(f"[api] page captured -> {len(api_matches)} opciones de agenda")
             matches = merge_events(matches + api_matches)
         elif not matches:
@@ -1948,6 +1982,31 @@ class Scraper:
             return self.http.get_html(page_url), None
         return self.renderer.fetch(page_url)
 
+    def _detect_origin_offset(self) -> int:
+        """Read hora.js from the origin so we use the same UTC offset the site does."""
+        configured = self.settings.agenda_source_offset_minutes
+        hosts: list[str] = []
+        for url in self.settings.target_urls:
+            parsed = urlparse(url)
+            origin = f"{parsed.scheme}://{parsed.netloc}"
+            if origin not in hosts:
+                hosts.append(origin)
+        for origin in hosts:
+            js_url = urljoin(origin + "/", "hora.js")
+            try:
+                script = self.http.get_html(js_url, referer=origin + "/")
+            except Exception as exc:  # noqa: BLE001
+                print(f"[tz] hora.js fetch failed ({js_url}): {exc}")
+                continue
+            detected = parse_hora_js_source_offset(script)
+            if detected is not None:
+                print(f"[tz] detected origin offset {format_utc_offset(detected)} from {js_url}")
+                return detected
+        print(
+            f"[tz] using configured origin offset {format_utc_offset(configured)}"
+        )
+        return configured
+
     def _hydrate_streams(self, events: list[AgendaEvent], hydrator: PlaywrightHydrator) -> None:
         hydrator.hydrate_events(events)
 
@@ -1972,8 +2031,20 @@ def format_diary_hour(raw_value: str) -> str:
         return ""
 
 
-def parse_agenda_api(payload: dict, base_url: str) -> list[AgendaEvent]:
+def parse_agenda_api(
+    payload: dict,
+    base_url: str,
+    settings: Settings | None = None,
+) -> list[AgendaEvent]:
     events: list[AgendaEvent] = []
+    timezone_name = (
+        settings.agenda_timezone if settings else DEFAULT_AGENDA_TIMEZONE
+    )
+    source_offset = (
+        settings.agenda_source_offset_minutes
+        if settings
+        else AGENDA_SOURCE_OFFSET_MINUTES
+    )
     for item in payload.get("data", []):
         if not isinstance(item, dict):
             continue
@@ -1982,7 +2053,11 @@ def parse_agenda_api(payload: dict, base_url: str) -> list[AgendaEvent]:
         if not description:
             continue
 
-        time_value = format_diary_hour(str(attrs.get("diary_hour") or ""))
+        time_value = convert_agenda_time(
+            format_diary_hour(str(attrs.get("diary_hour") or "")),
+            timezone_name,
+            source_offset,
+        )
         _league, match_name = split_league_and_match(description)
 
         option_count = 0
@@ -2093,15 +2168,46 @@ def resolve_agenda_iframe_url(page_url: str, html: str) -> str:
     return page_url
 
 
-def convert_agenda_time(raw: str, target_tz: str = DEFAULT_AGENDA_TIMEZONE) -> str:
-    """Convert hora.js source times (UTC+2) to the viewer timezone."""
+def parse_hora_js_source_offset(script: str) -> int | None:
+    """hora.js subtracts (SOURCE_OFFSET - viewerOffset) from each agenda clock."""
+    match = HORA_JS_SOURCE_OFFSET_RE.search(script or "")
+    if not match:
+        return None
+    return int(match.group(1))
+
+
+def format_utc_offset(offset_minutes: int) -> str:
+    sign = "+" if offset_minutes >= 0 else "-"
+    hours, minutes = divmod(abs(int(offset_minutes)), 60)
+    return f"{sign}{hours:02d}:{minutes:02d}"
+
+
+def format_mexico_city_display(raw: str) -> str:
+    """Turn 24h HH:MM into '[08:00 PM]' for Swiftstv titles."""
+    match = TIME_RE.search(raw or "")
+    if not match:
+        return ""
+    hours, minutes = (int(part) for part in match.group(0).split(":"))
+    suffix = "AM" if hours < 12 else "PM"
+    hour12 = hours % 12
+    if hour12 == 0:
+        hour12 = 12
+    return f"[{hour12:02d}:{minutes:02d} {suffix}]"
+
+
+def convert_agenda_time(
+    raw: str,
+    target_tz: str = DEFAULT_AGENDA_TIMEZONE,
+    source_offset_minutes: int = AGENDA_SOURCE_OFFSET_MINUTES,
+) -> str:
+    """Convert origin agenda clocks (hora.js offset, default UTC+2) to target TZ."""
     match = TIME_RE.search(raw or "")
     if not match:
         return ""
     hours, minutes = (int(part) for part in match.group(0).split(":"))
     from datetime import datetime, timedelta, timezone
 
-    source = timezone(timedelta(minutes=AGENDA_SOURCE_OFFSET_MINUTES))
+    source = timezone(timedelta(minutes=int(source_offset_minutes)))
     try:
         from zoneinfo import ZoneInfo
 

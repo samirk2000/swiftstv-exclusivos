@@ -49,6 +49,7 @@ jobs:
             https://futbol-libre-hd.com/
           PLAYER_TEMPLATE: "https://streamtp-golden1.click/global2.php?stream={stream}"
           PLAYER_HOST_REWRITE: "streamtp2.com=streamtp-golden1.click,streamtp3.com=streamtp-golden1.click"
+          AGENDA_TIMEZONE: "America/Mexico_City"
         run: python scraper.py
 
       - name: Commit and push changes
