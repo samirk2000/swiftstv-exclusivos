@@ -5,12 +5,15 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY hls_resolver.py app.py ./
+COPY hls_resolver.py segment_cache.py app.py ./
 
 ENV PORT=10000
 ENV HLS_WAIT_MS=3500
 ENV HLS_GOTO_TIMEOUT_MS=8000
-ENV CACHE_TTL_SECONDS=45
+ENV TOKEN_TTL_SECONDS=1800
+ENV CACHE_TTL_SECONDS=1800
+ENV SEGMENT_CACHE_MB=64
+ENV SEGMENT_CACHE_TTL_SECONDS=25
 
 EXPOSE 10000
 

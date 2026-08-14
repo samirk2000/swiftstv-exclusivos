@@ -5,7 +5,6 @@ from __future__ import annotations
 import asyncio
 import logging
 import os
-import time
 from typing import Any
 from urllib.parse import quote
 
@@ -27,6 +26,7 @@ from hls_resolver import (
     looks_like_playlist,
     rewrite_playlist_absolute,
 )
+from segment_cache import SegmentCache, is_cacheable_segment
 
 logging.basicConfig(level=os.environ.get("LOG_LEVEL", "INFO").upper())
 LOGGER = logging.getLogger("hls_proxy")
@@ -40,9 +40,11 @@ APP.add_middleware(
 )
 
 RESOLVER = HlsResolver(HlsResolverSettings.from_env())
-CACHE_TTL_SECONDS = max(0, int(os.environ.get("CACHE_TTL_SECONDS", "45")))
 PROXY_API_KEY = os.environ.get("PROXY_API_KEY", "").strip()
-_CACHE: dict[tuple[str, str, str], tuple[float, list[str]]] = {}
+SEGMENT_CACHE = SegmentCache(
+    max_bytes=max(0, int(os.environ.get("SEGMENT_CACHE_MB", "64"))) * 1024 * 1024,
+    ttl_seconds=max(0, int(os.environ.get("SEGMENT_CACHE_TTL_SECONDS", "25"))),
+)
 CDN_TOKEN_REJECT_DETAIL = "El CDN rechazó el stream (token/firma). Revisa el proxy HLS."
 
 
@@ -54,7 +56,13 @@ def proxy_bind_ip() -> str:
 @APP.on_event("startup")
 async def startup() -> None:
     await RESOLVER.start()
-    LOGGER.info("startup mode=transparent egress_ip=%s", proxy_bind_ip())
+    LOGGER.info(
+        "startup mode=transparent egress_ip=%s token_ttl=%ss segment_cache=%sMB/%ss",
+        proxy_bind_ip(),
+        RESOLVER.settings.token_ttl_seconds,
+        SEGMENT_CACHE.max_bytes // (1024 * 1024),
+        int(SEGMENT_CACHE.ttl_seconds),
+    )
 
 
 @APP.on_event("shutdown")
@@ -104,37 +112,20 @@ def require_api_key(request: Request) -> None:
         raise HTTPException(status_code=401, detail="Invalid proxy API key")
 
 
-def cache_get(embed: str, referer: str, client_ip: str) -> list[str] | None:
-    if CACHE_TTL_SECONDS <= 0:
-        return None
-    item = _CACHE.get((embed, referer, client_ip))
-    if item is None:
-        return None
-    expires_at, urls = item
-    if time.time() > expires_at:
-        _CACHE.pop((embed, referer, client_ip), None)
-        return None
-    return list(urls)
-
-
-def cache_set(embed: str, referer: str, client_ip: str, urls: list[str]) -> None:
-    if CACHE_TTL_SECONDS <= 0 or not urls:
-        return
-    _CACHE[(embed, referer, client_ip)] = (time.time() + CACHE_TTL_SECONDS, list(urls))
-
-
-async def resolve_manifests(embed: str, referer: str, client_ip: str) -> list[str]:
-    cached = cache_get(embed, referer, client_ip)
-    if cached is not None:
-        LOGGER.info("cache hit embed=%s ip=%s", embed, client_ip)
-        return cached
+async def resolve_manifests(
+    embed: str,
+    referer: str,
+    client_ip: str,
+    *,
+    force: bool = False,
+) -> list[str]:
     try:
-        manifests = await RESOLVER.resolve(embed, referer=referer, client_ip=client_ip)
+        return await RESOLVER.resolve(
+            embed, referer=referer, client_ip=client_ip, force=force
+        )
     except Exception as exc:  # noqa: BLE001
         LOGGER.exception("resolver failed embed=%s ip=%s: %s", embed, client_ip, exc)
-        manifests = []
-    cache_set(embed, referer, client_ip, manifests)
-    return manifests
+        return []
 
 
 def raise_cdn_http(exc: CdnFetchError) -> None:
@@ -145,12 +136,67 @@ def raise_cdn_http(exc: CdnFetchError) -> None:
     raise HTTPException(status_code=502, detail=EVENT_UNAVAILABLE_DETAIL) from exc
 
 
+def download_cdn_bytes(url: str) -> tuple[str, bytes]:
+    _resolved, upstream = fetch_cdn_with_playout_fallback(
+        url,
+        "",
+        user_agent=CDN_PLAY_USER_AGENT,
+        referer=CDN_PLAY_REFERER,
+    )
+    try:
+        body = upstream.read()
+        content_type = str(upstream.headers.get("Content-Type") or "video/MP2T")
+        return content_type, body
+    finally:
+        upstream.close()
+
+
+async def pipe_play_with_token_retry(
+    embed: str,
+    referer_value: str,
+    public_base: str,
+) -> str:
+    """Reuse a cached token; remint with Playwright only on 401/403."""
+    manifests = await resolve_manifests(embed, referer_value, "")
+    if not manifests:
+        raise HTTPException(status_code=404, detail=EVENT_UNAVAILABLE_DETAIL)
+    try:
+        return await RESOLVER.pipe_playout(
+            manifests,
+            "",
+            public_base=public_base,
+            user_agent=CDN_PLAY_USER_AGENT,
+            referer=CDN_PLAY_REFERER,
+        )
+    except CdnFetchError as exc:
+        if exc.status not in {401, 403}:
+            raise
+        LOGGER.warning(
+            "cached token rejected HTTP %s; reminting embed=%s",
+            exc.status,
+            embed[:120],
+        )
+        RESOLVER.invalidate_tokens(embed=embed, failed_url=exc.url)
+        manifests = await resolve_manifests(embed, referer_value, "", force=True)
+        if not manifests:
+            raise_cdn_http(exc)
+        return await RESOLVER.pipe_playout(
+            manifests,
+            "",
+            public_base=public_base,
+            user_agent=CDN_PLAY_USER_AGENT,
+            referer=CDN_PLAY_REFERER,
+        )
+
+
 @APP.get("/health")
-async def health() -> dict[str, str]:
+async def health() -> dict[str, Any]:
     return {
         "status": "ok",
         "mode": "transparent",
         "egress_ip": proxy_bind_ip(),
+        "token_cache": RESOLVER.token_cache_stats(),
+        "segment_cache": SEGMENT_CACHE.stats(),
     }
 
 
@@ -163,11 +209,12 @@ async def resolve_json(
     require_api_key(request)
     client_ip = get_client_ip(request)
     referer_value = referer or request.headers.get("referer", "") or embed
-    manifests = await resolve_manifests(embed, referer_value, client_ip)
+    manifests = await resolve_manifests(embed, referer_value, "")
     if not manifests:
         raise HTTPException(status_code=404, detail=EVENT_UNAVAILABLE_DETAIL)
     return {
         "client_ip": client_ip,
+        "bind_ip": proxy_bind_ip(),
         "embed": embed,
         "referer": referer_value,
         "m3u8": manifests[0],
@@ -186,18 +233,11 @@ async def play_manifest(
     viewer_ip = get_client_ip(request)
     bind_ip = proxy_bind_ip()
     referer_value = referer or request.headers.get("referer", "") or embed
-    # Do not rewrite ip= to the phone. Leave the token as the player minted it
-    # for this proxy's TCP address.
-    manifests = await resolve_manifests(embed, referer_value, "")
-    if not manifests:
-        raise HTTPException(status_code=404, detail=EVENT_UNAVAILABLE_DETAIL)
     try:
-        body = await RESOLVER.pipe_playout(
-            manifests,
-            "",
-            public_base=request_public_base(request),
-            user_agent=CDN_PLAY_USER_AGENT,
-            referer=CDN_PLAY_REFERER,
+        body = await pipe_play_with_token_retry(
+            embed,
+            referer_value,
+            request_public_base(request),
         )
     except CdnFetchError as exc:
         LOGGER.warning(
@@ -207,7 +247,10 @@ async def play_manifest(
             viewer_ip,
             exc,
         )
+        RESOLVER.invalidate_tokens(embed=embed, failed_url=exc.url)
         raise_cdn_http(exc)
+    except HTTPException:
+        raise
     except Exception as exc:  # noqa: BLE001
         LOGGER.info("play pipe failed embed=%s: %s", embed, exc)
         raise HTTPException(status_code=404, detail=EVENT_UNAVAILABLE_DETAIL) from exc
@@ -242,24 +285,45 @@ async def proxy_media(
     if not is_allowed_cdn_url(u):
         LOGGER.warning("blocked media host url=%s", u)
         raise HTTPException(status_code=400, detail="CDN host not allowed")
-    client_ip = get_client_ip(request)
+
+    if is_cacheable_segment(u):
+        try:
+            content_type, body, cache_state = await SEGMENT_CACHE.get_or_load(
+                u,
+                lambda: asyncio.to_thread(download_cdn_bytes, u),
+            )
+        except CdnFetchError as exc:
+            if exc.status in {401, 403}:
+                RESOLVER.invalidate_tokens(failed_url=exc.url or u)
+            raise_cdn_http(exc)
+        out_headers = {
+            "Cache-Control": "public, max-age=10",
+            "Access-Control-Allow-Origin": "*",
+            "X-Cache": cache_state,
+        }
+        if request.method == "HEAD":
+            return Response(status_code=200, media_type=content_type, headers=out_headers)
+        return Response(content=body, media_type=content_type, headers=out_headers)
 
     try:
         resolved_url, upstream = await asyncio.to_thread(
             lambda: fetch_cdn_with_playout_fallback(
                 u,
-                client_ip,
+                "",
                 user_agent=CDN_PLAY_USER_AGENT,
                 referer=CDN_PLAY_REFERER,
             )
         )
     except CdnFetchError as exc:
+        if exc.status in {401, 403}:
+            RESOLVER.invalidate_tokens(failed_url=exc.url or u)
         raise_cdn_http(exc)
 
     content_type = str(upstream.headers.get("Content-Type") or "application/octet-stream")
     out_headers = {
         "Cache-Control": "no-store, no-cache, max-age=0",
         "Access-Control-Allow-Origin": "*",
+        "X-Cache": "BYPASS",
     }
     if request.method == "HEAD":
         upstream.close()

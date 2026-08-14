@@ -7,6 +7,7 @@ import base64
 import logging
 import os
 import re
+import time
 from dataclasses import dataclass, field
 from typing import Callable
 from urllib.parse import parse_qs, quote, urljoin, urlparse, urlunparse
@@ -285,6 +286,45 @@ def replace_raw_query_value(query: str, name: str, new_value: str) -> str:
     if not found:
         return query
     return "&".join(parts)
+
+
+def raw_query_value(url: str, name: str) -> str:
+    """Read one query param without parse_qsl (keeps '+' and '=' bytes)."""
+    query = urlparse(url or "").query
+    if not query or not name:
+        return ""
+    for part in query.split("&"):
+        key, sep, value = part.partition("=")
+        if sep and key.lower() == name.lower():
+            return value
+    return ""
+
+
+UNIX_TS_MIN = 1_700_000_000
+UNIX_TS_MAX = 2_100_000_000
+
+
+def token_expiry_unix(token: str) -> int:
+    """Best-effort expiry from tokens like hash-id-<exp>-<iat>."""
+    stamps: list[int] = []
+    for part in (token or "").split("-"):
+        if not part.isdigit():
+            continue
+        value = int(part)
+        if UNIX_TS_MIN <= value <= UNIX_TS_MAX:
+            stamps.append(value)
+    return min(stamps) if stamps else 0
+
+
+def manifest_urls_expire_at(urls: list[str], ttl_seconds: float) -> float:
+    """Cache until TOKEN_TTL, or sooner if the CDN token timestamp is earlier."""
+    now = time.time()
+    expires_at = now + max(0.0, float(ttl_seconds))
+    stamps = [token_expiry_unix(raw_query_value(url, "token")) for url in urls]
+    stamps = [stamp for stamp in stamps if stamp]
+    if stamps:
+        expires_at = min(expires_at, float(min(stamps) - 90))
+    return max(now + 5.0, expires_at)
 
 
 def rewrite_m3u8_client_ip(m3u8_url: str, client_ip: str) -> str:
@@ -866,16 +906,21 @@ class HlsResolverSettings:
     player_fallback_wait_ms: int = 250
     max_iframe_depth: int = 3
     host_rewrites: dict[str, str] = field(default_factory=dict)
+    token_ttl_seconds: int = 1800
 
     @classmethod
     def from_env(cls) -> "HlsResolverSettings":
         # Cap dashboard leftovers like HLS_WAIT_MS=12000 so we never sit that long
         # once click-to-play is in place; early-exit still wins on first .m3u8.
         raw_wait = int(os.environ.get("HLS_WAIT_MS", "3500"))
+        token_ttl = os.environ.get("TOKEN_TTL_SECONDS")
+        if token_ttl is None:
+            token_ttl = os.environ.get("CACHE_TTL_SECONDS", "1800")
         return cls(
             goto_timeout_ms=int(os.environ.get("HLS_GOTO_TIMEOUT_MS", "8000")),
             stream_wait_ms=max(800, min(raw_wait, 5000)),
             host_rewrites=parse_host_rewrites(os.environ.get("EMBED_HOST_REWRITE", "")),
+            token_ttl_seconds=max(0, int(token_ttl)),
         )
 
 
@@ -889,6 +934,9 @@ class HlsResolver:
         self._context = None
         self._lock = asyncio.Lock()
         self.egress_ip = ""
+        self._token_cache: dict[str, tuple[float, list[str]]] = {}
+        self.token_hits = 0
+        self.token_misses = 0
 
     async def start(self) -> None:
         from playwright.async_api import async_playwright
@@ -926,10 +974,100 @@ class HlsResolver:
             await self._playwright.stop()
             self._playwright = None
 
-    async def resolve(self, embed_url: str, referer: str, client_ip: str) -> list[str]:
+    def token_cache_key(self, embed_url: str) -> str:
+        player_url = decode_wrapper_player_url(embed_url)
+        player_url = rewrite_embed_host(
+            player_url or embed_url, self.settings.host_rewrites
+        )
+        return player_url or embed_url
+
+    def token_cache_stats(self) -> dict[str, int]:
+        now = time.time()
+        live = sum(1 for exp, _urls in self._token_cache.values() if exp > now)
+        return {
+            "entries": live,
+            "hits": self.token_hits,
+            "misses": self.token_misses,
+            "ttl_seconds": self.settings.token_ttl_seconds,
+        }
+
+    def _token_cache_get(self, key: str) -> list[str] | None:
+        if self.settings.token_ttl_seconds <= 0:
+            return None
+        item = self._token_cache.get(key)
+        if item is None:
+            return None
+        expires_at, urls = item
+        if time.time() >= expires_at or not urls:
+            self._token_cache.pop(key, None)
+            return None
+        self.token_hits += 1
+        LOGGER.info(
+            "token cache hit key=%s ttl_left=%ss",
+            key[:120],
+            max(0, int(expires_at - time.time())),
+        )
+        return list(urls)
+
+    def _token_cache_set(self, key: str, urls: list[str]) -> None:
+        if self.settings.token_ttl_seconds <= 0 or not urls:
+            return
+        expires_at = manifest_urls_expire_at(urls, self.settings.token_ttl_seconds)
+        self._token_cache[key] = (expires_at, list(urls))
+        LOGGER.info(
+            "token cache store key=%s ttl=%ss url=%s",
+            key[:120],
+            max(0, int(expires_at - time.time())),
+            urls[0][:160],
+        )
+
+    def invalidate_tokens(self, *, embed: str = "", failed_url: str = "") -> int:
+        """Drop cached Playwright captures when the CDN rejects the token."""
+        token = raw_query_value(failed_url, "token")
+        embed_key = self.token_cache_key(embed) if embed else ""
+        removed = 0
+        for key, (_exp, urls) in list(self._token_cache.items()):
+            if embed_key and key == embed_key:
+                self._token_cache.pop(key, None)
+                removed += 1
+                continue
+            if token and any(token in url for url in urls):
+                self._token_cache.pop(key, None)
+                removed += 1
+        if not embed_key and not token and self._token_cache:
+            removed = len(self._token_cache)
+            self._token_cache.clear()
+        if removed:
+            LOGGER.info(
+                "token cache invalidate removed=%s embed=%s",
+                removed,
+                (embed or failed_url)[:120],
+            )
+        return removed
+
+    async def resolve(
+        self,
+        embed_url: str,
+        referer: str,
+        client_ip: str,
+        *,
+        force: bool = False,
+    ) -> list[str]:
+        cache_key = self.token_cache_key(embed_url)
+        if not force:
+            cached = self._token_cache_get(cache_key)
+            if cached is not None:
+                return cached
         async with self._lock:
+            if not force:
+                cached = self._token_cache_get(cache_key)
+                if cached is not None:
+                    return cached
+            self.token_misses += 1
+            LOGGER.info("token cache miss; opening player key=%s", cache_key[:120])
             player_url = decode_wrapper_player_url(embed_url)
             player_url = rewrite_embed_host(player_url, self.settings.host_rewrites)
+            captured: list[str] = []
             if player_url and player_url != embed_url:
                 LOGGER.info("decoded wrapper -> %s", player_url[:180])
                 captured = await self._resolve_locked(
@@ -937,11 +1075,17 @@ class HlsResolver:
                     referer=embed_url or referer,
                     client_ip=client_ip,
                 )
-                if captured:
-                    return self._finalize_manifests(captured, client_ip)
-                LOGGER.info("player page missed HLS; falling back to wrapper %s", embed_url[:120])
-            captured = await self._resolve_locked(embed_url, referer, client_ip)
-            return self._finalize_manifests(captured, client_ip)
+                if not captured:
+                    LOGGER.info(
+                        "player page missed HLS; falling back to wrapper %s",
+                        embed_url[:120],
+                    )
+            if not captured:
+                captured = await self._resolve_locked(embed_url, referer, client_ip)
+            ranked = self._finalize_manifests(captured, client_ip)
+            if ranked:
+                self._token_cache_set(cache_key, ranked)
+            return ranked
 
     async def pipe_playout(
         self,

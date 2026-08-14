@@ -11,7 +11,13 @@ services:
         value: "3500"
       - key: HLS_GOTO_TIMEOUT_MS
         value: "8000"
+      - key: TOKEN_TTL_SECONDS
+        value: "1800"
       - key: CACHE_TTL_SECONDS
-        value: "45"
+        value: "1800"
+      - key: SEGMENT_CACHE_MB
+        value: "64"
+      - key: SEGMENT_CACHE_TTL_SECONDS
+        value: "25"
       - key: PROXY_API_KEY
         sync: false
