@@ -34,16 +34,17 @@ export default async function handler(req, res) {
     const upstream = await fetch(target, {
       method: req.method || "GET",
       headers,
-      redirect: "manual",
+      redirect: "follow",
     });
-    res.status(upstream.status);
-    upstream.headers.forEach((value, key) => {
-      if (key.toLowerCase() === "location" || key.toLowerCase() === "content-type") {
-        res.setHeader(key, value);
-      }
-    });
-    const body = await upstream.text();
-    res.send(body);
+    const status =
+      upstream.status >= 300 && upstream.status < 400 ? 200 : upstream.status;
+    res.status(status);
+    const contentType = upstream.headers.get("content-type");
+    if (contentType) {
+      res.setHeader("content-type", contentType);
+    }
+    const body = await upstream.arrayBuffer();
+    res.send(Buffer.from(body));
   } catch (error) {
     res.status(502).json({ error: String(error) });
   }

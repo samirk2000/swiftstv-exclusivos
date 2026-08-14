@@ -9,7 +9,7 @@ import os
 import re
 from dataclasses import dataclass, field
 from typing import Callable
-from urllib.parse import parse_qs, parse_qsl, urlencode, urljoin, urlparse, urlunparse
+from urllib.parse import parse_qs, quote, urljoin, urlparse, urlunparse
 
 LOGGER = logging.getLogger("hls_resolver")
 M3U8_RE = re.compile(r"""https?://[^\s"'<>\\]+?\.m3u8[^\s"'<>\\]*""", re.IGNORECASE)
@@ -148,18 +148,28 @@ def parse_host_rewrites(raw: str) -> dict[str, str]:
 
 
 def rewrite_embed_host(url: str, host_map: dict[str, str]) -> str:
-    if not url or not host_map:
+    if not url:
         return url
-    parsed = urlparse(url)
-    host = (parsed.hostname or "").lower()
-    replacement = host_map.get(host)
-    if not replacement:
+    rewritten = url
+    if host_map:
+        parsed = urlparse(url)
+        host = (parsed.hostname or "").lower()
+        replacement = host_map.get(host)
+        if replacement:
+            netloc = replacement
+            if parsed.port:
+                netloc = f"{replacement}:{parsed.port}"
+            rewritten = urlunparse(parsed._replace(netloc=netloc))
+            LOGGER.info("host rewrite %s -> %s", url, rewritten)
+    return rewrite_player_script(rewritten)
+
+
+def rewrite_player_script(url: str) -> str:
+    """global1.php is IP-blocked; the live player is global2.php."""
+    if "/global1.php" not in (url or ""):
         return url
-    netloc = replacement
-    if parsed.port:
-        netloc = f"{replacement}:{parsed.port}"
-    rewritten = urlunparse(parsed._replace(netloc=netloc))
-    LOGGER.info("host rewrite %s -> %s", url, rewritten)
+    rewritten = url.replace("/global1.php", "/global2.php")
+    LOGGER.info("player script rewrite global1.php -> global2.php")
     return rewritten
 
 
@@ -195,7 +205,7 @@ def decode_wrapper_player_url(embed_url: str) -> str:
         return ""
     decoded = unescape_js_url(decoded)
     if decoded.startswith("http://") or decoded.startswith("https://"):
-        return decoded
+        return rewrite_player_script(decoded)
     return ""
 
 
@@ -255,31 +265,39 @@ def filter_navigable_urls(urls: list[str]) -> list[str]:
     return [url for url in urls if is_navigable_url(url)]
 
 
-def rewrite_m3u8_client_ip(m3u8_url: str, client_ip: str) -> str:
-    """Replace ip= query param when the CDN accepts client-supplied IP tokens."""
-    parsed = urlparse(m3u8_url)
-    params = parse_qsl(parsed.query, keep_blank_values=True)
-    if not params:
-        return m3u8_url
-    updated: list[tuple[str, str]] = []
-    seen_ip = False
-    for key, value in params:
-        if key.lower() == "ip":
-            updated.append((key, client_ip or value))
-            seen_ip = True
+def replace_raw_query_value(query: str, name: str, new_value: str) -> str:
+    """Replace one query param without re-encoding or reordering the rest.
+
+    parse_qsl + urlencode turns '+' into space and '=' into %3D, which breaks
+    CDN token/hash signatures.
+    """
+    if not query or not name:
+        return query
+    parts: list[str] = []
+    found = False
+    for part in query.split("&"):
+        key, sep, _old = part.partition("=")
+        if sep and key.lower() == name.lower():
+            parts.append(f"{key}={new_value}")
+            found = True
         else:
-            updated.append((key, value))
-    if not seen_ip:
+            parts.append(part)
+    if not found:
+        return query
+    return "&".join(parts)
+
+
+def rewrite_m3u8_client_ip(m3u8_url: str, client_ip: str) -> str:
+    """Replace ip= in-place. Leave token/auth/hash bytes untouched."""
+    if not client_ip:
         return m3u8_url
-    return urlunparse(parsed._replace(query=urlencode(order_hls_query(updated))))
-
-
-def order_hls_query(params: list[tuple[str, str]]) -> list[tuple[str, str]]:
-    """Roku/CDN examples put ip= before token=."""
-    ip_items = [(key, value) for key, value in params if key.lower() == "ip"]
-    token_items = [(key, value) for key, value in params if key.lower() == "token"]
-    rest = [(key, value) for key, value in params if key.lower() not in {"ip", "token"}]
-    return ip_items + token_items + rest
+    parsed = urlparse(m3u8_url)
+    if not parsed.query:
+        return m3u8_url
+    new_query = replace_raw_query_value(parsed.query, "ip", client_ip)
+    if new_query == parsed.query:
+        return m3u8_url
+    return urlunparse(parsed._replace(query=new_query))
 
 
 def is_media_playlist_url(url: str) -> bool:
@@ -317,18 +335,38 @@ def to_po_playout_url(url: str) -> str:
             media_path = path
         else:
             return ""
-    query = urlencode(order_hls_query(parse_qsl(parsed.query, keep_blank_values=True)))
-    return urlunparse(("https", "po.tudeporteshoy.xyz", media_path, "", query, ""))
+    # Keep the original query string (token/auth/hash order and encoding).
+    return urlunparse(("https", "po.tudeporteshoy.xyz", media_path, "", parsed.query, ""))
 
 
-def parse_playlist_uris(body: str, base_url: str) -> list[str]:
-    uris: list[str] = []
-    for raw in (body or "").splitlines():
-        line = raw.strip()
-        if not line or line.startswith("#"):
+def playout_fallback_url(url: str) -> str:
+    """Map a blocked edge/master URL to po.tudeporteshoy.xyz, query unchanged."""
+    mapped = to_po_playout_url(url or "")
+    if not mapped or mapped == url:
+        return ""
+    return mapped
+
+
+def should_fallback_to_playout(url: str, status: int) -> bool:
+    if status not in {401, 403, 404}:
+        return False
+    host = (urlparse(url).hostname or "").lower()
+    if host.startswith("po."):
+        return False
+    return bool(playout_fallback_url(url))
+
+
+def expand_playout_candidates(urls: list[str]) -> list[str]:
+    """Prefer po. playout; keep the original master as a later candidate."""
+    expanded: list[str] = []
+    for url in urls:
+        if not url:
             continue
-        uris.append(urljoin(base_url, unescape_js_url(line)))
-    return uris
+        fallback = playout_fallback_url(url)
+        if fallback:
+            expanded.append(fallback)
+        expanded.append(url)
+    return rank_hls_urls(expanded)
 
 
 def rank_hls_urls(urls: list[str]) -> list[str]:
@@ -340,6 +378,462 @@ def rank_hls_urls(urls: list[str]) -> list[str]:
         return (media, po_host, master, url)
 
     return sorted(dedupe_keep_order(urls), key=sort_key)
+
+
+CDN_PLAY_REFERER = "https://tudeporteshoy.xyz/"
+CDN_PLAY_USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+DEFAULT_PUBLIC_BASE = os.environ.get(
+    "PROXY_PUBLIC_BASE", "https://swiftstv-hls-proxy.onrender.com"
+)
+M3U8_CONTENT_TYPE = "application/vnd.apple.mpegurl"
+LEAKED_CDN_URL_RE = re.compile(
+    r"https?://[^\s\"']*tudeporteshoy\.xyz[^\s\"']*",
+    re.IGNORECASE,
+)
+URI_ATTR_RE = re.compile(
+    r'(URI=)(?P<quote>["\'])(?P<uri>.*?)(?P=quote)',
+    re.IGNORECASE,
+)
+
+
+def cdn_fetch_headers(
+    url: str,
+    client_ip: str,
+    *,
+    user_agent: str = "",
+    referer: str = "",
+) -> dict[str, str]:
+    """Always inject the origin player headers. Ignore ExoPlayer/OkHttp UA."""
+    parsed = urlparse(url)
+    return {
+        "User-Agent": CDN_PLAY_USER_AGENT,
+        "Referer": CDN_PLAY_REFERER,
+        "Origin": "https://tudeporteshoy.xyz",
+        "Host": parsed.netloc,
+        "Accept": "*/*",
+        "X-Forwarded-For": client_ip or "",
+        "X-Real-IP": client_ip or "",
+    }
+
+
+def allowed_cdn_host(host: str) -> bool:
+    hostname = (host or "").lower()
+    if not hostname or hostname in {"localhost", "127.0.0.1", "0.0.0.0", "::1"}:
+        return False
+    suffixes = ["tudeporteshoy.xyz"]
+    suffixes.extend(
+        part.strip().lower()
+        for part in os.environ.get("CDN_HOST_ALLOW", "").split(",")
+        if part.strip()
+    )
+    return any(hostname == suffix or hostname.endswith(f".{suffix}") for suffix in suffixes)
+
+
+def is_allowed_cdn_url(url: str) -> bool:
+    parsed = urlparse(url or "")
+    if parsed.scheme not in {"http", "https"}:
+        return False
+    return allowed_cdn_host(parsed.hostname or "")
+
+
+def wrap_media_url(public_base: str, cdn_url: str) -> str:
+    """Point the player at /v1/media so it never talks to po.tudeporteshoy.xyz."""
+    base = (public_base or DEFAULT_PUBLIC_BASE).rstrip("/")
+    if not cdn_url or not is_navigable_url(cdn_url):
+        return cdn_url
+    if "/v1/media" in cdn_url:
+        return cdn_url
+    return f"{base}/v1/media?u={quote(cdn_url, safe='')}"
+
+
+def absolutize_hls_uri(uri: str, base_url: str) -> str:
+    """Turn a playlist URI into an absolute URL without touching existing query bytes."""
+    cleaned = unescape_js_url((uri or "").strip())
+    if not cleaned or cleaned.startswith(("data:", "#", "urn:")):
+        return cleaned
+    absolute = urljoin(base_url, cleaned)
+    parsed_abs = urlparse(absolute)
+    if parsed_abs.scheme not in {"http", "https"}:
+        return absolute
+    parsed_uri = urlparse(cleaned)
+    if parsed_uri.query or parsed_abs.query:
+        return absolute
+    base_query = urlparse(base_url).query
+    if not base_query:
+        return absolute
+    if parsed_uri.scheme in {"http", "https"}:
+        base_host = (urlparse(base_url).hostname or "").lower()
+        if (parsed_abs.hostname or "").lower() != base_host:
+            return absolute
+    return urlunparse(parsed_abs._replace(query=base_query))
+
+
+def rewrite_playlist_absolute(body: str, base_url: str, public_base: str = "") -> str:
+    """Rewrite .ts / sub-playlist / KEY URIs to /v1/media?u=... (never leak CDN URLs)."""
+    proxy_base = public_base or DEFAULT_PUBLIC_BASE
+
+    def convert(uri: str) -> str:
+        return wrap_media_url(proxy_base, absolutize_hls_uri(uri, base_url))
+
+    def replace_uri(match: re.Match[str]) -> str:
+        return (
+            f"{match.group(1)}{match.group('quote')}"
+            f"{convert(match.group('uri'))}"
+            f"{match.group('quote')}"
+        )
+
+    lines: list[str] = []
+    for raw in (body or "").splitlines():
+        line = raw.rstrip("\r")
+        stripped = line.strip()
+        if not stripped:
+            lines.append(line)
+            continue
+        if stripped.startswith("#"):
+            lines.append(URI_ATTR_RE.sub(replace_uri, stripped))
+            continue
+        lines.append(convert(stripped))
+    rewritten = "\n".join(lines)
+    if (body or "").endswith("\n"):
+        rewritten += "\n"
+    return _wrap_leaked_cdn_urls(rewritten, proxy_base)
+
+
+def _wrap_leaked_cdn_urls(body: str, public_base: str) -> str:
+    """Safety net: any leftover https://*.tudeporteshoy.xyz URL goes through /v1/media."""
+
+    def repl(match: re.Match[str]) -> str:
+        url = match.group(0)
+        if "/v1/media" in url:
+            return url
+        return wrap_media_url(public_base, url)
+
+    return LEAKED_CDN_URL_RE.sub(repl, body or "")
+
+
+def first_variant_uri(body: str, base_url: str) -> str:
+    """Return the first media playlist URI from a master playlist."""
+    pending = False
+    for raw in (body or "").splitlines():
+        stripped = raw.strip()
+        if stripped.startswith("#EXT-X-STREAM-INF"):
+            attr = URI_ATTR_RE.search(stripped)
+            if attr:
+                return absolutize_hls_uri(attr.group("uri"), base_url)
+            pending = True
+            continue
+        if pending and stripped and not stripped.startswith("#"):
+            return absolutize_hls_uri(stripped, base_url)
+        if stripped:
+            pending = False
+    return ""
+
+
+def is_master_playlist_body(body: str) -> bool:
+    return "#EXT-X-STREAM-INF" in (body or "").upper()
+
+
+def looks_like_playlist(url: str, content_type: str, body: bytes) -> bool:
+    lower_url = (url or "").lower()
+    if ".m3u8" in lower_url or "mpegurl" in (content_type or "").lower():
+        return True
+    head = body[:16].lstrip().upper()
+    return head.startswith(b"#EXTM3U")
+
+
+def log_cdn_request(url: str, headers: dict[str, str], client_ip: str) -> None:
+    LOGGER.info(
+        "CDN request GET %s | Host=%s Referer=%s User-Agent=%s X-Forwarded-For=%s",
+        url,
+        headers.get("Host", ""),
+        headers.get("Referer", ""),
+        headers.get("User-Agent", ""),
+        client_ip,
+    )
+
+
+def log_cdn_response(
+    url: str,
+    status: int,
+    response_headers=None,
+    body_preview: bytes = b"",
+) -> None:
+    content_type = ""
+    if response_headers is not None:
+        content_type = str(
+            response_headers.get("Content-Type")
+            or response_headers.get("content-type")
+            or ""
+        )
+    preview = body_preview[:400].decode("utf-8", errors="replace").replace("\n", "\\n")
+    if status in {401, 403}:
+        LOGGER.warning(
+            "CDN rejected stream (token/signature) status=%s url=%s content-type=%s body=%s",
+            status,
+            url,
+            content_type,
+            preview,
+        )
+        return
+    if status >= 400:
+        LOGGER.warning(
+            "CDN error status=%s url=%s content-type=%s body=%s",
+            status,
+            url,
+            content_type,
+            preview,
+        )
+        return
+    LOGGER.info("CDN response status=%s url=%s content-type=%s", status, url, content_type)
+
+
+class CdnFetchError(RuntimeError):
+    def __init__(self, status: int, url: str, message: str) -> None:
+        super().__init__(f"HTTP {status}: {message} url={url}")
+        self.status = status
+        self.url = url
+
+
+def fetch_cdn(
+    url: str,
+    client_ip: str,
+    *,
+    timeout: int = 15,
+    user_agent: str = "",
+    referer: str = "",
+):
+    """GET from the CDN with Referer/UA. Follow 302 on the server; never expose it."""
+    from urllib.error import HTTPError, URLError
+    from urllib.request import HTTPRedirectHandler, Request, build_opener
+
+    headers = cdn_fetch_headers(
+        url, client_ip, user_agent=user_agent, referer=referer
+    )
+    log_cdn_request(url, headers, client_ip)
+
+    class ProxyRedirectHandler(HTTPRedirectHandler):
+        def redirect_request(self, req, fp, code, msg, hdrs, newurl):
+            LOGGER.info(
+                "CDN HTTP %s followed on proxy (not forwarded to app) %s -> %s",
+                code,
+                req.full_url,
+                newurl,
+            )
+            hop_ip = req.get_header("X-forwarded-for") or client_ip
+            hop_headers = cdn_fetch_headers(newurl, hop_ip)
+            return Request(newurl, headers=hop_headers, method="GET")
+
+    opener = build_opener(ProxyRedirectHandler)
+    request = Request(url, headers=headers)
+    try:
+        response = opener.open(request, timeout=timeout)
+    except HTTPError as exc:
+        fail_url = str(getattr(exc, "url", None) or url)
+        try:
+            err_body = exc.read() or b""
+        except Exception:
+            err_body = b""
+        log_cdn_response(fail_url, exc.code, exc.headers, err_body)
+        raise CdnFetchError(exc.code, fail_url, exc.reason) from exc
+    except URLError as exc:
+        LOGGER.warning("CDN transport error url=%s error=%s", url, exc.reason or exc)
+        raise CdnFetchError(0, url, str(exc.reason or exc)) from exc
+    status = getattr(response, "status", None) or response.getcode()
+    log_cdn_response(response.geturl() or url, int(status), response.headers)
+    return response
+
+
+def fetch_cdn_with_playout_fallback(
+    url: str,
+    client_ip: str,
+    *,
+    timeout: int = 15,
+    user_agent: str = "",
+    referer: str = "",
+):
+    """GET a CDN URL; on master 401/403/404 retry po.tudeporteshoy.xyz."""
+    try:
+        return url, fetch_cdn(
+            url,
+            client_ip,
+            timeout=timeout,
+            user_agent=user_agent,
+            referer=referer,
+        )
+    except CdnFetchError as exc:
+        fallback = playout_fallback_url(url)
+        if not should_fallback_to_playout(url, exc.status) or not fallback:
+            raise
+        LOGGER.warning(
+            "master playlist HTTP %s (CDN IP/token block) url=%s; fallback playout %s",
+            exc.status,
+            url,
+            fallback,
+        )
+        return fallback, fetch_cdn(
+            fallback,
+            client_ip,
+            timeout=timeout,
+            user_agent=user_agent,
+            referer=referer,
+        )
+
+
+def fetch_m3u8_text(
+    url: str,
+    client_ip: str,
+    timeout: int = 12,
+    *,
+    user_agent: str = "",
+    referer: str = "",
+) -> str:
+    response = fetch_cdn(
+        url,
+        client_ip,
+        timeout=timeout,
+        user_agent=user_agent,
+        referer=referer,
+    )
+    try:
+        return response.read().decode("utf-8", errors="replace")
+    finally:
+        response.close()
+
+
+async def pipe_playlist(
+    urls: list[str],
+    client_ip: str,
+    playwright_request=None,
+    *,
+    public_base: str = "",
+    user_agent: str = "",
+    referer: str = "",
+) -> str:
+    """Fetch the first working playlist and return it with proxied segment URLs."""
+    last_error = "no manifests"
+    last_fetch_error: CdnFetchError | None = None
+    for url in expand_playout_candidates(urls):
+        if not url:
+            continue
+        try:
+            source_url, body = await _load_playlist_or_playout(
+                url,
+                client_ip,
+                playwright_request,
+                user_agent=user_agent,
+                referer=referer,
+            )
+        except CdnFetchError as exc:
+            last_error = str(exc)
+            last_fetch_error = exc
+            LOGGER.info("playlist pipe failed %s", last_error)
+            continue
+        except Exception as exc:  # noqa: BLE001
+            last_error = str(exc)
+            LOGGER.info("playlist pipe failed %s", last_error)
+            continue
+        if not body or "#EXTM3U" not in body.upper():
+            last_error = f"not an HLS playlist url={source_url}"
+            LOGGER.warning("%s", last_error)
+            continue
+        if is_master_playlist_body(body):
+            po = playout_fallback_url(source_url) or to_po_playout_url(source_url)
+            variant = first_variant_uri(body, source_url)
+            for next_url in dedupe_keep_order([po, variant]):
+                if not next_url:
+                    continue
+                try:
+                    source_url, body = await _load_playlist_or_playout(
+                        next_url,
+                        client_ip,
+                        playwright_request,
+                        user_agent=user_agent,
+                        referer=referer,
+                    )
+                    break
+                except Exception as exc:  # noqa: BLE001
+                    LOGGER.info("variant/playout pipe failed %s", exc)
+        rewritten = rewrite_playlist_absolute(body, source_url, public_base=public_base)
+        LOGGER.info("piped playlist %s (%s bytes)", source_url, len(rewritten))
+        return rewritten
+    if last_fetch_error is not None:
+        raise last_fetch_error
+    raise RuntimeError(last_error)
+
+
+async def _load_playlist_or_playout(
+    url: str,
+    client_ip: str,
+    playwright_request=None,
+    *,
+    user_agent: str = "",
+    referer: str = "",
+) -> tuple[str, str]:
+    try:
+        body = await _fetch_playlist_body(
+            url,
+            client_ip,
+            playwright_request,
+            user_agent=user_agent,
+            referer=referer,
+        )
+        return url, body
+    except CdnFetchError as exc:
+        fallback = playout_fallback_url(url)
+        if not should_fallback_to_playout(url, exc.status) or not fallback:
+            raise
+        LOGGER.warning(
+            "master playlist HTTP %s (CDN IP/token block) url=%s; fallback playout %s",
+            exc.status,
+            url,
+            fallback,
+        )
+        body = await _fetch_playlist_body(
+            fallback,
+            client_ip,
+            playwright_request,
+            user_agent=user_agent,
+            referer=referer,
+        )
+        return fallback, body
+
+
+async def _fetch_playlist_body(
+    url: str,
+    client_ip: str,
+    playwright_request=None,
+    *,
+    user_agent: str = "",
+    referer: str = "",
+) -> str:
+    try:
+        return await asyncio.to_thread(
+            lambda: fetch_m3u8_text(
+                url,
+                client_ip,
+                user_agent=user_agent,
+                referer=referer,
+            )
+        )
+    except Exception as urllib_exc:
+        if playwright_request is None:
+            raise
+        LOGGER.info("urllib playlist miss, retry via playwright %s", urllib_exc)
+        headers = cdn_fetch_headers(
+            url, client_ip, user_agent=user_agent, referer=referer
+        )
+        log_cdn_request(url, headers, client_ip)
+        response = await playwright_request.get(url, headers=headers, timeout=12000)
+        body = await response.text()
+        log_cdn_response(
+            url,
+            int(response.status),
+            {"Content-Type": response.headers.get("content-type", "")},
+            body.encode("utf-8", errors="replace")[:400],
+        )
+        if not response.ok:
+            raise CdnFetchError(int(response.status), url, "playwright") from urllib_exc
+        return body
 
 
 @dataclass
@@ -422,15 +916,33 @@ class HlsResolver:
                     client_ip=client_ip,
                 )
                 if captured:
-                    return await self._finalize_manifests(captured, embed_url or referer, client_ip)
+                    return self._finalize_manifests(captured, client_ip)
                 LOGGER.info("player page missed HLS; falling back to wrapper %s", embed_url[:120])
             captured = await self._resolve_locked(embed_url, referer, client_ip)
-            return await self._finalize_manifests(captured, referer, client_ip)
+            return self._finalize_manifests(captured, client_ip)
 
-    async def _finalize_manifests(
-        self, urls: list[str], referer: str, client_ip: str
-    ) -> list[str]:
-        """Turn Clappr master index.m3u8 into the po./mono.m3u8 URL Roku can play."""
+    async def pipe_playout(
+        self,
+        urls: list[str],
+        client_ip: str,
+        *,
+        public_base: str = "",
+        user_agent: str = "",
+        referer: str = "",
+    ) -> str:
+        request = getattr(self._context, "request", None) if self._context else None
+        return await pipe_playlist(
+            urls,
+            client_ip,
+            request,
+            public_base=public_base,
+            user_agent=user_agent,
+            referer=referer,
+        )
+
+    @staticmethod
+    def _finalize_manifests(urls: list[str], client_ip: str) -> list[str]:
+        """Map Clappr index.m3u8 to po./mono.m3u8 for the playlist pipe."""
         promoted: list[str] = []
         for url in urls:
             rewritten = rewrite_m3u8_client_ip(url, client_ip)
@@ -438,47 +950,12 @@ class HlsResolver:
             if playout:
                 promoted.append(rewrite_m3u8_client_ip(playout, client_ip))
                 LOGGER.info("playout %s", playout[:180])
-            if is_media_playlist_url(rewritten):
-                promoted.append(rewritten)
-                continue
-            if is_master_index_url(rewritten):
-                try:
-                    body = await self._fetch_text(rewritten, referer=referer, client_ip=client_ip)
-                except Exception as exc:  # noqa: BLE001
-                    LOGGER.info("master fetch failed %s: %s", rewritten[:120], exc)
-                    continue
-                for uri in parse_playlist_uris(body, rewritten):
-                    if not is_hls_url(uri) and ".m3u8" not in uri.lower():
-                        continue
-                    media = rewrite_m3u8_client_ip(urljoin(rewritten, uri), client_ip)
-                    promoted.append(media)
-                    mapped = to_po_playout_url(media)
-                    if mapped:
-                        promoted.append(rewrite_m3u8_client_ip(mapped, client_ip))
-                        LOGGER.info("master variant %s", mapped[:180])
-            else:
+            if is_media_playlist_url(rewritten) or not is_master_index_url(rewritten):
                 promoted.append(rewritten)
         ranked = rank_hls_urls(promoted or urls)
         if ranked:
             LOGGER.info("play url %s", ranked[0][:180])
         return ranked
-
-    async def _fetch_text(self, url: str, *, referer: str, client_ip: str) -> str:
-        from urllib.request import Request, urlopen
-
-        headers = {
-            "User-Agent": self.settings.user_agent,
-            "Referer": referer or "https://tudeporteshoy.xyz/",
-            "X-Forwarded-For": client_ip,
-            "X-Real-IP": client_ip,
-        }
-
-        def _do() -> str:
-            request = Request(url, headers=headers)
-            with urlopen(request, timeout=8) as response:
-                return response.read().decode("utf-8", errors="ignore")
-
-        return await asyncio.to_thread(_do)
 
     async def _resolve_locked(
         self,
@@ -513,6 +990,8 @@ class HlsResolver:
             if rewritten not in captured:
                 captured.append(rewritten)
                 LOGGER.info("manifest depth=%s %s", depth, rewritten[:180])
+            # Master index is enough: we rewrite it to po./mono.m3u8 without
+            # fetching the CDN from Render (that GET is always 403).
             if not found.is_set():
                 found.set()
 

@@ -7,21 +7,21 @@ Este proxy resuelve el manifest **en el momento de la reproducción**, usando la
 ## Arquitectura
 
 ```
-Roku  →  PROXY (/v1/play.m3u8?embed=...)  →  Playwright abre embed  →  captura .m3u8 con IP del Roku
-```
-
-Ejemplo de manifest objetivo:
-
-```
-https://po.tudeporteshoy.xyz/mls2es/tracks-v1a1/mono.m3u8?ip=189.180.44.54&token=...
+Android/Roku  →  GET /v1/play.m3u8
+             ←  200 playlist (líneas .ts apuntan a /v1/media?u=...)
+             →  GET /v1/media?u=<url CDN>
+Render       →  GET CDN con User-Agent + Referer + Host
+             ←  .ts / clave / sub-playlist
 ```
 
 El proxy:
 
 1. Lee la IP del cliente desde `X-Forwarded-For` / `CF-Connecting-IP`
-2. Abre la subpágina embed con Playwright simulando esa IP en **todas** las peticiones
-3. Intercepta el `.m3u8` de red
-4. Responde con redirect `302` al manifest final
+2. Abre la subpágina embed con Playwright simulando esa IP
+3. Intercepta el `.m3u8` de red (`po.tudeporteshoy.xyz/.../mono.m3u8`)
+4. Baja el manifiesto desde Render inyectando `Referer`, `User-Agent` y `Host` del CDN
+5. Reescribe cada URI (`.ts`, `.m3u8`, `EXT-X-KEY`) a `/v1/media?u=` **sin recodificar** `token` / `auth` / `hash`
+6. Responde **200** `application/vnd.apple.mpegurl` — sin redirect 302
 
 ## Despliegue en Render (recomendado)
 
@@ -39,10 +39,10 @@ El proxy:
 ### Probar
 
 ```bash
-curl -I "https://TU-PROXY.onrender.com/v1/play.m3u8?embed=https%3A%2F%2Ffutbollibre.mx%2Fen-vivo%2Fespn-1&referer=https%3A%2F%2Ffutbollibre.mx%2F"
+curl -sI "https://TU-PROXY.onrender.com/v1/play.m3u8?embed=...&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
 ```
 
-Deberías ver `HTTP/2 302` con `Location: https://...m3u8?ip=...&token=...`.
+Deberías ver `HTTP/2 200` y `content-type: application/vnd.apple.mpegurl`. El cuerpo empieza por `#EXTM3U` y las líneas de segmentos son `/v1/media?u=https%3A%2F%2Fpo.tudeporteshoy.xyz%2F...`.
 
 JSON alternativo:
 
@@ -84,14 +84,15 @@ Con `PROXY_BASE_URL` configurado:
 }
 ```
 
-El Roku abre esa URL → el proxy resuelve el `.m3u8` con la IP del Roku.
+El nodo `Video` de Roku debe usar **directamente** la URL `/v1/play.m3u8?...` de `exclusive_sources.json` (HTTP 200, playlist ya reescrita). No hace falta seguir un 302 ni apuntar a `po.tudeporteshoy.xyz`.
 
 ## Endpoints
 
 | Ruta | Uso |
 |------|-----|
 | `GET /health` | Health check |
-| `GET /v1/play.m3u8?embed=&referer=` | Redirect 302 al manifest (para Roku) |
+| `GET /v1/play.m3u8?embed=&referer=` | **200** playlist HLS (pipe, sin 302) |
+| `GET /v1/media?u=` | Pipe de segmentos `.ts` / sub-playlists hacia el CDN |
 | `GET /v1/resolve?embed=&referer=` | JSON `{ m3u8, client_ip, urls }` |
 
 Header opcional: `X-Proxy-Key: <PROXY_API_KEY>`

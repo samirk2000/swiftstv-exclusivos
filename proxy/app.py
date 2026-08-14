@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 import logging
 import os
 import time
@@ -10,9 +11,22 @@ from urllib.parse import quote
 
 from fastapi import FastAPI, HTTPException, Query, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse, RedirectResponse
+from fastapi.responses import JSONResponse, StreamingResponse
 
-from hls_resolver import EVENT_UNAVAILABLE_DETAIL, HlsResolver, HlsResolverSettings
+from hls_resolver import (
+    CDN_PLAY_REFERER,
+    CDN_PLAY_USER_AGENT,
+    DEFAULT_PUBLIC_BASE,
+    EVENT_UNAVAILABLE_DETAIL,
+    CdnFetchError,
+    HlsResolver,
+    HlsResolverSettings,
+    M3U8_CONTENT_TYPE,
+    fetch_cdn_with_playout_fallback,
+    is_allowed_cdn_url,
+    looks_like_playlist,
+    rewrite_playlist_absolute,
+)
 
 logging.basicConfig(level=os.environ.get("LOG_LEVEL", "INFO").upper())
 LOGGER = logging.getLogger("hls_proxy")
@@ -29,6 +43,7 @@ RESOLVER = HlsResolver(HlsResolverSettings.from_env())
 CACHE_TTL_SECONDS = max(0, int(os.environ.get("CACHE_TTL_SECONDS", "45")))
 PROXY_API_KEY = os.environ.get("PROXY_API_KEY", "").strip()
 _CACHE: dict[tuple[str, str, str], tuple[float, list[str]]] = {}
+CDN_TOKEN_REJECT_DETAIL = "El CDN rechazó el stream (token/firma). Revisa el proxy HLS."
 
 
 @APP.on_event("startup")
@@ -54,6 +69,25 @@ def get_client_ip(request: Request) -> str:
     if request.client and request.client.host:
         return request.client.host
     return "127.0.0.1"
+
+
+def request_public_base(request: Request) -> str:
+    proto = (
+        request.headers.get("x-forwarded-proto") or request.url.scheme or "https"
+    ).split(",")[0].strip()
+    host = (
+        request.headers.get("x-forwarded-host")
+        or request.headers.get("host")
+        or request.url.netloc
+    ).split(",")[0].strip()
+    host_only = host.split(":")[0].lower()
+    if (
+        not host
+        or host_only in {"localhost", "127.0.0.1", "0.0.0.0"}
+        or host_only.endswith(".internal")
+    ):
+        return DEFAULT_PUBLIC_BASE
+    return f"{proto}://{host}"
 
 
 def require_api_key(request: Request) -> None:
@@ -97,6 +131,14 @@ async def resolve_manifests(embed: str, referer: str, client_ip: str) -> list[st
     return manifests
 
 
+def raise_cdn_http(exc: CdnFetchError) -> None:
+    if exc.status in {401, 403}:
+        raise HTTPException(status_code=403, detail=CDN_TOKEN_REJECT_DETAIL) from exc
+    if exc.status == 404:
+        raise HTTPException(status_code=404, detail=EVENT_UNAVAILABLE_DETAIL) from exc
+    raise HTTPException(status_code=502, detail=EVENT_UNAVAILABLE_DETAIL) from exc
+
+
 @APP.get("/health")
 async def health() -> dict[str, str]:
     return {"status": "ok"}
@@ -123,20 +165,115 @@ async def resolve_json(
     }
 
 
-@APP.get("/v1/play.m3u8")
-async def play_redirect(
+@APP.api_route("/v1/play.m3u8", methods=["GET", "HEAD"])
+async def play_manifest(
     request: Request,
     embed: str = Query(..., min_length=8),
     referer: str = Query(""),
 ) -> Response:
-    """Return a redirect to the resolved manifest for HLS players (Roku, etc.)."""
+    """Fetch mono.m3u8 on Render and return HTTP 200. Never 302 to the CDN."""
     require_api_key(request)
     client_ip = get_client_ip(request)
     referer_value = referer or request.headers.get("referer", "") or embed
     manifests = await resolve_manifests(embed, referer_value, client_ip)
     if not manifests:
         raise HTTPException(status_code=404, detail=EVENT_UNAVAILABLE_DETAIL)
-    return RedirectResponse(url=manifests[0], status_code=302)
+    try:
+        body = await RESOLVER.pipe_playout(
+            manifests,
+            client_ip,
+            public_base=request_public_base(request),
+            user_agent=request.headers.get("user-agent", ""),
+            referer=referer_value,
+        )
+    except CdnFetchError as exc:
+        LOGGER.warning("play pipe failed embed=%s ip=%s: %s", embed, client_ip, exc)
+        raise_cdn_http(exc)
+    except Exception as exc:  # noqa: BLE001
+        LOGGER.info("play pipe failed embed=%s ip=%s: %s", embed, client_ip, exc)
+        raise HTTPException(status_code=404, detail=EVENT_UNAVAILABLE_DETAIL) from exc
+    LOGGER.info("play 200 (no redirect) bytes=%s ip=%s", len(body or ""), client_ip)
+    headers = {
+        "Cache-Control": "no-store, no-cache, max-age=0",
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": M3U8_CONTENT_TYPE,
+    }
+    if request.method == "HEAD":
+        return Response(status_code=200, media_type=M3U8_CONTENT_TYPE, headers=headers)
+    return Response(
+        content=body,
+        status_code=200,
+        media_type=M3U8_CONTENT_TYPE,
+        headers=headers,
+    )
+
+
+@APP.api_route("/v1/media", methods=["GET", "HEAD"])
+async def proxy_media(
+    request: Request,
+    u: str = Query(..., min_length=8),
+) -> Response:
+    """Reverse-proxy a CDN segment/playlist and inject Referer, User-Agent, Host."""
+    require_api_key(request)
+    if not is_allowed_cdn_url(u):
+        LOGGER.warning("blocked media host url=%s", u)
+        raise HTTPException(status_code=400, detail="CDN host not allowed")
+    client_ip = get_client_ip(request)
+
+    try:
+        resolved_url, upstream = await asyncio.to_thread(
+            lambda: fetch_cdn_with_playout_fallback(
+                u,
+                client_ip,
+                user_agent=CDN_PLAY_USER_AGENT,
+                referer=CDN_PLAY_REFERER,
+            )
+        )
+    except CdnFetchError as exc:
+        raise_cdn_http(exc)
+
+    content_type = str(upstream.headers.get("Content-Type") or "application/octet-stream")
+    out_headers = {
+        "Cache-Control": "no-store, no-cache, max-age=0",
+        "Access-Control-Allow-Origin": "*",
+    }
+    if request.method == "HEAD":
+        upstream.close()
+        media_type = (
+            M3U8_CONTENT_TYPE
+            if looks_like_playlist(resolved_url, content_type, b"")
+            else content_type
+        )
+        return Response(status_code=200, media_type=media_type, headers=out_headers)
+
+    peek = upstream.read(16)
+    if looks_like_playlist(resolved_url, content_type, peek) or looks_like_playlist(
+        upstream.geturl(), content_type, peek
+    ):
+        try:
+            text = (peek + upstream.read()).decode("utf-8", errors="replace")
+        finally:
+            upstream.close()
+        rewritten = rewrite_playlist_absolute(
+            text,
+            upstream.geturl() or resolved_url,
+            public_base=request_public_base(request),
+        )
+        return Response(content=rewritten, media_type=M3U8_CONTENT_TYPE, headers=out_headers)
+
+    def iterate():
+        try:
+            if peek:
+                yield peek
+            while True:
+                chunk = upstream.read(64 * 1024)
+                if not chunk:
+                    break
+                yield chunk
+        finally:
+            upstream.close()
+
+    return StreamingResponse(iterate(), media_type=content_type, headers=out_headers)
 
 
 @APP.get("/")
@@ -148,6 +285,7 @@ async def root() -> JSONResponse:
                 "health": "/health",
                 "resolve": "/v1/resolve?embed=<url>&referer=<url>",
                 "play": "/v1/play.m3u8?embed=<url>&referer=<url>",
+                "media": "/v1/media?u=<cdn-url>",
             },
             "example_play_url": (
                 "/v1/play.m3u8?embed="

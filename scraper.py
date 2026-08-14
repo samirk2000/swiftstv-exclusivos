@@ -122,7 +122,7 @@ DEFAULT_EMBED_CATALOG_URLS = (
     "https://tudeporteshoy.xyz/",
     "https://futbol-libre-hd.com/",
 )
-DEFAULT_PLAYER_TEMPLATE = "https://streamtp-golden1.click/global1.php?stream={stream}"
+DEFAULT_PLAYER_TEMPLATE = "https://streamtp-golden1.click/global2.php?stream={stream}"
 DEAD_PLAYER_HOSTS = (
     "la12hd.com",
     "envivo1.com",
@@ -2360,6 +2360,7 @@ def normalize_tudeporteshoy_embed(
         return ""
     stream_id = extract_stream_id(player)
     player = rewrite_player_host(player, host_rewrites)
+    player = player.replace("/global1.php", "/global2.php")
     # Catalog pages still encode dead streamtp2.com; rebuild with the live golden host.
     if stream_id and (is_dead_player_host(player) or "streamtp2.com" in player):
         player = player_template.format(stream=stream_id)

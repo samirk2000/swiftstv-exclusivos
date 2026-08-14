@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="ResolveHlsTask" extends="Task">
+    <interface>
+        <field id="proxyUrl" type="string" />
+        <field id="playUrl" type="string" />
+        <field id="statusCode" type="integer" />
+        <field id="errorMessage" type="string" />
+        <field id="done" type="boolean" alwaysNotify="true" />
+    </interface>
+    <script type="text/brightscript" uri="ResolveHlsTask.brs" />
+</component>
