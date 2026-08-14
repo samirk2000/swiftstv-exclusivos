@@ -396,6 +396,23 @@ URI_ATTR_RE = re.compile(
 )
 
 
+def detect_egress_ip() -> str:
+    """Public IP Render uses when it talks to the CDN."""
+    from urllib.error import URLError
+    from urllib.request import Request, urlopen
+
+    for endpoint in ("https://api.ipify.org", "https://ifconfig.me/ip"):
+        try:
+            request = Request(endpoint, headers={"User-Agent": "curl/8.0"})
+            with urlopen(request, timeout=6) as response:
+                ip = response.read().decode("utf-8", errors="ignore").strip()
+            if ip and " " not in ip and len(ip) < 64:
+                return ip
+        except (URLError, OSError, TimeoutError):
+            continue
+    return ""
+
+
 def cdn_fetch_headers(
     url: str,
     client_ip: str,
@@ -403,7 +420,10 @@ def cdn_fetch_headers(
     user_agent: str = "",
     referer: str = "",
 ) -> dict[str, str]:
-    """Always inject the origin player headers. Ignore ExoPlayer/OkHttp UA."""
+    """Headers the origin player sends. Do not spoof the phone IP.
+
+    The CDN signs ip=/token= to the TCP peer. Render must fetch as itself.
+    """
     parsed = urlparse(url)
     return {
         "User-Agent": CDN_PLAY_USER_AGENT,
@@ -411,8 +431,6 @@ def cdn_fetch_headers(
         "Origin": "https://tudeporteshoy.xyz",
         "Host": parsed.netloc,
         "Accept": "*/*",
-        "X-Forwarded-For": client_ip or "",
-        "X-Real-IP": client_ip or "",
     }
 
 
@@ -862,7 +880,7 @@ class HlsResolverSettings:
 
 
 class HlsResolver:
-    """Capture .m3u8 URLs while simulating the viewer IP on every network hop."""
+    """Capture .m3u8 URLs. Tokens are minted for this proxy's egress IP."""
 
     def __init__(self, settings: HlsResolverSettings | None = None) -> None:
         self.settings = settings or HlsResolverSettings()
@@ -870,9 +888,13 @@ class HlsResolver:
         self._browser = None
         self._context = None
         self._lock = asyncio.Lock()
+        self.egress_ip = ""
 
     async def start(self) -> None:
         from playwright.async_api import async_playwright
+
+        self.egress_ip = await asyncio.to_thread(detect_egress_ip)
+        LOGGER.info("proxy egress ip=%s (CDN tokens bind to this, not the phone)", self.egress_ip)
 
         self._playwright = await async_playwright().start()
         self._browser = await self._playwright.chromium.launch(
@@ -1184,12 +1206,12 @@ class HlsResolver:
                 continue
 
     async def _apply_client_ip_routing(self, page, client_ip: str, referer: str) -> None:
+        """Referer only. Spoofing X-Forwarded-For with the phone IP makes
+        the CDN mint a token Render cannot fetch."""
         headers = {
-            "Referer": referer,
-            "X-Forwarded-For": client_ip,
-            "X-Real-IP": client_ip,
-            "CF-Connecting-IP": client_ip,
-            "True-Client-IP": client_ip,
+            "Referer": referer or CDN_PLAY_REFERER,
+            "User-Agent": CDN_PLAY_USER_AGENT,
+            "Origin": "https://tudeporteshoy.xyz",
         }
         await page.set_extra_http_headers(headers)
 

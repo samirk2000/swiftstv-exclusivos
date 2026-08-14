@@ -46,9 +46,15 @@ _CACHE: dict[tuple[str, str, str], tuple[float, list[str]]] = {}
 CDN_TOKEN_REJECT_DETAIL = "El CDN rechazó el stream (token/firma). Revisa el proxy HLS."
 
 
+def proxy_bind_ip() -> str:
+    """IP the CDN must see: Render egress, never the phone/Roku."""
+    return (getattr(RESOLVER, "egress_ip", None) or "").strip()
+
+
 @APP.on_event("startup")
 async def startup() -> None:
     await RESOLVER.start()
+    LOGGER.info("startup mode=transparent egress_ip=%s", proxy_bind_ip())
 
 
 @APP.on_event("shutdown")
@@ -141,7 +147,11 @@ def raise_cdn_http(exc: CdnFetchError) -> None:
 
 @APP.get("/health")
 async def health() -> dict[str, str]:
-    return {"status": "ok"}
+    return {
+        "status": "ok",
+        "mode": "transparent",
+        "egress_ip": proxy_bind_ip(),
+    }
 
 
 @APP.get("/v1/resolve")
@@ -173,26 +183,40 @@ async def play_manifest(
 ) -> Response:
     """Fetch mono.m3u8 on Render and return HTTP 200. Never 302 to the CDN."""
     require_api_key(request)
-    client_ip = get_client_ip(request)
+    viewer_ip = get_client_ip(request)
+    bind_ip = proxy_bind_ip()
     referer_value = referer or request.headers.get("referer", "") or embed
-    manifests = await resolve_manifests(embed, referer_value, client_ip)
+    # Do not rewrite ip= to the phone. Leave the token as the player minted it
+    # for this proxy's TCP address.
+    manifests = await resolve_manifests(embed, referer_value, "")
     if not manifests:
         raise HTTPException(status_code=404, detail=EVENT_UNAVAILABLE_DETAIL)
     try:
         body = await RESOLVER.pipe_playout(
             manifests,
-            client_ip,
+            "",
             public_base=request_public_base(request),
-            user_agent=request.headers.get("user-agent", ""),
-            referer=referer_value,
+            user_agent=CDN_PLAY_USER_AGENT,
+            referer=CDN_PLAY_REFERER,
         )
     except CdnFetchError as exc:
-        LOGGER.warning("play pipe failed embed=%s ip=%s: %s", embed, client_ip, exc)
+        LOGGER.warning(
+            "play pipe failed embed=%s bind_ip=%s viewer=%s: %s",
+            embed,
+            bind_ip,
+            viewer_ip,
+            exc,
+        )
         raise_cdn_http(exc)
     except Exception as exc:  # noqa: BLE001
-        LOGGER.info("play pipe failed embed=%s ip=%s: %s", embed, client_ip, exc)
+        LOGGER.info("play pipe failed embed=%s: %s", embed, exc)
         raise HTTPException(status_code=404, detail=EVENT_UNAVAILABLE_DETAIL) from exc
-    LOGGER.info("play 200 (no redirect) bytes=%s ip=%s", len(body or ""), client_ip)
+    LOGGER.info(
+        "play 200 (no redirect) bytes=%s bind_ip=%s viewer=%s",
+        len(body or ""),
+        bind_ip,
+        viewer_ip,
+    )
     headers = {
         "Cache-Control": "no-store, no-cache, max-age=0",
         "Access-Control-Allow-Origin": "*",
