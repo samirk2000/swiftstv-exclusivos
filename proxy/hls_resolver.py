@@ -503,14 +503,25 @@ def is_allowed_cdn_url(url: str) -> bool:
     return allowed_cdn_host(parsed.hostname or "")
 
 
-def wrap_media_url(public_base: str, cdn_url: str) -> str:
+def wrap_media_url(
+    public_base: str,
+    cdn_url: str,
+    *,
+    session_id: str = "",
+    device_id: str = "",
+) -> str:
     """Point the player at /v1/media so it never talks to po.tudeporteshoy.xyz."""
     base = (public_base or DEFAULT_PUBLIC_BASE).rstrip("/")
     if not cdn_url or not is_navigable_url(cdn_url):
         return cdn_url
     if "/v1/media" in cdn_url:
         return cdn_url
-    return f"{base}/v1/media?u={quote(cdn_url, safe='')}"
+    wrapped = f"{base}/v1/media?u={quote(cdn_url, safe='')}"
+    if session_id:
+        wrapped += f"&sid={quote(session_id, safe='')}"
+    if device_id:
+        wrapped += f"&did={quote(device_id, safe='')}"
+    return wrapped
 
 
 def absolutize_hls_uri(uri: str, base_url: str) -> str:
@@ -535,12 +546,24 @@ def absolutize_hls_uri(uri: str, base_url: str) -> str:
     return urlunparse(parsed_abs._replace(query=base_query))
 
 
-def rewrite_playlist_absolute(body: str, base_url: str, public_base: str = "") -> str:
+def rewrite_playlist_absolute(
+    body: str,
+    base_url: str,
+    public_base: str = "",
+    *,
+    session_id: str = "",
+    device_id: str = "",
+) -> str:
     """Rewrite .ts / sub-playlist / KEY URIs to /v1/media?u=... (never leak CDN URLs)."""
     proxy_base = public_base or DEFAULT_PUBLIC_BASE
 
     def convert(uri: str) -> str:
-        return wrap_media_url(proxy_base, absolutize_hls_uri(uri, base_url))
+        return wrap_media_url(
+            proxy_base,
+            absolutize_hls_uri(uri, base_url),
+            session_id=session_id,
+            device_id=device_id,
+        )
 
     def replace_uri(match: re.Match[str]) -> str:
         return (
@@ -563,17 +586,27 @@ def rewrite_playlist_absolute(body: str, base_url: str, public_base: str = "") -
     rewritten = "\n".join(lines)
     if (body or "").endswith("\n"):
         rewritten += "\n"
-    return _wrap_leaked_cdn_urls(rewritten, proxy_base)
+    return _wrap_leaked_cdn_urls(
+        rewritten, proxy_base, session_id=session_id, device_id=device_id
+    )
 
 
-def _wrap_leaked_cdn_urls(body: str, public_base: str) -> str:
+def _wrap_leaked_cdn_urls(
+    body: str,
+    public_base: str,
+    *,
+    session_id: str = "",
+    device_id: str = "",
+) -> str:
     """Safety net: any leftover https://*.tudeporteshoy.xyz URL goes through /v1/media."""
 
     def repl(match: re.Match[str]) -> str:
         url = match.group(0)
         if "/v1/media" in url:
             return url
-        return wrap_media_url(public_base, url)
+        return wrap_media_url(
+            public_base, url, session_id=session_id, device_id=device_id
+        )
 
     return LEAKED_CDN_URL_RE.sub(repl, body or "")
 
@@ -775,6 +808,8 @@ async def pipe_playlist(
     public_base: str = "",
     user_agent: str = "",
     referer: str = "",
+    session_id: str = "",
+    device_id: str = "",
 ) -> str:
     """Fetch the first working playlist and return it with proxied segment URLs."""
     last_error = "no manifests"
@@ -820,7 +855,13 @@ async def pipe_playlist(
                     break
                 except Exception as exc:  # noqa: BLE001
                     LOGGER.info("variant/playout pipe failed %s", exc)
-        rewritten = rewrite_playlist_absolute(body, source_url, public_base=public_base)
+        rewritten = rewrite_playlist_absolute(
+            body,
+            source_url,
+            public_base=public_base,
+            session_id=session_id,
+            device_id=device_id,
+        )
         LOGGER.info("piped playlist %s (%s bytes)", source_url, len(rewritten))
         return rewritten
     if last_fetch_error is not None:
@@ -1104,6 +1145,8 @@ class HlsResolver:
         public_base: str = "",
         user_agent: str = "",
         referer: str = "",
+        session_id: str = "",
+        device_id: str = "",
     ) -> str:
         request = getattr(self._context, "request", None) if self._context else None
         return await pipe_playlist(
@@ -1113,6 +1156,8 @@ class HlsResolver:
             public_base=public_base,
             user_agent=user_agent,
             referer=referer,
+            session_id=session_id,
+            device_id=device_id,
         )
 
     @staticmethod

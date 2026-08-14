@@ -16,11 +16,46 @@ function HlsHttpHeaders() as Object
     ]
 end function
 
+function AppendQueryParam(url as String, key as String, value as String) as String
+    if url = invalid or Len(url) = 0 or value = invalid or Len(value) = 0 then
+        return url
+    end if
+    needle = LCase(key) + "="
+    if Instr(1, LCase(url), needle) > 0 then
+        return url
+    end if
+    sep = "?"
+    if Instr(1, url, "?") > 0 then
+        sep = "&"
+    end if
+    return url + sep + key + "=" + value
+end function
+
+function ProxySubscriberId() as String
+    ' Use the logged-in account token when you have one. ChannelClientId is
+    ' per-device and will not stop the same URL being opened on another box.
+    if m.userToken <> invalid and Len(m.userToken) > 0 then
+        return m.userToken
+    end if
+    di = CreateObject("roDeviceInfo")
+    return di.GetChannelClientId()
+end function
+
+function ProxyDeviceId() as String
+    di = CreateObject("roDeviceInfo")
+    return di.GetChannelClientId()
+end function
+
+function WithProxySession(url as String) as String
+    out = AppendQueryParam(url, "sid", ProxySubscriberId())
+    return AppendQueryParam(out, "did", ProxyDeviceId())
+end function
+
 sub PlayProxyOrHls(proxyOrManifestUrl as String)
     if m.loadingSpinner <> invalid then m.loadingSpinner.visible = true
     ' /v1/play.m3u8 now returns HTTP 200 with the rewritten playlist. Keep the
     ' Video node on the proxy URL so live reloads stay on Render, not the CDN.
-    StartVideoWithHeaders(proxyOrManifestUrl)
+    StartVideoWithHeaders(WithProxySession(proxyOrManifestUrl))
 end sub
 
 sub OnProxyHlsResolved()
@@ -46,7 +81,7 @@ sub OnProxyHlsResolved()
         return
     end if
 
-    StartVideoWithHeaders(playUrl)
+    StartVideoWithHeaders(WithProxySession(playUrl))
 end sub
 
 sub StartVideoWithHeaders(manifestUrl as String)

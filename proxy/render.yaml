@@ -19,5 +19,11 @@ services:
         value: "64"
       - key: SEGMENT_CACHE_TTL_SECONDS
         value: "25"
+      - key: MAX_STREAMS_PER_SID
+        value: "2"
+      - key: STREAM_IDLE_SECONDS
+        value: "30"
+      - key: REQUIRE_SID
+        value: "0"
       - key: PROXY_API_KEY
         sync: false

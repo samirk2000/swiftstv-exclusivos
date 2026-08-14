@@ -14,6 +14,7 @@ from hls_resolver import (
     token_expiry_unix,
 )
 from segment_cache import SegmentCache, is_cacheable_segment
+from stream_limit import StreamLimiter
 
 
 class SegmentHelpersTest(unittest.TestCase):
@@ -120,6 +121,48 @@ class TokenCacheTest(unittest.TestCase):
         key = resolver.token_cache_key(embed)
         self.assertIn("global2.php", key)
         self.assertIn("espnpremium", key)
+
+
+class StreamLimitTest(unittest.IsolatedAsyncioTestCase):
+    async def test_same_device_is_one_session(self) -> None:
+        limiter = StreamLimiter(max_sessions=1, idle_seconds=30)
+        self.assertTrue(await limiter.admit("user-a", "tv-1"))
+        self.assertTrue(await limiter.admit("user-a", "tv-1"))
+        self.assertEqual(limiter.stats()["active_devices"], 1)
+
+    async def test_second_device_rejected(self) -> None:
+        limiter = StreamLimiter(max_sessions=1, idle_seconds=30)
+        self.assertTrue(await limiter.admit("user-a", "tv-1"))
+        self.assertFalse(await limiter.admit("user-a", "phone-2"))
+        self.assertEqual(limiter.rejected, 1)
+
+    async def test_two_accounts_independent(self) -> None:
+        limiter = StreamLimiter(max_sessions=1, idle_seconds=30)
+        self.assertTrue(await limiter.admit("user-a", "tv-1"))
+        self.assertTrue(await limiter.admit("user-b", "tv-2"))
+
+    async def test_idle_slot_expires(self) -> None:
+        limiter = StreamLimiter(max_sessions=1, idle_seconds=5)
+        limiter.idle_seconds = 0.05
+        self.assertTrue(await limiter.admit("user-a", "tv-1"))
+        await asyncio.sleep(0.08)
+        self.assertTrue(await limiter.admit("user-a", "phone-2"))
+
+
+class WrapMediaSidTest(unittest.TestCase):
+    def test_wrap_appends_sid_and_did(self) -> None:
+        from hls_resolver import wrap_media_url
+
+        url = wrap_media_url(
+            "https://proxy.example",
+            "https://po.tudeporteshoy.xyz/ch/seg.ts?token=ab+c",
+            session_id="user-1",
+            device_id="roku-9",
+        )
+        self.assertIn("/v1/media?u=", url)
+        self.assertIn("&sid=user-1", url)
+        self.assertIn("&did=roku-9", url)
+        self.assertIn("token%3Dab%2Bc", url)
 
 
 if __name__ == "__main__":

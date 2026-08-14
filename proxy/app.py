@@ -27,6 +27,12 @@ from hls_resolver import (
     rewrite_playlist_absolute,
 )
 from segment_cache import SegmentCache, is_cacheable_segment
+from stream_limit import (
+    SID_REQUIRED_DETAIL,
+    STREAM_LIMIT_DETAIL,
+    StreamLimiter,
+    sanitize_session_id,
+)
 
 logging.basicConfig(level=os.environ.get("LOG_LEVEL", "INFO").upper())
 LOGGER = logging.getLogger("hls_proxy")
@@ -45,6 +51,11 @@ SEGMENT_CACHE = SegmentCache(
     max_bytes=max(0, int(os.environ.get("SEGMENT_CACHE_MB", "64"))) * 1024 * 1024,
     ttl_seconds=max(0, int(os.environ.get("SEGMENT_CACHE_TTL_SECONDS", "25"))),
 )
+STREAM_LIMITER = StreamLimiter(
+    max_sessions=max(0, int(os.environ.get("MAX_STREAMS_PER_SID", "2"))),
+    idle_seconds=max(5, int(os.environ.get("STREAM_IDLE_SECONDS", "30"))),
+)
+REQUIRE_SID = os.environ.get("REQUIRE_SID", "").strip().lower() in {"1", "true", "yes"}
 CDN_TOKEN_REJECT_DETAIL = "El CDN rechazó el stream (token/firma). Revisa el proxy HLS."
 
 
@@ -57,11 +68,15 @@ def proxy_bind_ip() -> str:
 async def startup() -> None:
     await RESOLVER.start()
     LOGGER.info(
-        "startup mode=transparent egress_ip=%s token_ttl=%ss segment_cache=%sMB/%ss",
+        "startup mode=transparent egress_ip=%s token_ttl=%ss segment_cache=%sMB/%ss "
+        "max_streams=%s idle=%ss require_sid=%s",
         proxy_bind_ip(),
         RESOLVER.settings.token_ttl_seconds,
         SEGMENT_CACHE.max_bytes // (1024 * 1024),
         int(SEGMENT_CACHE.ttl_seconds),
+        STREAM_LIMITER.max_sessions,
+        int(STREAM_LIMITER.idle_seconds),
+        REQUIRE_SID,
     )
 
 
@@ -102,6 +117,43 @@ def request_public_base(request: Request) -> str:
     ):
         return DEFAULT_PUBLIC_BASE
     return f"{proto}://{host}"
+
+
+def viewer_session(
+    request: Request,
+    sid_query: str = "",
+    did_query: str = "",
+) -> tuple[str, str, str]:
+    """sid = subscriber, did = device. Fall back to client IP when the app omits them."""
+    provided_sid = sanitize_session_id(
+        sid_query or request.headers.get("x-session-id", "")
+    )
+    provided_did = sanitize_session_id(
+        did_query or request.headers.get("x-device-id", "")
+    )
+    viewer_ip = get_client_ip(request)
+    ip_key = sanitize_session_id(f"ip:{viewer_ip}") or f"ip-{viewer_ip}"
+    return provided_sid or ip_key, provided_did or ip_key, viewer_ip
+
+
+async def enforce_stream_limit(
+    request: Request,
+    sid_query: str = "",
+    did_query: str = "",
+) -> tuple[str, str, str]:
+    provided = bool(
+        sanitize_session_id(sid_query or request.headers.get("x-session-id", ""))
+    )
+    if REQUIRE_SID and not provided:
+        raise HTTPException(status_code=403, detail=SID_REQUIRED_DETAIL)
+    sid, did, viewer_ip = viewer_session(request, sid_query, did_query)
+    if await STREAM_LIMITER.admit(sid, did):
+        return sid, did, viewer_ip
+    raise HTTPException(
+        status_code=429,
+        detail=STREAM_LIMIT_DETAIL,
+        headers={"Retry-After": str(int(STREAM_LIMITER.idle_seconds))},
+    )
 
 
 def require_api_key(request: Request) -> None:
@@ -155,6 +207,9 @@ async def pipe_play_with_token_retry(
     embed: str,
     referer_value: str,
     public_base: str,
+    *,
+    session_id: str = "",
+    device_id: str = "",
 ) -> str:
     """Reuse a cached token; remint with Playwright only on 401/403."""
     manifests = await resolve_manifests(embed, referer_value, "")
@@ -167,6 +222,8 @@ async def pipe_play_with_token_retry(
             public_base=public_base,
             user_agent=CDN_PLAY_USER_AGENT,
             referer=CDN_PLAY_REFERER,
+            session_id=session_id,
+            device_id=device_id,
         )
     except CdnFetchError as exc:
         if exc.status not in {401, 403}:
@@ -186,6 +243,8 @@ async def pipe_play_with_token_retry(
             public_base=public_base,
             user_agent=CDN_PLAY_USER_AGENT,
             referer=CDN_PLAY_REFERER,
+            session_id=session_id,
+            device_id=device_id,
         )
 
 
@@ -197,6 +256,8 @@ async def health() -> dict[str, Any]:
         "egress_ip": proxy_bind_ip(),
         "token_cache": RESOLVER.token_cache_stats(),
         "segment_cache": SEGMENT_CACHE.stats(),
+        "stream_limit": STREAM_LIMITER.stats(),
+        "require_sid": REQUIRE_SID,
     }
 
 
@@ -227,10 +288,12 @@ async def play_manifest(
     request: Request,
     embed: str = Query(..., min_length=8),
     referer: str = Query(""),
+    sid: str = Query(""),
+    did: str = Query(""),
 ) -> Response:
     """Fetch mono.m3u8 on Render and return HTTP 200. Never 302 to the CDN."""
     require_api_key(request)
-    viewer_ip = get_client_ip(request)
+    session_id, device_id, viewer_ip = await enforce_stream_limit(request, sid, did)
     bind_ip = proxy_bind_ip()
     referer_value = referer or request.headers.get("referer", "") or embed
     try:
@@ -238,6 +301,8 @@ async def play_manifest(
             embed,
             referer_value,
             request_public_base(request),
+            session_id=session_id,
+            device_id=device_id,
         )
     except CdnFetchError as exc:
         LOGGER.warning(
@@ -255,10 +320,12 @@ async def play_manifest(
         LOGGER.info("play pipe failed embed=%s: %s", embed, exc)
         raise HTTPException(status_code=404, detail=EVENT_UNAVAILABLE_DETAIL) from exc
     LOGGER.info(
-        "play 200 (no redirect) bytes=%s bind_ip=%s viewer=%s",
+        "play 200 (no redirect) bytes=%s bind_ip=%s viewer=%s sid=%s did=%s",
         len(body or ""),
         bind_ip,
         viewer_ip,
+        session_id[:48],
+        device_id[:48],
     )
     headers = {
         "Cache-Control": "no-store, no-cache, max-age=0",
@@ -279,12 +346,15 @@ async def play_manifest(
 async def proxy_media(
     request: Request,
     u: str = Query(..., min_length=8),
+    sid: str = Query(""),
+    did: str = Query(""),
 ) -> Response:
     """Reverse-proxy a CDN segment/playlist and inject Referer, User-Agent, Host."""
     require_api_key(request)
     if not is_allowed_cdn_url(u):
         LOGGER.warning("blocked media host url=%s", u)
         raise HTTPException(status_code=400, detail="CDN host not allowed")
+    session_id, device_id, _viewer_ip = await enforce_stream_limit(request, sid, did)
 
     if is_cacheable_segment(u):
         try:
@@ -346,6 +416,8 @@ async def proxy_media(
             text,
             upstream.geturl() or resolved_url,
             public_base=request_public_base(request),
+            session_id=session_id,
+            device_id=device_id,
         )
         return Response(content=rewritten, media_type=M3U8_CONTENT_TYPE, headers=out_headers)
 
