@@ -305,7 +305,10 @@ UNIX_TS_MAX = 2_100_000_000
 
 
 def token_expiry_unix(token: str) -> int:
-    """Best-effort expiry from tokens like hash-id-<exp>-<iat>."""
+    """Best-effort expiry from tokens like hash-id-<exp>-<iat>.
+
+    The larger future timestamp is expiry; the one near 'now' is issued-at.
+    """
     stamps: list[int] = []
     for part in (token or "").split("-"):
         if not part.isdigit():
@@ -313,7 +316,13 @@ def token_expiry_unix(token: str) -> int:
         value = int(part)
         if UNIX_TS_MIN <= value <= UNIX_TS_MAX:
             stamps.append(value)
-    return min(stamps) if stamps else 0
+    if not stamps:
+        return 0
+    now = int(time.time())
+    future = [stamp for stamp in stamps if stamp > now + 60]
+    if future:
+        return max(future)
+    return min(stamps)
 
 
 def manifest_urls_expire_at(urls: list[str], ttl_seconds: float) -> float:

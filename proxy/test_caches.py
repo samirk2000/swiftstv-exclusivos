@@ -25,7 +25,7 @@ class SegmentHelpersTest(unittest.TestCase):
 
     def test_token_expiry_from_cdn_token(self) -> None:
         token = "f1e3f4239730f261a13b4c1e7c3e17fbf6073b8a-63-1786742594-1786688594"
-        self.assertEqual(token_expiry_unix(token), 1786688594)
+        self.assertEqual(token_expiry_unix(token), 1786742594)
 
     def test_raw_query_keeps_token_bytes(self) -> None:
         url = "https://po.example/x.m3u8?token=ab+cd==&ip=1.2.3.4"
