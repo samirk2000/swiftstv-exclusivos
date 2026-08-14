@@ -1,32 +1,5 @@
 [
   {
-    "id": "evento-galatasaray-corum-belediyespor-disneyplus",
-    "name": "[12:30 PM] Galatasaray vs Çorum Belediyespor (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://swiftstv-hls-proxy.onrender.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXkx&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-real-sociedad-ii-cd-castellon-hypermotion",
-    "name": "[12:30 PM] Real Sociedad II vs CD Castellón (Hypermotion)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://swiftstv-hls-proxy.onrender.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1oeXBlcm1vdGlvbjE%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-monza-avellino-dsports-2",
-    "name": "[12:45 PM] Monza vs Avellino (Dsports 2)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://swiftstv-hls-proxy.onrender.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kc3BvcnRzMg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-wolverhampton-wanderers-blackburn-rovers-disneyplus",
     "name": "[01:00 PM] Wolverhampton Wanderers vs Blackburn Rovers (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -198,7 +171,7 @@
     ]
   },
   {
-    "id": "evento-galatasaray-corum-belediyespor-disneyplus-0530",
+    "id": "evento-galatasaray-corum-belediyespor-disneyplus",
     "name": "[05:30 AM] Galatasaray vs Çorum Belediyespor (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -216,7 +189,7 @@
     ]
   },
   {
-    "id": "evento-monza-avellino-dsports-2-0545",
+    "id": "evento-monza-avellino-dsports-2",
     "name": "[05:45 AM] Monza vs Avellino (Dsports 2)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
