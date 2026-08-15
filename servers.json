@@ -1,0 +1,12 @@
+{
+  "help": "Lista remota de servidores base (DNS/hosts). Edita este archivo en GitHub y la app se conecta al nuevo servidor sin recompilar. La app también fallbacka a la lista embebida si GitHub no responde.",
+  "servers": [
+    "http://cvcplayer.us:8080",
+    "http://swiftstable.xyz:8080"
+  ],
+  "cvc_aliases": [
+    "http://cvcplayer.us:8080",
+    "http://cavctv.xyz:8080",
+    "http://cvcplayertv.xyz:8080"
+  ]
+}
