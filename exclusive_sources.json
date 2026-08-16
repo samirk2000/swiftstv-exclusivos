@@ -1,68 +1,5 @@
 [
   {
-    "id": "evento-colo-colo-o-higgins-tnt-sports-premium",
-    "name": "[03:30 PM] Colo-Colo vs O'Higgins (TNT Sports Premium)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT10bnRzcG9ydHNjaGlsZQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-penarol-central-espanol-disneyplus",
-    "name": "[03:30 PM] Peñarol vs Central Español (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXkxMw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-vitoria-botafogo-fanatiz",
-    "name": "[03:30 PM] Vitória vs Botafogo (Fanatiz)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mYW5hdGl6MTI%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-vitoria-botafogo-premiere-br",
-    "name": "[03:30 PM] Vitória vs Botafogo (Premiere BR)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1wcmVtaWVyZTE%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-mirassol-flamengo-fanatiz",
-    "name": "[03:30 PM] Mirassol vs Flamengo (Fanatiz)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mYW5hdGl6MQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-mirassol-flamengo-premiere-3-br",
-    "name": "[03:30 PM] Mirassol vs Flamengo (Premiere 3 BR)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1wcmVtaWVyZTM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-olimpia-sportivo-ameliano-fanatiz",
-    "name": "[03:30 PM] Olimpia vs Sportivo Ameliano (Fanatiz)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mYW5hdGl6Mg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-new-york-city-philadelphia-union-mls",
     "name": "[04:00 PM] New York City vs Philadelphia Union (MLS)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -405,7 +342,7 @@
     ]
   },
   {
-    "id": "evento-vitoria-botafogo-premiere-br-0745",
+    "id": "evento-vitoria-botafogo-premiere-br",
     "name": "[07:45 AM] Vitória vs Botafogo (Premiere BR)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -504,7 +441,7 @@
     ]
   },
   {
-    "id": "evento-penarol-central-espanol-disneyplus-0830",
+    "id": "evento-penarol-central-espanol-disneyplus",
     "name": "[08:30 AM] Peñarol vs Central Español (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -531,7 +468,7 @@
     ]
   },
   {
-    "id": "evento-mirassol-flamengo-premiere-3-br-0830",
+    "id": "evento-mirassol-flamengo-premiere-3-br",
     "name": "[08:30 AM] Mirassol vs Flamengo (Premiere 3 BR)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
