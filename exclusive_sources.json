@@ -1,41 +1,5 @@
 [
   {
-    "id": "evento-watford-southampton-disneyplus",
-    "name": "[06:30 AM] Watford vs Southampton (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXkx&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-feyenoord-go-ahead-eagles-disneyplus",
-    "name": "[06:30 AM] Feyenoord vs Go Ahead Eagles (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXky&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-feyenoord-go-ahead-eagles-espn-2",
-    "name": "[06:30 AM] Feyenoord vs Go Ahead Eagles (ESPN 2)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuMg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-feyenoord-go-ahead-eagles-espn-mx",
-    "name": "[06:30 AM] Feyenoord vs Go Ahead Eagles (ESPN MX)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BubXg%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-cerro-porteno-sportivo-san-lorenzo-fanatiz",
     "name": "[07:00 AM] Cerro Porteño vs Sportivo San Lorenzo (Fanatiz)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -1026,7 +990,7 @@
     ]
   },
   {
-    "id": "evento-watford-southampton-disneyplus-2330",
+    "id": "evento-watford-southampton-disneyplus",
     "name": "[11:30 PM] Watford vs Southampton (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -1404,6 +1368,15 @@
     ]
   },
   {
+    "id": "evento-basel-barcelona-eventos-0130",
+    "name": "[01:30 AM] Basel vs Barcelona (Eventos)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWV2ZW50b3M1&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
     "id": "evento-feyenoord-go-ahead-eagles-espn2",
     "name": "[11:30 PM] Feyenoord vs Go Ahead Eagles (ESPN2)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -1413,7 +1386,7 @@
     ]
   },
   {
-    "id": "evento-feyenoord-go-ahead-eagles-disneyplus-2330",
+    "id": "evento-feyenoord-go-ahead-eagles-disneyplus",
     "name": "[11:30 PM] Feyenoord vs Go Ahead Eagles (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -1431,7 +1404,7 @@
     ]
   },
   {
-    "id": "evento-feyenoord-go-ahead-eagles-espn-mx-2330",
+    "id": "evento-feyenoord-go-ahead-eagles-espn-mx",
     "name": "[11:30 PM] Feyenoord vs Go Ahead Eagles (ESPN MX)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -1590,6 +1563,15 @@
     "type": "hls",
     "urls": [
       "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-basel-barcelona-eventos-0630",
+    "name": "[06:30 AM] Basel vs Barcelona (Eventos)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWV2ZW50b3M1&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
