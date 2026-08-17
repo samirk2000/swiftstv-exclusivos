@@ -1,23 +1,5 @@
 [
   {
-    "id": "evento-sassuolo-cesena-dsports-2",
-    "name": "[10:30 AM] Sassuolo vs Cesena (Dsports 2)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kc3BvcnRzMg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-sporting-gijon-sabadell-hyper-1",
-    "name": "[11:00 AM] Sporting Gijón vs Sabadell (Hyper 1)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1oeXBlcm1vdGlvbjE%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-estudiantes-rio-cuarto-atletico-tucuman-espn-premium",
     "name": "[11:45 AM] Estudiantes Río Cuarto vs Atlético Tucumán (ESPN Premium)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -81,12 +63,12 @@
     ]
   },
   {
-    "id": "evento-palermo-lecce-dsportsplus",
-    "name": "[01:15 PM] Palermo vs Lecce (Dsports+)",
+    "id": "evento-palermo-lecce-dsports2",
+    "name": "[01:15 PM] Palermo vs Lecce (Dsports2)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kc3BvcnRzcGx1cw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kc3BvcnRzMg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
@@ -207,7 +189,7 @@
     ]
   },
   {
-    "id": "evento-sassuolo-cesena-dsports-2-0330",
+    "id": "evento-sassuolo-cesena-dsports-2",
     "name": "[03:30 AM] Sassuolo vs Cesena (Dsports 2)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -387,7 +369,7 @@
     ]
   },
   {
-    "id": "evento-palermo-lecce-dsportsplus-2",
+    "id": "evento-palermo-lecce-dsportsplus",
     "name": "Palermo vs Lecce (Dsports+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
