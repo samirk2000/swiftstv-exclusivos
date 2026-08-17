@@ -1,23 +1,5 @@
 [
   {
-    "id": "evento-estudiantes-rio-cuarto-atletico-tucuman-espn-premium",
-    "name": "[11:45 AM] Estudiantes Río Cuarto vs Atlético Tucumán (ESPN Premium)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BucHJlbWl1bQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-estudiantes-rio-cuarto-atletico-tucuman-fanatiz",
-    "name": "[11:45 AM] Estudiantes Río Cuarto vs Atlético Tucumán (Fanatiz)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mYW5hdGl6MQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-cremonese-sampdoria-dsports-plus",
     "name": "[12:45 PM] Cremonese vs Sampdoria (Dsports +)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -315,7 +297,7 @@
     ]
   },
   {
-    "id": "evento-estudiantes-rio-cuarto-atletico-tucuman-espn-premium-0445",
+    "id": "evento-estudiantes-rio-cuarto-atletico-tucuman-espn-premium",
     "name": "[04:45 AM] Estudiantes Río Cuarto vs Atlético Tucumán (ESPN Premium)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
