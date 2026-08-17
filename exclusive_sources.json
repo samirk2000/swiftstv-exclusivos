@@ -36,15 +36,6 @@
     ]
   },
   {
-    "id": "evento-estudiantes-rio-cuarto-atletico-tucuman-disneyplus",
-    "name": "[11:45 AM] Estudiantes Río Cuarto vs Atlético Tucumán (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXkx&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-cremonese-sampdoria-dsports-plus",
     "name": "[12:45 PM] Cremonese vs Sampdoria (Dsports +)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -243,33 +234,6 @@
     ]
   },
   {
-    "id": "evento-cremonese-sampdoria-dsportsplus-op2",
-    "name": "[05:45 AM] Cremonese vs Sampdoria (Dsports+ | OP2)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWV2ZW50b3MxNQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-cremonese-sampdoria-dsportsplus-movil",
-    "name": "[05:45 AM] Cremonese vs Sampdoria (Dsports+ Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2RzcG9ydHNwbHVzLmh0bWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-cremonese-sampdoria-dsportsplus",
-    "name": "[05:45 AM] Cremonese vs Sampdoria (Dsports+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRzcG9ydHNwbHVz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-deportivo-la-coruna-elche-dsports-arg",
     "name": "[06:00 AM] Deportivo La Coruña vs Elche (Dsports ARG)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -351,7 +315,7 @@
     ]
   },
   {
-    "id": "evento-estudiantes-rio-cuarto-atletico-tucuman-disneyplus-0445",
+    "id": "evento-estudiantes-rio-cuarto-atletico-tucuman-disneyplus",
     "name": "[04:45 AM] Estudiantes Río Cuarto vs Atlético Tucumán (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -396,8 +360,8 @@
     ]
   },
   {
-    "id": "evento-sassuolo-cesena-dsports-2-0830",
-    "name": "[08:30 AM] Sassuolo vs Cesena (Dsports 2)",
+    "id": "evento-cremonese-sampdoria-dsports-2",
+    "name": "[05:45 AM] Cremonese vs Sampdoria (Dsports 2)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
@@ -405,8 +369,8 @@
     ]
   },
   {
-    "id": "evento-sassuolo-cesena-dsports-2-movil-0830",
-    "name": "[08:30 AM] Sassuolo vs Cesena (Dsports 2 Movil)",
+    "id": "evento-cremonese-sampdoria-dsports-2-movil",
+    "name": "[05:45 AM] Cremonese vs Sampdoria (Dsports 2 Movil)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
@@ -414,71 +378,8 @@
     ]
   },
   {
-    "id": "evento-sporting-gijon-sabadell-laliga-tv-hypermotion-0900",
-    "name": "[09:00 AM] Sporting Gijón vs Sabadell (LaLiga TV Hypermotion)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWh5cGVybW90aW9uMQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-estudiantes-rio-cuarto-atletico-tucuman-espn-0945",
-    "name": "[09:45 AM] Estudiantes Río Cuarto vs Atlético Tucumán (ESPN)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG4%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-estudiantes-rio-cuarto-atletico-tucuman-disneyplus-0945",
-    "name": "[09:45 AM] Estudiantes Río Cuarto vs Atlético Tucumán (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTE%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-estudiantes-rio-cuarto-atletico-tucuman-espn-movil-0945",
-    "name": "[09:45 AM] Estudiantes Río Cuarto vs Atlético Tucumán (ESPN Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2VzcG4xdHYuaHRtbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-estudiantes-rio-cuarto-atletico-tucuman-espn-premium-0945",
-    "name": "[09:45 AM] Estudiantes Río Cuarto vs Atlético Tucumán (ESPN Premium)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG5wcmVtaXVt&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-estudiantes-rio-cuarto-atletico-tucuman-espn-premium-movil-0945",
-    "name": "[09:45 AM] Estudiantes Río Cuarto vs Atlético Tucumán (ESPN Premium Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2VzcG5wcmVtaXVtMi5odG1s&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-estudiantes-rio-cuarto-atletico-tucuman-fanatiz01-0945",
-    "name": "[09:45 AM] Estudiantes Río Cuarto vs Atlético Tucumán (Fanatiz01)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZhbmF0aXox&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-cremonese-sampdoria-dsportsplus-op2-1045",
-    "name": "[10:45 AM] Cremonese vs Sampdoria (Dsports+ | OP2)",
+    "id": "evento-palermo-lecce-dsportsplus-op2",
+    "name": "Palermo vs Lecce (Dsports+ | OP2)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
@@ -486,17 +387,8 @@
     ]
   },
   {
-    "id": "evento-cremonese-sampdoria-dsportsplus-movil-1045",
-    "name": "[10:45 AM] Cremonese vs Sampdoria (Dsports+ Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2RzcG9ydHNwbHVzLmh0bWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-cremonese-sampdoria-dsportsplus-1045",
-    "name": "[10:45 AM] Cremonese vs Sampdoria (Dsports+)",
+    "id": "evento-palermo-lecce-dsportsplus-2",
+    "name": "Palermo vs Lecce (Dsports+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
@@ -504,75 +396,84 @@
     ]
   },
   {
-    "id": "evento-deportivo-la-coruna-elche-dsports-arg-1100",
-    "name": "[11:00 AM] Deportivo La Coruña vs Elche (Dsports ARG)",
+    "id": "evento-palermo-lecce-dsportsplus-movil",
+    "name": "Palermo vs Lecce (Dsports+ Movil)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRzcG9ydHNfZXZlbnRvcw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2RzcG9ydHNwbHVzLmh0bWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-deportivo-la-coruna-elche-dsports-op2-1100",
-    "name": "[11:00 AM] Deportivo La Coruña vs Elche (Dsports | OP2)",
+    "id": "evento-casa-pia-benfica-sport-tv1-0615",
+    "name": "[06:15 AM] Casa Pia vs Benfica (Sport TV1)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXZ0dnBsdXM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXNwb3J0dHYx&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-deportivo-la-coruna-elche-dsports-movil-1100",
-    "name": "[11:00 AM] Deportivo La Coruña vs Elche (Dsports Movil)",
+    "id": "evento-almeria-eldense-laliga-tv-hypermotion",
+    "name": "[06:30 AM] Almería vs Eldense (LaLiga TV Hypermotion)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2RpcmVjdHZwZXJ1Lmh0bWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWh5cGVybW90aW9uMQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-deportivo-la-coruna-elche-dsports-1100",
-    "name": "[11:00 AM] Deportivo La Coruña vs Elche (Dsports)",
+    "id": "evento-lanus-independiente-tnt-sports",
+    "name": "[07:00 AM] Lanús vs Independiente (TNT Sports)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRzcG9ydHM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXRudHNwb3J0cw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-deportivo-la-coruna-elche-espn-deportes-1100",
-    "name": "[11:00 AM] Deportivo La Coruña vs Elche (ESPN Deportes)",
+    "id": "evento-lanus-independiente-tnt-sports-movil",
+    "name": "[07:00 AM] Lanús vs Independiente (TNT Sports Movil)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG5kZXBvcnRlcw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL3RudHNwb3J0czIuaHRtbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-deportivo-la-coruna-elche-sky-sports-laliga-mx-1100",
-    "name": "[11:00 AM] Deportivo La Coruña vs Elche (Sky Sports LaLiga MX)",
+    "id": "evento-lanus-independiente-fanatiz02",
+    "name": "[07:00 AM] Lanús vs Independiente (Fanatiz02)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXNreV9zcG9ydHNfbGFsaWdh&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZhbmF0aXoy&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-cardiff-city-wrexham-disneyplus-1100",
-    "name": "[11:00 AM] Cardiff City vs Wrexham (Disney+)",
+    "id": "evento-velez-sarsfield-defensa-y-justicia-tnt-sports",
+    "name": "[09:15 AM] Vélez Sarsfield vs Defensa y Justicia (TNT Sports)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTI%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXRudHNwb3J0cw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-cardiff-city-wrexham-fox-sports-1100",
-    "name": "[11:00 AM] Cardiff City vs Wrexham (Fox Sports)",
+    "id": "evento-velez-sarsfield-defensa-y-justicia-fanatiz04",
+    "name": "[09:15 AM] Vélez Sarsfield vs Defensa y Justicia (Fanatiz04)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZveHNwb3J0cw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZhbmF0aXo0&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-velez-sarsfield-defensa-y-justicia-tnt-sports-movil",
+    "name": "[09:15 AM] Vélez Sarsfield vs Defensa y Justicia (TNT Sports Movil)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL3RudHNwb3J0czIuaHRtbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   }
 ]
