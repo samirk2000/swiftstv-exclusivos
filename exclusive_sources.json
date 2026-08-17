@@ -1,23 +1,5 @@
 [
   {
-    "id": "evento-lanus-independiente-tnt-sports-argentina",
-    "name": "[02:00 PM] Lanús vs Independiente (TNT Sports Argentina)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT10bnRzcG9ydHM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-lanus-independiente-fanatiz",
-    "name": "[02:00 PM] Lanús vs Independiente (Fanatiz)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mYW5hdGl6Mg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-velez-sarsfield-defensa-y-justicia-tnt-sports-argentina",
     "name": "[04:15 PM] Vélez Sarsfield vs Defensa y Justicia (TNT Sports Argentina)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -168,24 +150,6 @@
     "type": "hls",
     "urls": [
       "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZveHNwb3J0cw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-cremonese-sampdoria-dsports-2",
-    "name": "[05:45 AM] Cremonese vs Sampdoria (Dsports 2)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRzcG9ydHMy&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-cremonese-sampdoria-dsports-2-movil",
-    "name": "[05:45 AM] Cremonese vs Sampdoria (Dsports 2 Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2RzcG9ydHMyLmh0bWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
