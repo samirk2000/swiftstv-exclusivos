@@ -1,23 +1,5 @@
 [
   {
-    "id": "evento-deportivo-riestra-gimnasia-la-plata-fanatiz",
-    "name": "[02:00 PM] Deportivo Riestra vs Gimnasia La Plata (Fanatiz)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mYW5hdGl6MQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-deportivo-riestra-gimnasia-la-plata-tyc-sports",
-    "name": "[02:00 PM] Deportivo Riestra vs Gimnasia La Plata (TyC Sports)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT10eWNzcG9ydHM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-deportivo-recoleta-boca-juniors-espn-ar",
     "name": "[04:00 PM] Deportivo Recoleta vs Boca Juniors (ESPN AR)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -343,7 +325,7 @@
     ]
   },
   {
-    "id": "evento-deportivo-riestra-gimnasia-la-plata-tyc-sports-0700",
+    "id": "evento-deportivo-riestra-gimnasia-la-plata-tyc-sports",
     "name": "[07:00 AM] Deportivo Riestra vs Gimnasia La Plata (TyC Sports)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
