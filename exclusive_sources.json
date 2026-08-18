@@ -1,14 +1,5 @@
 [
   {
-    "id": "evento-necaxa-leon-fox-deportes",
-    "name": "[07:00 PM] Necaxa vs León (Fox Deportes)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mb3hfZGVwb3J0ZXNfdXNh&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-pachuca-puebla-tudn-usa",
     "name": "[09:06 PM] Pachuca vs Puebla (TUDN USA)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -90,7 +81,7 @@
     ]
   },
   {
-    "id": "evento-necaxa-leon-fox-deportes-1200",
+    "id": "evento-necaxa-leon-fox-deportes",
     "name": "[12:00 PM] Necaxa vs León (FOX Deportes)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
