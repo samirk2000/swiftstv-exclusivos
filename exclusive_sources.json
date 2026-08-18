@@ -1,86 +1,5 @@
 [
   {
-    "id": "evento-fenerbahce-olympique-lyonnais-playoffs-ida-disneyplus",
-    "name": "[01:00 PM] Fenerbahçe vs Olympique Lyonnais | Playoffs-Ida (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXkx&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-fenerbahce-olympique-lyonnais-playoffs-ida-espn",
-    "name": "[01:00 PM] Fenerbahçe vs Olympique Lyonnais | Playoffs-Ida (ESPN)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3Bu&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-fenerbahce-olympique-lyonnais-playoffs-ida-espn-2-ar",
-    "name": "[01:00 PM] Fenerbahçe vs Olympique Lyonnais | Playoffs-Ida (ESPN 2 AR)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuMmFyZ2VudGluYQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-levski-sofia-aek-athens-playoffs-ida-disneyplus",
-    "name": "[01:00 PM] Levski Sofia vs AEK Athens | Playoffs-Ida (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXky&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-levski-sofia-aek-athens-playoffs-ida-espn-2",
-    "name": "[01:00 PM] Levski Sofia vs AEK Athens | Playoffs-Ida (ESPN 2)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuMg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-levski-sofia-aek-athens-playoffs-ida-fox-sports-ar",
-    "name": "[01:00 PM] Levski Sofia vs AEK Athens | Playoffs-Ida (FOX Sports AR)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mb3gxYXI%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-levski-sofia-aek-athens-playoffs-ida-tudn-us",
-    "name": "[01:00 PM] Levski Sofia vs AEK Athens | Playoffs-Ida (TUDN US)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT10dWRuX3VzYQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-dinamo-zagreb-viking-playoffs-ida-disneyplus",
-    "name": "[01:00 PM] Dinamo Zagreb vs Viking | Playoffs-Ida (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXkz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-dinamo-zagreb-viking-playoffs-ida-espn-5",
-    "name": "[01:00 PM] Dinamo Zagreb vs Viking | Playoffs-Ida (ESPN 5)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuNQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-deportivo-riestra-gimnasia-la-plata-fanatiz",
     "name": "[02:00 PM] Deportivo Riestra vs Gimnasia La Plata (Fanatiz)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -307,7 +226,7 @@
     ]
   },
   {
-    "id": "evento-fenerbahce-olympique-lyonnais-playoffs-ida-espn-0600",
+    "id": "evento-fenerbahce-olympique-lyonnais-playoffs-ida-espn",
     "name": "[06:00 AM] Fenerbahçe vs Olympique Lyonnais | Playoffs-Ida (ESPN)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -316,7 +235,7 @@
     ]
   },
   {
-    "id": "evento-fenerbahce-olympique-lyonnais-playoffs-ida-disneyplus-0600",
+    "id": "evento-fenerbahce-olympique-lyonnais-playoffs-ida-disneyplus",
     "name": "[06:00 AM] Fenerbahçe vs Olympique Lyonnais | Playoffs-Ida (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -343,7 +262,7 @@
     ]
   },
   {
-    "id": "evento-levski-sofia-aek-athens-playoffs-ida-disneyplus-0600",
+    "id": "evento-levski-sofia-aek-athens-playoffs-ida-disneyplus",
     "name": "[06:00 AM] Levski Sofia vs AEK Athens | Playoffs-Ida (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -397,7 +316,7 @@
     ]
   },
   {
-    "id": "evento-dinamo-zagreb-viking-playoffs-ida-disneyplus-0600",
+    "id": "evento-dinamo-zagreb-viking-playoffs-ida-disneyplus",
     "name": "[06:00 AM] Dinamo Zagreb vs Viking | Playoffs-Ida (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
