@@ -1,158 +1,5 @@
 [
   {
-    "id": "evento-atletico-madrid-malaga-dsports-recomendado",
-    "name": "[01:00 PM] Atlético Madrid vs Málaga (DSports (Recomendado))",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdWRhbWVyaWNhcGxheS5zYnMvY2FuYWxfODExMi9jemFfZHNwb3J0cy5odG1s&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-atletico-madrid-malaga-dsports",
-    "name": "[01:00 PM] Atlético Madrid vs Málaga (DSports)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kc3BvcnRz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-atletico-madrid-malaga-espnplus-espanol",
-    "name": "[01:00 PM] Atlético Madrid vs Málaga (ESPN+ - Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BucGx1czE%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-atletico-madrid-malaga-espn-deportes",
-    "name": "[01:00 PM] Atlético Madrid vs Málaga (ESPN Deportes)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuZGVwb3J0ZXM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-celtic-lask-linz-playoffs-ida-disneyplus",
-    "name": "[01:00 PM] Celtic vs LASK Linz | Playoffs-Ida (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXkx&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-celtic-lask-linz-playoffs-ida-espn",
-    "name": "[01:00 PM] Celtic vs LASK Linz | Playoffs-Ida (ESPN)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuMWFyZ2VudGluYQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-celtic-lask-linz-playoffs-ida-espn-pe",
-    "name": "[01:00 PM] Celtic vs LASK Linz | Playoffs-Ida (ESPN PE)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BucGU%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-celtic-lask-linz-playoffs-ida-fox-sports-ar",
-    "name": "[01:00 PM] Celtic vs LASK Linz | Playoffs-Ida (FOX Sports AR)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mb3gxYXI%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-celtic-lask-linz-playoffs-ida-tudn-us",
-    "name": "[01:00 PM] Celtic vs LASK Linz | Playoffs-Ida (TUDN US)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT10dWRuX3VzYQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-nec-bod-glimt-playoffs-ida-espn",
-    "name": "[01:00 PM] NEC vs Bodø / Glimt | Playoffs-Ida (ESPN)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuMg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-nec-bod-glimt-playoffs-ida-espn-2-ar",
-    "name": "[01:00 PM] NEC vs Bodø / Glimt | Playoffs-Ida (ESPN 2 AR)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuMmFy&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-nec-bod-glimt-playoffs-ida-disneyplus",
-    "name": "[01:00 PM] NEC vs Bodø / Glimt | Playoffs-Ida (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXky&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-hapoel-be-er-sheva-sabah-playoffs-ida-espn",
-    "name": "[01:00 PM] Hapoel Be'er Sheva vs Sabah | Playoffs-Ida (ESPN)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuMw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-hapoel-be-er-sheva-sabah-playoffs-ida-fox-sports-2-ar",
-    "name": "[01:00 PM] Hapoel Be'er Sheva vs Sabah | Playoffs-Ida (FOX Sports 2 AR)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mb3gyYXI%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-hapoel-be-er-sheva-sabah-playoffs-ida-disneyplus",
-    "name": "[01:00 PM] Hapoel Be'er Sheva vs Sabah | Playoffs-Ida (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXkz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-slovan-bratislava-celje-playoffs-ida-espn-5",
-    "name": "[01:00 PM] Slovan Bratislava vs Celje | Playoffs-Ida (ESPN 5)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuNQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-slovan-bratislava-celje-playoffs-ida-disneyplus",
-    "name": "[01:00 PM] Slovan Bratislava vs Celje | Playoffs-Ida (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXk0&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-rionegro-aguilas-llaneros-fanatiz",
     "name": "[03:00 PM] Rionegro Águilas vs Llaneros (Fanatiz)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -585,7 +432,7 @@
     ]
   },
   {
-    "id": "evento-celtic-lask-linz-playoffs-ida-espn-0600",
+    "id": "evento-celtic-lask-linz-playoffs-ida-espn",
     "name": "[06:00 AM] Celtic vs LASK Linz | Playoffs-Ida (ESPN)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -594,7 +441,7 @@
     ]
   },
   {
-    "id": "evento-celtic-lask-linz-playoffs-ida-disneyplus-0600",
+    "id": "evento-celtic-lask-linz-playoffs-ida-disneyplus",
     "name": "[06:00 AM] Celtic vs LASK Linz | Playoffs-Ida (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -693,7 +540,7 @@
     ]
   },
   {
-    "id": "evento-atletico-madrid-malaga-dsports-0600",
+    "id": "evento-atletico-madrid-malaga-dsports",
     "name": "[06:00 AM] Atlético Madrid vs Málaga (Dsports)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -702,7 +549,7 @@
     ]
   },
   {
-    "id": "evento-atletico-madrid-malaga-espn-deportes-0600",
+    "id": "evento-atletico-madrid-malaga-espn-deportes",
     "name": "[06:00 AM] Atlético Madrid vs Málaga (ESPN Deportes)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -729,7 +576,7 @@
     ]
   },
   {
-    "id": "evento-nec-bod-glimt-playoffs-ida-disneyplus-0600",
+    "id": "evento-nec-bod-glimt-playoffs-ida-disneyplus",
     "name": "[06:00 AM] NEC vs Bodø / Glimt | Playoffs-Ida (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -756,7 +603,7 @@
     ]
   },
   {
-    "id": "evento-hapoel-be-er-sheva-sabah-playoffs-ida-disneyplus-0600",
+    "id": "evento-hapoel-be-er-sheva-sabah-playoffs-ida-disneyplus",
     "name": "[06:00 AM] Hapoel Be'er Sheva vs Sabah | Playoffs-Ida (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -792,7 +639,7 @@
     ]
   },
   {
-    "id": "evento-slovan-bratislava-celje-playoffs-ida-disneyplus-0600",
+    "id": "evento-slovan-bratislava-celje-playoffs-ida-disneyplus",
     "name": "[06:00 AM] Slovan Bratislava vs Celje | Playoffs-Ida (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
