@@ -1,14 +1,5 @@
 [
   {
-    "id": "evento-cartagines-hankook-verdes-disneyplus",
-    "name": "[07:00 PM] Cartaginés vs Hankook Verdes (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXk4&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-real-esteli-herediano-disneyplus",
     "name": "[09:00 PM] Real Estelí vs Herediano (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -189,7 +180,7 @@
     ]
   },
   {
-    "id": "evento-cartagines-hankook-verdes-disneyplus-1200",
+    "id": "evento-cartagines-hankook-verdes-disneyplus",
     "name": "[12:00 PM] Cartaginés vs Hankook Verdes (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
