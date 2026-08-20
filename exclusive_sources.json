@@ -1,140 +1,5 @@
 [
   {
-    "id": "evento-cerro-porteno-palmeiras-espn",
-    "name": "[04:00 PM] Cerro Porteño vs Palmeiras (ESPN)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3Bu&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-cerro-porteno-palmeiras-fox-sports-2-ar",
-    "name": "[04:00 PM] Cerro Porteño vs Palmeiras (FOX Sports 2 AR)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mb3gyYXI%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-cerro-porteno-palmeiras-fanatiz",
-    "name": "[04:00 PM] Cerro Porteño vs Palmeiras (Fanatiz)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mYW5hdGl6Mg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-cerro-porteno-palmeiras-disneyplus",
-    "name": "[04:00 PM] Cerro Porteño vs Palmeiras (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXk1&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-coquimbo-unido-platense-fox-sports-ar",
-    "name": "[04:00 PM] Coquimbo Unido vs Platense (FOX Sports AR)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mb3gxYXI%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-coquimbo-unido-platense-espn",
-    "name": "[04:00 PM] Coquimbo Unido vs Platense (ESPN)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuNQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-coquimbo-unido-platense-fanatiz",
-    "name": "[04:00 PM] Coquimbo Unido vs Platense (Fanatiz)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mYW5hdGl6Mw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-coquimbo-unido-platense-disneyplus",
-    "name": "[04:00 PM] Coquimbo Unido vs Platense (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXk2&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-atletico-mineiro-rb-bragantino-fanatiz",
-    "name": "[04:00 PM] Atlético Mineiro vs RB Bragantino (Fanatiz)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mYW5hdGl6NA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-atletico-mineiro-rb-bragantino-disneyplus",
-    "name": "[04:00 PM] Atlético Mineiro vs RB Bragantino (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXk3&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-atletico-mineiro-rb-bragantino-espn-2",
-    "name": "[04:00 PM] Atlético Mineiro vs RB Bragantino (ESPN 2)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuMg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-racing-club-belgrano-fanatiz",
-    "name": "[04:15 PM] Racing Club vs Belgrano (Fanatiz)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mYW5hdGl6NQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-racing-club-belgrano-tyc-sports",
-    "name": "[04:15 PM] Racing Club vs Belgrano (TyC Sports)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT10eWNzcG9ydHM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-cucuta-deportivo-inter-bogota-fanatiz",
-    "name": "[05:00 PM] Cúcuta Deportivo vs Inter Bogotá (Fanatiz)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mYW5hdGl6Ng%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-cucuta-deportivo-inter-bogota-winplus-futbol",
-    "name": "[05:00 PM] Cúcuta Deportivo vs Inter Bogotá (Win+ Fútbol)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT13aW5wbHVz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-philadelphia-union-inter-miami-mls",
     "name": "[05:30 PM] Philadelphia Union vs Inter Miami (MLS)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -469,42 +334,6 @@
     ]
   },
   {
-    "id": "evento-rionegro-aguilas-llaneros-win-sports-plus",
-    "name": "[08:00 AM] Rionegro Águilas vs Llaneros (Win Sports +)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXdpbnNwb3J0c3BsdXM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-rionegro-aguilas-llaneros-win-sports-plus-hd",
-    "name": "[08:00 AM] Rionegro Águilas vs Llaneros (Win Sports + HD)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXdpbnNwb3J0czI%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-rionegro-aguilas-llaneros-win-sports-plus-opc3",
-    "name": "[08:00 AM] Rionegro Águilas vs Llaneros (Win Sports + | opc3)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL3dpbnNwb3J0cy5odG1s&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-rionegro-aguilas-llaneros-fanatiz01",
-    "name": "[08:00 AM] Rionegro Águilas vs Llaneros (Fanatiz01)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZhbmF0aXox&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-new-york-rb-nashville-sc-mlb",
     "name": "[10:30 AM] New York RB vs Nashville SC (MLB)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -550,7 +379,7 @@
     ]
   },
   {
-    "id": "evento-cerro-porteno-palmeiras-espn-0900",
+    "id": "evento-cerro-porteno-palmeiras-espn",
     "name": "[09:00 AM] Cerro Porteño vs Palmeiras (ESPN)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -559,7 +388,7 @@
     ]
   },
   {
-    "id": "evento-cerro-porteno-palmeiras-disneyplus-0900",
+    "id": "evento-cerro-porteno-palmeiras-disneyplus",
     "name": "[09:00 AM] Cerro Porteño vs Palmeiras (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -613,7 +442,7 @@
     ]
   },
   {
-    "id": "evento-coquimbo-unido-platense-disneyplus-0900",
+    "id": "evento-coquimbo-unido-platense-disneyplus",
     "name": "[09:00 AM] Coquimbo Unido vs Platense (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -694,7 +523,7 @@
     ]
   },
   {
-    "id": "evento-racing-club-belgrano-tyc-sports-0900",
+    "id": "evento-racing-club-belgrano-tyc-sports",
     "name": "[09:00 AM] Racing Club vs Belgrano (TyC Sports)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -871,42 +700,6 @@
     "type": "hls",
     "urls": [
       "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZhbmF0aXo5&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-rionegro-aguilas-llaneros-win-sports-plus-1300",
-    "name": "[01:00 PM] Rionegro Águilas vs Llaneros (Win Sports +)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXdpbnNwb3J0c3BsdXM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-rionegro-aguilas-llaneros-win-sports-plus-hd-1300",
-    "name": "[01:00 PM] Rionegro Águilas vs Llaneros (Win Sports + HD)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXdpbnNwb3J0czI%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-rionegro-aguilas-llaneros-win-sports-plus-opc3-1300",
-    "name": "[01:00 PM] Rionegro Águilas vs Llaneros (Win Sports + | opc3)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL3dpbnNwb3J0cy5odG1s&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-rionegro-aguilas-llaneros-fanatiz01-1300",
-    "name": "[01:00 PM] Rionegro Águilas vs Llaneros (Fanatiz01)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZhbmF0aXox&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
