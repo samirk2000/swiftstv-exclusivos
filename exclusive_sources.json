@@ -1,41 +1,5 @@
 [
   {
-    "id": "evento-rayo-vallecano-deportivo-alaves-disneyplus",
-    "name": "[01:00 PM] Rayo Vallecano vs Deportivo Alavés (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXkx&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-rayo-vallecano-deportivo-alaves-espnplus-espanol",
-    "name": "[01:00 PM] Rayo Vallecano vs Deportivo Alavés (ESPN+ - Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BucGx1czE%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-rayo-vallecano-deportivo-alaves-espn-4",
-    "name": "[01:00 PM] Rayo Vallecano vs Deportivo Alavés (ESPN 4)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuNA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-rayo-vallecano-deportivo-alaves-espn-deportes",
-    "name": "[01:00 PM] Rayo Vallecano vs Deportivo Alavés (ESPN Deportes)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuZGVwb3J0ZXM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-ldu-quito-mirassol-fanatiz",
     "name": "[04:00 PM] LDU Quito vs Mirassol (Fanatiz)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -252,7 +216,7 @@
     ]
   },
   {
-    "id": "evento-rayo-vallecano-deportivo-alaves-disneyplus-0600",
+    "id": "evento-rayo-vallecano-deportivo-alaves-disneyplus",
     "name": "[06:00 AM] Rayo Vallecano vs Deportivo Alavés (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -270,7 +234,7 @@
     ]
   },
   {
-    "id": "evento-rayo-vallecano-deportivo-alaves-espn-deportes-0600",
+    "id": "evento-rayo-vallecano-deportivo-alaves-espn-deportes",
     "name": "[06:00 AM] Rayo Vallecano vs Deportivo Alavés (ESPN Deportes)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
