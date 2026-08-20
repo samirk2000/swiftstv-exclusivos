@@ -1,14 +1,5 @@
 [
   {
-    "id": "evento-al-fayha-al-hilal-fox-deportes",
-    "name": "[12:00 PM] Al-Fayha vs Al Hilal (FOX Deportes)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mb3hfZGVwb3J0ZXNfdXNh&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-rayo-vallecano-deportivo-alaves-disneyplus",
     "name": "[01:00 PM] Rayo Vallecano vs Deportivo Alavés (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -243,7 +234,7 @@
     ]
   },
   {
-    "id": "evento-al-fayha-al-hilal-fox-deportes-0500",
+    "id": "evento-al-fayha-al-hilal-fox-deportes",
     "name": "[05:00 AM] Al-Fayha vs Al Hilal (FOX Deportes)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
