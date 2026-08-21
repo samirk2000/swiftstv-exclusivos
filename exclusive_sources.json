@@ -1,14 +1,5 @@
 [
   {
-    "id": "evento-alianza-olimpia-disneyplus",
-    "name": "[07:00 PM] Alianza vs Olimpia (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXk2&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-firpo-alajuelense-disneyplus",
     "name": "[09:00 PM] Firpo vs Alajuelense (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -126,7 +117,7 @@
     ]
   },
   {
-    "id": "evento-alianza-olimpia-disneyplus-1200",
+    "id": "evento-alianza-olimpia-disneyplus",
     "name": "[12:00 PM] Alianza vs Olimpia (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
