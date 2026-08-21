@@ -1,14 +1,5 @@
 [
   {
-    "id": "evento-entrenamientos-1-disneyplus",
-    "name": "[04:30 AM] Entrenamientos #1 (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXkx&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-clasificacion-sprint-disneyplus",
     "name": "[08:30 AM] Clasificación Sprint (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
