@@ -1,23 +1,5 @@
 [
   {
-    "id": "evento-al-quadisiya-al-ittihad-fox-deportes",
-    "name": "[12:00 PM] Al Quadisiya vs Al Ittihad (FOX Deportes)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mb3hfZGVwb3J0ZXNfdXNh&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-al-quadisiya-al-ittihad-sportv-2-br",
-    "name": "[12:00 PM] Al Quadisiya vs Al Ittihad (SporTV 2 BR)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1zcG9ydHR2YnIy&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-bb-erzurumspor-galatasaray-disneyplus",
     "name": "[12:30 PM] BB Erzurumspor vs Galatasaray (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -351,6 +333,24 @@
     ]
   },
   {
+    "id": "evento-rubio-nu-sportivo-trinidense-fanatiz06",
+    "name": "[08:30 AM] Rubio Ñú vs Sportivo Trinidense (Fanatiz06)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZhbmF0aXo2&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-liverpool-cerro-disneyplus-0900",
+    "name": "[09:00 AM] Liverpool vs Cerro (Disney+)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTU%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
     "id": "evento-fc-cajamarca-atletico-grau-liga1max",
     "name": "[04:00 AM] FC Cajamarca vs Atlético Grau (Liga1max)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -396,7 +396,7 @@
     ]
   },
   {
-    "id": "evento-al-quadisiya-al-ittihad-fox-deportes-0500",
+    "id": "evento-al-quadisiya-al-ittihad-fox-deportes",
     "name": "[05:00 AM] Al Quadisiya vs Al Ittihad (FOX Deportes)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -825,6 +825,24 @@
     "type": "hls",
     "urls": [
       "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL3dpbnNwb3J0cy5odG1s&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-rubio-nu-sportivo-trinidense-fanatiz06-1330",
+    "name": "[01:30 PM] Rubio Ñú vs Sportivo Trinidense (Fanatiz06)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZhbmF0aXo2&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-liverpool-cerro-disneyplus-1400",
+    "name": "[02:00 PM] Liverpool vs Cerro (Disney+)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTU%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   }
 ]
