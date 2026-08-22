@@ -1,50 +1,5 @@
 [
   {
-    "id": "evento-packers-broncos-fox-sports-2-mx",
-    "name": "[07:00 PM] Packers vs Broncos (Fox Sports 2 MX)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mb3hzcG9ydHMybXg%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-tigres-uanl-atlante-fox-one",
-    "name": "[07:00 PM] Tigres UANL vs Atlante (Fox ONE)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mb3hvbmU1&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-tigres-uanl-atlante-universo",
-    "name": "[07:00 PM] Tigres UANL vs Atlante (Universo)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT11bml2ZXJzb191c2E%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-tigres-uanl-atlante-fox-deportes",
-    "name": "[07:00 PM] Tigres UANL vs Atlante (FOX Deportes)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mb3hfZGVwb3J0ZXNfdXNh&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-leon-monterrey-tudn-us",
-    "name": "[07:00 PM] León vs Monterrey (TUDN US)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT10dWRuX3VzYQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-juarez-america-universo",
     "name": "[09:00 PM] Juárez vs América (Universo)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -117,7 +72,7 @@
     ]
   },
   {
-    "id": "evento-packers-broncos-fox-sports-2-mx-1200",
+    "id": "evento-packers-broncos-fox-sports-2-mx",
     "name": "[12:00 PM] Packers vs Broncos (FOX Sports 2 MX)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -144,7 +99,7 @@
     ]
   },
   {
-    "id": "evento-tigres-uanl-atlante-fox-deportes-1200",
+    "id": "evento-tigres-uanl-atlante-fox-deportes",
     "name": "[12:00 PM] Tigres UANL vs Atlante (FOX Deportes)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
