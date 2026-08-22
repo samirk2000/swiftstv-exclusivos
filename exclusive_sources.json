@@ -1,77 +1,5 @@
 [
   {
-    "id": "evento-athletic-club-sevilla-dsports-recomendado",
-    "name": "[09:00 AM] Athletic Club vs Sevilla (Dsports (Recomendado))",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdWRhbWVyaWNhcGxheS5zYnMvY2FuYWxfODExMi9jemFfZHNwb3J0cy5odG1s&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-athletic-club-sevilla-dsports-op2",
-    "name": "[09:00 AM] Athletic Club vs Sevilla (DSports OP2)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kc3BvcnRz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-athletic-club-sevilla-espnplus-espanol",
-    "name": "[09:00 AM] Athletic Club vs Sevilla (ESPN+ | Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BucGx1czE%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-athletic-club-sevilla-espn-deportes",
-    "name": "[09:00 AM] Athletic Club vs Sevilla (ESPN Deportes)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuZGVwb3J0ZXM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-athletic-club-sevilla-canal-5-mx",
-    "name": "[09:00 AM] Athletic Club vs Sevilla (Canal 5 MX)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1jYW5hbDVteA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-real-oviedo-leganes-laliga-tv-hypermotion-es",
-    "name": "[09:00 AM] Real Oviedo vs Leganés (LaLiga TV Hypermotion ES)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1oeXBlcm1vdGlvbjE%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-lens-auxerre-disneyplus",
-    "name": "[09:15 AM] Lens vs Auxerre (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXkxMQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-lens-auxerre-fanatiz",
-    "name": "[09:15 AM] Lens vs Auxerre (Fanatiz)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mYW5hdGl6MQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-sport-huancayo-deportivo-moquegua-liga-1-max",
     "name": "[10:00 AM] Sport Huancayo vs Deportivo Moquegua (Liga 1 Max)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -1260,7 +1188,7 @@
     ]
   },
   {
-    "id": "evento-athletic-club-sevilla-dsports-op2-0200",
+    "id": "evento-athletic-club-sevilla-dsports-op2",
     "name": "[02:00 AM] Athletic Club vs Sevilla (Dsports | OP2)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -1278,7 +1206,7 @@
     ]
   },
   {
-    "id": "evento-athletic-club-sevilla-espn-deportes-0200",
+    "id": "evento-athletic-club-sevilla-espn-deportes",
     "name": "[02:00 AM] Athletic Club vs Sevilla (ESPN Deportes)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -1314,7 +1242,7 @@
     ]
   },
   {
-    "id": "evento-lens-auxerre-disneyplus-0215",
+    "id": "evento-lens-auxerre-disneyplus",
     "name": "[02:15 AM] Lens vs Auxerre (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
