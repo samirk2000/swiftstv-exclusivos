@@ -1,86 +1,5 @@
 [
   {
-    "id": "evento-alanyaspor-besiktas-disneyplus",
-    "name": "[12:30 PM] Alanyaspor vs Beşiktaş (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXkxNw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-alanyaspor-besiktas-fox-sports-2-ar",
-    "name": "[12:30 PM] Alanyaspor vs Beşiktaş (FOX Sports 2 AR)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mb3gyYXI%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-torino-milan-disneyplus",
-    "name": "[12:45 PM] Torino vs Milan (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXkxOA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-torino-milan-espn-2-col",
-    "name": "[12:45 PM] Torino vs Milan (ESPN 2 COL)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuMmNvbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-torino-milan-telemundo",
-    "name": "[12:45 PM] Torino vs Milan (Telemundo)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT10ZWxlbXVuZG8%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-torino-milan-espn-mx",
-    "name": "[12:45 PM] Torino vs Milan (ESPN MX)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BubXg%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-atalanta-sassuolo-disneyplus",
-    "name": "[12:45 PM] Atalanta vs Sassuolo (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXkxOQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-rennes-psg-disneyplus",
-    "name": "[12:45 PM] Rennes vs PSG (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXkyMA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-rennes-psg-fanatiz",
-    "name": "[12:45 PM] Rennes vs PSG (Fanatiz)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mYW5hdGl6Ng%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-universidad-chile-colo-colo-tnt-sports-premium",
     "name": "[01:00 PM] Universidad Chile vs Colo-Colo (TNT Sports Premium)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -675,15 +594,6 @@
     ]
   },
   {
-    "id": "evento-sporting-gijon-burgos-laliga-tv-hypermotion",
-    "name": "[04:00 AM] Sporting Gijón vs Burgos (LaLiga TV Hypermotion)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWh5cGVybW90aW9uMQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-elche-barcelona-cazetv",
     "name": "[06:30 AM] Elche vs Barcelona (CazeTV)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -736,15 +646,6 @@
     "type": "hls",
     "urls": [
       "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG5kZXBvcnRlcw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-cd-castellon-sabadell-laliga-tv-hypermotion-2",
-    "name": "[04:00 AM] CD Castellon vs Sabadell (LaLiga TV Hypermotion 2)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWh5cGVybW90aW9uMg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
@@ -874,7 +775,7 @@
     ]
   },
   {
-    "id": "evento-atalanta-sassuolo-disneyplus-0545",
+    "id": "evento-atalanta-sassuolo-disneyplus",
     "name": "[05:45 AM] Atalanta vs Sassuolo (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -892,7 +793,7 @@
     ]
   },
   {
-    "id": "evento-torino-milan-disneyplus-0545",
+    "id": "evento-torino-milan-disneyplus",
     "name": "[05:45 AM] Torino vs Milan (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -910,7 +811,7 @@
     ]
   },
   {
-    "id": "evento-torino-milan-telemundo-0545",
+    "id": "evento-torino-milan-telemundo",
     "name": "[05:45 AM] Torino vs Milan (Telemundo)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -919,7 +820,7 @@
     ]
   },
   {
-    "id": "evento-torino-milan-espn-mx-0545",
+    "id": "evento-torino-milan-espn-mx",
     "name": "[05:45 AM] Torino vs Milan (ESPN MX)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -1207,7 +1108,7 @@
     ]
   },
   {
-    "id": "evento-alanyaspor-besiktas-disneyplus-0530",
+    "id": "evento-alanyaspor-besiktas-disneyplus",
     "name": "[05:30 AM] Alanyaspor vs Beşiktaş (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -1234,7 +1135,7 @@
     ]
   },
   {
-    "id": "evento-rennes-psg-disneyplus-0545",
+    "id": "evento-rennes-psg-disneyplus",
     "name": "[05:45 AM] Rennes vs PSG (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -1321,24 +1222,6 @@
     "type": "hls",
     "urls": [
       "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZhbmF0aXoz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-sporting-gijon-burgos-laliga-tv-hypermotion-0900",
-    "name": "[09:00 AM] Sporting Gijón vs Burgos (LaLiga TV Hypermotion)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWh5cGVybW90aW9uMQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-cd-castellon-sabadell-laliga-tv-hypermotion-2-0900",
-    "name": "[09:00 AM] CD Castellon vs Sabadell (LaLiga TV Hypermotion 2)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWh5cGVybW90aW9uMg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
