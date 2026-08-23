@@ -1,50 +1,5 @@
 [
   {
-    "id": "evento-santos-mirassol-fanatiz",
-    "name": "[03:30 PM] Santos vs Mirassol (Fanatiz)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mYW5hdGl6MQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-santos-mirassol-premiere-3-br",
-    "name": "[03:30 PM] Santos vs Mirassol (Premiere 3 BR)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1wcmVtaWVyZTM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-chapecoense-sao-paulo-fanatiz",
-    "name": "[03:30 PM] Chapecoense vs São Paulo (Fanatiz)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mYW5hdGl6Mg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-chapecoense-sao-paulo-premiere-4-br",
-    "name": "[03:30 PM] Chapecoense vs São Paulo (Premiere 4 BR)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1wcmVtaWVyZTQ%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-nacional-progreso-disneyplus",
-    "name": "[03:30 PM] Nacional vs Progreso (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXky&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-river-plate-velez-sarsfield-tnt-sports-premium",
     "name": "[04:15 PM] River Plate vs Vélez Sarsfield (TNT Sports Premium)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -486,24 +441,6 @@
     ]
   },
   {
-    "id": "evento-belgrano-defensa-y-justicia-espn-premium",
-    "name": "[07:00 AM] Belgrano vs Defensa y Justicia (ESPN Premium)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG5wcmVtaXVt&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-belgrano-defensa-y-justicia-espn-premium-movil",
-    "name": "[07:00 AM] Belgrano vs Defensa y Justicia (ESPN Premium Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2VzcG5wcmVtaXVtMi5odG1s&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-melgar-alianza-lima-liga1max",
     "name": "[07:30 AM] Melgar vs Alianza Lima (Liga1max)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -558,7 +495,7 @@
     ]
   },
   {
-    "id": "evento-santos-mirassol-premiere-3-br-0830",
+    "id": "evento-santos-mirassol-premiere-3-br",
     "name": "[08:30 AM] Santos vs Mirassol (Premiere 3 BR)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -576,7 +513,7 @@
     ]
   },
   {
-    "id": "evento-chapecoense-sao-paulo-premiere-4-br-0830",
+    "id": "evento-chapecoense-sao-paulo-premiere-4-br",
     "name": "[08:30 AM] Chapecoense vs São Paulo (Premiere 4 BR)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -594,7 +531,7 @@
     ]
   },
   {
-    "id": "evento-nacional-progreso-disneyplus-0830",
+    "id": "evento-nacional-progreso-disneyplus",
     "name": "[08:30 AM] Nacional vs Progreso (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -699,24 +636,6 @@
     "type": "hls",
     "urls": [
       "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZhbmF0aXoz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-belgrano-defensa-y-justicia-espn-premium-1200",
-    "name": "[12:00 PM] Belgrano vs Defensa y Justicia (ESPN Premium)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG5wcmVtaXVt&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-belgrano-defensa-y-justicia-espn-premium-movil-1200",
-    "name": "[12:00 PM] Belgrano vs Defensa y Justicia (ESPN Premium Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2VzcG5wcmVtaXVtMi5odG1s&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
