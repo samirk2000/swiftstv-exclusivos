@@ -135,51 +135,6 @@
     ]
   },
   {
-    "id": "evento-fulham-chelsea-espn-1100",
-    "name": "[11:00 AM] Fulham vs Chelsea (ESPN)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG4%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-fulham-chelsea-disneyplus-1100",
-    "name": "[11:00 AM] Fulham vs Chelsea (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTQ%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-fulham-chelsea-espn-movil",
-    "name": "[11:00 AM] Fulham vs Chelsea (ESPN Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2VzcG4xdHYuaHRtbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-fulham-chelsea-universo-1100",
-    "name": "[11:00 AM] Fulham vs Chelsea (Universo)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXVuaXZlcnNv&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-nacional-asuncion-sportivo-luqueno-fanatiz01",
-    "name": "[11:00 AM] Nacional Asunción vs Sportivo Luqueño (Fanatiz01)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZhbmF0aXox&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-granada-mallorca-laliga-tv-hypermotion",
     "name": "[11:30 AM] Granada vs Mallorca (LaLiga TV Hypermotion)",
     "category": "EVENTOS DEL DIA - PPV",
