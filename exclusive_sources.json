@@ -1,50 +1,5 @@
 [
   {
-    "id": "evento-osasuna-levante-disneyplus",
-    "name": "[11:30 AM] Osasuna vs Levante (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXky&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-osasuna-levante-espnplus-espanol",
-    "name": "[11:30 AM] Osasuna vs Levante (ESPN+ - Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BucGx1czE%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-osasuna-levante-espn",
-    "name": "[11:30 AM] Osasuna vs Levante (ESPN)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuM2NvbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-osasuna-levante-espn-deportes",
-    "name": "[11:30 AM] Osasuna vs Levante (ESPN Deportes)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuZGVwb3J0ZXM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-osasuna-levante-premier-sports-1-uk",
-    "name": "[11:30 AM] Osasuna vs Levante (Premier Sports 1 UK)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1wcmVtaWVyMXVr&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-al-ittihad-al-hazm-fox-deportes",
     "name": "[12:00 PM] Al Ittihad vs Al Hazm (FOX Deportes)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -351,7 +306,7 @@
     ]
   },
   {
-    "id": "evento-osasuna-levante-disneyplus-0930",
+    "id": "evento-osasuna-levante-disneyplus",
     "name": "[09:30 AM] Osasuna vs Levante (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -369,7 +324,7 @@
     ]
   },
   {
-    "id": "evento-osasuna-levante-espn-deportes-0930",
+    "id": "evento-osasuna-levante-espn-deportes",
     "name": "[09:30 AM] Osasuna vs Levante (ESPN Deportes)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
