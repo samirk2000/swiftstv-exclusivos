@@ -297,349 +297,7 @@
     ]
   },
   {
-    "id": "evento-celta-de-vigo-ii-fc-andorra-laliga-tv-hypermotion",
-    "name": "[04:00 AM] Celta de Vigo II vs FC Andorra (LaLiga TV Hypermotion)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWh5cGVybW90aW9uMQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-granada-mallorca-laliga-tv-hypermotion",
-    "name": "[06:30 AM] Granada vs Mallorca (LaLiga TV Hypermotion)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWh5cGVybW90aW9uMQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-fulham-chelsea-espn-0600",
-    "name": "[06:00 AM] Fulham vs Chelsea (ESPN)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG4%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-fulham-chelsea-disneyplus-0600",
-    "name": "[06:00 AM] Fulham vs Chelsea (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTQ%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-fulham-chelsea-espn-movil",
-    "name": "[06:00 AM] Fulham vs Chelsea (ESPN Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2VzcG4xdHYuaHRtbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-fulham-chelsea-universo-0600",
-    "name": "[06:00 AM] Fulham vs Chelsea (Universo)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXVuaXZlcnNv&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-osasuna-levante-espn4",
-    "name": "[04:30 AM] Osasuna vs Levante (ESPN4)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG40&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-osasuna-levante-disneyplus-0430",
-    "name": "[04:30 AM] Osasuna vs Levante (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTI%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-osasuna-levante-espn4-movil",
-    "name": "[04:30 AM] Osasuna vs Levante (ESPN4 Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuNF9tb3ZpbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-osasuna-levante-espn-deportes-0430",
-    "name": "[04:30 AM] Osasuna vs Levante (ESPN Deportes)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG5kZXBvcnRlcw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-roma-fiorentina-espn2",
-    "name": "[05:45 AM] Roma vs Fiorentina (ESPN2)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG4y&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-roma-fiorentina-disneyplus-0545",
-    "name": "[05:45 AM] Roma vs Fiorentina (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-roma-fiorentina-espn2-movil",
-    "name": "[05:45 AM] Roma vs Fiorentina (ESPN2 Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2VzcG4ydHYuaHRtbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-roma-fiorentina-espn2-mx",
-    "name": "[05:45 AM] Roma vs Fiorentina (ESPN2 MX)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG4ybXg%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-bologna-lazio-espn2",
-    "name": "[03:30 AM] Bologna vs Lazio (ESPN2)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG4y&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-bologna-lazio-disneyplus",
-    "name": "[03:30 AM] Bologna vs Lazio (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTE%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-bologna-lazio-espn2-movil",
-    "name": "[03:30 AM] Bologna vs Lazio (ESPN2 Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2VzcG4ydHYuaHRtbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-bologna-lazio-espn2-mx",
-    "name": "[03:30 AM] Bologna vs Lazio (ESPN2 MX)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG4ybXg%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-bologna-lazio-universo",
-    "name": "[03:30 AM] Bologna vs Lazio (Universo)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXVuaXZlcnNv&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-nacional-asuncion-sportivo-luqueno-fanatiz01",
-    "name": "[06:00 AM] Nacional Asunción vs Sportivo Luqueño (Fanatiz01)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZhbmF0aXox&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-malaga-deportivo-la-coruna-dsports-2",
-    "name": "[06:30 AM] Málaga vs Deportivo La Coruña (Dsports 2)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRzcG9ydHMy&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-malaga-deportivo-la-coruna-espn-deportes-0630",
-    "name": "[06:30 AM] Málaga vs Deportivo La Coruña (ESPN Deportes)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG5kZXBvcnRlcw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-malaga-deportivo-la-coruna-dsports-2-movil",
-    "name": "[06:30 AM] Málaga vs Deportivo La Coruña (Dsports 2 Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2RzcG9ydHMyLmh0bWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-malaga-deportivo-la-coruna-sky-sports-laliga-mx",
-    "name": "[06:30 AM] Málaga vs Deportivo La Coruña (Sky Sports LaLiga MX)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXNreV9zcG9ydHNfbGFsaWdh&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-libertad-sportivo-san-lorenzo-fanatiz02",
-    "name": "[08:30 AM] Libertad vs Sportivo San Lorenzo (Fanatiz02)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZhbmF0aXoy&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-tigre-central-cordoba-sde-tnt-sports",
-    "name": "[09:00 AM] Tigre vs Central Córdoba SdE (TNT Sports)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXRudHNwb3J0cw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-tigre-central-cordoba-sde-fanatiz03",
-    "name": "[09:00 AM] Tigre vs Central Córdoba SdE (Fanatiz03)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZhbmF0aXoz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-tigre-central-cordoba-sde-tnt-sports-movil",
-    "name": "[09:00 AM] Tigre vs Central Córdoba SdE (TNT Sports Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL3RudHNwb3J0czIuaHRtbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-botafogo-athletico-pr-sportv",
-    "name": "[10:00 AM] Botafogo vs Athletico-PR (Sportv)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbGVzLnBocD9zdHJlYW09c3BvcnR2&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-botafogo-athletico-pr-premiere-br-1000",
-    "name": "[10:00 AM] Botafogo vs Athletico-PR (Premiere BR)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXByZW1pZXJlMQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-everton-univ-concepcion-tnt-sports-premium-cl",
-    "name": "[10:30 AM] Everton vs Univ. Concepción (TNT Sports Premium CL)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXRudHNwb3J0c2NoaWxl&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-everton-univ-concepcion-tnt-sports-premium-cl-movil",
-    "name": "[10:30 AM] Everton vs Univ. Concepción (TNT Sports Premium CL Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT10bnRfc3BvcnRzX3ByZW1pdW1fY2xfbW92aWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-lanus-argentinos-juniors-tnt-sports",
-    "name": "[11:15 AM] Lanús vs Argentinos Juniors (TNT Sports)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXRudHNwb3J0cw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-lanus-argentinos-juniors-fanatiz04",
-    "name": "[11:15 AM] Lanús vs Argentinos Juniors (Fanatiz04)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZhbmF0aXo0&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-lanus-argentinos-juniors-tnt-sports-movil",
-    "name": "[11:15 AM] Lanús vs Argentinos Juniors (TNT Sports Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL3RudHNwb3J0czIuaHRtbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-talleres-cordoba-rosario-central-espn-premium-1115",
-    "name": "[11:15 AM] Talleres Córdoba vs Rosario Central (ESPN Premium)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG5wcmVtaXVt&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-talleres-cordoba-rosario-central-fanatiz05",
-    "name": "[11:15 AM] Talleres Córdoba vs Rosario Central (Fanatiz05)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZhbmF0aXo1&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-talleres-cordoba-rosario-central-espn-premium-movil",
-    "name": "[11:15 AM] Talleres Córdoba vs Rosario Central (ESPN Premium Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2VzcG5wcmVtaXVtMi5odG1s&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-bologna-lazio-espn2-0830",
     "name": "[08:30 AM] Bologna vs Lazio (ESPN2)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -648,7 +306,7 @@
     ]
   },
   {
-    "id": "evento-bologna-lazio-disneyplus-0830",
+    "id": "evento-bologna-lazio-disneyplus",
     "name": "[08:30 AM] Bologna vs Lazio (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -657,7 +315,7 @@
     ]
   },
   {
-    "id": "evento-bologna-lazio-espn2-movil-0830",
+    "id": "evento-bologna-lazio-espn2-movil",
     "name": "[08:30 AM] Bologna vs Lazio (ESPN2 Movil)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -666,7 +324,7 @@
     ]
   },
   {
-    "id": "evento-bologna-lazio-espn2-mx-0830",
+    "id": "evento-bologna-lazio-espn2-mx",
     "name": "[08:30 AM] Bologna vs Lazio (ESPN2 MX)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -675,7 +333,7 @@
     ]
   },
   {
-    "id": "evento-bologna-lazio-universo-0830",
+    "id": "evento-bologna-lazio-universo",
     "name": "[08:30 AM] Bologna vs Lazio (Universo)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -684,7 +342,7 @@
     ]
   },
   {
-    "id": "evento-celta-de-vigo-ii-fc-andorra-laliga-tv-hypermotion-0900",
+    "id": "evento-celta-de-vigo-ii-fc-andorra-laliga-tv-hypermotion",
     "name": "[09:00 AM] Celta de Vigo II vs FC Andorra (LaLiga TV Hypermotion)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -693,7 +351,7 @@
     ]
   },
   {
-    "id": "evento-osasuna-levante-espn4-0930",
+    "id": "evento-osasuna-levante-espn4",
     "name": "[09:30 AM] Osasuna vs Levante (ESPN4)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -711,7 +369,7 @@
     ]
   },
   {
-    "id": "evento-osasuna-levante-espn4-movil-0930",
+    "id": "evento-osasuna-levante-espn4-movil",
     "name": "[09:30 AM] Osasuna vs Levante (ESPN4 Movil)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -729,7 +387,7 @@
     ]
   },
   {
-    "id": "evento-roma-fiorentina-espn2-1045",
+    "id": "evento-roma-fiorentina-espn2",
     "name": "[10:45 AM] Roma vs Fiorentina (ESPN2)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -747,7 +405,7 @@
     ]
   },
   {
-    "id": "evento-roma-fiorentina-espn2-movil-1045",
+    "id": "evento-roma-fiorentina-espn2-movil",
     "name": "[10:45 AM] Roma vs Fiorentina (ESPN2 Movil)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -756,7 +414,7 @@
     ]
   },
   {
-    "id": "evento-roma-fiorentina-espn2-mx-1045",
+    "id": "evento-roma-fiorentina-espn2-mx",
     "name": "[10:45 AM] Roma vs Fiorentina (ESPN2 MX)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -783,7 +441,7 @@
     ]
   },
   {
-    "id": "evento-fulham-chelsea-espn-movil-1100",
+    "id": "evento-fulham-chelsea-espn-movil",
     "name": "[11:00 AM] Fulham vs Chelsea (ESPN Movil)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -801,7 +459,7 @@
     ]
   },
   {
-    "id": "evento-nacional-asuncion-sportivo-luqueno-fanatiz01-1100",
+    "id": "evento-nacional-asuncion-sportivo-luqueno-fanatiz01",
     "name": "[11:00 AM] Nacional Asunción vs Sportivo Luqueño (Fanatiz01)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -810,7 +468,7 @@
     ]
   },
   {
-    "id": "evento-granada-mallorca-laliga-tv-hypermotion-1130",
+    "id": "evento-granada-mallorca-laliga-tv-hypermotion",
     "name": "[11:30 AM] Granada vs Mallorca (LaLiga TV Hypermotion)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -819,7 +477,7 @@
     ]
   },
   {
-    "id": "evento-malaga-deportivo-la-coruna-dsports-2-1130",
+    "id": "evento-malaga-deportivo-la-coruna-dsports-2",
     "name": "[11:30 AM] Málaga vs Deportivo La Coruña (Dsports 2)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -837,7 +495,7 @@
     ]
   },
   {
-    "id": "evento-malaga-deportivo-la-coruna-dsports-2-movil-1130",
+    "id": "evento-malaga-deportivo-la-coruna-dsports-2-movil",
     "name": "[11:30 AM] Málaga vs Deportivo La Coruña (Dsports 2 Movil)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -846,7 +504,7 @@
     ]
   },
   {
-    "id": "evento-malaga-deportivo-la-coruna-sky-sports-laliga-mx-1130",
+    "id": "evento-malaga-deportivo-la-coruna-sky-sports-laliga-mx",
     "name": "[11:30 AM] Málaga vs Deportivo La Coruña (Sky Sports LaLiga MX)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -855,7 +513,7 @@
     ]
   },
   {
-    "id": "evento-libertad-sportivo-san-lorenzo-fanatiz02-1330",
+    "id": "evento-libertad-sportivo-san-lorenzo-fanatiz02",
     "name": "[01:30 PM] Libertad vs Sportivo San Lorenzo (Fanatiz02)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -864,7 +522,7 @@
     ]
   },
   {
-    "id": "evento-tigre-central-cordoba-sde-tnt-sports-1400",
+    "id": "evento-tigre-central-cordoba-sde-tnt-sports",
     "name": "[02:00 PM] Tigre vs Central Córdoba SdE (TNT Sports)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -873,7 +531,7 @@
     ]
   },
   {
-    "id": "evento-tigre-central-cordoba-sde-fanatiz03-1400",
+    "id": "evento-tigre-central-cordoba-sde-fanatiz03",
     "name": "[02:00 PM] Tigre vs Central Córdoba SdE (Fanatiz03)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -882,7 +540,7 @@
     ]
   },
   {
-    "id": "evento-tigre-central-cordoba-sde-tnt-sports-movil-1400",
+    "id": "evento-tigre-central-cordoba-sde-tnt-sports-movil",
     "name": "[02:00 PM] Tigre vs Central Córdoba SdE (TNT Sports Movil)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -891,7 +549,7 @@
     ]
   },
   {
-    "id": "evento-botafogo-athletico-pr-sportv-1500",
+    "id": "evento-botafogo-athletico-pr-sportv",
     "name": "[03:00 PM] Botafogo vs Athletico-PR (Sportv)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -909,7 +567,7 @@
     ]
   },
   {
-    "id": "evento-everton-univ-concepcion-tnt-sports-premium-cl-1530",
+    "id": "evento-everton-univ-concepcion-tnt-sports-premium-cl",
     "name": "[03:30 PM] Everton vs Univ. Concepción (TNT Sports Premium CL)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -918,7 +576,7 @@
     ]
   },
   {
-    "id": "evento-everton-univ-concepcion-tnt-sports-premium-cl-movil-1530",
+    "id": "evento-everton-univ-concepcion-tnt-sports-premium-cl-movil",
     "name": "[03:30 PM] Everton vs Univ. Concepción (TNT Sports Premium CL Movil)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -927,7 +585,7 @@
     ]
   },
   {
-    "id": "evento-lanus-argentinos-juniors-tnt-sports-1615",
+    "id": "evento-lanus-argentinos-juniors-tnt-sports",
     "name": "[04:15 PM] Lanús vs Argentinos Juniors (TNT Sports)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -936,7 +594,7 @@
     ]
   },
   {
-    "id": "evento-lanus-argentinos-juniors-fanatiz04-1615",
+    "id": "evento-lanus-argentinos-juniors-fanatiz04",
     "name": "[04:15 PM] Lanús vs Argentinos Juniors (Fanatiz04)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -945,7 +603,7 @@
     ]
   },
   {
-    "id": "evento-lanus-argentinos-juniors-tnt-sports-movil-1615",
+    "id": "evento-lanus-argentinos-juniors-tnt-sports-movil",
     "name": "[04:15 PM] Lanús vs Argentinos Juniors (TNT Sports Movil)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -963,7 +621,7 @@
     ]
   },
   {
-    "id": "evento-talleres-cordoba-rosario-central-fanatiz05-1615",
+    "id": "evento-talleres-cordoba-rosario-central-fanatiz05",
     "name": "[04:15 PM] Talleres Córdoba vs Rosario Central (Fanatiz05)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -972,7 +630,7 @@
     ]
   },
   {
-    "id": "evento-talleres-cordoba-rosario-central-espn-premium-movil-1615",
+    "id": "evento-talleres-cordoba-rosario-central-espn-premium-movil",
     "name": "[04:15 PM] Talleres Córdoba vs Rosario Central (ESPN Premium Movil)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
