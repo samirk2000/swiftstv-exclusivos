@@ -1,41 +1,5 @@
 [
   {
-    "id": "evento-roma-fiorentina-disneyplus",
-    "name": "[12:45 PM] Roma vs Fiorentina (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXkz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-roma-fiorentina-espn",
-    "name": "[12:45 PM] Roma vs Fiorentina (ESPN)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuMmNvbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-roma-fiorentina-espn-2-mx",
-    "name": "[12:45 PM] Roma vs Fiorentina (ESPN 2 MX)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuMm14&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-nacional-asuncion-sportivo-luqueno-fanatiz",
-    "name": "[01:00 PM] Nacional Asunción vs Sportivo Luqueño (Fanatiz)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mYW5hdGl6MQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-gil-vicente-casa-pia-sport-tv",
     "name": "[01:15 PM] Gil Vicente vs Casa Pia (Sport TV)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -234,15 +198,6 @@
     ]
   },
   {
-    "id": "evento-celta-de-vigo-ii-fc-andorra-laliga-tv-hypermotion",
-    "name": "[09:00 AM] Celta de Vigo II vs FC Andorra (LaLiga TV Hypermotion)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWh5cGVybW90aW9uMQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-osasuna-levante-espn4",
     "name": "[09:30 AM] Osasuna vs Levante (ESPN4)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -288,7 +243,7 @@
     ]
   },
   {
-    "id": "evento-roma-fiorentina-disneyplus-1045",
+    "id": "evento-roma-fiorentina-disneyplus",
     "name": "[10:45 AM] Roma vs Fiorentina (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
