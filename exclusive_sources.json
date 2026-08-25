@@ -1,50 +1,5 @@
 [
   {
-    "id": "evento-abha-al-khaleej-fox-deportes",
-    "name": "[10:05 AM] Abha vs Al Khaleej (FOX Deportes)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mb3hfZGVwb3J0ZXNfdXNh&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-sabah-hapoel-be-er-sheva-disneyplus",
-    "name": "[10:45 AM] Sabah vs Hapoel Be'er Sheva (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXkx&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-sabah-hapoel-be-er-sheva-hbo-max",
-    "name": "[10:45 AM] Sabah vs Hapoel Be'er Sheva (HBO Max)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1tYXgx&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-sabah-hapoel-be-er-sheva-espn",
-    "name": "[10:45 AM] Sabah vs Hapoel Be'er Sheva (ESPN)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuM2NvbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-sabah-hapoel-be-er-sheva-paramountplus",
-    "name": "[10:45 AM] Sabah vs Hapoel Be'er Sheva (Paramount+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1wYXJhbW91bnQx&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-al-ittifaq-al-nassr-fox-one",
     "name": "[12:00 PM] Al Ittifaq vs Al Nassr (Fox ONE)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -459,7 +414,7 @@
     ]
   },
   {
-    "id": "evento-abha-al-khaleej-fox-deportes-0800",
+    "id": "evento-abha-al-khaleej-fox-deportes",
     "name": "[08:00 AM] Abha vs Al Khaleej (FOX Deportes)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -486,7 +441,7 @@
     ]
   },
   {
-    "id": "evento-sabah-hapoel-be-er-sheva-disneyplus-0845",
+    "id": "evento-sabah-hapoel-be-er-sheva-disneyplus",
     "name": "[08:45 AM] Sabah vs Hapoel Be'er Sheva (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -513,7 +468,7 @@
     ]
   },
   {
-    "id": "evento-sabah-hapoel-be-er-sheva-paramountplus-0845",
+    "id": "evento-sabah-hapoel-be-er-sheva-paramountplus",
     "name": "[08:45 AM] Sabah vs Hapoel Be'er Sheva (Paramount+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
