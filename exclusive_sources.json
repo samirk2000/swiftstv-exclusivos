@@ -1,14 +1,5 @@
 [
   {
-    "id": "evento-sassuolo-frosinone-dsports",
-    "name": "[07:00 AM] Sassuolo vs Frosinone (DSports)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kc3BvcnRz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-udinese-venezia-fox-one",
     "name": "[10:00 AM] Udinese vs Venezia (Fox ONE)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -288,6 +279,24 @@
     ]
   },
   {
+    "id": "evento-deportes-limache-nublense-tnt-sports-premium-cl",
+    "name": "[11:30 AM] Deportes Limache vs Ñublense (TNT Sports Premium CL)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXRudHNwb3J0c2NoaWxl&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-deportes-limache-nublense-tnt-sports-premium-cl-movil",
+    "name": "[11:30 AM] Deportes Limache vs Ñublense (TNT Sports Premium CL Movil)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT10bnRfc3BvcnRzX3ByZW1pdW1fY2xfbW92aWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
     "id": "evento-zenit-dynamo-makhachkala-dsportsplus",
     "name": "[02:30 AM] Zenit vs Dynamo Makhachkala (Dsports+)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -324,8 +333,17 @@
     ]
   },
   {
-    "id": "evento-sassuolo-frosinone-dsports-hd",
-    "name": "[12:00 AM] Sassuolo vs Frosinone (Dsports HD)",
+    "id": "evento-flamengo-mirassol-premiere-br-0930",
+    "name": "[09:30 AM] Flamengo vs Mirassol (Premiere BR)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXByZW1pZXJlMQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-santos-palmeiras-dsports-hd",
+    "name": "[11:30 AM] Santos vs Palmeiras (Dsports HD)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
@@ -333,8 +351,8 @@
     ]
   },
   {
-    "id": "evento-sassuolo-frosinone-dsports-arg",
-    "name": "[12:00 AM] Sassuolo vs Frosinone (Dsports ARG)",
+    "id": "evento-santos-palmeiras-dsports-arg",
+    "name": "[11:30 AM] Santos vs Palmeiras (Dsports ARG)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
@@ -342,17 +360,8 @@
     ]
   },
   {
-    "id": "evento-sassuolo-frosinone-dsports-movil",
-    "name": "[12:00 AM] Sassuolo vs Frosinone (Dsports Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2RpcmVjdHZwZXJ1Lmh0bWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-sassuolo-frosinone-dsports-0000",
-    "name": "[12:00 AM] Sassuolo vs Frosinone (Dsports)",
+    "id": "evento-santos-palmeiras-dsports",
+    "name": "[11:30 AM] Santos vs Palmeiras (Dsports)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
@@ -360,8 +369,8 @@
     ]
   },
   {
-    "id": "evento-sassuolo-frosinone-dsports-op2",
-    "name": "[12:00 AM] Sassuolo vs Frosinone (Dsports | OP2)",
+    "id": "evento-santos-palmeiras-dsports-op2",
+    "name": "[11:30 AM] Santos vs Palmeiras (Dsports | OP2)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
@@ -369,12 +378,84 @@
     ]
   },
   {
-    "id": "evento-flamengo-mirassol-premiere-br-0930",
-    "name": "[09:30 AM] Flamengo vs Mirassol (Premiere BR)",
+    "id": "evento-santos-palmeiras-espn4-mx",
+    "name": "[11:30 AM] Santos vs Palmeiras (ESPN4 MX)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG40bXg%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-santos-palmeiras-fox-deportes",
+    "name": "[11:30 AM] Santos vs Palmeiras (FOX Deportes)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZveGRlcG9ydGVz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-santos-palmeiras-fox-deportes-movil",
+    "name": "[11:30 AM] Santos vs Palmeiras (FOX Deportes | Móvil)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mb3hfZGVwb3J0ZXNfX21vdmls&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-santos-palmeiras-premiere-br-1130",
+    "name": "[11:30 AM] Santos vs Palmeiras (Premiere BR)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
       "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXByZW1pZXJlMQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-america-monterrey-tudn-usa",
+    "name": "[02:00 PM] América vs Monterrey (TUDN USA)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXR1ZG4%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-america-monterrey-unimas",
+    "name": "[02:00 PM] América vs Monterrey (UniMás)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXVuaW1hcw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-america-monterrey-tudn-usa-movil",
+    "name": "[02:00 PM] América vs Monterrey (TUDN USA Movil)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT10dWRuX3VzYQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-america-monterrey-nu9ve",
+    "name": "[02:00 PM] América vs Monterrey (Nu9ve)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9kZXBvcnRlc2Z1dGdvbC5jb20vY2FuYWwyLnBocD9zdHJlYW09bnVldmU%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-america-monterrey-mls02en",
+    "name": "[02:00 PM] América vs Monterrey (MLS02EN)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPW1sczJlbg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
@@ -459,6 +540,51 @@
     ]
   },
   {
+    "id": "evento-velez-sarsfield-boca-juniors-tyc-sports-1115",
+    "name": "[11:15 AM] Vélez Sarsfield vs Boca Juniors (TyC Sports)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXR5Y3Nwb3J0cw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-velez-sarsfield-boca-juniors-tyc-sports-movil",
+    "name": "[11:15 AM] Vélez Sarsfield vs Boca Juniors (TyC Sports Movil)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT10eWNfc3BvcnRz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-vitoria-vasco-da-gama-amazon-prime-1130",
+    "name": "[11:30 AM] Vitória vs Vasco da Gama (Amazon Prime)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWFtYXpvbl9wcmltZTE%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-toluca-leon-mls01es",
+    "name": "[12:00 PM] Toluca vs León (MLS01ES)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPW1sczFlcw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-toluca-leon-fox-sports-1-usa",
+    "name": "[12:00 PM] Toluca vs León (FOX Sports 1 USA)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZveHNwb3J0czFfdXNh&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
     "id": "evento-udinese-venezia-dsports-2",
     "name": "[03:00 AM] Udinese vs Venezia (Dsports 2)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -510,51 +636,6 @@
     "type": "hls",
     "urls": [
       "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZhbmF0aXoy&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-sassuolo-frosinone-dsports-hd-0500",
-    "name": "[05:00 AM] Sassuolo vs Frosinone (Dsports HD)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE2aGQuY29tL2RzcG9ydHNhci5waHA%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-sassuolo-frosinone-dsports-arg-0500",
-    "name": "[05:00 AM] Sassuolo vs Frosinone (Dsports ARG)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRzcG9ydHNfZXZlbnRvcw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-sassuolo-frosinone-dsports-movil-0500",
-    "name": "[05:00 AM] Sassuolo vs Frosinone (Dsports Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2RpcmVjdHZwZXJ1Lmh0bWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-sassuolo-frosinone-dsports-0500",
-    "name": "[05:00 AM] Sassuolo vs Frosinone (Dsports)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRzcG9ydHM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-sassuolo-frosinone-dsports-op2-0500",
-    "name": "[05:00 AM] Sassuolo vs Frosinone (Dsports | OP2)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXZ0dnBsdXM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
@@ -753,6 +834,186 @@
     "type": "hls",
     "urls": [
       "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXByZW1pZXJlMQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-velez-sarsfield-boca-juniors-tyc-sports-1615",
+    "name": "[04:15 PM] Vélez Sarsfield vs Boca Juniors (TyC Sports)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXR5Y3Nwb3J0cw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-velez-sarsfield-boca-juniors-tyc-sports-movil-1615",
+    "name": "[04:15 PM] Vélez Sarsfield vs Boca Juniors (TyC Sports Movil)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT10eWNfc3BvcnRz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-deportes-limache-nublense-tnt-sports-premium-cl-1630",
+    "name": "[04:30 PM] Deportes Limache vs Ñublense (TNT Sports Premium CL)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXRudHNwb3J0c2NoaWxl&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-deportes-limache-nublense-tnt-sports-premium-cl-movil-1630",
+    "name": "[04:30 PM] Deportes Limache vs Ñublense (TNT Sports Premium CL Movil)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT10eWNfc3BvcnRz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-santos-palmeiras-dsports-hd-1630",
+    "name": "[04:30 PM] Santos vs Palmeiras (Dsports HD)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE2aGQuY29tL2RzcG9ydHNhci5waHA%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-santos-palmeiras-dsports-arg-1630",
+    "name": "[04:30 PM] Santos vs Palmeiras (Dsports ARG)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRzcG9ydHNfZXZlbnRvcw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-santos-palmeiras-dsports-1630",
+    "name": "[04:30 PM] Santos vs Palmeiras (Dsports)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRzcG9ydHM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-santos-palmeiras-dsports-op2-1630",
+    "name": "[04:30 PM] Santos vs Palmeiras (Dsports | OP2)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXZ0dnBsdXM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-santos-palmeiras-espn4-mx-1630",
+    "name": "[04:30 PM] Santos vs Palmeiras (ESPN4 MX)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG40bXg%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-santos-palmeiras-fox-deportes-1630",
+    "name": "[04:30 PM] Santos vs Palmeiras (FOX Deportes)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZveGRlcG9ydGVz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-santos-palmeiras-fox-deportes-movil-1630",
+    "name": "[04:30 PM] Santos vs Palmeiras (FOX Deportes | Móvil)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT10eWNfc3BvcnRz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-santos-palmeiras-premiere-br-1630",
+    "name": "[04:30 PM] Santos vs Palmeiras (Premiere BR)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXByZW1pZXJlMQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-vitoria-vasco-da-gama-amazon-prime-1630",
+    "name": "[04:30 PM] Vitória vs Vasco da Gama (Amazon Prime)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWFtYXpvbl9wcmltZTE%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-toluca-leon-mls01es-1700",
+    "name": "[05:00 PM] Toluca vs León (MLS01ES)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPW1sczFlcw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-toluca-leon-fox-sports-1-usa-1700",
+    "name": "[05:00 PM] Toluca vs León (FOX Sports 1 USA)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZveHNwb3J0czFfdXNh&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-america-monterrey-tudn-usa-1900",
+    "name": "[07:00 PM] América vs Monterrey (TUDN USA)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXR1ZG4%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-america-monterrey-unimas-1900",
+    "name": "[07:00 PM] América vs Monterrey (UniMás)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXVuaW1hcw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-america-monterrey-tudn-usa-movil-1900",
+    "name": "[07:00 PM] América vs Monterrey (TUDN USA Movil)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT10eWNfc3BvcnRz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-america-monterrey-nu9ve-1900",
+    "name": "[07:00 PM] América vs Monterrey (Nu9ve)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9kZXBvcnRlc2Z1dGdvbC5jb20vY2FuYWwyLnBocD9zdHJlYW09bnVldmU%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-america-monterrey-mls02en-1900",
+    "name": "[07:00 PM] América vs Monterrey (MLS02EN)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPW1sczJlbg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   }
 ]
