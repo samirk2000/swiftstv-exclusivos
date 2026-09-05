@@ -1,50 +1,5 @@
 [
   {
-    "id": "evento-platense-deportivo-riestra-tnt-sports-premium",
-    "name": "[04:00 PM] Platense vs Deportivo Riestra (TNT Sports Premium)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT10bnRzcG9ydHM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-belgrano-huracan-espn-premium",
-    "name": "[04:00 PM] Belgrano vs Huracán (ESPN Premium)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BucHJlbWl1bQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-torque-cerro-largo-disneyplus",
-    "name": "[04:00 PM] Torque vs Cerro Largo (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXkxMA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-new-york-city-nashville-sc-mls",
-    "name": "[05:30 PM] New York City vs Nashville SC (MLS)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1tbHMxZXM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-deportes-concepcion-audax-italiano-tnt-sports-premium",
-    "name": "[06:30 PM] Deportes Concepción vs Audax Italiano (TNT Sports Premium)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT10bnRzcG9ydHNjaGlsZQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-juarez-pachuca-tudn-us",
     "name": "[09:00 PM] Juárez vs Pachuca (TUDN US)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -72,48 +27,12 @@
     ]
   },
   {
-    "id": "evento-platense-deportivo-riestra-tnt-sports",
-    "name": "[09:00 AM] Platense vs Deportivo Riestra (TNT Sports)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXRudHNwb3J0cw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-platense-deportivo-riestra-tnt-sports-movil",
-    "name": "[09:00 AM] Platense vs Deportivo Riestra (TNT Sports Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL3RudHNwb3J0czIuaHRtbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-new-york-city-nashville-sc-mls01es",
     "name": "[10:30 AM] New York City vs Nashville SC (MLS01ES)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
       "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPW1sczFlcw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-belgrano-huracan-espn-premium-0900",
-    "name": "[09:00 AM] Belgrano vs Huracán (ESPN Premium)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG5wcmVtaXVt&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-belgrano-huracan-espn-premium-movil",
-    "name": "[09:00 AM] Belgrano vs Huracán (ESPN Premium Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2VzcG5wcmVtaXVtMi5odG1s&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
@@ -177,96 +96,6 @@
     "type": "hls",
     "urls": [
       "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXVuaXZlcnNv&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-alianza-atletico-utc-cajamarca-liga1max",
-    "name": "[07:15 AM] Alianza Atlético vs UTC Cajamarca (Liga1max)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWxpZ2ExbWF4&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-alianza-atletico-utc-cajamarca-liga1max-movil",
-    "name": "[07:15 AM] Alianza Atlético vs UTC Cajamarca (Liga1max Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2xpZ2FwZXJ1Lmh0bWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-torque-cerro-largo-disneyplus-0900",
-    "name": "[09:00 AM] Torque vs Cerro Largo (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTEx&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-alianza-atletico-utc-cajamarca-liga1max-1215",
-    "name": "[12:15 PM] Alianza Atlético vs UTC Cajamarca (Liga1max)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWxpZ2ExbWF4&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-alianza-atletico-utc-cajamarca-liga1max-movil-1215",
-    "name": "[12:15 PM] Alianza Atlético vs UTC Cajamarca (Liga1max Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2xpZ2FwZXJ1Lmh0bWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-platense-deportivo-riestra-tnt-sports-1400",
-    "name": "[02:00 PM] Platense vs Deportivo Riestra (TNT Sports)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXRudHNwb3J0cw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-platense-deportivo-riestra-tnt-sports-movil-1400",
-    "name": "[02:00 PM] Platense vs Deportivo Riestra (TNT Sports Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL3RudHNwb3J0czIuaHRtbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-belgrano-huracan-espn-premium-1400",
-    "name": "[02:00 PM] Belgrano vs Huracán (ESPN Premium)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG5wcmVtaXVt&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-belgrano-huracan-espn-premium-movil-1400",
-    "name": "[02:00 PM] Belgrano vs Huracán (ESPN Premium Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2VzcG5wcmVtaXVtMi5odG1s&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-torque-cerro-largo-disneyplus-1400",
-    "name": "[02:00 PM] Torque vs Cerro Largo (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTEx&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
