@@ -1,113 +1,5 @@
 [
   {
-    "id": "evento-gimnasia-la-plata-tigre-tnt-sports-premium",
-    "name": "[11:30 AM] Gimnasia La Plata vs Tigre (TNT Sports Premium)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT10bnRzcG9ydHM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-ajax-psv-disneyplus",
-    "name": "[12:00 PM] Ajax vs PSV (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXk1&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-ajax-psv-espn",
-    "name": "[12:00 PM] Ajax vs PSV (ESPN)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuM2NvbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-ajax-psv-espn-mx",
-    "name": "[12:00 PM] Ajax vs PSV (ESPN MX)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BubXg%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-danubio-penarol-disneyplus",
-    "name": "[12:00 PM] Danubio vs Peñarol (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXk2&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-roma-atalanta-disneyplus",
-    "name": "[12:45 PM] Roma vs Atalanta (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXk3&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-le-havre-brest-disneyplus",
-    "name": "[12:45 PM] Le Havre vs Brest (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXk4&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-nice-le-mans-disneyplus",
-    "name": "[12:45 PM] Nice vs Le Mans (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXk5&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-villarreal-deportivo-la-coruna-dsports",
-    "name": "[01:00 PM] Villarreal vs Deportivo La Coruña (DSports)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kc3BvcnRz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-eldense-mallorca-laliga-tv-hypermotion-es",
-    "name": "[01:00 PM] Eldense vs Mallorca (LaLiga TV Hypermotion ES)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1oeXBlcm1vdGlvbjE%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-swansea-city-wrexham-disneyplus",
-    "name": "[01:00 PM] Swansea City vs Wrexham (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXkxMA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-boyaca-chico-once-caldas-winplus-futbol",
-    "name": "[01:00 PM] Boyacá Chicó vs Once Caldas (Win+ Fútbol)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT13aW5wbHVz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-gimnasia-mendoza-boca-juniors-espn",
     "name": "[01:30 PM] Gimnasia Mendoza vs Boca Juniors (ESPN)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -396,35 +288,8 @@
     ]
   },
   {
-    "id": "evento-inter-napoli-espn5",
-    "name": "[03:00 AM] Inter vs Napoli (ESPN5)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG41&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-inter-napoli-disneyplus",
-    "name": "[03:00 AM] Inter vs Napoli (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTE%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-inter-napoli-espn5-movil",
-    "name": "[03:00 AM] Inter vs Napoli (ESPN5 Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2VzcG41dHYuaHRtbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-inter-napoli-espn-mx",
-    "name": "[03:00 AM] Inter vs Napoli (ESPN MX)",
+    "id": "evento-atletico-san-luis-guadalajara-espn-mx-1000",
+    "name": "[10:00 AM] Atlético San Luis vs Guadalajara (ESPN MX)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
@@ -432,8 +297,17 @@
     ]
   },
   {
-    "id": "evento-inter-napoli-espn-mx-movil",
-    "name": "[03:00 AM] Inter vs Napoli (ESPN MX MOVIL)",
+    "id": "evento-atletico-san-luis-guadalajara-disneyplus-1000",
+    "name": "[10:00 AM] Atlético San Luis vs Guadalajara (Disney+)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTE0&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-atletico-san-luis-guadalajara-espn-mx-movil",
+    "name": "[10:00 AM] Atlético San Luis vs Guadalajara (ESPN MX MOVIL)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
@@ -441,102 +315,57 @@
     ]
   },
   {
-    "id": "evento-schalke-04-bayern-munchen-espn",
-    "name": "[03:30 AM] Schalke 04 vs Bayern München (ESPN)",
+    "id": "evento-universidad-chile-coquimbo-unido-tnt-sports-premium-cl",
+    "name": "[11:00 AM] Universidad Chile vs Coquimbo Unido (TNT Sports Premium CL)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG4%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXRudHNwb3J0c2NoaWxl&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-schalke-04-bayern-munchen-disneyplus",
-    "name": "[03:30 AM] Schalke 04 vs Bayern München (Disney+)",
+    "id": "evento-universidad-chile-coquimbo-unido-tnt-sports-premium-cl-movil",
+    "name": "[11:00 AM] Universidad Chile vs Coquimbo Unido (TNT Sports Premium CL Movil)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT10bnRfc3BvcnRzX3ByZW1pdW1fY2xfbW92aWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-schalke-04-bayern-munchen-espn-movil",
-    "name": "[03:30 AM] Schalke 04 vs Bayern München (ESPN Movil)",
+    "id": "evento-fluminense-vasco-da-gama-premiere-3-br-1100",
+    "name": "[11:00 AM] Fluminense vs Vasco da Gama (Premiere 3 BR)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2VzcG4xdHYuaHRtbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXByZW1pZXJlMw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-schalke-04-bayern-munchen-telemundo",
-    "name": "[03:30 AM] Schalke 04 vs Bayern München (Telemundo)",
+    "id": "evento-fluminense-vasco-da-gama-sportv",
+    "name": "[11:00 AM] Fluminense vs Vasco da Gama (Sportv)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXRlbGVtdW5kbw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbGVzLnBocD9zdHJlYW09c3BvcnR2&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-mexico-sub-20-benin-sub-20-tudn-mx",
-    "name": "[03:00 AM] México Sub-20 vs Benín Sub-20 (TUDN MX)",
+    "id": "evento-universitario-comerciantes-unidos-liga1max",
+    "name": "[12:30 PM] Universitario vs Comerciantes Unidos (Liga1max)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXR1ZG5fbXg%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWxpZ2ExbWF4&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-real-valladolid-fc-andorra-laliga-tv-hypermotion",
-    "name": "[03:30 AM] Real Valladolid vs FC Andorra (LaLiga TV Hypermotion)",
+    "id": "evento-universitario-comerciantes-unidos-liga1max-movil",
+    "name": "[12:30 PM] Universitario vs Comerciantes Unidos (Liga1max Movil)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWh5cGVybW90aW9uMQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-maritimo-benfica-dsports-2",
-    "name": "[04:00 AM] Marítimo vs Benfica (Dsports 2)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRzcG9ydHMy&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-maritimo-benfica-dsports-2-movil",
-    "name": "[04:00 AM] Marítimo vs Benfica (Dsports 2 Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2RzcG9ydHMyLmh0bWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-gimnasia-la-plata-tigre-tnt-sports",
-    "name": "[04:30 AM] Gimnasia La Plata vs Tigre (TNT Sports)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXRudHNwb3J0cw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-gimnasia-la-plata-tigre-tnt-sports-movil",
-    "name": "[04:30 AM] Gimnasia La Plata vs Tigre (TNT Sports Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL3RudHNwb3J0czIuaHRtbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-gimnasia-la-plata-tigre-fanatiz03",
-    "name": "[04:30 AM] Gimnasia La Plata vs Tigre (Fanatiz03)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZhbmF0aXoz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2xpZ2FwZXJ1Lmh0bWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
@@ -558,7 +387,7 @@
     ]
   },
   {
-    "id": "evento-nice-le-mans-disneyplus-0545",
+    "id": "evento-nice-le-mans-disneyplus",
     "name": "[05:45 AM] Nice vs Le Mans (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -657,66 +486,93 @@
     ]
   },
   {
-    "id": "evento-volos-nfc-olympiakos-piraeus-claro-sports",
-    "name": "[03:00 AM] Volos NFC vs Olympiakos Piraeus (Claro Sports)",
+    "id": "evento-cucuta-deportivo-deportivo-pasto-win-sports-plus",
+    "name": "[10:10 AM] Cúcuta Deportivo vs Deportivo Pasto (Win Sports +)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWNsYXJvc3BvcnRzMQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXdpbnNwb3J0c3BsdXM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-rayo-vallecano-racing-santander-dsports-arg",
-    "name": "[03:30 AM] Rayo Vallecano vs Racing Santander (Dsports ARG)",
+    "id": "evento-cucuta-deportivo-deportivo-pasto-win-sports-plus-hd",
+    "name": "[10:10 AM] Cúcuta Deportivo vs Deportivo Pasto (Win Sports + HD)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRzcG9ydHNfZXZlbnRvcw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXdpbnNwb3J0czI%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-rayo-vallecano-racing-santander-dsports",
-    "name": "[03:30 AM] Rayo Vallecano vs Racing Santander (Dsports)",
+    "id": "evento-cucuta-deportivo-deportivo-pasto-win-sports-plus-opc3",
+    "name": "[10:10 AM] Cúcuta Deportivo vs Deportivo Pasto (Win Sports + | opc3)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRzcG9ydHM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL3dpbnNwb3J0cy5odG1s&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-rayo-vallecano-racing-santander-dsports-movil",
-    "name": "[03:30 AM] Rayo Vallecano vs Racing Santander (Dsports Movil)",
+    "id": "evento-velez-sarsfield-estudiantes-lp-espn-premium-1115",
+    "name": "[11:15 AM] Vélez Sarsfield vs Estudiantes LP (ESPN Premium)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2RpcmVjdHZwZXJ1Lmh0bWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG5wcmVtaXVt&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-rayo-vallecano-racing-santander-dsports-op2",
-    "name": "[03:30 AM] Rayo Vallecano vs Racing Santander (Dsports | OP2)",
+    "id": "evento-velez-sarsfield-estudiantes-lp-espn-premium-movil",
+    "name": "[11:15 AM] Vélez Sarsfield vs Estudiantes LP (ESPN Premium Movil)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXZ0dnBsdXM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2VzcG5wcmVtaXVtMi5odG1s&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-rayo-vallecano-racing-santander-espn-deportes",
-    "name": "[03:30 AM] Rayo Vallecano vs Racing Santander (ESPN Deportes)",
+    "id": "evento-tigres-uanl-necaxa-fox-deportes-1200",
+    "name": "[12:00 PM] Tigres UANL vs Necaxa (FOX Deportes)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG5kZXBvcnRlcw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZveGRlcG9ydGVz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-ceuta-celta-de-vigo-ii-laliga-tv-hypermotion-2",
-    "name": "[03:30 AM] Ceuta vs Celta de Vigo II (LaLiga TV Hypermotion 2)",
+    "id": "evento-tigres-uanl-necaxa-fox-deportes-movil",
+    "name": "[12:00 PM] Tigres UANL vs Necaxa (FOX Deportes | Móvil)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWh5cGVybW90aW9uMg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mb3hfZGVwb3J0ZXNfX21vdmls&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-tigres-uanl-necaxa-telemundo-1200",
+    "name": "[12:00 PM] Tigres UANL vs Necaxa (Telemundo)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXRlbGVtdW5kbw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-tigres-uanl-necaxa-azteca-7",
+    "name": "[12:00 PM] Tigres UANL vs Necaxa (Azteca 7)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWF6dGVjYTc%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-tigres-uanl-necaxa-azteca-7-movil",
+    "name": "[12:00 PM] Tigres UANL vs Necaxa (Azteca 7 Movil)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1henRlY2FfN19tb3ZpbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
@@ -729,7 +585,7 @@
     ]
   },
   {
-    "id": "evento-ajax-psv-disneyplus-0500",
+    "id": "evento-ajax-psv-disneyplus",
     "name": "[05:00 AM] Ajax vs PSV (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -747,7 +603,7 @@
     ]
   },
   {
-    "id": "evento-ajax-psv-espn-mx-0500",
+    "id": "evento-ajax-psv-espn-mx",
     "name": "[05:00 AM] Ajax vs PSV (ESPN MX)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -765,7 +621,43 @@
     ]
   },
   {
-    "id": "evento-roma-atalanta-disneyplus-0545",
+    "id": "evento-atlas-atlante-canal-5-mx-1400",
+    "name": "[02:00 PM] Atlas vs Atlante (Canal 5 MX)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWNhbmFsNQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-atlas-atlante-tudn-usa",
+    "name": "[02:00 PM] Atlas vs Atlante (TUDN USA)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXR1ZG4%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-atlas-atlante-tudn-usa-movil",
+    "name": "[02:00 PM] Atlas vs Atlante (TUDN USA Movil)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT10dWRuX3VzYQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-atlas-atlante-tudn-mx-1400",
+    "name": "[02:00 PM] Atlas vs Atlante (TUDN MX)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXR1ZG5fbXg%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-roma-atalanta-disneyplus",
     "name": "[05:45 AM] Roma vs Atalanta (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -792,7 +684,7 @@
     ]
   },
   {
-    "id": "evento-villarreal-deportivo-la-coruna-dsports-0600",
+    "id": "evento-villarreal-deportivo-la-coruna-dsports",
     "name": "[06:00 AM] Villarreal vs Deportivo La Coruña (Dsports)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -909,43 +801,43 @@
     ]
   },
   {
-    "id": "evento-hull-city-aston-villa-disneyplus",
-    "name": "[03:30 AM] Hull City vs Aston Villa (Disney+)",
+    "id": "evento-inter-miami-atlanta-united-mls01es",
+    "name": "[10:30 AM] Inter Miami vs Atlanta United (MLS01ES)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTI%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPW1sczFlcw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-aldosivi-banfield-espn-premium",
-    "name": "[03:30 AM] Aldosivi vs Banfield (ESPN Premium)",
+    "id": "evento-junior-jaguares-de-cordoba-win-sports-plus",
+    "name": "[12:30 PM] Junior vs Jaguares de Córdoba (Win Sports +)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG5wcmVtaXVt&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXdpbnNwb3J0c3BsdXM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-aldosivi-banfield-espn-premium-movil",
-    "name": "[03:30 AM] Aldosivi vs Banfield (ESPN Premium Movil)",
+    "id": "evento-junior-jaguares-de-cordoba-win-sports-plus-hd",
+    "name": "[12:30 PM] Junior vs Jaguares de Córdoba (Win Sports + HD)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2VzcG5wcmVtaXVtMi5odG1s&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXdpbnNwb3J0czI%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-aldosivi-banfield-fanatiz01",
-    "name": "[03:30 AM] Aldosivi vs Banfield (Fanatiz01)",
+    "id": "evento-junior-jaguares-de-cordoba-win-sports-plus-opc3",
+    "name": "[12:30 PM] Junior vs Jaguares de Córdoba (Win Sports + | opc3)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZhbmF0aXox&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL3dpbnNwb3J0cy5odG1s&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-danubio-penarol-disneyplus-0500",
+    "id": "evento-danubio-penarol-disneyplus",
     "name": "[05:00 AM] Danubio vs Peñarol (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -954,43 +846,7 @@
     ]
   },
   {
-    "id": "evento-fenerbahce-besiktas-espn7",
-    "name": "[04:00 AM] Fenerbahçe vs Beşiktaş (ESPN7)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG43&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-fenerbahce-besiktas-disneyplus",
-    "name": "[04:00 AM] Fenerbahçe vs Beşiktaş (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTQ%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-fenerbahce-besiktas-espn7-movil",
-    "name": "[04:00 AM] Fenerbahçe vs Beşiktaş (ESPN7 Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuN19tb3ZpbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-fenerbahce-besiktas-fox-sports",
-    "name": "[04:00 AM] Fenerbahçe vs Beşiktaş (Fox Sports)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZveHNwb3J0cw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-le-havre-brest-disneyplus-0545",
+    "id": "evento-le-havre-brest-disneyplus",
     "name": "[05:45 AM] Le Havre vs Brest (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -999,291 +855,12 @@
     ]
   },
   {
-    "id": "evento-swansea-city-wrexham-disneyplus-0600",
+    "id": "evento-swansea-city-wrexham-disneyplus",
     "name": "[06:00 AM] Swansea City vs Wrexham (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
       "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTEx&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-inter-napoli-espn5-0800",
-    "name": "[08:00 AM] Inter vs Napoli (ESPN5)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG41&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-inter-napoli-disneyplus-0800",
-    "name": "[08:00 AM] Inter vs Napoli (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTE%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-inter-napoli-espn5-movil-0800",
-    "name": "[08:00 AM] Inter vs Napoli (ESPN5 Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2VzcG41dHYuaHRtbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-inter-napoli-espn-mx-0800",
-    "name": "[08:00 AM] Inter vs Napoli (ESPN MX)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG5teA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-inter-napoli-espn-mx-movil-0800",
-    "name": "[08:00 AM] Inter vs Napoli (ESPN MX MOVIL)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2VzcG5teC4xLmh0bWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-mexico-sub-20-benin-sub-20-tudn-mx-0800",
-    "name": "[08:00 AM] México Sub-20 vs Benín Sub-20 (TUDN MX)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXR1ZG5fbXg%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-volos-nfc-olympiakos-piraeus-claro-sports-0800",
-    "name": "[08:00 AM] Volos NFC vs Olympiakos Piraeus (Claro Sports)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWNsYXJvc3BvcnRzMQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-schalke-04-bayern-munchen-espn-0830",
-    "name": "[08:30 AM] Schalke 04 vs Bayern München (ESPN)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG4%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-schalke-04-bayern-munchen-disneyplus-0830",
-    "name": "[08:30 AM] Schalke 04 vs Bayern München (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-schalke-04-bayern-munchen-espn-movil-0830",
-    "name": "[08:30 AM] Schalke 04 vs Bayern München (ESPN Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2VzcG4xdHYuaHRtbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-schalke-04-bayern-munchen-telemundo-0830",
-    "name": "[08:30 AM] Schalke 04 vs Bayern München (Telemundo)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXRlbGVtdW5kbw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-real-valladolid-fc-andorra-laliga-tv-hypermotion-0830",
-    "name": "[08:30 AM] Real Valladolid vs FC Andorra (LaLiga TV Hypermotion)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWh5cGVybW90aW9uMQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-rayo-vallecano-racing-santander-dsports-arg-0830",
-    "name": "[08:30 AM] Rayo Vallecano vs Racing Santander (Dsports ARG)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRzcG9ydHNfZXZlbnRvcw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-rayo-vallecano-racing-santander-dsports-0830",
-    "name": "[08:30 AM] Rayo Vallecano vs Racing Santander (Dsports)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRzcG9ydHM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-rayo-vallecano-racing-santander-dsports-movil-0830",
-    "name": "[08:30 AM] Rayo Vallecano vs Racing Santander (Dsports Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2RpcmVjdHZwZXJ1Lmh0bWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-rayo-vallecano-racing-santander-dsports-op2-0830",
-    "name": "[08:30 AM] Rayo Vallecano vs Racing Santander (Dsports | OP2)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXZ0dnBsdXM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-rayo-vallecano-racing-santander-espn-deportes-0830",
-    "name": "[08:30 AM] Rayo Vallecano vs Racing Santander (ESPN Deportes)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG5kZXBvcnRlcw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-ceuta-celta-de-vigo-ii-laliga-tv-hypermotion-2-0830",
-    "name": "[08:30 AM] Ceuta vs Celta de Vigo II (LaLiga TV Hypermotion 2)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWh5cGVybW90aW9uMg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-hull-city-aston-villa-disneyplus-0830",
-    "name": "[08:30 AM] Hull City vs Aston Villa (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTI%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-aldosivi-banfield-espn-premium-0830",
-    "name": "[08:30 AM] Aldosivi vs Banfield (ESPN Premium)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG5wcmVtaXVt&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-aldosivi-banfield-espn-premium-movil-0830",
-    "name": "[08:30 AM] Aldosivi vs Banfield (ESPN Premium Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2VzcG5wcmVtaXVtMi5odG1s&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-aldosivi-banfield-fanatiz01-0830",
-    "name": "[08:30 AM] Aldosivi vs Banfield (Fanatiz01)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZhbmF0aXox&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-maritimo-benfica-dsports-2-0900",
-    "name": "[09:00 AM] Marítimo vs Benfica (Dsports 2)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRzcG9ydHMy&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-maritimo-benfica-dsports-2-movil-0900",
-    "name": "[09:00 AM] Marítimo vs Benfica (Dsports 2 Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2RzcG9ydHMyLmh0bWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-fenerbahce-besiktas-espn7-0900",
-    "name": "[09:00 AM] Fenerbahçe vs Beşiktaş (ESPN7)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG43&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-fenerbahce-besiktas-disneyplus-0900",
-    "name": "[09:00 AM] Fenerbahçe vs Beşiktaş (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTQ%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-fenerbahce-besiktas-espn7-movil-0900",
-    "name": "[09:00 AM] Fenerbahçe vs Beşiktaş (ESPN7 Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT10eWNfc3BvcnRz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-fenerbahce-besiktas-fox-sports-0900",
-    "name": "[09:00 AM] Fenerbahçe vs Beşiktaş (Fox Sports)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZveHNwb3J0cw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-gimnasia-la-plata-tigre-tnt-sports-0930",
-    "name": "[09:30 AM] Gimnasia La Plata vs Tigre (TNT Sports)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXRudHNwb3J0cw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-gimnasia-la-plata-tigre-tnt-sports-movil-0930",
-    "name": "[09:30 AM] Gimnasia La Plata vs Tigre (TNT Sports Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL3RudHNwb3J0czIuaHRtbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-gimnasia-la-plata-tigre-fanatiz03-0930",
-    "name": "[09:30 AM] Gimnasia La Plata vs Tigre (Fanatiz03)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZhbmF0aXoz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
@@ -1656,6 +1233,33 @@
     ]
   },
   {
+    "id": "evento-atletico-san-luis-guadalajara-espn-mx-1500",
+    "name": "[03:00 PM] Atlético San Luis vs Guadalajara (ESPN MX)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG5teA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-atletico-san-luis-guadalajara-disneyplus-1500",
+    "name": "[03:00 PM] Atlético San Luis vs Guadalajara (Disney+)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTE0&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-atletico-san-luis-guadalajara-espn-mx-movil-1500",
+    "name": "[03:00 PM] Atlético San Luis vs Guadalajara (ESPN MX MOVIL)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2VzcG5teC4xLmh0bWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
     "id": "evento-cusco-deportivo-moquegua-liga1max-1500",
     "name": "[03:00 PM] Cusco vs Deportivo Moquegua (Liga1max)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -1671,6 +1275,222 @@
     "type": "hls",
     "urls": [
       "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2xpZ2FwZXJ1Lmh0bWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-cucuta-deportivo-deportivo-pasto-win-sports-plus-1510",
+    "name": "[03:10 PM] Cúcuta Deportivo vs Deportivo Pasto (Win Sports +)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXdpbnNwb3J0c3BsdXM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-cucuta-deportivo-deportivo-pasto-win-sports-plus-hd-1510",
+    "name": "[03:10 PM] Cúcuta Deportivo vs Deportivo Pasto (Win Sports + HD)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXdpbnNwb3J0czI%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-cucuta-deportivo-deportivo-pasto-win-sports-plus-opc3-1510",
+    "name": "[03:10 PM] Cúcuta Deportivo vs Deportivo Pasto (Win Sports + | opc3)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL3dpbnNwb3J0cy5odG1s&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-inter-miami-atlanta-united-mls01es-1530",
+    "name": "[03:30 PM] Inter Miami vs Atlanta United (MLS01ES)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPW1sczFlcw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-universidad-chile-coquimbo-unido-tnt-sports-premium-cl-1600",
+    "name": "[04:00 PM] Universidad Chile vs Coquimbo Unido (TNT Sports Premium CL)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXRudHNwb3J0c2NoaWxl&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-universidad-chile-coquimbo-unido-tnt-sports-premium-cl-movil-1600",
+    "name": "[04:00 PM] Universidad Chile vs Coquimbo Unido (TNT Sports Premium CL Movil)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT10eWNfc3BvcnRz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-fluminense-vasco-da-gama-premiere-3-br-1600",
+    "name": "[04:00 PM] Fluminense vs Vasco da Gama (Premiere 3 BR)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXByZW1pZXJlMw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-fluminense-vasco-da-gama-sportv-1600",
+    "name": "[04:00 PM] Fluminense vs Vasco da Gama (Sportv)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbGVzLnBocD9zdHJlYW09c3BvcnR2&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-velez-sarsfield-estudiantes-lp-espn-premium-1615",
+    "name": "[04:15 PM] Vélez Sarsfield vs Estudiantes LP (ESPN Premium)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG5wcmVtaXVt&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-velez-sarsfield-estudiantes-lp-espn-premium-movil-1615",
+    "name": "[04:15 PM] Vélez Sarsfield vs Estudiantes LP (ESPN Premium Movil)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2VzcG5wcmVtaXVtMi5odG1s&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-tigres-uanl-necaxa-fox-deportes-1700",
+    "name": "[05:00 PM] Tigres UANL vs Necaxa (FOX Deportes)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZveGRlcG9ydGVz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-tigres-uanl-necaxa-fox-deportes-movil-1700",
+    "name": "[05:00 PM] Tigres UANL vs Necaxa (FOX Deportes | Móvil)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT10eWNfc3BvcnRz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-tigres-uanl-necaxa-telemundo-1700",
+    "name": "[05:00 PM] Tigres UANL vs Necaxa (Telemundo)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXRlbGVtdW5kbw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-tigres-uanl-necaxa-azteca-7-1700",
+    "name": "[05:00 PM] Tigres UANL vs Necaxa (Azteca 7)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWF6dGVjYTc%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-tigres-uanl-necaxa-azteca-7-movil-1700",
+    "name": "[05:00 PM] Tigres UANL vs Necaxa (Azteca 7 Movil)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT10eWNfc3BvcnRz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-universitario-comerciantes-unidos-liga1max-1730",
+    "name": "[05:30 PM] Universitario vs Comerciantes Unidos (Liga1max)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWxpZ2ExbWF4&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-universitario-comerciantes-unidos-liga1max-movil-1730",
+    "name": "[05:30 PM] Universitario vs Comerciantes Unidos (Liga1max Movil)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2xpZ2FwZXJ1Lmh0bWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-junior-jaguares-de-cordoba-win-sports-plus-1730",
+    "name": "[05:30 PM] Junior vs Jaguares de Córdoba (Win Sports +)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXdpbnNwb3J0c3BsdXM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-junior-jaguares-de-cordoba-win-sports-plus-hd-1730",
+    "name": "[05:30 PM] Junior vs Jaguares de Córdoba (Win Sports + HD)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXdpbnNwb3J0czI%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-junior-jaguares-de-cordoba-win-sports-plus-opc3-1730",
+    "name": "[05:30 PM] Junior vs Jaguares de Córdoba (Win Sports + | opc3)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL3dpbnNwb3J0cy5odG1s&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-atlas-atlante-canal-5-mx-1900",
+    "name": "[07:00 PM] Atlas vs Atlante (Canal 5 MX)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWNhbmFsNQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-atlas-atlante-tudn-usa-1900",
+    "name": "[07:00 PM] Atlas vs Atlante (TUDN USA)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXR1ZG4%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-atlas-atlante-tudn-usa-movil-1900",
+    "name": "[07:00 PM] Atlas vs Atlante (TUDN USA Movil)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT10eWNfc3BvcnRz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-atlas-atlante-tudn-mx-1900",
+    "name": "[07:00 PM] Atlas vs Atlante (TUDN MX)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXR1ZG5fbXg%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   }
 ]
