@@ -1,68 +1,5 @@
 [
   {
-    "id": "evento-al-shamal-al-ittihad-espn-mx",
-    "name": "[10:00 AM] Al Shamal vs Al Ittihad (ESPN MX)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BubXg%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-como-parma-disneyplus",
-    "name": "[10:30 AM] Como vs Parma (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXkx&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-torino-roma-disneyplus",
-    "name": "[10:30 AM] Torino vs Roma (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXky&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-torino-roma-universo",
-    "name": "[10:30 AM] Torino vs Roma (Universo)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT11bml2ZXJzb191c2E%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-torino-roma-espn",
-    "name": "[10:30 AM] Torino vs Roma (ESPN)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuMmNvbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-torino-roma-espn-3-mx",
-    "name": "[10:30 AM] Torino vs Roma (ESPN 3 MX)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuM214&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-gaziantep-fk-fenerbahce-disneyplus",
-    "name": "[11:00 AM] Gaziantep FK vs Fenerbahçe (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXkz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-al-ahli-pakhtakor-disneyplus",
     "name": "[12:15 PM] Al-Ahli vs Pakhtakor (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -126,22 +63,12 @@
     ]
   },
   {
-    "id": "evento-villarreal-real-betis-espnplus",
-    "name": "[01:00 PM] Villarreal vs Real Betis (ESPN+)",
+    "id": "evento-villarreal-real-betis-espn",
+    "name": "[01:00 PM] Villarreal vs Real Betis (ESPN)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BucGx1czE%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F",
       "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuM2NvbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-villarreal-real-betis-espn-deportes",
-    "name": "[01:00 PM] Villarreal vs Real Betis (ESPN Deportes)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuZGVwb3J0ZXM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
@@ -208,15 +135,6 @@
     ]
   },
   {
-    "id": "evento-universidad-catolica-orense-zapping-ec",
-    "name": "[06:00 PM] Universidad Católica vs Orense (Zapping EC)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT16YXBwaW5nZWM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-instituto-estudiantes-rio-cuarto-tnt-sports-premium",
     "name": "[06:15 PM] Instituto vs Estudiantes Río Cuarto (TNT Sports Premium)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -271,33 +189,6 @@
     ]
   },
   {
-    "id": "evento-al-shamal-al-ittihad-disneyplus",
-    "name": "[03:00 AM] Al Shamal vs Al Ittihad (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTE%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-al-shamal-al-ittihad-espn-mx-0300",
-    "name": "[03:00 AM] Al Shamal vs Al Ittihad (ESPN MX)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG5teA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-al-shamal-al-ittihad-espn-mx-movil",
-    "name": "[03:00 AM] Al Shamal vs Al Ittihad (ESPN MX MOVIL)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2VzcG5teC4xLmh0bWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-gaziantep-fk-fenerbahce-espn5",
     "name": "[04:00 AM] Gaziantep FK vs Fenerbahçe (ESPN5)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -307,7 +198,7 @@
     ]
   },
   {
-    "id": "evento-gaziantep-fk-fenerbahce-disneyplus-0400",
+    "id": "evento-gaziantep-fk-fenerbahce-disneyplus",
     "name": "[04:00 AM] Gaziantep FK vs Fenerbahçe (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -469,15 +360,6 @@
     ]
   },
   {
-    "id": "evento-como-parma-disneyplus-0330",
-    "name": "[03:30 AM] Como vs Parma (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTI%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-al-ahli-pakhtakor-disneyplus-0515",
     "name": "[05:15 AM] Al-Ahli vs Pakhtakor (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -514,7 +396,7 @@
     ]
   },
   {
-    "id": "evento-villarreal-real-betis-espn-deportes-0600",
+    "id": "evento-villarreal-real-betis-espn-deportes",
     "name": "[06:00 AM] Villarreal vs Real Betis (ESPN Deportes)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -547,42 +429,6 @@
     "type": "hls",
     "urls": [
       "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL3RudHNwb3J0czIuaHRtbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-torino-roma-espn2",
-    "name": "[03:30 AM] Torino vs Roma (ESPN2)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG4y&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-torino-roma-disneyplus-0330",
-    "name": "[03:30 AM] Torino vs Roma (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-torino-roma-espn2-movil",
-    "name": "[03:30 AM] Torino vs Roma (ESPN2 Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2VzcG4ydHYuaHRtbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-torino-roma-universo-0330",
-    "name": "[03:30 AM] Torino vs Roma (Universo)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXVuaXZlcnNv&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
@@ -682,78 +528,6 @@
     "type": "hls",
     "urls": [
       "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2VzcG5teC4xLmh0bWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-al-shamal-al-ittihad-disneyplus-0800",
-    "name": "[08:00 AM] Al Shamal vs Al Ittihad (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTE%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-al-shamal-al-ittihad-espn-mx-0800",
-    "name": "[08:00 AM] Al Shamal vs Al Ittihad (ESPN MX)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG5teA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-al-shamal-al-ittihad-espn-mx-movil-0800",
-    "name": "[08:00 AM] Al Shamal vs Al Ittihad (ESPN MX MOVIL)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2VzcG5teC4xLmh0bWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-como-parma-disneyplus-0830",
-    "name": "[08:30 AM] Como vs Parma (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTI%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-torino-roma-espn2-0830",
-    "name": "[08:30 AM] Torino vs Roma (ESPN2)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG4y&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-torino-roma-disneyplus-0830",
-    "name": "[08:30 AM] Torino vs Roma (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-torino-roma-espn2-movil-0830",
-    "name": "[08:30 AM] Torino vs Roma (ESPN2 Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2VzcG4ydHYuaHRtbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-torino-roma-universo-0830",
-    "name": "[08:30 AM] Torino vs Roma (Universo)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXVuaXZlcnNv&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
