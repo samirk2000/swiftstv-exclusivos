@@ -1,158 +1,5 @@
 [
   {
-    "id": "evento-bayern-munchen-union-berlin-disneyplus",
-    "name": "[12:30 PM] Bayern München vs Union Berlin (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXkx&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-bayern-munchen-union-berlin-espn",
-    "name": "[12:30 PM] Bayern München vs Union Berlin (ESPN)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3Bu&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-bayern-munchen-union-berlin-telemundo",
-    "name": "[12:30 PM] Bayern München vs Union Berlin (Telemundo)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT10ZWxlbXVuZG8%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-albacete-cordoba-laliga-tv-hypermotion-es",
-    "name": "[12:30 PM] Albacete vs Córdoba (LaLiga TV Hypermotion ES)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1oeXBlcm1vdGlvbjE%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-monza-sassuolo-disneyplus",
-    "name": "[12:45 PM] Monza vs Sassuolo (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXky&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-monza-sassuolo-universo",
-    "name": "[12:45 PM] Monza vs Sassuolo (Universo)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT11bml2ZXJzb191c2E%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-monza-sassuolo-espn",
-    "name": "[12:45 PM] Monza vs Sassuolo (ESPN)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuMw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-monaco-lens-disneyplus",
-    "name": "[12:45 PM] Monaco vs Lens (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXkz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-monaco-lens-espn",
-    "name": "[12:45 PM] Monaco vs Lens (ESPN)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuNA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-espanyol-elche-dsports",
-    "name": "[01:00 PM] Espanyol vs Elche (DSports)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kc3BvcnRz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-espanyol-elche-espnplus",
-    "name": "[01:00 PM] Espanyol vs Elche (ESPN+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BucGx1czE%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-espanyol-elche-espn-deportes",
-    "name": "[01:00 PM] Espanyol vs Elche (ESPN Deportes)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuZGVwb3J0ZXM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-brentford-chelsea-disneyplus",
-    "name": "[01:00 PM] Brentford vs Chelsea (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXk0&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-brentford-chelsea-espn",
-    "name": "[01:00 PM] Brentford vs Chelsea (ESPN)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuMg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-bristol-city-watford-disneyplus",
-    "name": "[01:00 PM] Bristol City vs Watford (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kaXNuZXk1&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-bristol-city-watford-fox-sports-ar",
-    "name": "[01:00 PM] Bristol City vs Watford (FOX Sports AR)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mb3gxYXI%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-sportivo-trinidense-guarani-tigo-py",
-    "name": "[01:00 PM] Sportivo Trinidense vs Guaraní (Tigo PY)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT10aWdvcHk%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-alianza-atletico-comerciantes-unidos-liga-1-max",
     "name": "[02:00 PM] Alianza Atlético vs Comerciantes Unidos (Liga 1 Max)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -234,7 +81,7 @@
     ]
   },
   {
-    "id": "evento-bristol-city-watford-disneyplus-0600",
+    "id": "evento-bristol-city-watford-disneyplus",
     "name": "[06:00 AM] Bristol City vs Watford (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -396,33 +243,6 @@
     ]
   },
   {
-    "id": "evento-wolfsburg-darmstadt-98-disneyplus",
-    "name": "[03:30 AM] Wolfsburg vs Darmstadt 98 (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTE%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-wolfsburg-darmstadt-98-fox-sports-2",
-    "name": "[03:30 AM] Wolfsburg vs Darmstadt 98 (Fox Sports 2)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZveHNwb3J0czI%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-greuther-furth-magdeburg-disneyplus",
-    "name": "[03:30 AM] Greuther Fürth vs Magdeburg (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTI%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-juarez-tigres-uanl-fox-deportes",
     "name": "[02:00 PM] Juárez vs Tigres UANL (FOX Deportes)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -549,7 +369,7 @@
     ]
   },
   {
-    "id": "evento-monza-sassuolo-disneyplus-0545",
+    "id": "evento-monza-sassuolo-disneyplus",
     "name": "[05:45 AM] Monza vs Sassuolo (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -567,7 +387,7 @@
     ]
   },
   {
-    "id": "evento-monza-sassuolo-universo-0545",
+    "id": "evento-monza-sassuolo-universo",
     "name": "[05:45 AM] Monza vs Sassuolo (Universo)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -576,7 +396,7 @@
     ]
   },
   {
-    "id": "evento-brentford-chelsea-espn-0600",
+    "id": "evento-brentford-chelsea-espn",
     "name": "[06:00 AM] Brentford vs Chelsea (ESPN)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -585,7 +405,7 @@
     ]
   },
   {
-    "id": "evento-brentford-chelsea-disneyplus-0600",
+    "id": "evento-brentford-chelsea-disneyplus",
     "name": "[06:00 AM] Brentford vs Chelsea (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -612,7 +432,7 @@
     ]
   },
   {
-    "id": "evento-bayern-munchen-union-berlin-disneyplus-0530",
+    "id": "evento-bayern-munchen-union-berlin-disneyplus",
     "name": "[05:30 AM] Bayern München vs Union Berlin (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -639,7 +459,7 @@
     ]
   },
   {
-    "id": "evento-bayern-munchen-union-berlin-telemundo-0530",
+    "id": "evento-bayern-munchen-union-berlin-telemundo",
     "name": "[05:30 AM] Bayern München vs Union Berlin (Telemundo)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -666,7 +486,7 @@
     ]
   },
   {
-    "id": "evento-monaco-lens-disneyplus-0545",
+    "id": "evento-monaco-lens-disneyplus",
     "name": "[05:45 AM] Monaco vs Lens (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -702,7 +522,7 @@
     ]
   },
   {
-    "id": "evento-espanyol-elche-dsports-0600",
+    "id": "evento-espanyol-elche-dsports",
     "name": "[06:00 AM] Espanyol vs Elche (Dsports)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -729,7 +549,7 @@
     ]
   },
   {
-    "id": "evento-espanyol-elche-espnplus-0600",
+    "id": "evento-espanyol-elche-espnplus",
     "name": "[06:00 AM] Espanyol vs Elche (Espn+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -744,33 +564,6 @@
     "type": "hls",
     "urls": [
       "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZhbmF0aXox&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-wolfsburg-darmstadt-98-disneyplus-0830",
-    "name": "[08:30 AM] Wolfsburg vs Darmstadt 98 (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTE%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-wolfsburg-darmstadt-98-fox-sports-2-0830",
-    "name": "[08:30 AM] Wolfsburg vs Darmstadt 98 (Fox Sports 2)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZveHNwb3J0czI%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-greuther-furth-magdeburg-disneyplus-0830",
-    "name": "[08:30 AM] Greuther Fürth vs Magdeburg (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTI%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
