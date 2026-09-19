@@ -1,14 +1,5 @@
 [
   {
-    "id": "evento-nacional-asuncion-2-de-mayo-tigo-py",
-    "name": "[03:30 PM] Nacional Asunción vs 2 de Mayo (Tigo PY)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT10aWdvcHk%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-new-york-city-new-york-rb-tsn",
     "name": "[05:30 PM] New York City vs New York RB (TSN)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -54,349 +45,7 @@
     ]
   },
   {
-    "id": "evento-alianza-atletico-comerciantes-unidos-liga1max",
-    "name": "[07:00 AM] Alianza Atlético vs Comerciantes Unidos (Liga1max)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWxpZ2ExbWF4&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-alianza-atletico-comerciantes-unidos-liga1max-movil",
-    "name": "[07:00 AM] Alianza Atlético vs Comerciantes Unidos (Liga1max Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2xpZ2FwZXJ1Lmh0bWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-central-cordoba-sde-defensa-y-justicia-disneyplus",
-    "name": "[08:00 AM] Central Córdoba SdE vs Defensa y Justicia (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTg%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-central-cordoba-sde-defensa-y-justicia-espn-premium",
-    "name": "[08:00 AM] Central Córdoba SdE vs Defensa y Justicia (ESPN Premium)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG5wcmVtaXVt&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-central-cordoba-sde-defensa-y-justicia-espn-premium-movil",
-    "name": "[08:00 AM] Central Córdoba SdE vs Defensa y Justicia (ESPN Premium Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2VzcG5wcmVtaXVtMi5odG1s&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-nacional-asuncion-2-de-mayo-fanatiz02",
-    "name": "[08:30 AM] Nacional Asunción vs 2 de Mayo (Fanatiz02)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZhbmF0aXoy&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-new-york-city-new-york-rb-mls01es",
-    "name": "[10:00 AM] New York City vs New York RB (MLS01ES)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPW1sczFlcw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-racing-club-sarmiento-disneyplus",
-    "name": "[11:15 AM] Racing Club vs Sarmiento (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTk%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-racing-club-sarmiento-tnt-sports",
-    "name": "[11:15 AM] Racing Club vs Sarmiento (TNT Sports)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXRudHNwb3J0cw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-racing-club-sarmiento-tnt-sports-movil",
-    "name": "[11:15 AM] Racing Club vs Sarmiento (TNT Sports Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL3RudHNwb3J0czIuaHRtbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-puebla-atlante-tudn-usa",
-    "name": "[12:00 PM] Puebla vs Atlante (TUDN USA)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXR1ZG4%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-puebla-atlante-tudn-usa-movil",
-    "name": "[12:00 PM] Puebla vs Atlante (TUDN USA Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT10dWRuX3VzYQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-puebla-atlante-azteca-7",
-    "name": "[12:00 PM] Puebla vs Atlante (Azteca 7)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWF6dGVjYTc%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-puebla-atlante-azteca-7-movil",
-    "name": "[12:00 PM] Puebla vs Atlante (Azteca 7 Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1henRlY2FfN19tb3ZpbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-puebla-atlante-espn-mx",
-    "name": "[12:00 PM] Puebla vs Atlante (ESPN MX)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG5teA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-puebla-atlante-espn-mx-movil",
-    "name": "[12:00 PM] Puebla vs Atlante (ESPN MX MOVIL)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2VzcG5teC4xLmh0bWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-juarez-tigres-uanl-fox-deportes",
-    "name": "[02:00 PM] Juárez vs Tigres UANL (FOX Deportes)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZveGRlcG9ydGVz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-juarez-tigres-uanl-universo",
-    "name": "[02:00 PM] Juárez vs Tigres UANL (Universo)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXVuaXZlcnNv&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-juarez-tigres-uanl-fox-deportes-movil",
-    "name": "[02:00 PM] Juárez vs Tigres UANL (FOX Deportes | Móvil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mb3hfZGVwb3J0ZXNfX21vdmls&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-juarez-tigres-uanl-azteca-7",
-    "name": "[02:00 PM] Juárez vs Tigres UANL (Azteca 7)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWF6dGVjYTc%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-juarez-tigres-uanl-azteca-7-movil",
-    "name": "[02:00 PM] Juárez vs Tigres UANL (Azteca 7 Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1henRlY2FfN19tb3ZpbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-rionegro-aguilas-deportivo-pereira-win-sports-plus-hd",
-    "name": "[08:00 AM] Rionegro Águilas vs Deportivo Pereira (Win Sports + HD)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXdpbnNwb3J0czI%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-rionegro-aguilas-deportivo-pereira-win-sports-plus-opc3",
-    "name": "[08:00 AM] Rionegro Águilas vs Deportivo Pereira (Win Sports + | opc3)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL3dpbnNwb3J0cy5odG1s&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-rionegro-aguilas-deportivo-pereira-win-sports",
-    "name": "[08:00 AM] Rionegro Águilas vs Deportivo Pereira (Win Sports)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXdpbnNwb3J0cw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-patriotas-union-magdalena-win-sports",
-    "name": "[10:00 AM] Patriotas vs Unión Magdalena (Win Sports)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXdpbnNwb3J0cw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-patriotas-union-magdalena-win-sports-plus-hd",
-    "name": "[10:00 AM] Patriotas vs Unión Magdalena (Win Sports + HD)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXdpbnNwb3J0czI%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-patriotas-union-magdalena-win-sports-plus-opc3",
-    "name": "[10:00 AM] Patriotas vs Unión Magdalena (Win Sports + | opc3)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL3dpbnNwb3J0cy5odG1s&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-alianza-lima-adt-liga1max",
-    "name": "[12:00 PM] Alianza Lima vs ADT (Liga1max)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWxpZ2ExbWF4&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-alianza-lima-adt-liga1max-movil",
-    "name": "[12:00 PM] Alianza Lima vs ADT (Liga1max Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2xpZ2FwZXJ1Lmh0bWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-alianza-atletico-comerciantes-unidos-liga1max-1200",
-    "name": "[12:00 PM] Alianza Atlético vs Comerciantes Unidos (Liga1max)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWxpZ2ExbWF4&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-alianza-atletico-comerciantes-unidos-liga1max-movil-1200",
-    "name": "[12:00 PM] Alianza Atlético vs Comerciantes Unidos (Liga1max Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2xpZ2FwZXJ1Lmh0bWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-central-cordoba-sde-defensa-y-justicia-disneyplus-1300",
-    "name": "[01:00 PM] Central Córdoba SdE vs Defensa y Justicia (Disney+)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTg%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-central-cordoba-sde-defensa-y-justicia-espn-premium-1300",
-    "name": "[01:00 PM] Central Córdoba SdE vs Defensa y Justicia (ESPN Premium)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG5wcmVtaXVt&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-central-cordoba-sde-defensa-y-justicia-espn-premium-movil-1300",
-    "name": "[01:00 PM] Central Córdoba SdE vs Defensa y Justicia (ESPN Premium Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2VzcG5wcmVtaXVtMi5odG1s&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-rionegro-aguilas-deportivo-pereira-win-sports-plus-hd-1300",
-    "name": "[01:00 PM] Rionegro Águilas vs Deportivo Pereira (Win Sports + HD)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXdpbnNwb3J0czI%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-rionegro-aguilas-deportivo-pereira-win-sports-plus-opc3-1300",
-    "name": "[01:00 PM] Rionegro Águilas vs Deportivo Pereira (Win Sports + | opc3)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL3dpbnNwb3J0cy5odG1s&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-rionegro-aguilas-deportivo-pereira-win-sports-1300",
-    "name": "[01:00 PM] Rionegro Águilas vs Deportivo Pereira (Win Sports)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXdpbnNwb3J0cw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-nacional-asuncion-2-de-mayo-fanatiz02-1330",
-    "name": "[01:30 PM] Nacional Asunción vs 2 de Mayo (Fanatiz02)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZhbmF0aXoy&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-new-york-city-new-york-rb-mls01es-1500",
     "name": "[03:00 PM] New York City vs New York RB (MLS01ES)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -405,7 +54,7 @@
     ]
   },
   {
-    "id": "evento-patriotas-union-magdalena-win-sports-1500",
+    "id": "evento-patriotas-union-magdalena-win-sports",
     "name": "[03:00 PM] Patriotas vs Unión Magdalena (Win Sports)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -414,7 +63,7 @@
     ]
   },
   {
-    "id": "evento-patriotas-union-magdalena-win-sports-plus-hd-1500",
+    "id": "evento-patriotas-union-magdalena-win-sports-plus-hd",
     "name": "[03:00 PM] Patriotas vs Unión Magdalena (Win Sports + HD)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -423,7 +72,7 @@
     ]
   },
   {
-    "id": "evento-patriotas-union-magdalena-win-sports-plus-opc3-1500",
+    "id": "evento-patriotas-union-magdalena-win-sports-plus-opc3",
     "name": "[03:00 PM] Patriotas vs Unión Magdalena (Win Sports + | opc3)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -432,7 +81,7 @@
     ]
   },
   {
-    "id": "evento-racing-club-sarmiento-disneyplus-1615",
+    "id": "evento-racing-club-sarmiento-disneyplus",
     "name": "[04:15 PM] Racing Club vs Sarmiento (Disney+)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -441,7 +90,7 @@
     ]
   },
   {
-    "id": "evento-racing-club-sarmiento-tnt-sports-1615",
+    "id": "evento-racing-club-sarmiento-tnt-sports",
     "name": "[04:15 PM] Racing Club vs Sarmiento (TNT Sports)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -450,7 +99,7 @@
     ]
   },
   {
-    "id": "evento-racing-club-sarmiento-tnt-sports-movil-1615",
+    "id": "evento-racing-club-sarmiento-tnt-sports-movil",
     "name": "[04:15 PM] Racing Club vs Sarmiento (TNT Sports Movil)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -459,7 +108,7 @@
     ]
   },
   {
-    "id": "evento-puebla-atlante-tudn-usa-1700",
+    "id": "evento-puebla-atlante-tudn-usa",
     "name": "[05:00 PM] Puebla vs Atlante (TUDN USA)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -468,7 +117,7 @@
     ]
   },
   {
-    "id": "evento-puebla-atlante-tudn-usa-movil-1700",
+    "id": "evento-puebla-atlante-tudn-usa-movil",
     "name": "[05:00 PM] Puebla vs Atlante (TUDN USA Movil)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -477,7 +126,7 @@
     ]
   },
   {
-    "id": "evento-puebla-atlante-azteca-7-1700",
+    "id": "evento-puebla-atlante-azteca-7",
     "name": "[05:00 PM] Puebla vs Atlante (Azteca 7)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -486,7 +135,7 @@
     ]
   },
   {
-    "id": "evento-puebla-atlante-azteca-7-movil-1700",
+    "id": "evento-puebla-atlante-azteca-7-movil",
     "name": "[05:00 PM] Puebla vs Atlante (Azteca 7 Movil)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -495,7 +144,7 @@
     ]
   },
   {
-    "id": "evento-puebla-atlante-espn-mx-1700",
+    "id": "evento-puebla-atlante-espn-mx",
     "name": "[05:00 PM] Puebla vs Atlante (ESPN MX)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -504,7 +153,7 @@
     ]
   },
   {
-    "id": "evento-puebla-atlante-espn-mx-movil-1700",
+    "id": "evento-puebla-atlante-espn-mx-movil",
     "name": "[05:00 PM] Puebla vs Atlante (ESPN MX MOVIL)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -513,7 +162,7 @@
     ]
   },
   {
-    "id": "evento-alianza-lima-adt-liga1max-1700",
+    "id": "evento-alianza-lima-adt-liga1max",
     "name": "[05:00 PM] Alianza Lima vs ADT (Liga1max)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -522,7 +171,7 @@
     ]
   },
   {
-    "id": "evento-alianza-lima-adt-liga1max-movil-1700",
+    "id": "evento-alianza-lima-adt-liga1max-movil",
     "name": "[05:00 PM] Alianza Lima vs ADT (Liga1max Movil)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -531,7 +180,7 @@
     ]
   },
   {
-    "id": "evento-juarez-tigres-uanl-fox-deportes-1900",
+    "id": "evento-juarez-tigres-uanl-fox-deportes",
     "name": "[07:00 PM] Juárez vs Tigres UANL (FOX Deportes)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -540,7 +189,7 @@
     ]
   },
   {
-    "id": "evento-juarez-tigres-uanl-universo-1900",
+    "id": "evento-juarez-tigres-uanl-universo",
     "name": "[07:00 PM] Juárez vs Tigres UANL (Universo)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -549,7 +198,7 @@
     ]
   },
   {
-    "id": "evento-juarez-tigres-uanl-fox-deportes-movil-1900",
+    "id": "evento-juarez-tigres-uanl-fox-deportes-movil",
     "name": "[07:00 PM] Juárez vs Tigres UANL (FOX Deportes | Móvil)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -558,7 +207,7 @@
     ]
   },
   {
-    "id": "evento-juarez-tigres-uanl-azteca-7-1900",
+    "id": "evento-juarez-tigres-uanl-azteca-7",
     "name": "[07:00 PM] Juárez vs Tigres UANL (Azteca 7)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
@@ -567,7 +216,7 @@
     ]
   },
   {
-    "id": "evento-juarez-tigres-uanl-azteca-7-movil-1900",
+    "id": "evento-juarez-tigres-uanl-azteca-7-movil",
     "name": "[07:00 PM] Juárez vs Tigres UANL (Azteca 7 Movil)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
