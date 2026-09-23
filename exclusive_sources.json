@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "id": "evento-connection-timed-out-error-code-522-cloudflare-com",
+    "name": "[03:57 AM] Connection timed out Error code 522 (cloudflare.com)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1jbG91ZGZsYXJlY29t&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-additional-troubleshooting-information-here-additional-troubleshooting-information-here",
+    "name": "[11:57 AM] Additional troubleshooting information here. (Additional troubleshooting information here.)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1hZGRpdGlvbmFsX3Ryb3VibGVzaG9vdGluZ19pbmZvcm1hdGlvbl9oZXJl&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  }
+]
