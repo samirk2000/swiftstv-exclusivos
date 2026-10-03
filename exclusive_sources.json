@@ -1,7 +1,7 @@
 [
   {
     "id": "evento-origin-is-unreachable-error-code-523-cloudflare-com",
-    "name": "[09:34 PM] Origin is unreachable Error code 523 (cloudflare.com)",
+    "name": "[03:08 AM] Origin is unreachable Error code 523 (cloudflare.com)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
@@ -10,7 +10,7 @@
   },
   {
     "id": "evento-additional-troubleshooting-information-here-additional-troubleshooting-information-here",
-    "name": "[05:34 AM] Additional troubleshooting information here. (Additional troubleshooting information here.)",
+    "name": "[11:08 AM] Additional troubleshooting information here. (Additional troubleshooting information here.)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
@@ -18,8 +18,53 @@
     ]
   },
   {
-    "id": "evento-el-salvador-jamaica-fox-sports-2-usa",
-    "name": "[06:00 PM] El Salvador vs Jamaica (Fox Sports 2 USA)",
+    "id": "evento-chesterfield-tranmere-rovers-disney-01",
+    "name": "[03:30 AM] Chesterfield vs Tranmere Rovers (Disney 01)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTE%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-albacete-eibar-laliga-tv-hypermotion",
+    "name": "[04:00 AM] Albacete vs Eibar (LaLiga TV Hypermotion)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWh5cGVybW90aW9uMQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-finlandia-albania-espn2",
+    "name": "[05:00 AM] Finlandia vs Albania (ESPN2)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG4y&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-finlandia-albania-disney-02",
+    "name": "[05:00 AM] Finlandia vs Albania (Disney 02)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTI%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-finlandia-albania-espn2-movil",
+    "name": "[05:00 AM] Finlandia vs Albania (ESPN2 Movil)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vdGFyamV0YXJvaml0YS54eXovcmVwcm8vZXNwbjIuaHRtbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-finlandia-albania-fox-sports-2-usa",
+    "name": "[05:00 AM] Finlandia vs Albania (Fox Sports 2 USA)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
@@ -27,21 +72,102 @@
     ]
   },
   {
-    "id": "evento-monterrey-america-tudn-usa",
-    "name": "[07:00 PM] Monterrey vs América (TUDN USA)",
+    "id": "evento-liverpool-progreso-disney-03",
+    "name": "[06:00 AM] Liverpool vs Progreso (Disney 03)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXR1ZG4%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-monterrey-america-tudn-usa-movil",
-    "name": "[07:00 PM] Monterrey vs América (TUDN USA Movil)",
+    "id": "evento-india-brasil-sportv",
+    "name": "[06:00 AM] India vs Brasil (SporTV)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vdGFyamV0YXJvaml0YS54eXovcmVwcm8vdHVkbnVzYS5odG1s&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXNwb3J0dg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-almeria-burgos-laliga-tv-hypermotion",
+    "name": "[06:15 AM] Almería vs Burgos (LaLiga TV Hypermotion)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWh5cGVybW90aW9uMQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-croacia-inglaterra-espn",
+    "name": "[08:00 AM] Croacia vs Inglaterra (ESPN)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG4%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-croacia-inglaterra-disney-04",
+    "name": "[08:00 AM] Croacia vs Inglaterra (Disney 04)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTQ%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-croacia-inglaterra-espn-movil",
+    "name": "[08:00 AM] Croacia vs Inglaterra (ESPN Movil)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vdGFyamV0YXJvaml0YS54eXovcmVwcm8vZXNwbi5odG1s&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-bielorrusia-san-marino-disney-05",
+    "name": "[08:00 AM] Bielorrusia vs San Marino (Disney 05)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTU%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-bielorrusia-san-marino-fox-soccer-plus",
+    "name": "[08:00 AM] Bielorrusia vs San Marino (Fox Soccer Plus)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZveHNvY2NlcnBsdXM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-estonia-luxemburgo-disney-06",
+    "name": "[08:00 AM] Estonia vs Luxemburgo (Disney 06)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTY%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-estonia-luxemburgo-fox-sports-2-usa",
+    "name": "[08:00 AM] Estonia vs Luxemburgo (Fox Sports 2 USA)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZveHNwb3J0czJfdXNh&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-islandia-bulgaria-disney-07",
+    "name": "[08:00 AM] Islandia vs Bulgaria (Disney 07)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTc%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   }
 ]
