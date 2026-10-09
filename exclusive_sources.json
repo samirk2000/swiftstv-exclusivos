@@ -1,7 +1,7 @@
 [
   {
-    "id": "evento-connection-timed-out-error-code-522-cloudflare-com",
-    "name": "[02:20 PM] Connection timed out Error code 522 (cloudflare.com)",
+    "id": "evento-origin-is-unreachable-error-code-523-cloudflare-com",
+    "name": "[06:24 PM] Origin is unreachable Error code 523 (cloudflare.com)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
@@ -10,7 +10,7 @@
   },
   {
     "id": "evento-additional-troubleshooting-information-here-additional-troubleshooting-information-here",
-    "name": "[10:20 PM] Additional troubleshooting information here. (Additional troubleshooting information here.)",
+    "name": "[02:24 AM] Additional troubleshooting information here. (Additional troubleshooting information here.)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
@@ -18,102 +18,21 @@
     ]
   },
   {
-    "id": "evento-tacna-heroica-carlos-manucci-bicolor-premium",
-    "name": "[12:00 PM] Tacna Heroica vs Carlos Manucci (Bicolor PREMIUM)",
+    "id": "evento-new-york-islanders-chicago-blackhawks-disney-11",
+    "name": "[03:30 PM] New York Islanders vs Chicago Blackhawks (Disney 11)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWV2ZW50b3M%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTEx&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-atletico-grau-los-chankas-liga1max",
-    "name": "[12:30 PM] Atlético Grau vs Los Chankas (Liga1max)",
+    "id": "evento-chicago-white-sox-cleveland-guardians-espn3",
+    "name": "[04:00 PM] Chicago White Sox vs Cleveland Guardians (ESPN3)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWxpZ2ExbWF4&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-atletico-grau-los-chankas-liga1max-movil",
-    "name": "[12:30 PM] Atlético Grau vs Los Chankas (Liga1max Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2xpZ2FwZXJ1Lmh0bWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-santos-flamengo-win-sports",
-    "name": "[02:30 PM] Santos vs Flamengo (Win Sports)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXdpbnNwb3J0cw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-santos-flamengo-premiere-br",
-    "name": "[02:30 PM] Santos vs Flamengo (Premiere BR)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXByZW1pZXJlMQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-nautico-recife-novorizontino-premiere-6-br",
-    "name": "[02:30 PM] Nautico Recife vs Novorizontino (Premiere 6 BR)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXByZW1pZXJlNg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-athletico-paranaense-atletico-mineiro-premiere-3-br",
-    "name": "[03:00 PM] Athletico Paranaense vs Atlético Mineiro (Premiere 3 BR)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXByZW1pZXJlMw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-athletico-paranaense-atletico-mineiro-liga1max",
-    "name": "[03:00 PM] Athletico Paranaense vs Atlético Mineiro (Liga1max)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWxpZ2ExbWF4&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-athletico-paranaense-atletico-mineiro-liga1max-movil",
-    "name": "[03:00 PM] Athletico Paranaense vs Atlético Mineiro (Liga1max Movil)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2xpZ2FwZXJ1Lmh0bWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-atletico-nacional-deportes-tolima-win-sports-plus-hd",
-    "name": "[03:05 PM] Atlético Nacional vs Deportes Tolima (Win Sports + HD)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXdpbnNwb3J0c3BsdXM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-atletico-nacional-deportes-tolima-win-sports-plus-opc3",
-    "name": "[03:05 PM] Atlético Nacional vs Deportes Tolima (Win Sports + | opc3)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL3dpbnNwb3J0cy5odG1s&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG4z&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
@@ -123,6 +42,24 @@
     "type": "hls",
     "urls": [
       "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTQ%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-chicago-white-sox-cleveland-guardians-espn3-movil",
+    "name": "[04:00 PM] Chicago White Sox vs Cleveland Guardians (ESPN3 Movil)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL2VzcG4zdHYuaHRtbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-st-louis-blues-san-jose-sharks-disney-12",
+    "name": "[04:00 PM] St. Louis Blues vs San Jose Sharks (Disney 12)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTEy&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
@@ -198,6 +135,15 @@
     ]
   },
   {
+    "id": "evento-calgary-flames-colorado-avalanche-disney-13",
+    "name": "[05:00 PM] Calgary Flames vs Colorado Avalanche (Disney 13)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTEz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
     "id": "evento-fortaleza-ceif-millonarios-win-sports-plus",
     "name": "[05:10 PM] Fortaleza CEIF vs Millonarios (Win Sports +)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -213,6 +159,24 @@
     "type": "hls",
     "urls": [
       "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL3dpbnNwb3J0cy5odG1s&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-inter-san-carlos-perez-zeledon-futv",
+    "name": "[06:00 PM] Inter San Carlos vs Pérez Zeledón (FUTV)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZ1dHY%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-vegas-golden-knights-toronto-maple-leafs-disney-14",
+    "name": "[06:00 PM] Vegas Golden Knights vs Toronto Maple Leafs (Disney 14)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTE0&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
