@@ -1,7 +1,7 @@
 [
   {
-    "id": "evento-origin-is-unreachable-error-code-523-cloudflare-com",
-    "name": "[07:04 PM] Origin is unreachable Error code 523 (cloudflare.com)",
+    "id": "evento-connection-timed-out-error-code-522-cloudflare-com",
+    "name": "[12:15 AM] Connection timed out Error code 522 (cloudflare.com)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
@@ -10,7 +10,7 @@
   },
   {
     "id": "evento-additional-troubleshooting-information-here-additional-troubleshooting-information-here",
-    "name": "[03:04 AM] Additional troubleshooting information here. (Additional troubleshooting information here.)",
+    "name": "[08:15 AM] Additional troubleshooting information here. (Additional troubleshooting information here.)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
@@ -18,8 +18,8 @@
     ]
   },
   {
-    "id": "evento-cleveland-guardians-tampa-bay-rays-espn2-espanol",
-    "name": "[04:00 PM] Cleveland Guardians vs Tampa Bay Rays (ESPN2 Español)",
+    "id": "evento-udinese-lecce-espn2-espanol",
+    "name": "[02:30 AM] Udinese vs Lecce (ESPN2 Español)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
@@ -27,129 +27,93 @@
     ]
   },
   {
-    "id": "evento-cleveland-guardians-tampa-bay-rays-disney-15-espanol",
-    "name": "[04:00 PM] Cleveland Guardians vs Tampa Bay Rays (Disney 15 Español)",
+    "id": "evento-udinese-lecce-disney-01-espanol",
+    "name": "[02:30 AM] Udinese vs Lecce (Disney 01 Español)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09ZGlzbmV5MTU%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09ZGlzbmV5MQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-leon-america-tudn-usa-espanol",
-    "name": "[05:00 PM] León vs América (TUDN USA Español)",
+    "id": "evento-udinese-lecce-espn-mx-espanol",
+    "name": "[02:30 AM] Udinese vs Lecce (ESPN MX Español)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09dHVkbg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09ZXNwbm14&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-leon-america-univision-espanol",
-    "name": "[05:00 PM] León vs América (Univision Español)",
+    "id": "evento-juventus-femenil-como-1907-femenil-fox-soccer-plus-espanol",
+    "name": "[02:30 AM] Juventus Femenil vs Como 1907 Femenil (Fox Soccer Plus Español)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09dW5pdmlzaW9u&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09Zm94c29jY2VycGx1cw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-toluca-atletico-san-luis-canal-5-mx-hd-espanol",
-    "name": "[05:00 PM] Toluca vs Atlético San Luis (Canal 5 MX HD Español)",
+    "id": "evento-arminia-bielefeld-vfl-osnabruck-disney-02-espanol",
+    "name": "[03:30 AM] Arminia Bielefeld vs VfL Osnabrück (Disney 02 Español)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9mdWJvbGF6by5jb20vZHJtL2NhbmFsNW14LnBocA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09ZGlzbmV5Mg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-toluca-atletico-san-luis-canal-5-mx-espanol",
-    "name": "[05:00 PM] Toluca vs Atlético San Luis (Canal 5 MX Español)",
+    "id": "evento-fluminense-santos-premiere-2-br-portugues",
+    "name": "[11:00 AM] Fluminense vs Santos (Premiere 2 BR Portugués)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09Y2FuYWw1&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09cHJlbWllcmUy&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-toluca-atletico-san-luis-tudn-mx-espanol",
-    "name": "[05:00 PM] Toluca vs Atlético San Luis (TUDN MX Español)",
+    "id": "evento-fluminense-santos-premiere-3-br-portugues",
+    "name": "[11:00 AM] Fluminense vs Santos (Premiere 3 BR Portugués)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09dHVkbl9teA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09cHJlbWllcmUz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-independiente-medellin-once-caldas-win-sports-plus-espanol",
-    "name": "[05:10 PM] Independiente Medellín vs Once Caldas (Win Sports + Español)",
+    "id": "evento-gremio-cruzeiro-premiere-4-br-portugues",
+    "name": "[11:00 AM] Grêmio vs Cruzeiro (Premiere 4 BR Portugués)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09d2lucGx1cw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09cHJlbWllcmU0&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-alianza-lima-atletico-grau-liga1max-espanol",
-    "name": "[05:30 PM] Alianza Lima vs Atlético Grau (Liga1max Español)",
+    "id": "evento-sao-bernardo-criciuma-premiere-5-br-portugues",
+    "name": "[11:00 AM] São Bernardo vs Criciúma (Premiere 5 BR Portugués)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09bGlnYTFtYXg%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09cHJlbWllcmU1&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-alianza-lima-atletico-grau-liga1max-op2-espanol",
-    "name": "[05:30 PM] Alianza Lima vs Atlético Grau (Liga1max OP2 Español)",
+    "id": "evento-bahia-flamengo-premiere-br-portugues",
+    "name": "[01:30 PM] Bahia vs Flamengo (Premiere BR Portugués)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09bGlnYTFtYXhfb3Ay&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09cHJlbWllcmUx&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-cruz-azul-fc-juarez-canal-5-mx-hd-espanol",
-    "name": "[07:10 PM] Cruz Azul vs FC Juarez (Canal 5 MX HD Español)",
+    "id": "evento-remo-red-bull-bragantino-premiere-4-br-portugues",
+    "name": "[02:30 PM] Remo vs Red Bull Bragantino (Premiere 4 BR Portugués)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9mdWJvbGF6by5jb20vZHJtL2NhbmFsNW14LnBocA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-cruz-azul-fc-juarez-tudn-usa-espanol",
-    "name": "[07:10 PM] Cruz Azul vs FC Juarez (TUDN USA Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09dHVkbg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-cruz-azul-fc-juarez-univision-espanol",
-    "name": "[07:10 PM] Cruz Azul vs FC Juarez (Univision Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09dW5pdmlzaW9u&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-cruz-azul-fc-juarez-canal-5-mx-espanol",
-    "name": "[07:10 PM] Cruz Azul vs FC Juarez (Canal 5 MX Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09Y2FuYWw1&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-cruz-azul-fc-juarez-tudn-mx-espanol",
-    "name": "[07:10 PM] Cruz Azul vs FC Juarez (TUDN MX Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09dHVkbl9teA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09cHJlbWllcmU0&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   }
 ]
