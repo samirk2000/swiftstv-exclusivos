@@ -1,7 +1,7 @@
 [
   {
     "id": "evento-connection-timed-out-error-code-522-cloudflare-com",
-    "name": "[10:37 AM] Connection timed out Error code 522 (cloudflare.com)",
+    "name": "[02:07 PM] Connection timed out Error code 522 (cloudflare.com)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
@@ -10,7 +10,7 @@
   },
   {
     "id": "evento-additional-troubleshooting-information-here-additional-troubleshooting-information-here",
-    "name": "[06:37 PM] Additional troubleshooting information here. (Additional troubleshooting information here.)",
+    "name": "[10:07 PM] Additional troubleshooting information here. (Additional troubleshooting information here.)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
@@ -117,6 +117,15 @@
     ]
   },
   {
+    "id": "evento-roma-slovan-bratislava-tnt-3-uk-espanol",
+    "name": "[11:00 AM] Roma vs Slovan Bratislava (TNT 3 UK Español)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9mdWJvbGF6by5jb20vZHJtL3RudHNwb3J0czN1ay5waHA%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
     "id": "evento-roma-slovan-bratislava-espn3-espanol",
     "name": "[11:00 AM] Roma vs Slovan Bratislava (ESPN3 Español)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -171,6 +180,15 @@
     ]
   },
   {
+    "id": "evento-manchester-city-aek-athens-fc-tnt-1-uk-espanol",
+    "name": "[11:00 AM] Manchester City vs AEK Athens FC (TNT 1 UK Español)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9mdWJvbGF6by5jb20vZHJtL3RudHNwb3J0czF1ay5waHA%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
     "id": "evento-manchester-city-aek-athens-fc-espn5-espanol",
     "name": "[11:00 AM] Manchester City vs AEK Athens FC (ESPN5 Español)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -207,6 +225,15 @@
     ]
   },
   {
+    "id": "evento-paris-saint-germain-barcelona-tnt-2-uk-espanol",
+    "name": "[11:00 AM] París Saint-Germain vs Barcelona (TNT 2 UK Español)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9mdWJvbGF6by5jb20vZHJtL3RudHNwb3J0czJ1ay5waHA%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
     "id": "evento-paris-saint-germain-barcelona-espn-espanol",
     "name": "[11:00 AM] París Saint-Germain vs Barcelona (ESPN Español)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -216,30 +243,12 @@
     ]
   },
   {
-    "id": "evento-paris-saint-germain-barcelona-disney-10-espanol",
-    "name": "[11:00 AM] París Saint-Germain vs Barcelona (Disney 10 Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09ZGlzbmV5MTA%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-paris-saint-germain-barcelona-tudn-usa-espanol",
     "name": "[11:00 AM] París Saint-Germain vs Barcelona (TUDN USA Español)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
       "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09dHVkbg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-paris-saint-germain-barcelona-unimas-espanol",
-    "name": "[11:00 AM] París Saint-Germain vs Barcelona (Unimas Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09dW5pbWFz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
@@ -258,6 +267,33 @@
     "type": "hls",
     "urls": [
       "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09ZGlzbmV5MTE%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-deportivo-pereira-boyaca-chico-win-sports-plus-espanol",
+    "name": "[01:30 PM] Deportivo Pereira vs Boyacá Chicó (Win Sports + Español)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09d2lucGx1cw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-internacional-de-bogota-fortaleza-ceif-win-sports-espanol",
+    "name": "[03:15 PM] Internacional de Bogotá vs Fortaleza CEIF (Win Sports Español)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09d2luc3BvcnRz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-cucuta-atletico-nacional-win-sports-plus-espanol",
+    "name": "[03:30 PM] Cucuta vs Atlético Nacional (Win Sports + Español)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09d2lucGx1cw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   }
 ]
