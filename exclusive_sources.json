@@ -1,7 +1,7 @@
 [
   {
     "id": "evento-connection-timed-out-error-code-522-cloudflare-com",
-    "name": "[06:07 AM] Connection timed out Error code 522 (cloudflare.com)",
+    "name": "[10:37 AM] Connection timed out Error code 522 (cloudflare.com)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
@@ -10,47 +10,11 @@
   },
   {
     "id": "evento-additional-troubleshooting-information-here-additional-troubleshooting-information-here",
-    "name": "[02:07 PM] Additional troubleshooting information here. (Additional troubleshooting information here.)",
+    "name": "[06:37 PM] Additional troubleshooting information here. (Additional troubleshooting information here.)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
       "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1hZGRpdGlvbmFsX3Ryb3VibGVzaG9vdGluZ19pbmZvcm1hdGlvbl9oZXJl&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-psg-sub-19-barcelona-sub-19-disney-01-espanol",
-    "name": "[04:00 AM] PSG Sub-19 vs Barcelona Sub-19 (Disney 01 Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09ZGlzbmV5MQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-manchester-city-sub-19-aek-athens-sub-19-disney-02-espanol",
-    "name": "[06:00 AM] Manchester City Sub-19 vs AEK Athens Sub-19 (Disney 02 Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09ZGlzbmV5Mg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-al-taawon-al-qadisiyah-fc-fox-deportes-espanol",
-    "name": "[07:10 AM] Al Taawon vs Al-Qadisiyah FC (FOX Deportes Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09Zm94ZGVwb3J0ZXM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-al-taawon-al-qadisiyah-fc-fox-soccer-plus-espanol",
-    "name": "[07:10 AM] Al Taawon vs Al-Qadisiyah FC (Fox Soccer Plus Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09Zm94c29jY2VycGx1cw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
@@ -72,6 +36,15 @@
     ]
   },
   {
+    "id": "evento-fenerbahce-slavia-praga-fox-one-1-espanol",
+    "name": "[08:45 AM] Fenerbahçe vs Slavia Praga (FOX One 1 Español)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09Zm94b25lMQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
     "id": "evento-sabah-fa-borussia-dortmund-espn-espanol",
     "name": "[08:45 AM] Sabah FA vs Borussia Dortmund (ESPN Español)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -87,15 +60,6 @@
     "type": "hls",
     "urls": [
       "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09ZGlzbmV5NA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-sabah-fa-borussia-dortmund-fox-sports-espanol",
-    "name": "[08:45 AM] Sabah FA vs Borussia Dortmund (Fox Sports Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09Zm94c3BvcnRz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
@@ -144,6 +108,15 @@
     ]
   },
   {
+    "id": "evento-gillingham-port-vale-disney-12-espanol",
+    "name": "[11:00 AM] Gillingham vs Port Vale (Disney 12 Español)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09ZGlzbmV5MTI%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
     "id": "evento-roma-slovan-bratislava-espn3-espanol",
     "name": "[11:00 AM] Roma vs Slovan Bratislava (ESPN3 Español)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -177,6 +150,114 @@
     "type": "hls",
     "urls": [
       "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09ZGlzbmV5Ng%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-liverpool-villarreal-espn2-espanol",
+    "name": "[11:00 AM] Liverpool vs Villarreal (ESPN2 Español)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09ZXNwbjI%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-liverpool-villarreal-disney-07-espanol",
+    "name": "[11:00 AM] Liverpool vs Villarreal (Disney 07 Español)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09ZGlzbmV5Nw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-manchester-city-aek-athens-fc-espn5-espanol",
+    "name": "[11:00 AM] Manchester City vs AEK Athens FC (ESPN5 Español)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09ZXNwbjU%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-manchester-city-aek-athens-fc-disney-08-espanol",
+    "name": "[11:00 AM] Manchester City vs AEK Athens FC (Disney 08 Español)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09ZGlzbmV5OA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-napoles-bod-glimt-espn4-espanol",
+    "name": "[11:00 AM] Nápoles vs Bodø/Glimt (ESPN4 Español)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09ZXNwbjQ%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-napoles-bod-glimt-disney-09-espanol",
+    "name": "[11:00 AM] Nápoles vs Bodø/Glimt (Disney 09 Español)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09ZGlzbmV5OQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-paris-saint-germain-barcelona-espn-espanol",
+    "name": "[11:00 AM] París Saint-Germain vs Barcelona (ESPN Español)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09ZXNwbg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-paris-saint-germain-barcelona-disney-10-espanol",
+    "name": "[11:00 AM] París Saint-Germain vs Barcelona (Disney 10 Español)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09ZGlzbmV5MTA%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-paris-saint-germain-barcelona-tudn-usa-espanol",
+    "name": "[11:00 AM] París Saint-Germain vs Barcelona (TUDN USA Español)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09dHVkbg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-paris-saint-germain-barcelona-unimas-espanol",
+    "name": "[11:00 AM] París Saint-Germain vs Barcelona (Unimas Español)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09dW5pbWFz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-stuttgart-atletico-de-madrid-espn7-espanol",
+    "name": "[11:00 AM] Stuttgart vs Atlético de Madrid (ESPN7 Español)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09ZXNwbjc%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-stuttgart-atletico-de-madrid-disney-11-espanol",
+    "name": "[11:00 AM] Stuttgart vs Atlético de Madrid (Disney 11 Español)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9mcmVlLnBocD9zdHJlYW09ZGlzbmV5MTE%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   }
 ]
