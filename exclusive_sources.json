@@ -1,7 +1,7 @@
 [
   {
     "id": "evento-connection-timed-out-error-code-522-cloudflare-com",
-    "name": "[03:38 PM] Connection timed out Error code 522 (cloudflare.com)",
+    "name": "[08:53 PM] Connection timed out Error code 522 (cloudflare.com)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
@@ -10,155 +10,11 @@
   },
   {
     "id": "evento-additional-troubleshooting-information-here-additional-troubleshooting-information-here",
-    "name": "[11:38 PM] Additional troubleshooting information here. (Additional troubleshooting information here.)",
+    "name": "[04:53 AM] Additional troubleshooting information here. (Additional troubleshooting information here.)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
       "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1hZGRpdGlvbmFsX3Ryb3VibGVzaG9vdGluZ19pbmZvcm1hdGlvbl9oZXJl&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-banfield-boca-juniors-tyc-sports-espanol",
-    "name": "[02:00 PM] Banfield vs Boca Juniors (TYC Sports Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXR5Y3Nwb3J0cw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-banfield-boca-juniors-tyc-sports-movil-espanol",
-    "name": "[02:00 PM] Banfield vs Boca Juniors (TyC Sports Movil Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cuZ29scGVydXR2Lnh5ei9zdzMuaHRtbD9nZXQ9aHR0cHM6Ly93d3cuZ29scGVydXR2Lnh5ei9yZXByby90eWNzcG9ydHNhcmcuaHRtbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-paysandu-uruguay-montevideo-disneyplus-espanol",
-    "name": "[02:30 PM] Paysandu vs Uruguay Montevideo (Disney+ Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTEz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-queretaro-monterrey-vix-espanol",
-    "name": "[03:00 PM] Querétaro vs Monterrey (vix Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXZpeDE%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-tigres-uanl-femenil-pumas-unam-femenil-fox-one-espanol",
-    "name": "[03:00 PM] Tigres UANL Femenil vs Pumas UNAM Femenil (FOX One Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9mdWJvbGF6by5jb20vZHJtL2ZveG9uZS5waHA%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-nacional-albion-fc-disneyplus-espanol",
-    "name": "[03:00 PM] Nacional vs Albion FC (Disney+ Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTE0&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-chapecoense-sc-vasco-da-gama-premiere-br-portugues",
-    "name": "[03:30 PM] Chapecoense-sc vs Vasco da Gama (Premiere BR Portugués)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXByZW1pZXJlMQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-chapecoense-sc-vasco-da-gama-sportv-portugues",
-    "name": "[03:30 PM] Chapecoense-sc vs Vasco da Gama (SporTV Portugués)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXNwb3J0dg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-st-vincent-grenadines-belice-fox-soccer-plus-espanol",
-    "name": "[04:00 PM] St. Vincent / Grenadines vs Belice (Fox Soccer Plus Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWZveHNvY2NlcnBsdXM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-jamaica-mexico-canal-5-mx-espanol",
-    "name": "[05:00 PM] Jamaica vs México (Canal 5 MX Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWNhbmFsNQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-jamaica-mexico-canal-5-mx-hd-espanol",
-    "name": "[05:00 PM] Jamaica vs México (Canal 5 MX HD Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9mdWJvbGF6by5jb20vZHJtL2NhbmFsNW14LnBocA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-jamaica-mexico-azteca-7-espanol",
-    "name": "[05:00 PM] Jamaica vs México (Azteca 7 Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWF6dGVjYTc%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-jamaica-mexico-claro-sports-hd-espanol",
-    "name": "[05:00 PM] Jamaica vs México (Claro Sports HD Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9mdWJvbGF6by5jb20vZHJtL2NsYXJvc3BvcnRzMS5waHA%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-jamaica-mexico-tudn-usa-espanol",
-    "name": "[05:00 PM] Jamaica vs México (TUDN USA Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXR1ZG4%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-jamaica-mexico-tudn-usa-movil-espanol",
-    "name": "[05:00 PM] Jamaica vs México (TUDN USA Movil Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cuZ29scGVydXR2Lnh5ei9zdzMuaHRtbD9nZXQ9aHR0cHM6Ly93d3cuZ29scGVydXR2Lnh5ei9yZXByby90dWRudXNhdHYuaHRtbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-jamaica-mexico-univision-espanol",
-    "name": "[05:00 PM] Jamaica vs México (Univision Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXVuaXZpc2lvbg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
@@ -168,6 +24,79 @@
     "type": "hls",
     "urls": [
       "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTE4&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-pelota-libre-tv-pelota-libre-tv-canales-gratuitos-en-calidad-hd-para-ver-partido-dsports",
+    "name": "[03:00 AM] Pelota Libre TV Pelota libre TV Canales gratuitos en calidad HD para ver partidos de fútbol de Perú, Argentina, Chile, Colombia, Uruguay, Ecuador, Copa Libertadores, Copa Sudamericana, Champions Leagu (DSports)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kc3BvcnRz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F",
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kc3BvcnRzcGx1cw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-pelota-libre-tv-pelota-libre-tv-canales-gratuitos-en-calidad-hd-para-ver-partido-dsports-2",
+    "name": "[03:00 AM] Pelota Libre TV Pelota libre TV Canales gratuitos en calidad HD para ver partidos de fútbol de Perú, Argentina, Chile, Colombia, Uruguay, Ecuador, Copa Libertadores, Copa Sudamericana, Champions Leagu (DSports 2)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kc3BvcnRzMg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-pelota-libre-tv-pelota-libre-tv-canales-gratuitos-en-calidad-hd-para-ver-partido-espn",
+    "name": "[03:00 AM] Pelota Libre TV Pelota libre TV Canales gratuitos en calidad HD para ver partidos de fútbol de Perú, Argentina, Chile, Colombia, Uruguay, Ecuador, Copa Libertadores, Copa Sudamericana, Champions Leagu (ESPN)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3Bu&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-pelota-libre-tv-pelota-libre-tv-canales-gratuitos-en-calidad-hd-para-ver-partido-espn-2",
+    "name": "[03:00 AM] Pelota Libre TV Pelota libre TV Canales gratuitos en calidad HD para ver partidos de fútbol de Perú, Argentina, Chile, Colombia, Uruguay, Ecuador, Copa Libertadores, Copa Sudamericana, Champions Leagu (ESPN 2)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuMg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-pelota-libre-tv-pelota-libre-tv-canales-gratuitos-en-calidad-hd-para-ver-partido-espn-3",
+    "name": "[03:00 AM] Pelota Libre TV Pelota libre TV Canales gratuitos en calidad HD para ver partidos de fútbol de Perú, Argentina, Chile, Colombia, Uruguay, Ecuador, Copa Libertadores, Copa Sudamericana, Champions Leagu (ESPN 3)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuMw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-pelota-libre-tv-pelota-libre-tv-canales-gratuitos-en-calidad-hd-para-ver-partido-fox-sports",
+    "name": "[03:00 AM] Pelota Libre TV Pelota libre TV Canales gratuitos en calidad HD para ver partidos de fútbol de Perú, Argentina, Chile, Colombia, Uruguay, Ecuador, Copa Libertadores, Copa Sudamericana, Champions Leagu (Fox Sports)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mb3hzcG9ydHM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-pelota-libre-tv-pelota-libre-tv-canales-gratuitos-en-calidad-hd-para-ver-partido-fox-sports-2",
+    "name": "[03:00 AM] Pelota Libre TV Pelota libre TV Canales gratuitos en calidad HD para ver partidos de fútbol de Perú, Argentina, Chile, Colombia, Uruguay, Ecuador, Copa Libertadores, Copa Sudamericana, Champions Leagu (Fox Sports 2)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mb3hzcG9ydHMy&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-pelota-libre-tv-pelota-libre-tv-canales-gratuitos-en-calidad-hd-para-ver-partido-fox-sports-3",
+    "name": "[03:00 AM] Pelota Libre TV Pelota libre TV Canales gratuitos en calidad HD para ver partidos de fútbol de Perú, Argentina, Chile, Colombia, Uruguay, Ecuador, Copa Libertadores, Copa Sudamericana, Champions Leagu (Fox Sports 3)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mb3hzcG9ydHMz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   }
 ]
