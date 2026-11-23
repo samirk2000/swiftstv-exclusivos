@@ -1,7 +1,7 @@
 [
   {
     "id": "evento-connection-timed-out-error-code-522-cloudflare-com",
-    "name": "[01:34 PM] Connection timed out Error code 522 (cloudflare.com)",
+    "name": "[06:15 PM] Connection timed out Error code 522 (cloudflare.com)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
@@ -10,7 +10,7 @@
   },
   {
     "id": "evento-additional-troubleshooting-information-here-additional-troubleshooting-information-here",
-    "name": "[09:34 PM] Additional troubleshooting information here. (Additional troubleshooting information here.)",
+    "name": "[02:15 AM] Additional troubleshooting information here. (Additional troubleshooting information here.)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
@@ -18,26 +18,80 @@
     ]
   },
   {
-    "id": "evento-marseille-le-mans-disneyplus-espanol",
-    "name": "[11:45 AM] Marseille vs Le Mans (Disney+ Español)",
+    "id": "evento-washington-wizards-orlando-magic-nba-02-ingles",
+    "name": "[04:00 PM] Washington Wizards vs Orlando Magic (NBA 02 Inglés)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTI%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPW5iYTAy&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-marseille-le-mans-bein-sports-n-espanol",
-    "name": "[11:45 AM] Marseille vs Le Mans (BeIN Sports Ñ Español)",
+    "id": "evento-chicago-bulls-denver-nuggets-nba-03-ingles",
+    "name": "[04:00 PM] Chicago Bulls vs Denver Nuggets (NBA 03 Inglés)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWJlaW5zcG9ydGVz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPW5iYTAz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-atalanta-inter-de-milan-espn2-espanol",
-    "name": "[11:45 AM] Atalanta vs Inter de Milán (ESPN2 Español)",
+    "id": "evento-utah-jazz-dallas-mavericks-nba-04-ingles",
+    "name": "[04:00 PM] Utah Jazz vs Dallas Mavericks (NBA 04 Inglés)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPW5iYTA0&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-instituto-huracan-espn-premium-espanol",
+    "name": "[05:00 PM] Instituto vs Huracán (ESPN Premium Español)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG5wcmVtaXVt&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-instituto-huracan-espn-premium-movil-espanol",
+    "name": "[05:00 PM] Instituto vs Huracán (ESPN Premium Movil Español)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cuZ29scGVydXR2Lnh5ei9zdzMuaHRtbD9nZXQ9aHR0cHM6Ly93d3cuZ29scGVydXR2Lnh5ei9yZXByby9lc3BucHJlbWl1bTIuaHRtbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-new-york-knicks-indiana-pacers-nba-05-ingles",
+    "name": "[05:00 PM] New York Knicks vs Indiana Pacers (NBA 05 Inglés)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPW5iYTA1&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-queretaro-necaxa-tudn-usa-espanol",
+    "name": "[05:10 PM] Querétaro vs Necaxa (TUDN USA Español)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXR1ZG4%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-queretaro-necaxa-tudn-usa-movil-espanol",
+    "name": "[05:10 PM] Querétaro vs Necaxa (TUDN USA Movil Español)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cuZ29scGVydXR2Lnh5ei9zdzMuaHRtbD9nZXQ9aHR0cHM6Ly93d3cuZ29scGVydXR2Lnh5ei9yZXByby90dWRudXNhdHYuaHRtbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-san-francisco-49ers-minnesota-vikings-espn2-espanol",
+    "name": "[05:20 PM] San Francisco 49ers vs Minnesota Vikings (ESPN2 Español)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
@@ -45,17 +99,17 @@
     ]
   },
   {
-    "id": "evento-atalanta-inter-de-milan-disneyplus-espanol",
-    "name": "[11:45 AM] Atalanta vs Inter de Milán (Disney+ Español)",
+    "id": "evento-san-francisco-49ers-minnesota-vikings-espn-mx-espanol",
+    "name": "[05:20 PM] San Francisco 49ers vs Minnesota Vikings (ESPN MX Español)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG5teA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
-    "id": "evento-atalanta-inter-de-milan-espn2-movil-espanol",
-    "name": "[11:45 AM] Atalanta vs Inter de Milán (ESPN2 Movil Español)",
+    "id": "evento-san-francisco-49ers-minnesota-vikings-espn2-movil-espanol",
+    "name": "[05:20 PM] San Francisco 49ers vs Minnesota Vikings (ESPN2 Movil Español)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
@@ -63,183 +117,12 @@
     ]
   },
   {
-    "id": "evento-atalanta-inter-de-milan-espn2-mx-espanol",
-    "name": "[11:45 AM] Atalanta vs Inter de Milán (ESPN2 MX Español)",
+    "id": "evento-golden-state-warriors-boston-celtics-nba-06-ingles",
+    "name": "[05:30 PM] Golden State Warriors vs Boston Celtics (NBA 06 Inglés)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG4ybXg%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-atalanta-inter-de-milan-telemundo-espanol",
-    "name": "[11:45 AM] Atalanta vs Inter de Milán (Telemundo Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXRlbGVtdW5kbw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-getafe-atletico-de-madrid-espn-espanol",
-    "name": "[12:00 PM] Getafe vs Atlético de Madrid (ESPN Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG4%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-getafe-atletico-de-madrid-disneyplus-espanol",
-    "name": "[12:00 PM] Getafe vs Atlético de Madrid (Disney+ Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTQ%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-getafe-atletico-de-madrid-espn-movil-espanol",
-    "name": "[12:00 PM] Getafe vs Atlético de Madrid (ESPN Movil Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cuZ29scGVydXR2Lnh5ei9zdzMuaHRtbD9nZXQ9aHR0cHM6Ly93d3cuZ29scGVydXR2Lnh5ei9yZXByby9lc3BubW92aWwuaHRtbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-getafe-atletico-de-madrid-espn-deportes-espanol",
-    "name": "[12:00 PM] Getafe vs Atlético de Madrid (ESPN Deportes Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG5kZXBvcnRlcw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-burgos-albacete-laliga-tv-hypermotion-espanol",
-    "name": "[12:00 PM] Burgos vs Albacete (LaLiga TV Hypermotion Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWh5cGVybW90aW9uMQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-sporting-cristal-cienciano-liga1-espanol",
-    "name": "[12:00 PM] Sporting Cristal vs Cienciano (Liga1 Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWxpZ2Ex&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-sport-huancayo-universitario-liga1max-espanol",
-    "name": "[12:00 PM] Sport Huancayo vs Universitario (Liga1max Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWxpZ2ExbWF4&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-sport-huancayo-universitario-liga1max-op2-espanol",
-    "name": "[12:00 PM] Sport Huancayo vs Universitario (Liga1max OP2 Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWxpZ2ExbWF4X29wMg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-sport-huancayo-universitario-liga1max-movil-espanol",
-    "name": "[12:00 PM] Sport Huancayo vs Universitario (Liga1max Movil Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cuZ29scGVydXR2Lnh5ei9zdzMuaHRtbD9nZXQ9aHR0cHM6Ly93d3cuZ29scGVydXR2Lnh5ei9yZXByby9saWdhMW1heHR2Lmh0bWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-colo-colo-universidad-catolica-tnt-sports-premiun-cl-espanol",
-    "name": "[01:00 PM] Colo-Colo vs Universidad Católica (TNT Sports Premiun CL Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXRudHNwb3J0c2NoaWxl&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-colo-colo-universidad-catolica-tnt-sports-premium-cl-movil-espanol",
-    "name": "[01:00 PM] Colo-Colo vs Universidad Católica (TNT Sports Premium CL Movil Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cudGFyamV0YXJvaml0YS54eXovc3czLmh0bWw%2FZ2V0PWh0dHBzOi8vd3d3LnRhcmpldGFyb2ppdGEueHl6L3JlcHJvL3RudGNoaWxlLmh0bWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-fluminense-mirassol-premiere-2-br-portugues",
-    "name": "[01:30 PM] Fluminense vs Mirassol (Premiere 2 BR Portugués)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXByZW1pZXJlMg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-river-plate-lanus-espn-espanol",
-    "name": "[02:00 PM] River Plate vs Lanús (ESPN Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG4%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-river-plate-lanus-disneyplus-espanol",
-    "name": "[02:00 PM] River Plate vs Lanús (Disney+ Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTU%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-river-plate-lanus-espn-movil-espanol",
-    "name": "[02:00 PM] River Plate vs Lanús (ESPN Movil Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cuZ29scGVydXR2Lnh5ei9zdzMuaHRtbD9nZXQ9aHR0cHM6Ly93d3cuZ29scGVydXR2Lnh5ei9yZXByby9lc3BubW92aWwuaHRtbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-river-plate-lanus-tnt-sports-espanol",
-    "name": "[02:00 PM] River Plate vs Lanús (TNT Sports Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXRudHNwb3J0cw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-river-plate-lanus-tnt-sports-movil-espanol",
-    "name": "[02:00 PM] River Plate vs Lanús (TNT Sports Movil Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cuZ29scGVydXR2Lnh5ei9zdzMuaHRtbD9nZXQ9aHR0cHM6Ly93d3cuZ29scGVydXR2Lnh5ei9yZXByby90bnRzcG9ydHMyLmh0bWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-red-bull-bragantino-vasco-da-gama-premiere-br-portugues",
-    "name": "[02:30 PM] Red Bull Bragantino vs Vasco da Gama (Premiere BR Portugués)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXByZW1pZXJlMQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbGVzLnBocD9zdHJlYW09bmJhMDY%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   }
 ]
