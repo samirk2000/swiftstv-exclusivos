@@ -21,6 +21,52 @@ from urllib3.util.retry import Retry
 
 LOGGER = logging.getLogger("scraper")
 
+# Cloudflare / origin error pages (522, 502, "Just a moment...", etc.) used to
+# be parsed as the agenda and saved as fake events such as
+# "[01:55 PM] Connection timed out Error code 522 (cloudflare.com)".
+ERROR_TITLE_RE = re.compile(
+    r"^\s*(?:\d{3}\b|error\b|just a moment|attention required|access denied|"
+    r"bad gateway|service unavailable|gateway time-?out|connection timed out|"
+    r"web server is down|origin (?:is )?unreachable|forbidden|not found|"
+    r"too many requests|ssl handshake failed|invalid ssl certificate)",
+    re.I,
+)
+ERROR_BODY_RE = re.compile(
+    r"(?:cf-error-details|cf-wrapper|cloudflare ray id|cf_chl_opt|challenge-platform|"
+    r"error code[:\s]+5\d\d|error code[:\s]+10\d\d)",
+    re.I,
+)
+ERROR_TEXT_RE = re.compile(
+    r"(?:error code\s*\d{3,4}|\(cloudflare\.com\)|\bcloudflare\b|connection timed out|"
+    r"bad gateway|gateway time-?out|service unavailable|web server is down|"
+    r"origin (?:is )?unreachable|just a moment|attention required|access denied|"
+    r"checking your browser)",
+    re.I,
+)
+
+
+class UpstreamError(RuntimeError):
+    """A fetched page is an HTTP / Cloudflare error page, not real content."""
+
+
+def html_title(html: str) -> str:
+    match = re.search(r"<title[^>]*>(.*?)</title>", html or "", re.I | re.S)
+    return normalize_space(re.sub(r"<[^>]+>", " ", match.group(1))) if match else ""
+
+
+def looks_like_error_page(html: str, status: int = 200) -> bool:
+    if status >= 400:
+        return True
+    text = html or ""
+    if ERROR_TITLE_RE.search(html_title(text)):
+        return True
+    # Only small pages: a real agenda is large and may mention "cloudflare".
+    return len(text) < 60_000 and bool(ERROR_BODY_RE.search(text))
+
+
+def is_error_text(value: str) -> bool:
+    return bool(ERROR_TEXT_RE.search(value or ""))
+
 TIME_RE = re.compile(r"\b([01]?\d|2[0-3]):[0-5]\d\b")
 MATCH_TEXT_RE = re.compile(
     r"(\bvs\.?\b|\bv\.?\s*s\.?\b|\s[-–—]\s|\bversus\b)",
@@ -310,28 +356,35 @@ class PlaywrightRenderer:
         page.on("response", on_response)
         try:
             print(f"[playwright] loading {url}")
+            nav_status = 0
             try:
                 with page.expect_response(
                     lambda response: "agenda.json" in response.url and response.ok,
                     timeout=int(self.settings.timeout * 1000),
                 ):
-                    page.goto(
+                    nav = page.goto(
                         url,
                         wait_until="domcontentloaded",
                         timeout=int(self.settings.timeout * 1000),
                     )
+                    nav_status = nav.status if nav is not None else 0
             except Exception:
-                page.goto(
+                nav = page.goto(
                     url,
                     wait_until="domcontentloaded",
                     timeout=int(self.settings.timeout * 1000),
                 )
+                nav_status = nav.status if nav is not None else 0
+            if nav_status >= 400:
+                raise UpstreamError(f"HTTP {nav_status} for {url}")
 
             self._wait_for_agenda(page)
             menu_count = page.locator("ul.menu > li, #menu > li").count()
             print(f"[playwright] agenda items={menu_count}")
             html = page.content()
             print(f"[playwright] rendered {url} ({len(html)} bytes)")
+            if looks_like_error_page(html) and not api_payload:
+                raise UpstreamError(f"error page ({html_title(html)!r}) for {url}")
             return html, api_payload
         finally:
             page.close()
@@ -634,8 +687,10 @@ class HttpClient:
         )
         response.encoding = response.apparent_encoding or response.encoding or "utf-8"
         print(f"[http] {response.status_code} {url} ({len(response.text)} bytes)")
-        if response.status_code >= 400 and not response.text.strip():
-            response.raise_for_status()
+        if response.status_code >= 400:
+            raise UpstreamError(f"HTTP {response.status_code} for {url}")
+        if looks_like_error_page(response.text, response.status_code):
+            raise UpstreamError(f"error page ({html_title(response.text)!r}) for {url}")
         return response.text
 
     def get_json(self, url: str, referer: str | None = None) -> dict | list:
@@ -1878,6 +1933,7 @@ class Scraper:
         captured_api_payload: dict | None = None
 
         collected: list[AgendaEvent] = []
+        failed_sources = 0
         try:
             for agenda_url in self.settings.target_urls:
                 try:
@@ -1885,6 +1941,7 @@ class Scraper:
                     if api_payload and captured_api_payload is None:
                         captured_api_payload = api_payload
                 except Exception as exc:  # noqa: BLE001
+                    failed_sources += 1
                     print(f"[agenda] {agenda_url} -> ERROR: {exc}")
                     LOGGER.warning("Agenda failed (%s): %s", agenda_url, exc)
                     continue
@@ -1900,7 +1957,11 @@ class Scraper:
                 collected.extend(extra)
             elif not collected:
                 referer = self.settings.target_urls[0]
-                page_html = self.http.get_html(referer)
+                try:
+                    page_html = self.http.get_html(referer)
+                except Exception as exc:  # noqa: BLE001
+                    print(f"[api] agenda page failed ({referer}): {exc}")
+                    page_html = ""
                 api_url = api_client.discover_api_url(referer, page_html)
                 try:
                     extra = api_client.fetch_events(api_url, referer)
@@ -1911,7 +1972,9 @@ class Scraper:
             events = [
                 event
                 for event in merge_events(collected)
-                if event.category != "Canales" and event.channel_pages
+                if event.category != "Canales"
+                and event.channel_pages
+                and not is_error_event(event)
             ]
             print(f"[run] daily agenda options={len(events)}")
             catalog = EmbedCatalog(self.http, self.settings)
@@ -1934,6 +1997,22 @@ class Scraper:
             self.renderer.close()
 
         records = self.builder.build(events, self.settings)
+        before = len(records)
+        records = [record for record in records if not is_error_text(str(record.get("name", "")))]
+        if len(records) != before:
+            print(f"[run] dropped {before - len(records)} error-page records")
+        previous = read_json_list(self.settings.output_path)
+        if not records and previous and failed_sources:
+            # Every source failed (Cloudflare 52x, timeouts...): keep the last
+            # good file instead of publishing an empty or broken agenda.
+            print(
+                f"[run] no events and {failed_sources} source(s) failed; "
+                f"keeping last good data ({len(previous)} sources) in {self.settings.output_path}"
+            )
+            if len(previous) != count_json_list(self.settings.output_path):
+                write_json(self.settings.output_path, previous)
+                print("[run] removed old error-page records from the kept data")
+            return previous
         write_json(self.settings.output_path, records)
         print(f"[run] wrote {len(records)} sources to {self.settings.output_path}")
         return records
@@ -2602,6 +2681,33 @@ def dedupe_keep_order(values: Iterable[str]) -> list[str]:
             seen.add(value)
             unique.append(value)
     return unique
+
+
+def is_error_event(event: "AgendaEvent") -> bool:
+    if is_error_text(event.title) or is_error_text(event.match_name):
+        return True
+    pages = [urlparse(page).netloc.lower() for page in event.channel_pages]
+    return bool(pages) and all(host.endswith("cloudflare.com") for host in pages)
+
+
+def read_json_list(path: str) -> list[dict]:
+    try:
+        with open(path, encoding="utf-8") as handle:
+            data = json.load(handle)
+    except (OSError, ValueError):
+        return []
+    if not isinstance(data, list):
+        return []
+    return [item for item in data if isinstance(item, dict) and not is_error_text(str(item.get("name", "")))]
+
+
+def count_json_list(path: str) -> int:
+    try:
+        with open(path, encoding="utf-8") as handle:
+            data = json.load(handle)
+    except (OSError, ValueError):
+        return 0
+    return len(data) if isinstance(data, list) else 0
 
 
 def write_json(path: str, payload: list[dict]) -> None:
