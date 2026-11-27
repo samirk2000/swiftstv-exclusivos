@@ -1,113 +1,5 @@
 [
   {
-    "id": "evento-dallas-cowboys-philadelphia-eagles-espn6-espanol",
-    "name": "[01:30 PM] Dallas Cowboys vs Philadelphia Eagles (ESPN6 Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG42&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-dallas-cowboys-philadelphia-eagles-espn6-movil-espanol",
-    "name": "[01:30 PM] Dallas Cowboys vs Philadelphia Eagles (ESPN6 Movil Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cuZ29scGVydXR2Lnh5ei9zdzMuaHRtbD9nZXQ9aHR0cHM6Ly93d3cuZ29scGVydXR2Lnh5ei9yZXByby9lc3BuNnR2Lmh0bWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-independiente-res-gimnasia-mendoza-2-espn-premium-espanol",
-    "name": "[02:00 PM] Independiente Res. vs Gimnasia Mendoza 2 (ESPN Premium Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG5wcmVtaXVt&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-independiente-res-gimnasia-mendoza-2-espn-premium-movil-espanol",
-    "name": "[02:00 PM] Independiente Res. vs Gimnasia Mendoza 2 (ESPN Premium Movil Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cuZ29scGVydXR2Lnh5ei9zdzMuaHRtbD9nZXQ9aHR0cHM6Ly93d3cuZ29scGVydXR2Lnh5ei9yZXByby9lc3BucHJlbWl1bTIuaHRtbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-sao-paulo-remo-premiere-br-portugues",
-    "name": "[03:00 PM] São Paulo vs Remo (Premiere BR Portugués)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXByZW1pZXJlMQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-sao-paulo-remo-azteca-deportes-espanol",
-    "name": "[03:00 PM] São Paulo vs Remo (Azteca Deportes Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWF6dGVjYV9kZXBvcnRlcw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-pachuca-chivas-telemundo-espanol",
-    "name": "[05:00 PM] Pachuca vs Chivas (Telemundo Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXRlbGVtdW5kbw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-pachuca-chivas-tudn-usa-espanol",
-    "name": "[05:00 PM] Pachuca vs Chivas (TUDN USA Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXR1ZG4%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-pachuca-chivas-tudn-usa-movil-espanol",
-    "name": "[05:00 PM] Pachuca vs Chivas (TUDN USA Movil Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cuZ29scGVydXR2Lnh5ei9zdzMuaHRtbD9nZXQ9aHR0cHM6Ly93d3cuZ29scGVydXR2Lnh5ei9yZXByby90dWRudXNhdHYuaHRtbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-buffalo-bills-kansas-city-chiefs-espn5-espanol",
-    "name": "[05:20 PM] Buffalo Bills vs Kansas City Chiefs (ESPN5 Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWVzcG41&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-buffalo-bills-kansas-city-chiefs-disneyplus-espanol",
-    "name": "[05:20 PM] Buffalo Bills vs Kansas City Chiefs (Disney+ Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWRpc25leTE%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-buffalo-bills-kansas-city-chiefs-espn5-movil-espanol",
-    "name": "[05:20 PM] Buffalo Bills vs Kansas City Chiefs (ESPN5 Movil Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cuZ29scGVydXR2Lnh5ei9zdzMuaHRtbD9nZXQ9aHR0cHM6Ly93d3cuZ29scGVydXR2Lnh5ei9yZXByby9lc3BuNXR2Lmh0bWw%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
     "id": "evento-leon-cruz-azul-tudn-usa-espanol",
     "name": "[07:10 PM] León vs Cruz Azul (TUDN USA Español)",
     "category": "EVENTOS DEL DIA - PPV",
@@ -117,21 +9,12 @@
     ]
   },
   {
-    "id": "evento-leon-cruz-azul-canal-5-mx-espanol",
-    "name": "[07:10 PM] León vs Cruz Azul (Canal 5 MX Español)",
+    "id": "evento-leon-cruz-azul-tudn-hd-espanol",
+    "name": "[07:10 PM] León vs Cruz Azul (TUDN HD Español)",
     "category": "EVENTOS DEL DIA - PPV",
     "type": "hls",
     "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPWNhbmFsNQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
-    ]
-  },
-  {
-    "id": "evento-leon-cruz-azul-tudn-mx-espanol",
-    "name": "[07:10 PM] León vs Cruz Azul (TUDN MX Español)",
-    "category": "EVENTOS DEL DIA - PPV",
-    "type": "hls",
-    "urls": [
-      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbC5waHA%2Fc3RyZWFtPXR1ZG5fbXg%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9sYTE4aGQuc3Uvdml2by9jYW5hbGVzLnBocD9zdHJlYW09Zm94b25lMQ%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   },
   {
@@ -141,6 +24,79 @@
     "type": "hls",
     "urls": [
       "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly93d3cuZ29scGVydXR2Lnh5ei9zdzMuaHRtbD9nZXQ9aHR0cHM6Ly93d3cuZ29scGVydXR2Lnh5ei9yZXByby90dWRudXNhdHYuaHRtbA%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-pelota-libre-tv-pelota-libre-tv-canales-gratuitos-en-calidad-hd-para-ver-partido-dsports",
+    "name": "[03:10 AM] Pelota Libre TV Pelota libre TV Canales gratuitos en calidad HD para ver partidos de fútbol de Perú, Argentina, Chile, Colombia, Uruguay, Ecuador, Copa Libertadores, Copa Sudamericana, Champions Leagu (DSports)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kc3BvcnRz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F",
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kc3BvcnRzcGx1cw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-pelota-libre-tv-pelota-libre-tv-canales-gratuitos-en-calidad-hd-para-ver-partido-dsports-2",
+    "name": "[03:10 AM] Pelota Libre TV Pelota libre TV Canales gratuitos en calidad HD para ver partidos de fútbol de Perú, Argentina, Chile, Colombia, Uruguay, Ecuador, Copa Libertadores, Copa Sudamericana, Champions Leagu (DSports 2)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1kc3BvcnRzMg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-pelota-libre-tv-pelota-libre-tv-canales-gratuitos-en-calidad-hd-para-ver-partido-espn",
+    "name": "[03:10 AM] Pelota Libre TV Pelota libre TV Canales gratuitos en calidad HD para ver partidos de fútbol de Perú, Argentina, Chile, Colombia, Uruguay, Ecuador, Copa Libertadores, Copa Sudamericana, Champions Leagu (ESPN)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3Bu&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-pelota-libre-tv-pelota-libre-tv-canales-gratuitos-en-calidad-hd-para-ver-partido-espn-2",
+    "name": "[03:10 AM] Pelota Libre TV Pelota libre TV Canales gratuitos en calidad HD para ver partidos de fútbol de Perú, Argentina, Chile, Colombia, Uruguay, Ecuador, Copa Libertadores, Copa Sudamericana, Champions Leagu (ESPN 2)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuMg%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-pelota-libre-tv-pelota-libre-tv-canales-gratuitos-en-calidad-hd-para-ver-partido-espn-3",
+    "name": "[03:10 AM] Pelota Libre TV Pelota libre TV Canales gratuitos en calidad HD para ver partidos de fútbol de Perú, Argentina, Chile, Colombia, Uruguay, Ecuador, Copa Libertadores, Copa Sudamericana, Champions Leagu (ESPN 3)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1lc3BuMw%3D%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-pelota-libre-tv-pelota-libre-tv-canales-gratuitos-en-calidad-hd-para-ver-partido-fox-sports",
+    "name": "[03:10 AM] Pelota Libre TV Pelota libre TV Canales gratuitos en calidad HD para ver partidos de fútbol de Perú, Argentina, Chile, Colombia, Uruguay, Ecuador, Copa Libertadores, Copa Sudamericana, Champions Leagu (Fox Sports)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mb3hzcG9ydHM%3D&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-pelota-libre-tv-pelota-libre-tv-canales-gratuitos-en-calidad-hd-para-ver-partido-fox-sports-2",
+    "name": "[03:10 AM] Pelota Libre TV Pelota libre TV Canales gratuitos en calidad HD para ver partidos de fútbol de Perú, Argentina, Chile, Colombia, Uruguay, Ecuador, Copa Libertadores, Copa Sudamericana, Champions Leagu (Fox Sports 2)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mb3hzcG9ydHMy&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
+    ]
+  },
+  {
+    "id": "evento-pelota-libre-tv-pelota-libre-tv-canales-gratuitos-en-calidad-hd-para-ver-partido-fox-sports-3",
+    "name": "[03:10 AM] Pelota Libre TV Pelota libre TV Canales gratuitos en calidad HD para ver partidos de fútbol de Perú, Argentina, Chile, Colombia, Uruguay, Ecuador, Copa Libertadores, Copa Sudamericana, Champions Leagu (Fox Sports 3)",
+    "category": "EVENTOS DEL DIA - PPV",
+    "type": "hls",
+    "urls": [
+      "https://api.swiftstv.com/v1/play.m3u8?embed=https%3A%2F%2Ftudeporteshoy.xyz%2Fembed%2Feventos.html%3Fr%3DaHR0cHM6Ly9zdHJlYW10cC1nb2xkZW4xLmNsaWNrL2dsb2JhbDIucGhwP3N0cmVhbT1mb3hzcG9ydHMz&referer=https%3A%2F%2Ftudeporteshoy.xyz%2F"
     ]
   }
 ]
